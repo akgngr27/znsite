@@ -1,0 +1,111 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>ZN KOD ÇATISI</title>
+<link type="text/css" rel="stylesheet" href="../Styles/Structure.css" />
+<script src="../Scripts/Jquery.js"></script>
+<script src="../Scripts/Structure.js"></script>
+</head>
+
+<body>
+    <div id="content-document"><a href="#">Döküman</a> » <a href="foundations.html">Foundations</a> » Redirect Kütüphanesi</div> 
+    <p class="ctfont">Redirect Kütüphanesi</p>
+    <p>Yönlendirme yapmak için kullanılır.</p>
+    <ul><li><a href="#" class="infont">Redirect Kütüphanesi ve Yöntemleri</a><br><br>
+        <ul>    
+            <li><a href="#action">Yönlendirme Adresini Belirlemek » <b>Redirect::action()</b></a></li>
+            <li><a href="#time">Yönlendirme Süresini Ayarlamak » <b>Redirect::wait/time()</b></a></li>
+            <li><a href="#insert">Yönlendirme ile Data Göndermek » <b>Redirect::data/insert()</b></a></li>
+            <li><a href="#select">Yönlendirmeden Gelen Veriyi Kullanmak » <b>Redirect::select()</b></a></li>
+            <li><a href="#delete">Yönlendirmeden Gelen Veriyi Silmek » <b>Redirect::delete()</b></a></li>
+        </ul>
+    </li></ul>
+
+    
+   	<p class="cstfont" id="action">Yönlendirme Adresini Belirlemek</p>
+    <p><ftype>Redirect::action( <kf>string</kf> <vf>$uri</vf> )</ftype></p>
+    <p>Yönlendirme adresi belirtilir. URL veya URI bilgisi girilebilir.</p>
+ 
+    <p>
+    	<table class="cfont">
+        	<tr><th>Parametre</th><td>Anlamları</td></tr>
+            <tr><th>1. Parametre = URI Bilgisi</th><td>Yönlendirme bilgisi.</td></tr>
+        </table>
+    </p>
+	<p>
+    	<div type="code">
+		Redirect::action(<sf>'home/contact'</sf>);
+    	</div>
+    </p>
+ 
+    <p class="cstfont" id="time">Yönlendirme Süresini Ayarlamak</p>
+    <p><ftype>Redirect::wait/time( <kf>numeric</kf> <vf>$sure</vf> )</ftype></p>
+    <p>Yönlendirme süresi belirtilir.</p>
+ 
+    <p>
+    	<table class="cfont">
+        	<tr><th>Parametre</th><td>Anlamları</td></tr>
+            <tr><th>1. Parametre = Bekleme Süresi</th><td>Bekleme süresi bilgisi.</td></tr>
+        </table>
+    </p>
+	<p>
+    	<div type="code">
+		Redirect::wait(<if>3</if>)->action(<sf>'home/contact'</sf>); <comment>// 3 saniye bekle ve yönlendir.</comment>
+    	</div>
+    </p>
+    
+    <p class="cstfont" id="insert">Yönlendirme ile Data Göndermek</p>
+    <p><ftype>Redirect::data/insert( <kf>array</kf> <vf>$data</vf> )</ftype></p>
+    <p>Yönlendirme ile gönderilecek datalar belirlenir.</p>
+ 
+    <p>
+    	<table class="cfont">
+        	<tr><th>Parametre</th><td>Anlamları</td></tr>
+            <tr><th>1. Parametre = Veriler</th><td>Gönderilecek veriler.</td></tr>
+        </table>
+    </p>
+	<p>
+    	<div type="code">
+		Redirect::insert(<kf>array</kf>(<sf>'data'</sf> => <sf>'Data'</sf>))->wait(<if>3</if>)->action(<sf>'home/contact'</sf>); <comment>// 3 saniye bekle ve yönlendir.</comment>
+    	</div>
+    </p>
+    
+    <p class="cstfont" id="select">Yönlendirmeden Gelen Veriyi Kullanmak</p>
+    <p><ftype>Redirect::select( <kf>string</kf> <vf>$key</vf> )</ftype></p>
+    <p>Yönlendirme ile gelen veriyi kullanmak içindir.</p>
+ 
+    <p>
+    	<table class="cfont">
+        	<tr><th>Parametre</th><td>Anlamları</td></tr>
+            <tr><th>1. Parametre = Anahtar</th><td>Kullanılmak istenen verinin anahtar değeri.</td></tr>
+        </table>
+    </p>
+	<p>
+    	<div type="code">
+		Redirect::select(<sf>'data'</sf>); <comment>// Data.</comment>
+    	</div>
+    </p>
+    
+    <p class="cstfont" id="delete">Yönlendirmeden Gelen Veriyi Silmek</p>
+    <p><ftype>Redirect::delete( <kf>string/array</kf> <vf>$key</vf> )</ftype></p>
+    <p>Yönlendirme ile gelen veriyi silmek içindir.</p>
+ 
+    <p>
+    	<table class="cfont">
+        	<tr><th>Parametre</th><td>Anlamları</td></tr>
+            <tr><th>1. Parametre = Anahtar</th><td>Kullanılmak istenen verinin anahtar değeri.</td></tr>
+        </table>
+    </p>
+	<p>
+    	<div type="code">
+		Redirect::delete(<sf>'data'</sf>);
+    	</div>
+    </p>
+    
+    <div type="prev-next">
+    	<div type="prev-btn"><a href="foundations_route.html">Önceki</a></div><div type="next-btn"><a href="helpers.html">Sonraki</a></div>
+    </div>
+ 
+</body>
+</html>              

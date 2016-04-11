@@ -1,0 +1,354 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>ZN KOD ÇATISI</title>
+<link type="text/css" rel="stylesheet" href="../Styles/Structure.css" />
+<script src="../Scripts/Jquery.js"></script>
+<script src="../Scripts/Structure.js"></script>
+</head>
+
+<body>
+    <div id="content-document"><a href="#">Döküman</a> » <a href="templating.html">Templating</a> » Template Kütüphanesi</div> 
+    <p class="ctfont">Template Kütüphanesi</p>
+    <p>Görünüm dosyalarını manüpile etmek için ve daha basit php komutlarını kullanabilmeniz için oluşturulmuştur.</p>
+    
+    <ul><li><a href="#" class="infont">Format(Biçimlendirme) Kütüphanesi ve Yöntemleri</a><br><br>
+        <ul>
+            <li><a href="#function">Fonksiyon Kullanmak</b></a></li>
+            <li><a href="#if">Karar Yapısı Kullanmak</b></a></li>
+            <li><a href="#loop">Döngü Kullanmak</b></a></li>
+            <li><a href="#comment">Açıklama Satırı Kullanmak</b></a></li>
+            <li><a href="#echo">Yazdırma Tagları Kullanmak</b></a></li>
+            <li><a href="#tags">PHP Tagları Kullanmak</b></a></li>
+            <li><a href="#data">Yazdırılabilir Verileri Kullanmak</b></a></li>
+            <li><a href="#datas">Yazdırılabilir Olsun Olmasın Tüm Verileri Kullanmak</b></a></li>
+            <li><a href="#parse">Ayrıştırma Grubu Oluşturmak</b></a></li>
+            <li><a href="#html">Özel HTML Yapısı Kullanmak</b></a></li>
+        </ul>
+    </li></ul>
+  
+  	<p class="cstfont" id="parser">Template(Şablon) Kütüphanesi</p>
+    <p>Bu kütüphanenin verileri manüpüle etmek için bir <strong>data()</strong> yöntemi bulunsada genel olarak kullanımı Views/ dizindeki görünüm sayfalarının sonuna <strong>.template</strong> uzantısı getirilerek kullanımıdır. Template kütüphanesinin kurallarına uygun yazacağınız her görünüm sayfası bu kütüphane ile ayrıştırılarak normal php kodlarına çevrilir. Şimdi bu kütüphaneyi nasıl kullanarız onu gösterelim.</p>
+    
+  	<p>
+    Öncelikle yapmanız gereken <u>Views/test<strong>.template</strong>.php</u> örnek bir görünüm dosyası oluşturmak.
+    </p>
+		
+    <p class="cstfont" id="function">Şablon Görünüm Dosyasında Fonksiyon Kullanmak</p>
+    <p>Şablon görünüm sayfasında aşağıdaki şekilde fonksiyonlar kullanılabilir.</p>
+    
+     <p>
+    	<table class="cfont">
+        	<tr><th>Kullanım</th><td>Anlamları</td></tr>
+            <tr><th>@fonksiyon</th><td>Ekrana bastırılmayacak fonksiyonlar için kullanılır.</td></tr>
+            <tr><th>@@fonksiyon</th><td>Ekrana bastırılacak fonksiyonlar için kullanılır.</td></tr>
+        </table>
+    </p>
+   	
+     <p>
+    <div type="code">
+    Viewst/test.template.php
+<pre>
+@print</kf>(<sf>'test'</sf>) <comment>// Sonuc: test</comment>
+</pre>
+    </div>
+    </p>
+    
+    <p>Ekrana <strong>çıktı vermesini istediğimiz</strong> foksiyonları ise aşağıdaki gibi kullanıyoruz.</p>
+    
+    <p>
+    <div type="code">
+    Viewst/test.template.php
+<pre>
+@@siteUrl</kf>(<sf>'test'</sf>) <comment>// Sonuc: http://site.com/test</comment>
+</pre>
+    </div>
+    </p>
+    
+    <p class="cstfont" id="if">Şablon Görünüm Dosyasında Karar Yapıları Kullanmak</p>
+    <p>Şablon görünüm sayfasında aşağıdaki şekilde karar yapıları kullanılabilir.</p>
+    
+     <p>
+    	<table class="cfont">
+        	<tr><th>Kullanım</th><td>Anlamları</td></tr>
+            <tr><th>@if(), @elseif(), @else, @endif</th><td>İf - else kullanımı.</td></tr>
+        </table>
+    </p>
+    
+    <p><strong>If-Else Kullanımı</strong></p>
+    
+    <p>
+    <div type="code">
+    Viewst/test.template.php
+<pre>
+<kf>@if</kf>( <vf>$deger</vf> === <if>1</if> )
+    {{ 1 }}
+<kf>@elseif</kf>( <vf>$deger</vf> === <sf>'test'</sf> )
+    {{ 'test' }}
+<kf>@else</kf>
+    <kf>@print</kf>(<sf>'varsayılan'</sf>)
+<kf>@endif</kf>
+</pre>
+    </div>
+    </p>
+
+    
+    <p class="cstfont" id="loop">Şablon Görünüm Dosyasında Döngü Kullanmak</p>
+    <p>Şablon görünüm sayfasında aşağıdaki şekilde döndüler kullanılabilir.</p>
+    
+     <p>
+    	<table class="cfont">
+        	<tr><th>Kullanım</th><td>Anlamları</td></tr>
+            <tr><th>@for(), @endfor</th><td>For döngüsünün kullanımı.</td></tr>
+            <tr><th>@foreach(), @endforeach</th><td>Foreach döngüsünün kullanımı.</td></tr>
+            <tr><th>@while(), @endwhile</th><td>While döngüsünün kullanımı.</td></tr>
+        </table>
+    </p>
+    
+    <p><strong>For Kullanımı</strong></p>
+    
+    <p>
+    <div type="code">
+    Viewst/test.template.php
+<pre>
+<kf>@for</kf>(<vf>$i</vf> = <if>0</if>; <vf>$i</vf> < <if>10</if>; <vf>$i</vf>++)
+	@writeLine(<vf>$i</vf>)
+<kf>@endfor</kf>
+</pre>
+    </div>
+    </p>
+    
+    <p>Diğer döngülerin kullanımıda benzerdir.</p>
+    
+    <p class="cstfont" id="comment">Açıklama Satırı Kullanmak</p>
+    <p>Şablon görünüm sayfasında aşağıdaki şekilde açıklama kullanılabilir.</p>
+    
+     <p>
+    	<table class="cfont">
+        	<tr><th>Kullanım</th><td>Anlamları</td></tr>
+            <tr><th>{-- Açıklama Satırı --}</th><td>Açıklama satırı kullanımı.</td></tr>
+        </table>
+    </p>
+    
+    <p>
+    <div type="code">
+    Viewst/test.template.php
+<pre>
+<kf>@for</kf>(<vf>$i</vf> = <if>0</if>; <vf>$i</vf> < <if>10</if>; <vf>$i</vf>++)
+	@writeLine(<vf>$i</vf>) {-- Bu bölüm açıklama satırıdır. --}
+<kf>@endfor</kf>
+</pre>
+    </div>
+    </p>
+    
+    <p class="cstfont" id="echo">Yazdırma Tagları Kullanmak</p>
+    <p>Şablon görünüm sayfasında aşağıdaki şekilde yazdırma işlemi uygulanabilir.</p>
+    
+     <p>
+    	<table class="cfont">
+        	<tr><th>Kullanım</th><td>Anlamları</td></tr>
+            <tr><th>{{ 'Yazdırılacak Metin' }}</th><td>İfade dizge ise tırnak içinde kullanılmalıdır.</td></tr>
+        </table>
+    </p>
+
+    <p>
+    <div type="code">
+    Viewst/test.template.php
+<pre>
+{{ 'Merhaba ZERONEED' }}
+</pre>
+    </div>
+    </p>
+    
+    <p class="cstfont" id="tags">PHP Tagları Kullanmak</p>
+    <p>Şablon görünüm sayfasında aşağıdaki şekilde php tagları kullanılabilir.</p>
+    
+     <p>
+    	<table class="cfont">
+        	<tr><th>Kullanım</th><td>Anlamları</td></tr>
+            <tr><th>{[ ]}</th><td>Bir süslü ve köşeli parantez ile.</td></tr>
+        </table>
+    </p>
+
+    <p>
+    <div type="code">
+    Viewst/test.template.php
+<pre>
+{[ echo 'Merhaba ZERONEED' ]}
+</pre>
+    </div>
+    </p>
+    
+    <p class="cstfont" id="data">Yazdırılabilir Verileri Kullanmak</p>
+    <p><strong>Controllers/</strong> kontrolcü sayfalarından gönderilen dataları kullanmak için <strong>{ data }</strong> formundan yararlanırız. Yazdırılabilir verilerden kasıt ölçülebilir büyüklükler(<strong>string, boolean, integer</strong>) kastedilmektedir.</p>
+    
+     <p>
+    	<table class="cfont">
+        	<tr><th>Kullanım</th><td>Anlamları</td></tr>
+            <tr><th>{ data }</th><td>Yazdırılabilir veri.</td></tr>
+            <tr><th>$data</th><td>Verimiz yazdırılabilir bir veri değilse bu şekilde de bir kullanımda mümkündür.</td></tr>
+        </table>
+    </p>
+
+	<p>Controllers/test.php kontrolcüsünden test datasının gönderildiğini varsayarsak bu datayı aşağıdaki gibi kullanabiliriz.</p>
+    <p>
+    <div type="code">
+    Viewst/test.template.php
+<pre>
+{ test } 
+</pre>
+    </div>
+    </p>
+    
+    <p class="cstfont" id="datas">Yazdırılabilir Olsun Olmasın Tüm Verileri Kullanmak</p>
+    <p><strong>Controllers/</strong> kontrolcü sayfalarından gönderilen dataları kullanmak için <strong>$data</strong> formundan yararlanırız.</p>
+    
+     <p>
+    	<table class="cfont">
+        	<tr><th>Kullanım</th><td>Anlamları</td></tr>
+            <tr><th>$data</th><td>Gelen verileri değişken olarak kullanmak mümkündür.</td></tr>
+    	</table>
+    </p>
+
+	<p>Controllers/test.php kontrolcüsünden test datasının gönderildiğini varsayarsak bu datayı aşağıdaki gibi kullanabiliriz.</p>
+    <p>
+    <div type="code">
+    Viewst/test.template.php
+<pre>
+{{ $test}}
+</pre>
+    </div>
+    </p>
+    
+    <p>Aşağıdaki gibi <strong>kısa yoldan değişkeni yazdırmakta</strong> mümkündür.</p>
+    
+    <p>
+    <div type="code">
+    Viewst/test.template.php
+<pre>
+@$test
+</pre>
+    </div>
+    </p>
+    
+	<p class="cstfont" id="parse">Ayrıştırıcı Grubu Oluşturmak</p>
+    <p><strong>Ayrıştırıcı grubu</strong> oluşturmak için aşağıdaki yöntemi kullanabilirsiniz.</p>
+    
+  <p>
+  	
+  	<div type="code">
+    Views/test.template.php
+<pre><x><</x>ul>
+    { elements }
+        <x><</x>li><x><</x>a href="{ href }">{ name }<x><</x>/a><x><</x>/li>
+    { / elements }
+<x><</x>/ul>
+    </pre></div>
+    <p></p>
+   
+    <div type="code">
+     Controllers/test.php
+<pre><vf>$data</vf> = <kf>array</kf>
+        (
+            <sf>'elements'</sf> => <kf>array</kf>
+            (	
+            	<kf>array</kf>(<sf>'href'</sf> => <sf>'Link1'</sf>, <sf>'name'</sf> => <sf>'LinkName1'</sf>),
+                <kf>array</kf>(<sf>'href'</sf> => <sf>'Link2'</sf>, <sf>'name'</sf> => <sf>'LinkName2'</sf>),
+                <kf>array</kf>(<sf>'href'</sf> => <sf>'Link3'</sf>, <sf>'name'</sf> => <sf>'LinkName3'</sf>)
+            )
+        );
+        
+Import::view(<sf>'test.template'</sf>, <vf>$data</vf>);</pre></div>
+<p></p>
+<div type="code">
+<comment>// Çıktı: 
+<x><</x>ul>
+    <x><</x>li><x><</x>a href="Link1">LinkName1<x><</x>/a><x><</x>/li>
+    <x><</x>li><x><</x>a href="Link2">LinkName2<x><</x>/a><x><</x>/li>
+    <x><</x>li><x><</x>a href="Link3">LinkName3<x><</x>/a><x><</x>/li>
+<x><</x>/ul>
+</comment></pre>
+    </div>
+    </p>
+ 	
+    <p class="cstfont" id="html">Özel HTML Yapısı Kullanmak</p>
+    <p>İsteğe bağlı olarak aşağıdaki tipte <strong>html etiketlerini</strong> kullanmanızda mümkündür.</p>
+    
+     <p>
+    	<table class="cfont">
+        	<tr><th>Kullanım</th><td>Anlamları</td></tr>
+            <tr><th>#tag[ozellik="deger"]</th><td>Tag açmak için # ifadesini kullanmanız yeterlidir.</td></tr>
+            <tr><th>#endtag, ##tag</th><td>Tagı kapatmak için end veya fazladan 2 # kullanmanız yeterlidir.</td></tr>
+            <tr><th>#tag(İçerik, ozellik="deger")</th><td>Tagı açar içeriği ekler ve kapatır. 2 parametre ile isternise özellik değer çifti eklenebilir.</td></tr>
+            <tr><th>##tag(ozellik="deger")</th><td>Tagı kapatılmaya ihtiyaç duymayan etiketler içindir. Örnek <strong>br</strong> etiketi.</td></tr>
+        </table>
+    </p>
+
+    <p>
+    <div type="code">
+    Viewst/test.template.php
+<pre>
+#p
+	Bu bölüm #u paragraf ##u bölümüdür #br
+##p
+</pre>
+    </div>
+    </p>
+    
+    <p>Ya da <strong>end</strong> ibaresi ile taglarınızı kapatabilirsiniz.</p>
+    
+     <p>
+    <div type="code">
+    Viewst/test.template.php
+<pre>
+#p
+	Bu bölüm #u paragraf #endu bölümüdür #br
+#endp
+</pre>
+    </div>
+    </p>
+ 	
+    <p><strong>#</strong> karakteri normal olarak kullanılmak istenirse <strong>herhangi bir alfabetik harf ile birleştirilmeden</strong> kullanılabilir.
+    </p>
+    
+    <p>
+    <div type="code">
+    Viewst/test.template.php
+<pre>
+#u[type="disc"]
+    #li # Madde 1 ##li
+    #li # Madde 2 ##li
+##u
+</pre>
+    </div>
+    </p>
+    
+    <p>#tag() Kullanımı.</p>
+    
+    <p>
+    <div type="code">
+    Viewst/test.template.php
+<pre>
+#title(Başlık Bilgisi) <comment>// <x><</x>title>Başlık Bilgisi<x><</x>/title></comment>
+</pre>
+    </div>
+    </p>
+    
+    <p>##tag() Kullanımı.</p>
+    
+    <p>
+    <div type="code">
+    Viewst/test.template.php
+<pre>
+##input(type="submit" value="Buton") <comment>// <x><</x>input type="submit" value="Buton"></comment>
+</pre>
+    </div>
+    </p>
+        
+    <div type="prev-next">
+    	<div type="prev-btn"><a href="stylesheet_transform.html">Önceki</a></div><div type="next-btn"><a href="textprocessing.html">Sonraki</a></div>
+    </div>
+ 
+</body>
+</html>              

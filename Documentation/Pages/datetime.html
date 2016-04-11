@@ -1,0 +1,94 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>ZN KOD ÇATISI</title>
+<link type="text/css" rel="stylesheet" href="../Styles/Structure.css" />
+<script src="../Scripts/Jquery.js"></script>
+<script src="../Scripts/Structure.js"></script>
+</head>
+
+<body>
+    <div id="content-document"><a href="#">Döküman</a> » <a href="datetime.html">Kütüphaneler</a> » Date(Tarih) Kütüphanesi</div> 
+    <p class="ctfont">Date(Tarih) Kütüphanesi</p>
+    <p>Tarih ve Zaman ile ilgili işlevleri yerine getiren bir sınıftır. Bu kütüphane standart tarih ve saat formatlarının dışında <strong>Config/Datetime.php ayar dosyasında</strong> yer alan özel çevrimleride kullanmaktadır. Böylece daha akılda kalıcı tarih ve zaman terimleri kullanılabilir hale getirilmiştir. Bu bölümde Date ve Time olmak üzere iki kütüphanenin anlatımına yer verilmiştir. Her iki kütüphanenin özünde yaptığı işler aynı olsada karakter setlerinde ve local ayarlamalarında küçük farklılıklar bulunmaktadır.</p>
+    <ul><li><a href="#" class="infont">Date(Tarih) Sınıfları ve Yöntemleri</a><br><br>
+        <ul>
+            <li><a href="#set">Tarih Bilgisi Oluşturmak » <b>Date::set(), Time::set()</b></a></li>
+            <li><a href="#calculate">Tarih Bilgisinde Aritmatik İşlemler Gerçekleştirmek » <b>Date::calculate(), Time::calculate()</b></a></li>
+            <li><a href="#compare">Tarih Bilgilerini Karşılaştırmak » <b>Date::compare(), Time::compare()</b></a></li>
+            <li><a href="#toNumeric">Tarih Bilgisini Sayısal Veriye Dönüştürmek » <b>Date::toNumeric(), Time::toNumeric()</b></a></li>
+            <li><a href="#convert">Tarih Formatını Değiştirmek » <b>Date::convert(), Time::convert()</b></a></li>
+            <li><a href="#standart">Standart Tarih ve Zaman Bilgisini Almak » <b>Date::standart(), Time::standart()</b></a></li>
+            <li><a href="#current">Aktif Saat veya Tarih Bilgisini Almak » <b>Date::current(), Time::current()</b></a></li>
+        </ul>
+    </li></ul>
+    
+ 	<p class="cstfont" id="set">Tarih Bilgisi Oluşturmak</p>
+    <p><ftype>Date/Time::set(<kf>string</kf> <vf>$bicimler</vf>, [int $timestamp = time()]): return string</ftype></p> 
+    <p>Tarih oluşturmada <strong>Config/DateTime.php</strong> dosyasından <strong>setDateFormatChars</strong> listesinde yer alan yeni karakterler kullanılır. Bunun yanında standart date karakterleride kullanılabilmektedir.</p>
+    
+	<div type="code">
+    <kf>echo</kf> Date::set(<sf>'{day}'</sf>); <comment>/* Çıktı: Sunday */</comment><br>
+    <kf>echo</kf> Date::set(<sf>'{monNum}-{mon} {day}'</sf>); <comment>/* Çıktı: 2-February Sunday */</comment><br>
+    <kf>echo</kf> Date::set(<sf>'{H024}:{min}:{sec}'</sf>); <comment>/* Çıktı: 15:46:52 */</comment><br>
+    <kf>echo</kf> Date::set(<sf>'{dayNumber0}.{monthNumber}.{year} {hour024}:{minute}:{second}'</sf>); <comment>/* Çıktı: 08.2.2015 15:47:06 */</comment><br>
+    </div>
+    
+    <p class="cstfont" id="calculate">Tarih Bilgisinde Aritmatik İşlemler Gerçekleştirmek</p>
+    <p><ftype>Date/Time::calculate(<kf>string</kf> <vf>$girdi</vf>, <kf>string</kf> <vf>$islem</vf>, [<kf>string</kf> <vf>$cikti</vf> = {year}-{monthNumber}-{dayNumber}]): return string</ftype></p> 
+    <p>Tarih bilgisi üzerinde ekleme çıkarma gibi işlemler gerçekleştirmek için kullanılmaktadır.</p>
+    
+	<div type="code">
+    <kf>echo</kf> Date::calculate(<sf>'{year}-{monthNumber}-{dayNumber}'</sf>, <sf>'30 day'</sf>); <comment>/* Çıktı: Mevcut tarihe 30 gün eklenmiştir */</comment><br>
+    <kf>echo</kf> Date::calculate(<sf>'01/12/2015'</sf>, <sf>'-30 day'</sf>, <sf>{dayNumber}-{monthNumber}-{year}</sf>); <comment>/* Çıktı: Belirtilen tarihten 30 gün çıkartılıp çıktı türü ayarlanmıştır. */</comment><br>
+    </div>
+    
+    <p class="cstfont" id="compare">Tarih Bilgilerini Karşılaştırmak</p>
+    <p><ftype>Date/Time::compare(<kf>string</kf> <vf>$deger1</vf>, <kf>string</kf> <vf>$karsilastirma</vf>, <kf>string</kf> <vf>$deger2</vf>): return bool</ftype></p> 
+    <p>Tarih bilgilerini karşılaştırmak için kullanılır.</p>
+    
+	<div type="code">
+    <kf>echo</kf> Date::compare(<sf>'2015-02-15'</sf>, <sf>'>'</sf>, <sf>'2015-02-14'</sf>); <comment>/* Çıktı: Karşılaştırma doğru ise true değilse false değeri döner. */</comment><br>
+    </div>
+    
+    <p class="cstfont" id="toNumeric">Tarih Bilgisini Sayısal Veriye Dönüştürmek</p>
+    <p><ftype>Date/Time::toNumeric(<kf>string</kf> <vf>$tarih</vf>): return numeric</ftype></p> 
+    <p>Tarih bilgisini sayısal veriye dönüştürmek için kullanılır.</p>
+    
+	<div type="code">
+    <kf>echo</kf> Date::toNumeric(<sf>'2015-02-15'</sf>); <comment>/* Çıktı: 1423951200 */</comment><br>
+    </div>
+    
+    <p class="cstfont" id="convert">Tarih Formatını Değiştirmek</p>
+    <p><ftype>Date/Time::convert(<kf>string</kf> <vf>$tarih</vf>, <kf>string</kf> <vf>$format</vf>): return string</ftype></p> 
+    <p>Tarih bilgisininin formatını değiştirmek için kullanılır.</p>
+    
+	<div type="code">
+    <kf>echo</kf> Date::toNumeric(<sf>'2015-02-15'</sf>, <sf>'{dayNumber}/{monthNumber}/{year}'</sf>); <comment>/* Çıktı: 15/2/2015 */</comment><br>
+    </div>
+    
+     <p class="cstfont" id="standart">Standart Tarih ve Zaman Bilgisini Almak</p>
+    <p><ftype>Date/Time::standart(): return string</ftype></p> 
+    <p>Standart tarih ve zaman bilgisini almak için kullanılır. Eğer bu yöntemi Time sınıfı ile kullanılırsa bölge seçiminin diline göre çevrilir.</p>
+    
+	<div type="code">
+    <kf>echo</kf> Date::standart(); <comment>/* Çıktı: 20.February.2016 Saturday, 12:46:55 */</comment><br>
+    <kf>echo</kf> Time::standart(); <comment>/* Çıktı: 20.Şubat.2016 Cumartesi, 12:46:55 */</comment><br>
+    </div>
+    
+    <p class="cstfont" id="current">Aktif Saat veya Tarih Bilgisini Almak</p>
+    <p><ftype>Date/Time::current(): return string</ftype></p> 
+    <p>Bu yöntem <strong>Time sınıfı</strong> ile kullanılırsa <strong>aktif saat</strong>, <strong>Date sınıfı</strong> ile kullanılırsa <strong>aktif tarih</strong> bilgisini verir.</p>
+    
+	<div type="code">
+    <kf>echo</kf> Date::current(); <comment>/* Çıktı: 20.02.2016 */</comment><br>
+    <kf>echo</kf> Time::current(); <comment>/* Çıktı: 12:52:45 */</comment><br>
+    </div>
+    
+    <div type="prev-next">
+    	<div type="prev-btn"><a href="datetime.html">Önceki</a></div><div type="next-btn"><a href="datetime_time.html">Sonraki</a></div>
+    </div>
+ 
+</body>
+</html>              

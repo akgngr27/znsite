@@ -1,0 +1,157 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>ZN KOD ÇATISI</title>
+<link type="text/css" rel="stylesheet" href="../Styles/Structure.css" />
+<script src="../Scripts/Jquery.js"></script>
+<script src="../Scripts/Structure.js"></script>
+</head>
+
+<body>
+    <div id="content-document"><a href="#">Döküman</a> » <a href="functions.html">Ön Tanımlı Sabitler ve Fonksiyonlar</a> » Is Kontrol Komutları</div> 
+    <p class="ctfont">Is Kontrol Komutları</p>
+    <p>Verileri kontrol etmek amacı ile oluşturulmuş yöntemlerdir.</p>
+    <ul><li><a href="#" class="infont">Is Kontrol Komutları</a><br><br>
+        <ul>
+        	<li><a href="#is_phpversion">PHP Sürüm Karşılaştırması Yapmak » <b>isPhpVersion() v1.2</b></a></li>		
+            <li><a href="#is_import">Bir Dosyanın Dahil Edilme Durumunu Kontrol Etmek » <b>isImport() v1.0</b></a></li>
+            <li><a href="#is_url">Bir Verinin URL Yapısına Uygunluğunu Kontrol Etmek » <b>isUrl() v1.1</b></a></li>
+            <li><a href="#is_email">Bir Verinin E-posta Adresine Uygunluğunu Kontrol Etmek » <b>isEmail() v1.1</b></a></li>
+            <li><a href="#is_repmac">Tadilat Ip Adreslerinden Biri Olup Olmadığını Kontrol Etmek » <b>isRepmac() v1.0</b></a></li>
+            <li><a href="#is_char">Bir Verinin Metinsel veya Numerik Türe Uygunluğunu Kontrol Etmek » <b>isChar() v1.2</b></a></li>    
+            <li><a href="#is_hash">Bir Verinin Hash Algoritmalarından Biri Olma Durumu Kontrol Etmek » <b>isHash() v1.2</b></a></li>
+            <li><a href="#is_charset">Bir Verinin Encoding Karakter Setlerinden Biri Olma Durumu Kontrol Etmek » <b>isCharset() v1.2</b></a></li>
+            <li><a href="#is_declared_class">Bir Kütüphanesin Dahil Edilme Durumu Kontrol Etmek » <b>isDeclaredClass() v1.5</b></a></li>
+        </ul>
+    </li></ul>
+    
+    <p class="cstfont" id="isPhpVersion">PHP Sürüm Karşılaştırması Yapmak</p>
+    <p><ftype>isPhpVersion( <kf>string</kf> <vf>$surum_bilgisi</vf> = <sf>'5.2.4'</sf> ) v1.2</ftype></p>
+   	<p>Parametre olarak yazılan sürümün desteklenip desteklenmediğini bilgisini true veya false çıktısı ile belirtir.</p>
+    <p>
+    	<table class="cfont">
+        	<tr><th>No</th><th>Parametreler</th><td>Anlamları</td></tr>
+            <tr><th>1</th><th>String</th><td>Desteklenme durumu öğrenilecek sürüm bilgisi.</td></tr>
+        </table>
+    </p> 
+    
+    <div type="code">
+    <kf>echo</kf> isPhpVersion(<sf>'5.6.0'</sf>); <comment> // Çıktı: false.</comment>
+    </div>
+    
+    
+    <p class="cstfont" id="is_import">Bir Dosyanın Dahil Edilme Durumunu Kontrol Etmek</p>
+    <p><ftype>isImport( <kf>string</kf> <vf>$dosya_yolu</vf> ) v1.0</ftype></p>
+   	<p>Herhangi bir dosyanın, <kf>require</kf> veya <kf>include</kf> yöntemlerinden herhangi biriyle daha önce dahil edilip edilmediği bilgisini verir. Herhangi bir dosya daha önce dahil edilmişse <kf>true</kf> değeri, edilmemişse <kf>false</kf> değeri döner.</p>
+    <p>
+    	<table class="cfont">
+        	<tr><th>No</th><th>Parametreler</th><td>Anlamları</td></tr>
+            <tr><th>1</th><th>Dosya Yolu</th><td>Dahil edilip edilmediği kontrol edilecek dosyanın yolu.</td></tr>
+        </table>
+    </p>
+    
+ 
+    <div type="code">
+    <kf>echo</kf> isImport(<sf>'OrnekDosya.php'</sf>); <comment> // Çıktı: false veya true</comment><br>
+    </div>
+        
+    
+    <p class="cstfont" id="is_url">Bir Verinin URL Yapısına Uygunluğunu Kontrol Etmek</p>
+    <p><ftype>isUrl( <kf>string</kf> <vf>$url</vf> ) v1.1</ftype></p>
+   	<p>Herhangi bir verinin, URL bilgisi olup olmadığını kontrol etmek amacıyla kullanılır.</p>
+    <p>
+    	<table class="cfont">
+        	<tr><th>No</th><th>Parametreler</th><td>Anlamları</td></tr>
+            <tr><th>1</th><th>string URL</th><td>Kontrol edilecek veri.</td></tr>
+        </table>
+    </p>
+    
+ 
+    <div type="code">
+    <kf>echo</kf> isUrl(<sf>'www.zntr.net'</sf>); <comment> // Çıktı: false</comment><br>
+    <kf>echo</kf> isUrl(<sf>'http://www.zntr.net'</sf>); <comment> // Çıktı: true</comment><br>
+    </div>
+    
+    
+    <p class="cstfont" id="is_email">Bir Verinin E-posta Adresine Uygunluğunu Kontrol Etmek</p>
+    <p><ftype>isEmail(<kf>string</kf> <vf>$email</vf> ) v1.1</ftype></p>
+   	<p>Herhangi bir verinin, e-posta bilgisi olup olmadığını kontrol etmek amacıyla kullanılır.</p>
+    <p>
+    	<table class="cfont">
+        	<tr><th>No</th><th>Parametreler</th><td>Anlamları</td></tr>
+            <tr><th>1</th><th>string E-posta Adresi</th><td>Kontrol edilecek veri.</td></tr>
+        </table>
+    </p>
+    
+ 
+    <div type="code">
+    <kf>echo</kf> isEmail(<sf>'bilgi@zntr'</sf>); <comment> // Çıktı: false</comment><br>
+    <kf>echo</kf> isEmail(<sf>'bilgi@zntr.net'</sf>); <comment> // Çıktı: true</comment><br>
+    </div>
+    
+     <p class="cstfont" id="is_repmac">Tadilat Ip Adreslerinden Biri Olup Olmadığını Kontrol Etmek</p>
+    <p><ftype>isRepmac() v1.0</ftype></p>
+   	<p>Config/Repear.php dosyasında yer alan machines = array() dizisi içerisinde ip numarası veya numaralarının o anki modeminizin ip'si ile eşleşip eşleşmediğini kontrol eder. Böylece site içi tadilat yapılan bilgisayar ile diğer kullanıcı bilgisayarlarının ayırt edilmesi sağlanır.</p>
+ 
+    <div type="code">
+    <kf>echo</kf> isRepmac(); <comment> // Çıktı: true</comment><br>
+    </div>
+    
+    
+    <p class="cstfont" id="is_char">Bir Verinin Metinsel veya Numerik Türe Uygunluğunu Kontrol Etmek</p>
+    <p><ftype>isChar(<kf>string</kf> <vf>$veri</vf> ) v1.2</ftype></p>
+   	<p>Herhangi bir verinin metinsel veya numerik türde olup olmadığını kontrol etmek amacıyla kullanılır.</p>
+    <p>
+    	<table class="cfont">
+        	<tr><th>No</th><th>Parametreler</th><td>Anlamları</td></tr>
+            <tr><th>1</th><th>mixed Veri</th><td>Kontrol edilecek veri.</td></tr>
+        </table>
+    </p>
+    
+ 
+    <div type="code">
+    <kf>echo</kf> isChar(<sf>'bilgi@zntr'</sf>); <comment> // Çıktı: true</comment><br>
+    <kf>echo</kf> isChar(<if>3</if>); <comment> // Çıktı: true</comment><br>
+    <kf>echo</kf> isChar(<kf>true</kf>); <comment> // Çıktı: false</comment><br>
+    <kf>echo</kf> isChar(<kf>array</kf>()); <comment> // Çıktı: false</comment><br>
+    </div>
+    
+    <p class="cstfont" id="is_hash">Bir Verinin Hash Algoritmalarından Biri Olma Durumu Kontrol Etmek</p>
+    <p><ftype>isHash(<kf>string</kf> <vf>$algoritma</vf> ) v1.2</ftype></p>
+   	<p>Parametreye girilen verinin hash algoritmalarından biri olup olmadığını kontrol edilir. Algoritmalardan biri ise <kf>true</kf> değeri döner. Aksi halde <kf>false</kf> değeri döner.</p>
+    <p>
+    	<table class="cfont">
+        	<tr><th>No</th><th>Parametreler</th><td>Anlamları</td></tr>
+            <tr><th>1</th><th>string Veri</th><td>Kontrol edilecek veri.</td></tr>
+        </table>
+    </p>
+    
+ 
+    <div type="code">
+    <kf>echo</kf> isHash(<sf>'md5'</sf>); <comment> // Çıktı: true</comment><br>
+    <kf>echo</kf> isHash(<sf>'xxx'</sf>); <comment> // Çıktı: false</comment><br>
+    </div>
+    
+    <p class="cstfont" id="is_charset">Bir Verinin Encoding Karakter Setlerinden Biri Olma Durumu Kontrol Etmek</p>
+    <p><ftype>isCharset(<kf>string</kf> <vf>$karakter_seti</vf> ) v1.2</ftype></p>
+   	<p>Parametreye girilen verinin tanımlı karakter setlerinden biri olup olmadığını kontrol edilir. Karakter setlerinden biri ise <kf>true</kf> değeri döner. Aksi halde <kf>false</kf> değeri döner.</p>
+    <p>
+    	<table class="cfont">
+        	<tr><th>No</th><th>Parametreler</th><td>Anlamları</td></tr>
+            <tr><th>1</th><th>string Veri</th><td>Kontrol edilecek veri.</td></tr>
+        </table>
+    </p>
+    
+ 
+    <div type="code">
+    <kf>echo</kf> isCharset(<sf>'utf-8'</sf>); <comment> // Çıktı: true</comment><br>
+    <kf>echo</kf> isCharset(<sf>'utf'</sf>); <comment> // Çıktı: false</comment><br>
+    </div>
+    
+    <div type="prev-next">
+    	<div type="prev-btn"><a href="pre_constant.html">Önceki</a></div><div type="next-btn"><a href="pre_output.html">Sonraki</a></div>
+    </div>
+ 
+</body>
+</html>              

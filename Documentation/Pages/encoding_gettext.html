@@ -1,0 +1,61 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>ZN KOD ÇATISI</title>
+<link type="text/css" rel="stylesheet" href="../Styles/Structure.css" />
+<script src="../Scripts/Jquery.js"></script>
+<script src="../Scripts/Structure.js"></script>
+</head>
+
+<body>
+    <div id="content-document"><a href="#">Döküman</a> » <a href="encoding.html">Encoding Support</a> » Gettext(GT) Kütüphanesi</div> 
+    <p class="ctfont">Gettext(GT) Kütüphanesi</p>
+    <p>Bu kütüphane PHP'nin <strong>gettext</strong> yöntemlerini kullanarak <strong>sınıf</strong> biçimine dönüştürülerek oluşturulmuştur. Yöntemlerin kullanımı ile bire bir aynıdır. İsimlendirmeleri akılda kalacak şekilde düzenlemeye özen gösterilmiştir.</p>
+    <p>Gettext işlevleri PHP uygulamalarınızı uluslararasılaştırmak için kullanabileceğiniz yerel dil desteği sağlar.</p>
+    
+     <p>
+    	<table class="cfont" width="100%">
+        	<tr><th colspan="3">Gettext(GT) Kütüphanesi ve Yöntemleri</th></tr>
+            <tr><th width="20%">Nesne Yönelimli Kullanım</th><th>Fonksiyonel Kullanım</th><th>İşlev</th></tr>
+            <tr><th>GT::data()</th><td><a href="#extract"> <b>gettext()</b></a></td><td>Geçerli uygulamada çevrilecek metin.</td></tr>
+            <tr><th>GT::datas()</th><td><a href="#extract"> <b>ngettext()</b></a></td><td>Gettext işlevinin çoğul biçemli kullanımı.</td></tr>
+            <tr><th>GT::locale()</th><td><a href="#extract"> <b>setlocale()</b></a></td><td>Yereli ayarlar.</td></tr>
+            <tr><th>GT::change()</th><td><a href="#extract"> <b>dgettext()</b></a></td><td>Geçerli uygulama adını değiştirir.</td></tr>
+            <tr><th>GT::changes()</th><td><a href="#extract"> <b>dngettext()</b></a></td><td>Dgettext işlevinin çoğu biçemli kullanımı.</td></tr>
+            <tr><th>GT::search()</th><td><a href="#extract"> <b>dcgettext()</b></a></td><td>Belirtilen arama için geçerli uygulama adını değiştirir.</td></tr>
+            <tr><th>GT::searches()</th><td><a href="#extract"> <b>dcngettext()</b></a></td><td>Dcgettext işlevinin çoğu biçemli kullanımı.</td></tr>
+            <tr><th>GT::codeset()</th><td><a href="#extract"> <b>bind_textdomain_codeset()</b></a></td><td> Belli bir uygulamanın iletileri için karakter kodlaması tanımlar.</td></tr>
+            <tr><th>GT::dir()</th><td><a href="#extract"> <b>bindtextdomain()</b></a></td><td>Uygulama adı için bir yol tanımlar.</td></tr>
+            <tr><th>GT::name()</th><td><a href="#extract"> <b>textdomain()</b></a></td><td>Öntanımlı uygulama adını tanımlar.</td></tr>
+        </table>
+    </p>
+    
+  
+   	<p class="cstfont" id="example">Basit Bir Uygulama Yapmak</p>
+	
+    <div type="code">
+<pre>
+<comment>// Dil Türkçe'ye ayarlanıyor. LC_ ön eki kullanmanıza gerek yoktur.</comment>
+GT::locale(<sf>'all'</sf>, <sf>'tr_TR'</sf>);
+
+<comment>// Uygulama adı seçilir.</comment>
+<comment>// Çeviri dosyalarının bulunduğu dizin seçiliyor.</comment>
+GT::dir(<sf>"DilUygulamasi"</sf>, <sf>"diller/"</sf>);
+
+<comment>// Uygulama ismi belirtiliyor.</comment>
+GT::name(<sf>"DilUygulamasi"</sf>);
+
+<comment>// Bir ifade yazdıralım.</comment>
+<kf>echo</kf> GT::data(<sf>"Welcome to My PHP Application"</sf>);
+</pre>
+    </div>
+    
+    <p>Data detaylı kullanım için <a href="http://php.net/manual/tr/ref.gettext.php" target="_blank">gettext</a> php.net kaynaklarını inceleyiniz.</p>
+    
+    <div type="prev-next">
+    	<div type="prev-btn"><a href="encoding_ml.html">Önceki</a></div><div type="next-btn"><a href="encoding_iconv.html">Sonraki</a></div>
+    </div>
+ 
+</body>
+</html>              

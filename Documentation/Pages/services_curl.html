@@ -1,0 +1,62 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>ZN KOD ÇATISI</title>
+<link type="text/css" rel="stylesheet" href="../Styles/Structure.css" />
+<script src="../Scripts/Jquery.js"></script>
+<script src="../Scripts/Structure.js"></script>
+</head>
+
+<body>
+    <div id="content-document"><a href="#">Döküman</a> » <a href="services.html">Services</a> » CURL Kütüphanesi</div> 
+    <p class="ctfont">CURL Kütüphanesi</p>
+    <p>PHP, <strong>Daniel Stenberg</strong> tarafından yazılan <strong>CURL</strong> kütüphanesini destekler. CURL kütüphanesi farklı türdeki sunuculara bağlanmaya ve farklı protokollerle iletişim kurmaya yarar. CURL, şimdilik <strong>http</strong>, <strong>https</strong>, <strong>ftp</strong>, <strong>gopher</strong>, <strong>telnet</strong>, <strong>dict</strong>, <strong>file</strong> ve <strong>ldap</strong> protokollerini desteklemektedir. Ayrıca, HTTPS sertifikalarını,<strong> HTTP POST, HTTP PUT, FTP</strong> karşıya yüklemesini yapılabilmektedir. HTTP formların karşıya yüklemesini, oturumları, çerezleri ve kullanıcılı ve parolalı kimlik doğrulamasını da desteklemektedir.</p>
+    
+     <p>
+    	<table class="cfont" width="100%">
+        	<tr><th colspan="2">CURL Kütüphanesi ve Yöntemleri</th></tr>
+    
+            <tr><td width="30%">Bir CURL Oturumu Başlatmak</td><th width="70%">CURL::init()</th></tr>
+            <tr><td>Bir CURL Oturumunu İşleme Sokmak</td><th>CURL::exec()</th></tr>
+            <tr><td>Oturum Hakkında Bilgi Almak</td><th>CURL::info()</th></tr>
+            <tr><td>Oturum Hataları Hakkında Bilgi Almak</td><th>CURL::error()</th></tr>
+            <tr><td>Oturumdaki Hatanın Numarasını Öğrenmek</td><th>CURL::errno()</th></tr>
+            <tr><td>Hata Numarasına Göre İçeriğini Öğrenmek</td><th>CURL::errval()</th></tr>
+            <tr><td>Bir Bağlantıyı Durdurmak</td><th>CURL::pause()</th></tr>
+            <tr><td>Bir CURL Oturumunu Yeniden Başlatmak</td><th>CURL::reset()</th></tr>
+            <tr><td>URL'yi Kodlamak</td><th>CURL::escape()</th></tr>
+            <tr><td>Kodlanmış URL'yi Çözmek</td><th>CURL::unescape()</th></tr>
+            <tr><td>Oturuma Seçenek Eklemek</td><th>CURL::option()</th></tr>
+            <tr><td>Outurumu Sonlandırmak</td><th>CURL::close()</th></tr>
+            <tr><td>Geçerli CURL Versiyonunu Öğrenmek</td><th>CURL::version()</th></tr>
+        </table>
+    </p>
+    
+    <p>Biz <strong>CURL</strong> yöntemlerinden gerekli olanları kütüphane halinene getirerek daha işlevsel bir yapı oluşturmaya çalıştık. Aşağıda zincirleme kullanıma örnek verilmiştir. Bunların dışındaki yöntemler <strong>tekil kullanım</strong> özelliği göstermektedir. 
+  
+   	<p class="cstfont" id="example">Basit Bir Uygulama Yapmak</p>
+	
+    <div type="code">
+<pre>
+<comment>// Yeni bir CURL oturumu başlatır.</comment>
+CURL::init()
+    <comment>// URL ve seçenekler belirtiliyor.</comment>
+    ->option(<sf>'url'</sf>, <sf>'http://www.ornek.com/'</sf>)
+    ->option(<sf>'header'</sf>, <if>0</if>)
+    <comment>// Çalıştır.</comment>
+    ->exec();
+
+<comment>// CURL oturumunu kapatır.</comment>
+CURL::close();
+</pre>
+    </div>
+    
+     <p><strong>CURL İşlemleri</strong> hakkında yeteri kadar deneyiminiz yoksa <a target="_blank" href="http://php.net/manual/tr/book.curl.php">CURL Kullanımı</a> için php.net adresini ziyaret ediniz.
+     
+    <div type="prev-next">
+    	<div type="prev-btn"><a href="services.html">Önceki</a></div><div type="next-btn"><a href="services_ftp.html">Sonraki</a></div>
+    </div>
+ 
+</body>
+</html>              

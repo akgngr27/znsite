@@ -1,0 +1,47 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>ZN KOD ÇATISI</title>
+<link type="text/css" rel="stylesheet" href="../Styles/Structure.css" />
+<script src="../Scripts/Jquery.js"></script>
+<script src="../Scripts/Structure.js"></script>
+</head>
+
+<body>
+    <div id="content-document"><a href="#">Döküman</a> » <a href="autoloader.html">Restoration</a> » Restorasyon İşlemleri</div>  
+    <p class="ctfont">Restorasyon İşlemleri</p>
+    <p>Uygulamalarınızda esas koda dokunmadan kodlarınızı test edebilmenizi sağlayan alt yapı sunar. Böylece sizler kodları düzenlerken kullanıcılar eski hali ile görmeye devam eder. Restorasyon işlemlerini gerçekleştirebilmek için bir kaç küçük ayar yapılması gerekmektedir.</p>
+    
+    <ul><li><a href="#" class="infont">Restorasyon İşlemleri</a><br><br>
+        <ul>
+        	<li><a href="#config">Index.php Dosyasından Restorasyon Ayarlarını Yapılandırmak</b></a></li>
+            <li><a href="#restore">Dosyaları Restore Etmek</b></a></li>
+        </ul>
+    </li></ul>
+    
+    <p class="cstfont" id="config">Index.php Dosyasından Restorasyon Ayarlarını Yapılandırmak</p>
+    
+    <p><strong>Index.php</strong> dosyasında restore ile ilgili 2 adet ayar yer almaktadır. Bunlar <strong>restorationMode</strong> ve <strong>restorationMachinesIP</strong> ayarlarıdır.</p>
+    
+    <p>
+        <table class="cfont">
+            <tr><th width="20%">Ayar</th><th>Kullanımı</th></tr>
+            <tr><th>boolean restorationMode</th><td>Restorasyon modunu açmak kapatmak için kullanılır. Restore çalışmaları yapabilmek için bu modun <strong>true</strong> değere getirilmesi gerekmektedir.</td></tr>
+            <tr><th>mixed restorationMachinesIP</th><td>Restore çalışmaları hangi bilgisayarlar üzerinde gerçekleştirilecekse o bilgisayalara ait IP bilgisi belirtilir. Birden fazla IP bilgisi girilecekse dizi türünde belirtilebilir.</td></tr>
+            <tr><th>mixed restorationPages</th><td>Onarım işlemi yapılan sayfalar belirtiliyor. Tek bir sayfa ise string atama yapabirsiniz. Birden çok sayfa belirtilecekse dizi içerisinde sırası ile onarım yapılan sayfalar belirtilir. Eğer tüm sayfalarda onarım yapılıyorsa string "all" ataması kullanılır. Burada unutulmaması gereken sayfada bir hatanın var olması ve kullanıcıların bu hata ile karşılaşıyor olması durumunda bu ayarın yapılması gerektiğidir. Aksi halde çalışsan sayfa için yönlendirilmek üzere sayfa ayarlamak çok akıllıca değildir.</td></tr>
+            <tr><th>string restorationRoutePage</th><td>Onarıma alınan sayfa ziyaret edildiğinde kullanıcıların hangi sayfaya yönlenmesi isteniyorsa o sayfanın yolu belirtilir.</td></tr>
+        </table>
+    </p>
+    
+    <p class="cstfont" id="restore">Dosyaları Restore Etmek</p>
+    
+    <p>Application/ dizinininde yer alan onarmayı düşündüğünüz dosyayı yol bilgisini koruyacak şekilde <strong>Restoration/</strong> dizini içine kopyalıyorsunuz. Örnek olarak Controllers/home.php dosyası restore edilecekse <strong>Restoration/</strong>Controllers/home.php şeklinde dosyanızı kopyalıyorsunuz. Bu işlemlerden sonra uygulama önce restorasyon içindeki home.php yi çalıştırır. Ancak bu çalıştırmayı sadece belirlenen IP adreslerine göre yapar. Diğer kullanıcılar Application/ dizini içinde home.php dosyasının çalışmasını görürler. Böylece siz kodlar üzerinde denemeler oynamalar yaparken kullanıcılar bu tip değişikliklerden etkilenmezler.</p>
+ 
+     
+<div type="prev-next">
+    	<div type="prev-btn"><a href="autoloader.html">Önceki</a></div><div type="next-btn"><a href="masterpage.html">Sonraki</a></div>
+    </div>
+ 
+</body>
+</html>              

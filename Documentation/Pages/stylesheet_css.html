@@ -1,0 +1,66 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>ZN KOD ÇATISI</title>
+<link type="text/css" rel="stylesheet" href="../Styles/Structure.css" />
+<script src="../Scripts/JSuery.js"></script>
+<script src="../Scripts/Structure.js"></script>
+</head>
+
+<body>
+    <div id="content-document">Döküman</a> » <a href="stylesheet.html">Style Sheet</a> » Manipulation Kütüphanesi</div> 
+    <p class="ctfont">CSS Kütüphanesi</p>
+    <p>CSS kullanımına yönelik yöntemler içermektedir.</p>
+    
+   <p class="cstfont" id="css_css">CSS Kütüphanesi Yöntemleri</p>
+    <p>CSS kütüphanesine ait yöntemler aşağıdaki tabloda listelenmiştir</p>
+    
+  	<p>
+    <table class="cfont">
+    	<tr><th>CSS Kütüphanesi ve Yöntemleri</th><td>Anlamları</td><td>Kullanımları</td></tr>
+        <tr><td><cf>selector( <vf>$erisim</vf> )</cf></td><td>Nesneye erişim sağlamak için kullanılan adlandırmalar. Örn: .sinif, #id ...</td><td><cf>->selector(<sf>'Erişim Adı'</sf>)</cf></td></tr>
+        <tr><td><cf>attr( <vf>$ozellik_deger_dizisi</vf> )</cf></td><td>Eklenecek özellikler ve değerleri. Bu yöntem dizi parametresi içerir.</td><td><cf>->attr(<kf>array</kf>(<sf>'border'</sf> => <sf>'solid 1px #000'</sf>));</cf></td></tr>
+    </table>
+    </p>
+    
+    <p>Yukarıdaki yöntemlerin kullanımına yönelik örnekler aşağıda verilmiştir.</p>
+    
+    <p>
+    <div type="code">
+    Sheet::manipulation()->selector(<sf>'#nesne'</sf>)->attr(<kf>array</kf>(<sf>'border'</sf> => <sf>'solid 1px #000'</sf>, <sf>'color'</sf> => <sf>'red'</sf>));
+    </div>
+    </p>
+    
+    <p class="cstfont" id="css_manipulation">CSS Dosyasına Müdahale Etmek</p>
+    <p>CSS stil dosyalarına müdahale etmek içeriğini manipüle etmek için kullanılır. Böylece bir <strong>.css</strong> uzantılı dosyaları <strong>PHP</strong> ile değiştirebilirsiniz.</p>
+    
+  	<p>
+    <table class="cfont">
+    	<tr><th>Manipülasyon Yöntemleri</th><td>Anlamları</td><td>Kullanımları</td></tr>
+        <tr><td><cf>file( <vf>$dosya</vf> )</cf></td><td><strong>Resources/Styles/</strong> dizininde yer alan <strong>css dosyasının ismi</strong> belirtilir. Uzantı yazılmasına gerek yoktur. Örn: .sinif, #id ...</td><td><cf>->file(<sf>'stil'</sf>)</cf></td></tr>
+        <tr><td><cf>getSelector( <vf>$secici_adi</vf> )</cf></td><td>Stil dosyası içerisinde yer alan kodlardan <strong>hangi seçiciye ait olanlar</strong> isteniliyorsa o seçicinin adı yazılır.</td><td><cf>->getSelector(<sf>.red-color'</sf>);</cf></td></tr>
+         <tr><td><cf>setSelector( <vf>$secici_adi</vf> , <vf>$yeni_degerler_dizisi</vf> )</cf></td><td>Dosya içerisinde belirtilen seçicinin kodlarını değiştirmek için kullanılır.</td><td><cf>->setSelector( <sf>'secici'</sf> , <kf>array</kf>(<sf>'border'</sf> => <sf>'solid 1px #000'</sf>, <sf>'color'</sf> => <sf>'red'</sf>));</cf></td></tr>
+    </table>
+    </p>
+    
+    <p>Yukarıdaki yöntemlerin kullanımına yönelik örnekler aşağıda verilmiştir.</p>
+    
+    <p>
+    <div type="code">
+    Sheet::manipulation()->file(<sf>'stil'</sf>)->setSelector(<sf>'.red-color'</sf>, <kf>array</kf>(<sf>'border'</sf> => <sf>'solid 1px #000'</sf>, <sf>'color'</sf> => <sf>'red'</sf>));
+    </div>
+    </p>
+    
+    <p>
+    <div type="code">
+    Sheet::manipulation()->file(<sf>'stil'</sf>)->getSelector(<sf>'.red-color'</sf>); <comment> // border:solid 1px #000; color:red;</comment>
+    </div>
+    </p>
+   
+	<div type="prev-next">
+  	<div type="prev-btn"><a href="stylesheet_style.html">Önceki</a></div><div type="next-btn"><a href="stylesheet_shadow.html">Sonraki</a></div>
+  	</div>
+ 
+</body>
+</html>              

@@ -1,0 +1,146 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>ZN KOD ÇATISI</title>
+<link type="text/css" rel="stylesheet" href="../Styles/Structure.css" />
+<script src="../Scripts/Jquery.js"></script>
+<script src="../Scripts/Structure.js"></script>
+</head>
+
+<body>
+    <div id="content-document"><a href="#">Döküman</a> » <a href="encoding.html">Encoding Support</a> » Multi Language(ML) Çoklu Dil Kütüphanesi</div> 
+    <p class="ctfont">Multi Language(ML) Çoklu Dil Kütüphanesi</p>
+    <p>Çoklu dil kullanımı bir çok proje için gerekli olmaktadır. ZN Framework'te zaten bir lang() yönteminin kullanımı var olmakla birlikte daha opsiyonel ve pratik bir kullanıma sahip Multi Language kütüphanesi oluşturulmuştur. Aşağıda bu kütüphane ile dilleri nasıl yönetebileceğiniz anlatılmıştır.</p>
+    
+     <p>
+    	<table class="cfont" width="100%">
+        	<tr><th colspan="3">Multi Language(ML) Kütüphanesi ve Yöntemleri</th></tr>
+            <tr><th width="20%">Kelime Eklemek</th><td><a href="#insert"><b>ML::insert()</b></a></td></tr>
+            <tr><th>Kelime Seçmek</th><td><a href="#select"><b>ML::select()</b></a></td></tr></tr>
+            <tr><th>Kelime Güncellemek</th><td><a href="#update"><b>ML::update()</b></a></td></tr>
+            <tr><th>Kelime Silmek</th><td><a href="#delete"><b>ML::delete()</b></a></td></tr>
+            <tr><th>Aktif Dili Değiştirmek</th><td><a href="#lang"><b>ML::lang()</b></a></td></tr>
+        </table>
+    </p>
+
+	<p class="cstfont" id="insert">Kelime Eklemek</p>
+    <p><ftype>ML::insert( <kf>string</kf> <vf>$dil</vf> , <kf>string/array</kf> <vf>$anahtar</vf> , <kf>string</kf> <vf>$deger</vf> )</ftype></p>
+    <p>Belirtilen dile ait anahtar ve değer çiftinden oluşan bir veya birden fazla kelime eklemek için kullanılır.</p>
+    
+    <p>
+    	<table class="cfont">
+        	<tr><th width="25%">Parametreler</th><td>Anlamları</td></tr>
+            <tr><th>1 - string Dil Tagı</th><td>Hangi dile ait kelime eklenecekse o dil belirtilir. Genellikle en, tr gibi dil kısaltmaları kullanılır.</td></tr>
+            <tr><th>2 - string/array Kelime Anahtarı</th><td>Tüm dillerdeki kelimeleri temsil etmesi açısından kullanılacak ortak anahtardır. Genellikle anahtar olarak ingilizce kelimelerin kullanılması tavsiye edilir.</td></tr>
+            <tr><th>3 - string Kelime</th><td>Dosyaya eklenecek kelimenin kendisi.</td></tr>
+        </table>
+    </p>
+    
+    <div type="code">
+<pre>
+ML::insert(<sf>'en'</sf>, <sf>'example'</sf>, <sf>'Example'</sf>);
+
+<comment>// Birden fazla kelimeyi aynı anda eklemek için 2. parametre dizi türü içerebilir.</comment>
+ML::insert(<sf>'en'</sf>, <kf>array</kf>(<sf>'example'</sf> => <sf>'Example'</sf>, <sf>'application'</sf> => <sf>'Application'</sf>));
+
+<comment>// Bu işlemlerden sonra Storage/MultiLanguage/en.ml isimli dosyanın oluşturulduğu görülebilir.</comment>
+</pre>
+    </div>
+
+
+    <p class="cstfont" id="select">Kelimeyi Kullanmak</p>
+    <p><ftype>ML::select( <kf>string</kf> <vf>$anahtar</vf> )</ftype></p>
+    <p>Oluşturulan anahtar değer çiftlerinin anahtarları kullanılarak değerlerine ulaşılır. Ancak bilmeniz gereken nokta bir kelime çağrılmaya çalışılmadan önce hangi dilden kelimenin getirileceğini belirtmeniz gerekir. Bunun için ML::lang() yöntemi kullanılır. Bu yöntemin kullanımına sayfa sonunda değinilmiştir. Biz yinede bağlantılı olması açısından bu örnek üzerinde de anlatımına yer vermeye çalıştık.</p>
+    
+    <p>
+    	<table class="cfont">
+        	<tr><th>Parametreler</th><td>Anlamları</td></tr>
+            <tr><th>1 - string Kelime Anahtarı</th><td>Kelimeyi temsil eden anahtar.</td></tr>
+        </table>
+    </p>
+    
+      <div type="code">
+<pre>
+<comment>
+/* 
+Öncelikle dil seçilmelidir. Bunun için ML::lang() yönteminden yararlınılır.
+Bu yöntem sayfanın dilini belirler. Temel olarak setLang() yönteminin kullanımı ile aynıdır.
+Bu yönteme parametre olarak oluşturulan dil dosyasının adı kullanılmalıdır. Yani 'en'
+Aşağıdaki satırda sayfa dilini en(ingilizce) olarak ayarladık.
+*/
+</comment>
+ML::lang(<sf>'en'</sf>); <comment>// Storage/MultiLanguage/en.ml dil dosyasının seçiliyor.</comment>
+<comment>// Bir önceki bölümde oluşturduğumuz kelimeyi çağıralım.</comment>
+<kf>echo</kf> ML::select(<sf>'example'</sf>); <comment>// Çıktı: Example</comment>
+</pre>
+    </div>
+    
+    <p class="cstfont" id="update">Kelime Güncellemek</p>
+    <p><ftype>ML::update( <kf>string</kf> <vf>$dil</vf> , <kf>string/array</kf> <vf>$anahtar</vf> , <kf>string</kf> <vf>$deger</vf> )</ftype></p>
+    <p>Belirtilen dile ait anahtar ve değer çiftinden oluşan bir veya birden fazla kelime güncellemek için kullanılır. ML::insert() ekleme işlevi ile aynı kullanıma sahiptir. Yani güncelleme işlemi için insert() yöntemide tercih edilebilir.</p>
+    
+    <p>
+    	<table class="cfont">
+        	<tr><th width="25%">Parametreler</th><td>Anlamları</td></tr>
+            <tr><th>1 - string Dil Tagı</th><td>Hangi dile ait kelime güncellenecekse o dil belirtilir. Genellikle en, tr gibi dil kısaltmaları kullanılır.</td></tr>
+            <tr><th>2 - string/array Kelime Anahtarı</th><td>Tüm dillerdeki kelimeleri temsil etmesi açısından kullanılacak ortak anahtardır. Genellikle anahtar olarak ingilizce kelimelerin kullanılması tavsiye edilir.</td></tr>
+            <tr><th>3 - string Kelime</th><td>Güncellecenek kelimenin kendisi.</td></tr>
+        </table>
+    </p>
+    
+    <div type="code">
+<pre>
+ML::update(<sf>'en'</sf>, <sf>'example'</sf>, <sf>'Example'</sf>);
+
+<comment>// Birden fazla kelimeyi aynı anda güncellemek için 2. parametre dizi türü içerebilir.</comment>
+ML::update(<sf>'en'</sf>, <kf>array</kf>(<sf>'example'</sf> => <sf>'Example'</sf>, <sf>'application'</sf> => <sf>'Application'</sf>));
+</pre>
+    </div>
+  	
+    <p class="cstfont" id="delete">Kelimeyi Silmek</p>
+    <p><ftype>ML::delete( <kf>string</kf> <vf>$dil</vf> , <kf>string/array</kf> <vf>$anahtar</vf>)</ftype></p>
+    <p>Belirtilen dile ait hangi kelimeler silinecekse o kelime temsil eden anahtarlardan yararlanılır. Tek bir veri silinecekse metinsel parametre birden fazla veri silinecekse dizi parametresi belirtilir.</p>
+    
+    <p>
+    	<table class="cfont">
+        	<tr><th width="25%">Parametreler</th><td>Anlamları</td></tr>
+            <tr><th>1 - string Dil Tagı</th><td>Hangi dile ait kelime silinecekse o dil belirtilir. Genellikle en, tr gibi dil kısaltmaları kullanılır.</td></tr>
+            <tr><th>2 - string/array Kelime Anahtarı</th><td>Kelime eklenirken kullanılan anahtar.</td></tr>
+      
+        </table>
+    </p>
+    
+    <div type="code">
+<pre>
+ML::delete(<sf>'en'</sf>, <sf>'example'</sf>);
+
+<comment>// Birden fazla kelimeyi aynı anda silmek için 2. parametre dizi türü içerebilir.</comment>
+ML::delete(<sf>'en'</sf>, <kf>array</kf>(<sf>'example'</sf>, <sf>'application'</sf>));
+</pre>
+    </div>
+    
+    <p class="cstfont" id="lang">Aktif Dili Değiştirmek</p>
+    <p><ftype>ML::lang( <kf>string</kf> <vf>$dil</vf> )</ftype></p>
+    <p>Sayfanın hangi dili kullanmasını istiyorsınız o dosyaya ait isim kullanılır.</p>
+    
+    <p>
+    	<table class="cfont">
+        	<tr><th width="25%">Parametreler</th><td>Anlamları</td></tr>
+            <tr><th>1 - string Dil Adı</th><td>Hangi isimle dil dosyası oluşturulmuşsa o isim kullanılır. Insert() ile veri eklerken belirtilen dile parametresine ait bir dosya yoksa o paremetrenin değeri ile bir dosya oluşturur.</td></tr>
+        </table>
+    </p>
+    
+    <div type="code">
+<pre>
+ML::lang(<sf>'tr'</sf>);
+</pre>
+    </div>
+    
+    
+    <div type="prev-next">
+    	<div type="prev-btn"><a href="encoding.html">Önceki</a></div><div type="next-btn"><a href="encoding_gettext.html">Sonraki</a></div>
+    </div>
+ 
+</body>
+</html>              

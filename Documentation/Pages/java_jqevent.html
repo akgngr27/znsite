@@ -1,0 +1,131 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>ZN KOD ÇATISI</title>
+<link type="text/css" rel="stylesheet" href="../Styles/Structure.css" />
+<script src="../Scripts/Jquery.js"></script>
+<script src="../Scripts/Structure.js"></script>
+</head>
+
+<body>
+    <div id="content-document">Döküman</a> » <a href="java.html">Javascript & Jquery</a> » Event Kütüphanesi</div> 
+    <p class="ctfont">JQEvent Kütüphanesi</p>
+    <p>Jquery'nin animasyon komutları kullanılarak oluşturulmuştur. Daha basit bir şekilde hareket işlemlerini gerçekleştirebilmeniz mümkündür.</p>
+    
+     <p>
+    	<table class="cfont" width="100%">
+        	<tr><th colspan="2">Zincirleme Kullanımlı JQEvent Parametreleri</th></tr>
+            <tr><th width="40%">Seçiçi Belirlemek</th><td><b><cf>Jquery::event()->selector(<cf><kf>string</kf> <vf>$selector</kf></cf>)</cf></b></td></tr>
+           	<tr><th>Olay Türünü Belirlemek</th><td><b><cf>Jquery::event()->type(<cf><kf>string</kf> <vf>$event</kf></cf>)</cf></b></td></tr>
+            <tr><th>Bind Özelliğini Kullanmak</th><td><b><cf>Jquery::event()->bind(<cf><kf>arguments</kf> <vf>$p1</kf>, <vf>$p2</kf> ... <vf>$pN</kf></cf>)</cf></b></td></tr>
+            <tr><th>Unbind Özelliğini Kullanmak</th><td><b><cf>Jquery::event()->unbind(<cf><kf>arguments</kf> <vf>$p1</kf>, <vf>$p2</kf> ... <vf>$pN</kf></cf>)</cf></b></td></tr>
+            <tr><th>Trigger Özelliğini Kullanmak</th><td><b><cf>Jquery::event()->trigger(<cf><kf>arguments</kf> <vf>$p1</kf>, <vf>$p2</kf> ... <vf>$pN</kf></cf>)</cf></b></td></tr>
+            <tr><th>Delegate Handler Özelliğini Kullanmak</th><td><b><cf>Jquery::event()->delegate(<cf><kf>arguments</kf> <vf>$p1</kf>, <vf>$p2</kf> ... <vf>$pN</kf></cf>)</cf></b></td></tr>
+            <tr><th>One Özelliğini Kullanmak</th><td><b><cf>Jquery::event()->one(<cf><kf>arguments</kf> <vf>$p1</kf>, <vf>$p2</kf> ... <vf>$pN</kf></cf>)</cf></b></td></tr>
+            <tr><th>On Özelliğini Kullanmak</th><td><b><cf>Jquery::event()->on(<cf><kf>arguments</kf> <vf>$p1</kf>, <vf>$p2</kf> ... <vf>$pN</kf></cf>)</cf></b></td></tr>
+            <tr><th>Off Özelliğini Kullanmak</th><td><b><cf>Jquery::event()->off(<cf><kf>arguments</kf> <vf>$p1</kf>, <vf>$p2</kf> ... <vf>$pN</kf></cf>)</cf></b></td></tr>
+            
+            <tr><th>Live Özelliğini Kullanmak</th><td><b><cf>Jquery::event()->live(<cf><kf>arguments</kf> <vf>$p1</kf>, <vf>$p2</kf> ... <vf>$pN</kf></cf>)</cf></b></td></tr>
+            <tr><th>Die Özelliğini Kullanmak</th><td><b><cf>Jquery::event()->remove(<cf><kf>arguments</kf> <vf>$p1</kf>, <vf>$p2</kf> ... <vf>$pN</kf></cf>)</cf></b></td></tr>
+            <tr><th>Geri Dönüş Fonksiyonu Kullanmak</th><td><b><cf>Jquery::event()->callback/func(<cf><kf>string</kf> <vf>$parameter</kf>, <kf>string</kf> <vf>$code</kf></cf>)</cf></b></td></tr>
+            <tr><th>Hareketi Kuyruğa Ekleyecek Şekilde Tamamlamak</th><td><b><cf>Jquery::event()->complete()</cf></b></td></tr>
+            <tr><th>Hareketi Oluşturmak</th><td><b><cf>Jquery::event()->create(<cf><kf>arguments</kf> <vf>$complete1</kf>, <vf>$complete2</kf> ... <vf>$completeN</kf></cf>)</cf></b></td></tr>
+         
+        </table>
+    </p>
+    
+    <p>
+    	<table class="cfont" width="100%">
+        	<tr><th colspan="2">Tekil Kullanımlı JQEvent Olayları</th></tr>
+            <tr><th width="40%">Ready Olayını Kullanmak</th><td><b><cf>Jquery::event()->ready(<kf>string</kf> <vf>$selector</vf>, <kf>string</kf> <vf>$callback</vf>)</cf></b></td></tr>
+            <tr><th width="40%">Click Olayını Kullanmak</th><td><b><cf>Jquery::event()->click(<kf>string</kf> <vf>$selector</vf>, <kf>string</kf> <vf>$callback</vf>)</cf></b></td></tr>
+            <tr><th width="40%">Double Click Olayını Kullanmak</th><td><b><cf>Jquery::event()->dblClick(<kf>string</kf> <vf>$selector</vf>, <kf>string</kf> <vf>$callback</vf>)</cf></b></td></tr>
+            <tr><th width="40%">Blur Olayını Kullanmak</th><td><b><cf>Jquery::event()->blur(<kf>string</kf> <vf>$selector</vf>, <kf>string</kf> <vf>$callback</vf>)</cf></b></td></tr>  
+            <tr><th width="40%">Change Olayını Kullanmak</th><td><b><cf>Jquery::event()->change(<kf>string</kf> <vf>$selector</vf>, <kf>string</kf> <vf>$callback</vf>)</cf></b></td></tr>
+            
+            <tr><th width="40%">Error Olayını Kullanmak</th><td><b><cf>Jquery::event()->error(<kf>string</kf> <vf>$selector</vf>, <kf>string</kf> <vf>$callback</vf>)</cf></b></td></tr>
+            <tr><th width="40%">Resize Olayını Kullanmak</th><td><b><cf>Jquery::event()->resize(<kf>string</kf> <vf>$selector</vf>, <kf>string</kf> <vf>$callback</vf>)</cf></b></td></tr>
+            <tr><th width="40%">Scroll Olayını Kullanmak</th><td><b><cf>Jquery::event()->scroll(<kf>string</kf> <vf>$selector</vf>, <kf>string</kf> <vf>$callback</vf>)</cf></b></td></tr>
+            <tr><th width="40%">Load Olayını Kullanmak</th><td><b><cf>Jquery::event()->load(<kf>string</kf> <vf>$selector</vf>, <kf>string</kf> <vf>$callback</vf>)</cf></b></td></tr>
+            <tr><th width="40%">Unload Olayını Kullanmak</th><td><b><cf>Jquery::event()->unload(<kf>string</kf> <vf>$selector</vf>, <kf>string</kf> <vf>$callback</vf>)</cf></b></td></tr>
+            <tr><th width="40%">Focus Olayını Kullanmak</th><td><b><cf>Jquery::event()->focus(<kf>string</kf> <vf>$selector</vf>, <kf>string</kf> <vf>$callback</vf>)</cf></b></td></tr>
+            <tr><th width="40%">Focus In Olayını Kullanmak</th><td><b><cf>Jquery::event()->focusIn(<kf>string</kf> <vf>$selector</vf>, <kf>string</kf> <vf>$callback</vf>)</cf></b></td></tr>
+            <tr><th width="40%">Focus Out Olayını Kullanmak</th><td><b><cf>Jquery::event()->focusOut(<kf>string</kf> <vf>$selector</vf>, <kf>string</kf> <vf>$callback</vf>)</cf></b></td></tr>
+            <tr><th width="40%">Select Olayını Kullanmak</th><td><b><cf>Jquery::event()->select(<kf>string</kf> <vf>$selector</vf>, <kf>string</kf> <vf>$callback</vf>)</cf></b></td></tr>
+            <tr><th width="40%">Submit Olayını Kullanmak</th><td><b><cf>Jquery::event()->submit(<kf>string</kf> <vf>$selector</vf>, <kf>string</kf> <vf>$callback</vf>)</cf></b></td></tr>
+            
+            <tr><th width="40%">Key Down Olayını Kullanmak</th><td><b><cf>Jquery::event()->keyDown(<kf>string</kf> <vf>$selector</vf>, <kf>string</kf> <vf>$callback</vf>)</cf></b></td></tr>
+            <tr><th width="40%">Key Press Olayını Kullanmak</th><td><b><cf>Jquery::event()->keyPress(<kf>string</kf> <vf>$selector</vf>, <kf>string</kf> <vf>$callback</vf>)</cf></b></td></tr>
+            <tr><th width="40%">Key Up Olayını Kullanmak</th><td><b><cf>Jquery::event()->keyUp(<kf>string</kf> <vf>$selector</vf>, <kf>string</kf> <vf>$callback</vf>)</cf></b></td></tr>
+            <tr><th width="40%">Hover Olayını Kullanmak</th><td><b><cf>Jquery::event()->hover(<kf>string</kf> <vf>$selector</vf>, <kf>string</kf> <vf>$callback</vf>)</cf></b></td></tr>
+            <tr><th width="40%">Mouser Down Olayını Kullanmak</th><td><b><cf>Jquery::event()->mouseDown(<kf>string</kf> <vf>$selector</vf>, <kf>string</kf> <vf>$callback</vf>)</cf></b></td></tr>
+            <tr><th width="40%">Mouse Enter Olayını Kullanmak</th><td><b><cf>Jquery::event()->mouseEnter(<kf>string</kf> <vf>$selector</vf>, <kf>string</kf> <vf>$callback</vf>)</cf></b></td></tr>
+            <tr><th width="40%">Mouse Leave Olayını Kullanmak</th><td><b><cf>Jquery::event()->mouseLeave(<kf>string</kf> <vf>$selector</vf>, <kf>string</kf> <vf>$callback</vf>)</cf></b></td></tr>
+            <tr><th width="40%">Mouse Move Olayını Kullanmak</th><td><b><cf>Jquery::event()->mouseMove(<kf>string</kf> <vf>$selector</vf>, <kf>string</kf> <vf>$callback</vf>)</cf></b></td></tr>
+            <tr><th width="40%">Mouse Out Olayını Kullanmak</th><td><b><cf>Jquery::event()->mouseOut(<kf>string</kf> <vf>$selector</vf>, <kf>string</kf> <vf>$callback</vf>)</cf></b></td></tr>
+            <tr><th width="40%">Mouse Over Olayını Kullanmak</th><td><b><cf>Jquery::event()->mouseOver(<kf>string</kf> <vf>$selector</vf>, <kf>string</kf> <vf>$callback</vf>)</cf></b></td></tr>
+            <tr><th width="40%">Mouse Up Olayını Kullanmak</th><td><b><cf>Jquery::event()->mouseUp(<kf>string</kf> <vf>$selector</vf>, <kf>string</kf> <vf>$callback</vf>)</cf></b></td></tr>
+            <tr><th width="40%">Toggle Olayını Kullanmak</th><td><b><cf>Jquery::event()->toggle(<kf>string</kf> <vf>$selector</vf>, <kf>string</kf> <vf>$callback</vf>)</cf></b></td></tr>
+            
+        </table>
+        
+    </p>
+    
+
+	<p class="cstfont" id="process">Zincirleme Kullanımlı Jquery Olay İşlemleri</p>
+    <p><ftype>Jquery::event([<vf>$scriptOutput</vf> = <kf>false</kf>])->create( [ <cf><kf>arguments</kf> <vf>$complete1</kf>, <vf>$complete2</kf> ... <vf>$completeN</kf></cf> ] )</cf></ftype></p>
+    <p>JQEvent kütüphanesi ile ilgili olayların nasıl yapılacağına ait aşağıda örneklere yer verilmiştir. create() yöntemi gönderimi tamamlamak için kullanılan nihai yöntemdir.</p> 
+  	<p>Aşağıda olayın nasıl oluşturulacağına dair bir örneğe yer verilmiştir.</p>
+    <div type="code">
+<pre>
+<kf>echo</kf> Script::open(); <comment>// Script tagı açıyor ve script jquery dosyasını dahil ediyor.</comment>
+
+<kf>echo</kf> Jquery::event()->selector(<sf>'#button'</sf>)
+             ->type(<sf>'click'</sf>)
+             ->callback(<sf>'e'</sf>, <sf>'alert(1)'</sf>)
+             ->create();
+           
+<kf>echo</kf> Script::close();<comment>// Script tagını kapatıyor.</comment>
+
+<comment>// Kaynak Kod: $("#button").click(function(e){alert(1)});</comment>
+</pre>
+    </div>
+    
+    <p>Harekete kuyruk eklemek için complete() yöntemini aşağıdaki gibi düzenlemeniz yeterlidir.</p>
+    
+    <div type="code">->create(JQ::property(<sf>'show'</sf>, <if>1000</if>), JQ::property(<sf>'fadeIn'</sf>, <kf>array</kf>(<sf>'slow'</sf>, <sf>'linear'</sf>)));<br>
+    <comment>// Kaynak Kod: $("#button").click(function(e){alert(1)}).show(1000).fadeIn("slow");</comment>
+    </div>
+    
+    <p>İstenirse <strong>bind</strong>(), <strong>on</strong>() gibi yöntemlerde kullanılabilir.
+    
+    <div type="code">
+<pre>
+<kf>echo</kf> Jquery::event()->selector(<sf>'#button'</sf>)
+             ->on(<sf>'click'</sf>, <sf>'{ foo: "bar" }</sf>', JQ::func(<sf>'alert("Olay Gerçekleşiyor")'</sf>))
+             ->create();
+             
+<comment>// Kaynak Kod: $("#button").on('click', { foo: "bar" }, function(e){alert("Olay Gerçekleşiyor")});</comment>
+</pre>
+    </div>
+    
+    <p class="cstfont" id="process">Tekil Kullanımlı Olayların Kullanımı</p>
+    
+    <div type="code">
+    Jquery::event()->click(<sf>'#button'</sf>, <sf>'alert(1)'</sf>);<br>
+    <comment>// Kaynak Kod: $("#button").click(function(e){alert(1)});</comment>
+    </div>
+    <p>
+     <div type="code">
+    Jquery::event()->scroll(<sf>'#button'</sf>, <sf>'alert(1)'</sf>);<br>
+    <comment>// Kaynak Kod: $("#button").scroll(function(e){alert(1)});</comment>
+    </div>
+    
+    
+    <div type="prev-next">
+    	<div type="prev-btn"><a href="java_jqanimate.html">Önceki</a></div><div type="next-btn"><a href="java_jqbuilder.html">Sonraki</a></div>
+    </div>
+ 
+</body>
+</html>              

@@ -1,0 +1,74 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>ZN KOD ÇATISI</title>
+<link type="text/css" rel="stylesheet" href="../Styles/Structure.css" />
+<script src="../Scripts/Jquery.js"></script>
+<script src="../Scripts/Structure.js"></script>
+</head>
+
+<body>
+    <div id="content-document"><a href="#">Döküman</a> » <a href="mvc.html">MVC (Model-View-Controller)</a> » Model Kullanımı</div> 
+    <p class="ctfont">Model Kullanımı</p>
+ 	<p><b>Models/</b> dizini, içerisinde oluşturulacak olan <strong>model</strong> dosyaları kullanımının temel mantığı veritabanı sorgularının bir kez yazılıp tekrar tekrar kullanılmasını sağlamaya dayanır. Sadece sorgular mı yazılır? Hayır istenirse harici olarak dahil edilmesi düşünülen farklı kodlarda yazılabilir.</p>
+    
+    <p class="cstfont">Model Dosyası Oluşturun</p>
+    <p>Aşağıdaki gibi örnek bir model dosyası oluşturabilirsiniz.</p>
+    
+    <div type="code">
+<pre><x><</x>?php
+<kf>class</kf> OrnekModel <kf>extends</kf> Controller <comment>// ya da Model</comment>
+{
+    <kf>public</kf> <ff>function</ff> get()
+    {
+         <kf>return</kf> <vf>$this</vf>->db->get(<sf>'OrnekTablo'</sf>)->result();
+    }
+}</pre>   
+    </div>
+    
+    <p>Yukarıdaki kullanım sadece örnek amaçlıdır.</p>
+    
+    <p class="cstfont">Oluşturulan Model Dosyasını Kullanın</p>
+   
+    <p>Model dosyası hangi sınıf ismi ile oluşturulmuşsa o isimle kullanılır.</p>
+    
+     <p><div type="code"><vf>$this</vf>->ornekmodel->get();</div></p>
+     
+     <p class="cstfont">Models Dosyalarında Namespace Kullanmak</p>
+   
+    <p>Eğer model dosyalarınız içinde <strong>namespace</strong> tanımlaması yapmışsanız aşağıdaki gibi bir kullanım gereklidir.</p>
+    
+     <div type="code">
+     Models\<strong>Ornek</strong>\OrnekModel.php
+<pre><x><</x>?php
+
+namespace <strong>Ornek;</strong>
+use <strong>Controller;</strong>
+
+<kf>class</kf> OrnekModel <kf>extends</kf> <strong>Controller</strong> <comment>// ya da Model</comment>
+{
+    <kf>public</kf> <ff>function</ff> get()
+    {
+         <kf>return</kf> <vf>$this</vf>->db->get(<sf>'OrnekTablo'</sf>)->result();
+    }
+}</pre>   
+    </div>
+    
+    <p>Şimdi bu model dosyasını kullanmak için;</p>
+    
+    <p><div type="code"><vf>$this</vf>->{<sf>'Ornek\OrnekModel'</sf>}->get();</div></p>
+    
+    <p>Ya da.</p>
+    
+    <p><div type="code"><vf>$this</vf>->OrnekModel->get();</div></p>
+    
+    <p>Şeklinde kullanabilirsiniz.</p>
+    
+    <div type="prev-next">
+    	<div type="prev-btn"><a href="mvc_view.html">Önceki</a></div><div type="next-btn"><a href="uri_and_route.html">Sonraki</a></div>
+    </div>
+ 	
+ 
+</body>
+</html>              

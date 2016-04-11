@@ -1,0 +1,57 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>ZN KOD ÇATISI</title>
+<link type="text/css" rel="stylesheet" href="../Styles/Structure.css" />
+<script src="../Scripts/Jquery.js"></script>
+<script src="../Scripts/Structure.js"></script>
+</head>
+
+<body>
+    <div id="content-document"><a href="#">Döküman</a> » <a href="components.html">Bileşenler</a> » Terminal(Komut İşletim Sistemi) Kütüphanesi</div> 
+    <p class="ctfont">Terminal(Komut İşletim Sistemi) Kütüphanesi</p>
+    <p>Gerek <strong>PHP</strong> kodlarını çalıştırmak gerekse de <strong>Komut İşletim Sistemi</strong> komutlarını çalıştırmak için oluşturulmuştur. Kod üzerinden konsol ayarlarını yapılandırabileceğiniz gibi <strong>Config/Components.php</strong> ayar dosyasından da yapılandırmaları gerçekleştirebilirsiniz.</p>
+    <p>
+    	<table class="cfont" width="100%">
+            <tr><th colspan="2"><a href="#infont">Table(Tablo) Kütüphanesini ve Yöntemleri</a></th></tr>
+            <tr><th width="40%">Terminal(Komut İşletim Sistemi) Çalıştırmak</th><td><a href="#run"><b>Terminal::run()</b></a></td></tr>
+        </table>
+    </p>
+  
+    
+    <p class="cstfont" id="run">Terminal(Komut İşletim Sistemi) Çalıştırmak</p>
+    <p><ftype>Terminal::run( [ <kf>string</kf> <vf>$tur</vf> = <sf>'php'</sf> ] , <kf>array</kf> <vf>$ayarlar</vf> )</ftype></p>
+    <p>PHP ve komut işletim sistemi komutlarını çalıştırmak için kullanılır.</p>
+    
+    <p>
+    	<table class="cfont">
+        	<tr><th>No</th><th>Parametreler</th><td>Anlamları</td></tr>
+            <tr><th>1</th><th>[string Tür = 'php']</th><td><strong>php, cmd</strong> parametrelerini alır.</td></tr>
+            <tr><th colspan="3">Türler</th></tr> 
+            <tr><th>php</th><td colspan="2">PHP kodlarını çalıştırmak için bu ayar kullanılır.</td></tr>
+            <tr><th>cmd</th><td colspan="2">Komut işletim sistemi ayarlarını çalıştırmak için bu ayar kullanılır.</td></tr>  
+            <tr><th>2</th><th>[array Ayarlar]</th><td>Terminalin görünümü ile ilgili ayarları içerir.</td></tr> 
+            <tr><th colspan="3">Ayarlar</th></tr>
+            <tr><th>width</th><td colspan="2">Terminalin genişlik değeri.</td></tr>
+            <tr><th>height</th><td colspan="2">Terminalin yükseklik değeri.</td></tr>     
+            <tr><th>textColor</th><td colspan="2">Yazı rengi.</td></tr>
+            <tr><th>textSize</th><td colspan="2">Yazı boyutu.</td></tr>
+            <tr><th>textType</th><td colspan="2">Yazı türü.</td></tr>
+            <tr><th>bgColor</th><td colspan="2">Arkaplan rengi.</td></tr>
+            <tr><th>barBgColor</th><td colspan="2">Temirnalin üst bölümünün arkaplan rengi.</td></tr>
+        </table>
+    </p>
+    
+	<div type="code">
+    Terminal::run(<sf>'php'</sf>, <kf>array</kf>(<sf>'width'</sf> => <if>1000</if>)); 
+    </div> 
+    
+    <p>Komut işletim sistemi üzerinde yazılan komutları temizlemek için <strong>clear</strong> anahtar kelimesiniz kullanmanız yeterlidir.</p>
+    
+    <div type="prev-next">
+    	<div type="prev-btn"><a href="component_table.html">Önceki</a></div><div type="next-btn"><a href="compression.html">Sonraki</a></div>
+    </div>
+ 
+</body>
+</html>              

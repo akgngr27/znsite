@@ -1,0 +1,94 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>ZN KOD ÇATISI</title>
+<link type="text/css" rel="stylesheet" href="../Styles/Structure.css" />
+<script src="../Scripts/Jquery.js"></script>
+<script src="../Scripts/Structure.js"></script>
+</head>
+
+<body>
+    <div id="content-document"><a href="#">Döküman</a> » <a href="mvc.html">MVC (Model-View-Controller)</a> » View(Görünüm) Kullanımı</div> 
+    <p class="ctfont">View(Görünüm) Kullanımı</p>
+ 	<p>Html içerikli görünüm sayfalarınız <strong>Views/</strong> dizini içinde oluşturulur. Bu bölümdeki sayfalar, <strong>Controllers/</strong> dizini içerisinde yer alan kontrolcü dosyaları tarafından yönetilir. Görünüm sayfalarının ve kontrolcülerin ayrılmasındaki temel mantık; bir sayfadaki kod fazlalığını engellemek, daha hızlı açılmalarını sağlamak ve iş bölümü yapmaktır.</p>
+    
+    <p class="cstfont">Görünüm Sayfası Oluşturun</p>
+    <p>İçerisinde asağıdaki kodların yer aldığı <cf>Anasayfa.php</cf> isimli bir dosya oluşturup <b>Views/</b> dizini içerisine atın.</p>
+    
+    <div type="code">Views/Anasayfa.php<pre><ff><x><</x>html>
+<</x>head>
+        <</x>title></ff>Anasayfa<ff><</x>/title>
+<</x>/head>
+<</x>body>
+       <</x>h1></ff>Web sitemize hoşgeldiniz.<ff><</x>/h1>
+<</x>/body>
+<</x>/html></ff></pre></div>
+    
+    <p class="cstfont">Görünüm Sayfasını Dahil Edin</p>
+    <p><strong>Views/</strong> dizini içerisindeki görünüm sayfasını dahil etmek için <strong class="sitefont">Import::page()</strong> <strong>ya da</strong> <strong class="sitefont">Import::view()</strong> komutu kullanılır.</p>
+    <div type="code">Import::page(<sf>"Anasayfa"</sf>);</div>
+    <p>Ya da;</p>
+    <div type="code">Import::view(<sf>"Anasayfa"</sf>);</div>
+    <p></p>
+    <div type="note"><div>NOT</div><div>Dahil edeceğiniz sayfa <strong>.php</strong> uzantılı dosya ise <strong>.php</strong> uzantısını kullanmaya gerek yoktur.</div></div>
+    
+    <p><strong>Views/</strong> dizininde yer alan görünüm sayfasının, <strong>Controllers/</strong> dizinindeki kontrolcü sayfasının içerisine nasıl dahil edileceğini gösterelim.</p>
+    <div type="code">
+<pre><x><</x>?php
+<kf>class</kf> Anasayfa <kf>extends</kf> Controller
+{
+	<kf>public</kf> <ff>function</ff> index()
+        {
+            Import::view(<sf>'Anasayfa'</sf>);
+        }
+}</pre>   
+    </div>
+    <p>Bu görünüm sayfasını çalıştırmak için adres çubuğuna <cf>ornek.com/index.php/anasayfa/index</cf> URL adresini girin. Artık <cf>Views/Anasayfa.php</cf> tasarım sayfasının görüntülendiğini görebiliriz.</p>
+    
+    <p class="cstfont">Dahil Edilen Görünüm Sayfasına Veri Gönderin</p>
+    <p>Oluşturduğunuz görünüm sayfasına kontrolcüler sayesinde veri gönderilebilir. Aşağıda bu işlemin nasıl yapılacağını gösteren örnek bir kod yer almaktadır.</p>
+    
+        <div type="code">
+<pre>Controllers/Anasayfa.php
+
+<x><</x>?php
+<kf>class</kf> Anasayfa <kf>extends</kf> Controller
+{
+    <kf>public</kf> <ff>function</ff> index()
+    {
+    	<vf>$veriler</vf>[<sf>'baslik'</sf>] = <sf>'Web Sayfamıza Hoş Geldiniz'</sf>; 
+        <vf>$veriler</vf>[<sf>'icerik'</sf>] = Import::page(<sf>'anasayfa_icerik'</sf>, <sf>''</sf>, <kf>true</kf>); <comment>// Bir sayfanın içeriğinide değişkene aktarabilirsiniz.</comment>
+        
+    	Import::view(<sf>'Anasayfa'</sf>, <vf>$veriler</vf>);
+    }
+}</pre>   
+    </div>
+    <p></p>
+      <div type="code"><pre>
+Views/Anasayfa.php
+
+<ff><x><</x>html>
+<</x>head>
+        <</x>title></ff><x><</x>?php <kf>echo</kf> <vf>$baslik</vf>; ?<x>></x><ff><</x>/title>
+<</x>/head>
+<</x>body>
+       </ff><x><</x>?php <kf>echo</kf> <vf>$icerik</vf>; ?<x>></x><ff>
+<</x>/body>
+<</x>/html></ff></pre></div>
+    
+    <p>Dikkat edilirse <strong>Controllers</strong> kontrolcü sayfasından dizi olarak gönderilen veriler, <strong>Views</strong> görünüm sayfasında değişken olarak kullanılmıştır.</p>
+    
+    <p class="cstfont">Görünüm Sayfasının İçeriğini Almak</p>
+    <p><strong>Views</strong> görünüm sayfasının içeriğini alıp bir değişkene aktarmak istenirse aşağıdaki gibi bir ifade kullanılması gerekmektedir.</p>
+    
+    <div type="code"><vf>$icerigi_al</vf> = Import::view(<sf>'Sayfa'</sf>, <sf>''</sf>, <kf><strong>true</strong></kf>);</div>
+    <p>Fonksiyonun içerisindeki 3. parametre olan <kf>true</kf> ibaresi, o görünüm sayfasının içeriğinin alınmasını sağlar.</p>
+    
+    <div type="prev-next">
+    	<div type="prev-btn"><a href="mvc_controller.html">Önceki</a></div><div type="next-btn"><a href="mvc_model.html">Sonraki</a></div>
+    </div>
+ 	
+ 
+</body>
+</html>              

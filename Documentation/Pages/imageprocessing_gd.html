@@ -1,0 +1,610 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>ZN KOD ÇATISI</title>
+<link type="text/css" rel="stylesheet" href="../Styles/Structure.css" />
+<script src="../Scripts/Jquery.js"></script>
+<script src="../Scripts/Structure.js"></script>
+</head>
+
+<body>
+    <div id="content-document"><a href="#">Döküman</a> » <a href="imageprocessing.html">Image Processing</a> » GD(Grafik) Kütüphanesi</div> 
+    <p class="ctfont">GD(Grafik) Kütüphanesi</p>
+    <p>Bu kütüphane PHP'nin gd kütüphanesini kullanarak oluşturulmuş kullanımına daha akıcılık ve kolaylık kazandırmak için oluşturulmuştur. </p>
+    
+     <p>
+    	<table class="cfont" width="100%">
+        	<tr><th colspan="3">Zincirleme Kullanımlı GD(Grafik) Kütüphanesi ve Yöntemleri</th></tr>
+            <tr><th width="50%">Tuval Oluşturmak</th><td><a href="#canvas"><b>GD::canvas()</b></a></td></tr>
+            <tr><th>Çizgi Çizmek</th><td><a href="#line"><b>GD::line()</b></a></td></tr>
+            <tr><th>Dörgen Çizmek</th><td><a href="#rectangle"><b>GD::rectangle()</b></a></td></tr>
+            <tr><th>Yay Çizmek</th><td><a href="#arc"><b>GD::arc()</b></a></td></tr>
+          	<tr><th>Elips Çizmek</th><td><a href="#ellipse"><b>GD::ellipse()</b></a></td></tr>
+            <tr><th>Poligon Çizmek</th><td><a href="#polygon"><b>GD::polygon()</b></a></td></tr>
+            <tr><th>Tek Bir Karater Yazmak</th><td><a href="#char"><b>GD::char()</b></a></td></tr>
+            <tr><th>Metin Yazmak</th><td><a href="#text"><b>GD::text()</b></a></td></tr>
+            <tr><th>Harmanlama Kipini Etkinleştirmek</th><td><a href="#alphaBlending"><b>GD::alphaBlending()</b></a></td></tr>
+            <tr><th>Alfa Kanal Bilgisini Kaydetmek</th><td><a href="#saveAlpha"><b>GD::saveAlpha()</b></a></td></tr>
+            <tr><th>Resmin Kenarlarına Yumuşatma Uygulamak</th><td><a href="#smooth"><b>GD::smooth()</b></a></td></tr>
+            <tr><th>Resme Renk Dolgusu Uygulamak</th><td><a href="#fill"><b>GD::fill()</b></a></td></tr>
+            <tr><th>Resmin Belirli Bir Alanına Renk Dolgusu Uygulamak</th><td><a href="#fillArea"><b>GD::fillArea()</b></a></td></tr>
+            <tr><th>Resme Süzgeç Uygulamak</th><td><a href="#filter"><b>GD::filter()</b></a></td></tr>
+            <tr><th>Resmi Çevirmek( PHP >= 5.5.0 )</th><td><a href="#flip"><b>GD::flip()</b></a></td></tr>
+            <tr><th>Resmi Döndürmek</th><td><a href="#rotate"><b>GD::rotate()</b></a></td></tr>
+            <tr><th>Resmi Ölçeklendirmek( PHP >= 5.5.0 )</th><td><a href="#scale"><b>GD::scale()</b></a></td></tr>
+            <tr><th>Resmin Ara Değerini Ayarlamak( PHP >= 5.5.0 )</th><td><a href="#interpolation"><b>GD::interpolation()</b></a></td></tr>
+            <tr><th>Pikselin Rengini Ayarlamak</th><td><a href="#pixel"><b>GD::pixel()</b></a></td></tr>
+            <tr><th>Çizgi Tarzını Ayarlamak</th><td><a href="#style"><b>GD::style()</b></a></td></tr>
+            <tr><th>Çizgi Kalınlığını Ayarlamak</th><td><a href="#thickness"><b>GD::thickness()</b></a></td></tr>
+            <tr><th>Kaynak Resmin Reklerini Esas Resmin Renkleri ile Eşleştirmek</th><td><a href="#match"><b>GD::match()</b></a></td></tr>
+            <tr><th>Renk Tanımlamak</th><td><a href="#set"><b>GD::set()</b></a></td></tr>
+            <tr><th>Rengi Şeffaflaştırmak</th><td><a href="#transparent"><b>GD::transparent()</b></a></td></tr>
+            <tr><th>Kıvrım Matrisi Uygulamak</th><td><a href="#convolution"><b>GD::convolution()</b></a></td></tr>
+            <tr><th>Karışımlılığı Kontrol Etmek</th><td><a href="#interlace"><b>GD::interlace()</b></a></td></tr>
+            <tr><th>Resmin Parçasını Kopyalamak</th><td><a href="#copy"><b>GD::copy()</b></a></td></tr>
+            <tr><th>Resmi Kopyalayıp Karıştırmak</th><td><a href="#mix"><b>GD::mix()</b></a></td></tr>
+            <tr><th>Resmi Kopyalayıp Gri ile Karıştırmak</th><td><a href="#mixGray"><b>GD::mixGray()</b></a></td></tr>
+            <tr><th>Resmin Parçasını Örnekleyerek Boyutlandırmak</th><td><a href="#resample"><b>GD::resample()</b></a></td></tr>
+            <tr><th>Resmin Parçasını Boyutlandırmak</th><td><a href="#resize"><b>GD::resize()</b></a></td></tr>
+            <tr><th>Resmi Kırpmak( PHP >= 5.5.0 )</th><td><a href="#crop"><b>GD::crop()</b></a></td></tr>
+            <tr><th>Resmi Otomatik Kırpmak( PHP >= 5.5.0 )</th><td><a href="#autoCrop"><b>GD::autoCrop()</b></a></td></tr>
+            <tr><th>Resmin Kalitesini Ayarlamak</th><td><a href="#quality"><b>GD::quality()</b></a></td></tr>
+            <tr><th>Resmi Bir Dosyaya Kaydetmek</th><td><a href="#save"><b>GD::save()</b></a></td></tr>
+            <tr><th>Kaydedilen Resmi Görüntülemek</th><td><a href="#result"><b>GD::result()</b></a></td></tr>
+            <tr><th>Resmi Türünü Seçmek</th><td><a href="#type"><b>GD::type()</b></a></td></tr>
+            <tr><th>Çıktının Oluşup Oluşmayacağına Karar Vermek</th><td><a href="#output"><b>GD::output()</b></a></td></tr>
+            <tr><th>Ekran Görüntüsünü Almak</th><td><a href="#screenshot"><b>GD::screenshot()</b></a></td></tr>
+            <tr><th>Belirli Bir Pencerenin Görüntüsünü Almak</th><td><a href="#windowDisplay"><b>GD::windowDisplay()</b></a></td></tr>
+            <tr><th>Döşemeyi Etkin Kılmak</th><td><a href="#tile"><b>GD::tile()</b></a></td></tr>
+            <tr><th>Katmanlama Etkisini Ayarlamak</th><td><a href="#layerEffect"><b>GD::layerEffect()</b></a></td></tr>
+            <tr><th>Resmi WBMP Formatında Çıktılamak</th><td><a href="#toWbmp"><b>GD::toWbmp()</b></a></td></tr>
+            <tr><th>Resmi Oluşturmak</th><td><a href="#generate"><b>GD::generate()</b></a></td></tr>
+        </table>
+    </p>
+    
+    <p>
+    	<table class="cfont" width="100%">
+        	<tr><th colspan="3">Tekil Kullanımlı GD(Grafik) Kütüphanesi ve Yöntemleri</th></tr>
+            <tr><th>Resmi Manüpile Etmek(Image::thumb yöntemi ile aynıdır.)</th><td><a href="#thumb"><b>GD::thumb()</b></a></td></tr>
+            <tr><th>Belirtilen Türe Göre Kaynaktan Resim Oluşturmak</th><td><a href="#createFrom"><b>GD::createFrom()</b></a></td></tr>
+            <tr><th>Resim Boyutları Hakkında Bilgi Almak</th><td><a href="#size"><b>GD::size()</b></a></td></tr>
+            <tr><th>Resim Türüne Göre Uzantısını Almak</th><td><a href="#extension"><b>GD::extension()</b></a></td></tr>
+            <tr><th>Resim Türüne MIME Türünü Almak</th><td><a href="#mime"><b>GD::mime()</b></a></td></tr>
+            <tr><th>JPEG Türünü WBMP Türüne Çevirmek</th><td><a href="#jpegToWbmp"><b>GD::jpegToWbmp()</b></a></td></tr>
+            <tr><th>PNG Türünü WBMP Türüne Çevirmek</th><td><a href="#pngToWbmp"><b>GD::pngToWbmp()</b></a></td></tr>
+            <tr><th>En Yakın Rengin İndisini Almak</th><td><a href="#closest"><b>GD::closest()</b></a></td></tr>
+            <tr><th>En Yakın Rengin HWB Değerine Göre İndisini Almak</th><td><a href="#closestHwb"><b>GD::closestHwb()</b></a></td></tr>
+            <tr><th>Regin veya En Yakın Rengin İndisini Almak</th><td><a href="#resolve"><b>GD::resolve()</b></a></td></tr>
+            <tr><th>Belirtilen Rengin İndisini Almak</th><td><a href="#index"><b>GD::index()</b></a></td></tr>
+            <tr><th>Belirtilen Pikselin İndisini Almak</th><td><a href="#pixelIndex"><b>GD::pixelIndex()</b></a></td></tr>
+            <tr><th>Bir Resim Paletindeki Toplam Renk Sayısını Almak</th><td><a href="#total"><b>GD::total()</b></a></td></tr>
+            <tr><th>Font Yükseklik Değerini Elde Etmek</th><td><a href="#fontHeight"><b>GD::fontHeight()</b></a></td></tr>
+            <tr><th>Font Genişlik Değerini Elde Etmek</th><td><a href="#fontWidth"><b>GD::fontWidth()</b></a></td></tr>
+            <tr><th>Yazı Tipi Yüklemek</th><td><a href="#loadFont"><b>GD::loadFont()</b></a></td></tr>
+            <tr><th>Paleti Bir Resimden Başka Bir Resme Kopyalamak</th><td><a href="#copyPalette"><b>GD::copyPalette()</b></a></td></tr>
+            <tr><th>Resmin(Tuvalin) Genişlik Değerini Elde Etme</th><td><a href="#canvasWidth"><b>GD::canvasWidth()</b></a></td></tr>
+            <tr><th>Resmin(Tuvalin) Yükseklik Değerini Elde Etme</th><td><a href="#canvasHeight"><b>GD::canvasHeight()</b></a></td></tr>
+            <tr><th>PHP'nin Desteklediği Resim Türlerini Almak</th><td><a href="#types"><b>GD::types()</b></a></td></tr>
+            <tr><th width="50%">PHP GD Kütüphanesi Hakkında Bilgi Almak</th><td><a href="#info"><b>GD::info()</b></a></td></tr>
+        </table>
+    </p>
+    
+    <p class="cstfont" id="canvas">Ön Bilgiler</p>
+    <p>GD Kütüphanesinde renklerin kullanımı için <strong>imageallocate()</strong> yönteminin <u>kullanımına gerek yoktur</u>.</p>
+    <p>Renklerin kullanımı için<strong> R|G|B|A</strong> formunda yani <strong>0-255|0-255|0-255|0-127</strong> biçiminde belirtilir. Sondaki <strong>A</strong> harfi <strong>alfa</strong> değerini ifade eder.</p>
+    <p><strong>Config/Colors.php</strong> ayar dosyasında yer alan <strong>renk isimleride</strong> kullanılabilir. white, purple, pink ...</p>
+    <p>Genellikle çizimlerde kullanılan <strong>x, y, width, height, color</strong> gibi parametreler <strong>$settings dizi parametresi</strong> altında belirtilerek kullanılır. Böylece <strong>parametre sayısın azaltılarak</strong> parametre sırasının karıştırılmasının önüne geçilmesi sağlamış oldu.</p>
+    
+    <p class="cstfont" id="canvas">Tuval Oluşturmak</p>
+    <p>Tuval oluşturmak için parametrelerin dizilimi.</p>
+    <p><ftype> GD::canvas( <kf>numeric</kf> <vf>$genislik</vf>, <kf>numeric</kf> <vf>$yukseklik</vf>, <kf>string</kf> <vf>$color</vf> = <sf>'transparent'</sf>, <kf>bool</kf> <vf>$gercek</vf> = <kf>false</kf> )</ftype></p>
+    <p>Bir resim kaynağını kullanmak için parametrelerin dizilimi.</p>
+    <p><ftype> GD::canvas( <kf>string</kf> <vf>$kaynak</vf> )</ftype></p>
+    <p>Tuval oluşturmak için kullanılır.</p>
+    
+    <p>
+    	<table class="cfont">
+        	<tr><th width="303">Parametre</th><td width="786">Anlamları</td></tr>
+            <tr><th>1 - numeric Genişlik</th><td>Tuvalin genişlik değeri.</td></tr>
+            <tr><th>2 - numeric Yükseklik</th><td>Tuvalin yükseklik değeri.</td></tr>
+            <tr><th>[ 3 - string Renk = transparent ]</th><td>Tuvalin arkaplan rengi. <strong>Renkler 0-255|0-255|0-255</strong> formunda ya da <strong>Config/Colors.php</strong> dosyasında belirtilen renk isimleri kullanılmalıdır. <strong>Alfa değeride</strong> belirtilmek istenirse <strong>4. blok</strong> için <strong>0-127</strong> arasında değer belirtilebilir. Yani <strong>R|G|B|A</strong> formunda ayarlanır.</td></tr>
+            <tr><th>[ 4 - string Gerçek Renk = false ]</th><td>Gerçek renklerin kullanılıp kullanılmayacağı.</td></tr>
+            <tr><th>Return</th><td>Object(Nesne)</td></tr>
+        </table>
+    </p>
+    
+    <p>
+    	<table class="cfont">
+        	<tr><th width="175">Parametre</th><td width="191">Anlamları</td></tr>
+            <tr><th>1 - string Kaynak</th><td>Resim dosyasının yolu.</td></tr>
+            <tr><th>Return</th><td>Object(Nesne)</td></tr>
+        </table>
+    </p>
+	<p><div type="code">
+<pre>
+<comment>
+/*
+p1: tuvalin genişliği 200px olarak ayarlandı.
+p2: tuvalin yüksekliği 400px olarak ayarlandı.
+p3: tuvalin arkaplan rengi beyaz olarak ayarlandı. 255|255|255 olarakta ayarlanabilirdi.
+*/
+</comment>
+GD::canvas(<if>200</if>, <if>400</if>, <sf>'white'</sf>)
+  <comment>// generate() yöntemi zincirleme yöntemleri tamamlamak için kullanılan nihai yöntemdir.</comment>
+  ->generate(<sf>'png'</sf>);
+</pre>   
+    </div></p>
+    
+    
+    <p class="cstfont" id="generate">Resmi Oluşturmak</p>
+    <p><ftype> GD::generate( <kf>string</kf> <vf>$tur</vf>,  <kf>string</kf> <vf>$dosya</vf> )</ftype></p>
+    <p>Zincirleme yöntemlerin sonunda ve resim oluşumunu tamamlamak için kullanılan <strong>nihai</strong> yöntemdir.</p>
+  
+    
+    <p>
+    	<table class="cfont">
+        	<tr><th width="175">Parametre</th><td width="191">Anlamları</td></tr>
+            <tr><th>1 - string Tür</th><td>Resmin hangi türde oluşturulacağı. jpeg, gif, png, gd, gd2, wbmp, webp, xbm, xpm</td></tr>
+            <tr><th>[ 2 - string Dosya ]</th><td>Resim dosya olarak kaydedilecekse bu parametreye dosya yolu ve adı yazılmalıdır.</td></tr>
+            <tr><th>Return</th><td>Resource(Kaynak)</td></tr>
+        </table>
+    </p>
+	<p><div type="code">
+<pre>
+GD::canvas(<if>200</if>, <if>400</if>, <sf>'white'</sf>)
+<comment>
+  // p1: resmin png türünde oluşturulmasını istedik.
+  // p2: resmi Test/resim.png olarak kaydedilmesini istedik. Bu parametre kullanılmak zorunda değildir.</comment>
+  ->generate(<sf>'png'</sf>, <sf>'Test/resim'</sf>);
+</pre>   
+    </div></p>
+    
+    <p class="cstfont" id="line">Çizgi Çizmek</p>
+    <p><ftype> GD::line( <kf>array</kf> <vf>$ayarlar</vf> )</ftype></p>
+    <p>Tuvale çizgi çizmek için kullanılır.</p>
+  
+    
+    <p>
+    	<table class="cfont">
+        	<tr><th width="175">Parametre</th><td width="191">Anlamları</td></tr>
+            <tr><th>1 - array Ayarlar</th><td>Çizgi ile ilgili ayarlar.</td></tr>
+            <tr><th>Ayarlar</th><td>İşlevler.</td></tr>
+            <tr><th>x1</th><td>Çizginin başlangıç x koordinat değeri</td></tr>
+            <tr><th>y1</th><td>Çizginin başlangıç y koordinat değeri</td></tr>
+            <tr><th>x2</th><td>Çizginin bitiş x koordinat değeri</td></tr>
+            <tr><th>y2</th><td>Çizginin bitiş y koordinat değeri</td></tr>
+             <tr><th>type</th><td>Çizginin türü. Alabileceği değerler: <strong>solid, dashed</strong>. Kesikli çizgi için <strong>dashed</strong>, düz çizgi için <strong>solid</strong> kullanılır. <strong>Varsayılan: solid</strong> değeridir.</td></tr>
+            <tr><th>color</th><td>Çizginin rengi. R|G|B|A => 0-255|0-255|0-255|0-127, white, red, green, lime, purple</td></tr>
+        </table>
+    </p>
+	<p><div type="code">
+<pre>
+GD::canvas(<if>200</if>, <if>400</if>, <sf>'transparent'</sf>)
+<comment>
+  // p1: çizginin kesikli bir çizgi olduğunu belirttik.
+  // p2: çizginin şeklini ayarladık.</comment>
+  ->line(<kf>array</kf>(<sf>'x1'</sf> => <if>0</if>, <sf>'y1'</sf> => <if>0</if>, <sf>'x2'</sf> => <if>100</if>, <sf>'y2'</sf> => <if>100</if>, <sf>'color'</sf> => <sf>'pink'</sf>, <sf>'type'</sf> => <sf>'dashed'</sf>))
+  ->line(<kf>array</kf>(<sf>'x1'</sf> => <if>100</if>, <sf>'y1'</sf> => <if>100</if>, <sf>'x2'</sf> => <if>0</if>, <sf>'y2'</sf> => <if>0</if>, <sf>'color'</sf> => <sf>'blue'</sf>))
+  ->generate(<sf>'png'</sf>);
+</pre>   
+    </div></p>
+    
+    <p class="cstfont" id="rectangle">Dörgen Çizmek</p>
+    <p><ftype> GD::rectangle( <kf>array</kf> <vf>$ayarlar</vf> )</ftype></p>
+    <p>Tuvale dörtgen çizmek için kullanılır.</p>
+  
+    
+    <p>
+    	<table class="cfont">
+        	<tr><th width="175">Parametre</th><td width="191">Anlamları</td></tr>
+            <tr><th>1 - array Ayarlar</th><td>Dörgen ile ilgili ayarlar.</td></tr>
+            <tr><th>Ayarlar</th><td>İşlevler.</td></tr>
+            <tr><th>x</th><td>Dörgenin sol üst köşe x koordinat değeri</td></tr>
+            <tr><th>y</th><td>Dörgenin sol üst köşe y koordinat değeri</td></tr>
+            <tr><th>width</th><td>Dörtgenin genişlik değeri</td></tr>
+            <tr><th>height</th><td>Dörtgenin yükseklik değeri</td></tr>
+            <tr><th>type</th><td>Dörgenin doluluğunu ayarlamak için kullanılır. <strong>NULL</strong> veya <strong>fill</strong> değeri alır. Varsayılan <strong>NULL</strong> atamasıdır. Bu ayarın <strong>fill</strong> ayarlaması durumunda dörgenin içi doldurulur.</td></tr>
+            <tr><th>color</th><td>Dörtgenin rengi. R|G|B|A => 0-255|0-255|0-255|0-127, white, red, green, lime, purple</td></tr>
+        </table>
+    </p>
+	<p><div type="code">
+<pre>
+GD::canvas(<if>200</if>, <if>400</if>, <sf>'white'</sf>)
+  ->rectangle(<kf>array</kf>(<sf>'x'</sf> => <if>0</if>, <sf>'y'</sf> => <if>0</if>, <sf>'width'</sf> => <if>100</if>, <sf>'height'</sf> => <if>100</if>, <sf>'color'</sf> => <sf>'255|0|255'</sf>))
+  ->rectangle(<kf>array</kf>(<sf>'x'</sf> => <if>100</if>, <sf>'y'</sf> => <if>100</if>, <sf>'width'</sf> => <if>100</if>, <sf>'height'</sf> => <if>100</if>, <sf>'color'</sf> => <sf>'blue'</sf>, <sf>'type'</sf> => <sf>'fill'</sf>))
+  ->generate(<sf>'png'</sf>);
+</pre>   
+    </div></p>
+    
+    
+    <p class="cstfont" id="arc">Yay Çizmek</p>
+    <p><ftype> GD::arc( <kf>array</kf> <vf>$ayarlar</vf> )</ftype></p>
+    <p>Tuvale yay çizmek için kullanılır.</p>
+  
+    
+    <p>
+    	<table class="cfont">
+        	<tr><th width="175">Parametre</th><td width="191">Anlamları</td></tr>
+            <tr><th>1 - array Ayarlar</th><td>Yay ile ilgili ayarlar.</td></tr>
+            <tr><th>Ayarlar</th><td>İşlevler.</td></tr>
+            <tr><th>x</th><td>Yay merkezinin x koordinat değeri</td></tr>
+            <tr><th>y</th><td>Yay merkezinin y koordinat değeri</td></tr>
+            <tr><th>width</th><td>Yayın genişlik değeri</td></tr>
+            <tr><th>height</th><td>Yayın yükseklik değeri</td></tr>
+            <tr><th>start</th><td>Yayın başlangıç açı değeri</td></tr>
+            <tr><th>end</th><td>Yayın bitiş açı değeri</td></tr>
+            <tr><th>type</th><td>Yayın dolgu türüdür. Alabilceği değerler:<strong>pie, chord, edged, nofill</strong>. Varsayılan <strong>NULL</strong> ayarlıdır.</td></tr>
+            <tr><th>color</th><td>Yayın rengi. R|G|B|A => 0-255|0-255|0-255|0-127, white, red, green, lime, purple</td></tr>
+        </table>
+    </p>
+	<p><div type="code">
+<pre>
+GD::canvas(<if>200</if>, <if>400</if>, <sf>'white'</sf>)
+  ->arc(<kf>array</kf>
+  (
+      <sf>'x'</sf>      => <if>0</if>, 
+      <sf>'y'</sf>      => <if>0</if>, 
+      <sf>'width'</sf>  => <if>100</if>, 
+      <sf>'height'</sf> => <if>100</if>, 
+      <sf>'color'</sf>  => <sf>'255|0|255'</sf>, 
+      <sf>'start'</sf>  => <if>0</if>, 
+      <sf>'end'</sf>    => <if>90</if>, 
+      <sf>'type'</sf>   => <sf>pie</sf>
+  ))
+  ->generate(<sf>'jpeg'</sf>);
+</pre>   
+    </div></p>
+    
+    
+    <p class="cstfont" id="ellipse">Elips Çizmek</p>
+    <p><ftype> GD::ellipse( <kf>array</kf> <vf>$ayarlar</vf> )</ftype></p>
+    <p>Tuvale elips çizmek için kullanılır.</p>
+  
+    
+    <p>
+    	<table class="cfont">
+        	<tr><th width="175">Parametre</th><td width="191">Anlamları</td></tr>
+            <tr><th>1 - array Ayarlar</th><td>Dörgen ile ilgili ayarlar.</td></tr>
+            <tr><th>Ayarlar</th><td>İşlevler.</td></tr>
+            <tr><th>x</th><td>Elips merkezinin x koordinat değeri</td></tr>
+            <tr><th>y</th><td>Elips merkezinin y koordinat değeri</td></tr>
+            <tr><th>width</th><td>Elips genişlik değeri</td></tr>
+            <tr><th>height</th><td>Elips yükseklik değeri</td></tr>
+            <tr><th>type</th><td>Elips doluluğunu ayarlamak için kullanılır. <strong>NULL</strong> veya <strong>fill</strong> değeri alır. Varsayılan <strong>NULL</strong> atamasıdır. Bu ayarın <strong>fill</strong> ayarlaması durumunda dörgenin içi doldurulur.</td></tr>
+            <tr><th>color</th><td>Elips rengi. R|G|B|A => 0-255|0-255|0-255|0-127, white, red, green, lime, purple</td></tr>
+        </table>
+    </p>
+	<p><div type="code">
+<pre>
+GD::canvas(<if>200</if>, <if>400</if>, <sf>'transparent'</sf>)
+  ->ellipse(<kf>array</kf>(<sf>'x'</sf> => <if>0</if>, <sf>'y'</sf> => <if>0</if>, <sf>'width'</sf> => <if>100</if>, <sf>'height'</sf> => <if>100</if>, <sf>'color'</sf> => <sf>'lime'</sf>))
+  ->ellipse(<kf>array</kf>(<sf>'x'</sf> => <if>100</if>, <sf>'y'</sf> => <if>100</if>, <sf>'width'</sf> => <if>100</if>, <sf>'height'</sf> => <if>100</if>, <sf>'color'</sf> => <sf>'darkgreen'</sf>, <sf>'type'</sf> => <sf>'fill'</sf>))
+  ->generate(<sf>'png'</sf>);
+</pre>   
+    </div></p>
+    
+    <p class="cstfont" id="polygon">Polygon Çizmek</p>
+    <p><ftype> GD::polygon( <kf>array</kf> <vf>$ayarlar</vf> )</ftype></p>
+    <p>Tuvale poligon çizmek için kullanılır.</p>
+  
+    
+    <p>
+    	<table class="cfont">
+        	<tr><th width="175">Parametre</th><td width="191">Anlamları</td></tr>
+            <tr><th>1 - array Ayarlar</th><td>Dörgen ile ilgili ayarlar.</td></tr>
+            <tr><th>Ayarlar</th><td>İşlevler.</td></tr>
+            <tr><th>points</th><td>x, y çiftlerinden oluşan noktalar kümesi.</td></tr>
+            <tr><th>pointCount = points/2</th><td>Nokta sayısı. Varsayılan olarak noktalar dizisinin eleman sayısının yarısı hesaplanır.</td></tr>
+            <tr><th>type</th><td>Poligon doluluğunu ayarlamak için kullanılır. <strong>NULL</strong> veya <strong>fill</strong> değeri alır. Varsayılan <strong>NULL</strong> atamasıdır. Bu ayarın <strong>fill</strong> ayarlaması durumunda dörgenin içi doldurulur.</td></tr>
+            <tr><th>color</th><td>Poligon rengi. R|G|B|A => 0-255|0-255|0-255|0-127, white, red, green, lime, purple</td></tr>
+        </table>
+    </p>
+	<p><div type="code">
+<pre>
+GD::canvas(<if>200</if>, <if>400</if>, <sf>'transparent'</sf>)
+  ->polygon(<kf>array</kf>
+  (                  <comment>// x1, y1, x2, y2,  x3,  y3,  x4,  y4, .... xN, yN</comment>
+      <sf>'points'</sf>  => <kf>array</kf>(<if>0</if>, <if>90</if>, <if>90</if>, <if>180</if>, <if>180</if>, <if>270</if>, <if>270</if>, <if>360</if>), 
+      <sf>'color'</sf>  => <sf>'blue'</sf>
+  ))
+  ->rectangle(<kf>array</kf>(<sf>'x'</sf> => <if>0</if>, <sf>'y'</sf> => <if>0</if>, <sf>'width'</sf> => <if>100</if>, <sf>'height'</sf> => <if>100</if>, <sf>'color'</sf> => <sf>'255|0|255'</sf>))
+  ->line(<kf>array</kf>(<sf>'x1'</sf> => <if>100</if>, <sf>'y1'</sf> => <if>100</if>, <sf>'x2'</sf> => <if>0</if>, <sf>'y2'</sf> => <if>0</if>, <sf>'color'</sf> => <sf>'blue'</sf>))
+  ->generate(<sf>'png'</sf>);
+</pre>   
+    </div></p>
+    
+    
+    <p class="cstfont" id="char">Tek Bir Karakter Çizmek</p>
+    <p><ftype> GD::char( <kf>string</kf> <vf>$karakter</vf>, <kf>array</kf> <vf>$ayarlar</vf> )</ftype></p>
+    <p>Tuvale karakter çizmek için kullanılır.</p>
+  
+    
+    <p>
+<table class="cfont">
+        	<tr><th width="175">Parametre</th><td width="191">Anlamları</td></tr>
+            <tr><th>1 - string Karakter</th><td>Herhangi bir karakter.</td></tr>
+            <tr><th>2 - array Ayarlar</th><td>Dörgen ile ilgili ayarlar.</td></tr>
+            <tr><th>Ayarlar</th><td>İşlevler.</td></tr>
+            <tr><th>x</th><td>Karakterin x koordinat değeri</td></tr>
+            <tr><th>y</th><td>Karakterin y koordinat değeri</td></tr>
+            <tr><th>font</th><td>Belirtilecek değer, Latin2 kodlamalı yerleşik yazı tipleri için 1, 2, 3, 4, 5 (daha büyük numara daha yüksek yazı tipine karşılıktır) veya GD::loadFont() ile tanımlanmış kendi yazı tipi betimleyicilerinizden biri olabilir.</td></tr>
+            <tr><th>type</th><td>Yazının yatay mı yoksa dikey mi olacağı. <strong>vertical</strong> veya <strong>horizontal</strong> değeri alır. Varsayılan <strong>horizontal</strong> atamasıdır. Dikey olarak ayarlamak isterseniz <strong>vertical</strong> olarak kullanın.</td></tr>
+            <tr><th>color</th><td>Karakterin rengi. R|G|B|A => 0-255|0-255|0-255|0-127, white, red, green, lime, purple</td></tr>
+</table>
+    </p>
+	<p><div type="code">
+<pre>
+GD::canvas(<if>200</if>, <if>400</if>, <sf>'white'</sf>)
+  ->char(<sf>'A'</sf>, <kf>array</kf>(<sf>'x'</sf> => <if>100</if>, <sf>'y'</sf> => <if>100</if>, <sf>'color'</sf> => <sf>'255|0|255'</sf>, <sf>'type'</sf> => <sf>'vertical'</sf>))
+  ->generate(<sf>'png'</sf>);
+</pre>   
+    </div></p>
+    
+    <p class="cstfont" id="text">Metin Oluşturmak</p>
+    <p><ftype> GD::text( <kf>string</kf> <vf>$metin</vf>, <kf>array</kf> <vf>$ayarlar</vf> )</ftype></p>
+    <p>Tuvale yazı yazmak için kullanılır.</p>
+  
+    
+    <p>
+<table class="cfont">
+        	<tr><th width="175">Parametre</th><td width="191">Anlamları</td></tr>
+            <tr><th>1 - string Karakter</th><td>Herhangi bir karakter.</td></tr>
+            <tr><th>2 - array Ayarlar</th><td>Dörgen ile ilgili ayarlar.</td></tr>
+            <tr><th>Ayarlar</th><td>İşlevler.</td></tr>
+            <tr><th>x</th><td>Metnin x koordinat değeri</td></tr>
+            <tr><th>y</th><td>Metnin y koordinat değeri</td></tr>
+            <tr><th>font</th><td>Belirtilecek değer, Latin2 kodlamalı yerleşik yazı tipleri için 1, 2, 3, 4, 5 (daha büyük numara daha yüksek yazı tipine karşılıktır) veya GD::loadFont() ile tanımlanmış kendi yazı tipi betimleyicilerinizden biri olabilir.</td></tr>
+            <tr><th>type</th><td>Metnin yatay mı yoksa dikey mi olacağı. <strong>vertical</strong> veya <strong>horizontal</strong> değeri alır. Varsayılan <strong>horizontal</strong> atamasıdır. Dikey olarak ayarlamak isterseniz <strong>vertical</strong> olarak kullanın.</td></tr>
+            <tr><th>color</th><td>Metnin rengi. R|G|B|A => 0-255|0-255|0-255|0-127, white, red, green, lime, purple</td></tr>
+</table>
+    </p>
+	<p><div type="code">
+<pre>
+GD::canvas(<if>200</if>, <if>400</if>, <sf>'transparent'</sf>)
+  ->text(<sf>'ZN'</sf>, <kf>array</kf>(<sf>'x'</sf> => <if>100</if>, <sf>'y'</sf> => <if>100</if>, <sf>'color'</sf> => <sf>'255|0|255'</sf >))
+  ->text(<sf>'Framework'</sf>, <kf>array</kf>(<sf>'x'</sf> => <if>200</if>, <sf>'y'</sf> => <if>100</if>, <sf>'color'</sf> => <sf>'blue'</sf >))
+  ->generate(<sf>'png'</sf>);
+</pre>   
+    </div></p>
+    
+<p class="cstfont" id="alphaBlending">Harmanlama Kipini Etkinleştirmek
+    <p><ftype> GD::alphaBlending( <kf>bool</kf> <vf>$kip</vf> = <kf>false</kf>)</ftype></p>
+    <p>GD::alphaBlending() gerçek renkli resimlerde iki farklı çizim kipi kullanımına izin verir. Harmanlama kipinde, tüm çizim işlevlerine rengin alfa kanalı bileşeni sağlanır. Sonuç olarak GD özdevinimli olarak, rengin çizilmesi sırasında mevcut rengin harmanlanmasını sağlar ve sonucu resimde saklar. Elde edilen piksel mattır. Harmanlamama kipinde alfa kanalı bilgisi piksel çizim rengine aynen kopyalanır. Harmanlama kipi paletli resimler için kullanılamaz.</p>
+  
+    
+    <p>
+<table class="cfont">
+        	<tr><th width="175">Parametre</th><td width="191">Anlamları</td></tr>
+            <tr><th>[ 1 - bool Kip = false ]</th><td>Harmanlama kipinin etkin olup olmayacağı; false öntanımlıdır.</td></tr>
+</table>
+    </p>
+	<p><div type="code">
+<pre>
+GD::canvas(<if>200</if>, <if>400</if>, <sf>'transparent'</sf>)
+  ->alphaBlending(<kf>true</kf>)
+  ->text(<sf>'Framework'</sf>, <kf>array</kf>(<sf>'x'</sf> => <if>200</if>, <sf>'y'</sf> => <if>100</if>, <sf>'color'</sf> => <sf>'blue'</sf >))
+  ->generate(<sf>'png'</sf>);
+</pre>   
+    </div></p>
+    
+<p class="cstfont" id="saveAlpha">Alfa Kanal Bilgisini Kaydetmek
+<p><ftype> GD::saveAlpha( <kf>bool</kf> <vf>$kip</vf> = <kf>true</kf>)</ftype></p>
+    <p>PNG resimleri kaydederken (tek renkli şeffaflığın tersine) alfa kanalı bilgisinin kaydedilip kaydedilmeyeceğini belirtir.</p>
+    <p>GD::saveAlpha işlevi PNG resimleri kaydederken (tek renkli şeffaflığın tersine) alfa kanalı bilgisinin tamamının kaydedilmesi için seçenek belirtir. Bunu kullanmak için alfa harmanlamayı devreden çıkarmalısınız (GD::alphaBlending(<kf>false</kf>)). Alfa kanalını her tarayıcı desteklemez. Tarayıcınız sorun çıkarırsa, betiğinizi Mozilla'nın son sürümü gibi alfa kanalına uyumlu bir tarayıcıyla yüklemeyi deneyin.</p>
+  
+    
+    <p>
+<table class="cfont">
+        	<tr><th width="175">Parametre</th><td width="191">Anlamları</td></tr>
+            <tr><th>[ 1 - bool Kip = true ]</th><td>Alfa kanalının kaydedilip kaydedilmeyeceği belirtilir; true öntanımlıdır.</td></tr>
+</table>
+    </p>
+	<p><div type="code">
+<pre>
+GD::canvas(<if>200</if>, <if>400</if>, <sf>'transparent'</sf>)
+  ->alphaBlending(<kf>false</kf>)
+  ->saveAlpha(<kf>true</kf>)
+  ->text(<sf>'Framework'</sf>, <kf>array</kf>(<sf>'x'</sf> => <if>200</if>, <sf>'y'</sf> => <if>100</if>, <sf>'color'</sf> => <sf>'blue'</sf >))
+  ->generate(<sf>'png'</sf>);
+</pre>   
+    </div></p>
+    
+    
+<p class="cstfont" id="smooth">Resmin Kenarlarına Yumuşatma Uygulamak
+    <p><ftype> GD::smooth( <kf>bool</kf> <vf>$kip</vf> = <kf>true</kf>)</ftype></p>
+<p>Hızlı çizilen kenar yumuşatma yöntemlerini çizgiler ve içi boş çokgenler için etkin kılar. Alfa bileşenlerini desteklemez. Doğrudan harmanlama yapar. Sadece gerçek renkli resimlerle çalışır. Çizgi kalınlığı ve tarzı desteklenmez. Kenar yumuşatmalı çizim ilkellerinin şeffaf artalanda kullanılmasının sonuçları belirsizdir. Harmanlama yöntemi çizgi rengiyle artalan rengini harmanlar. Alfa bileşen desteğinin yokluğu nedeniyle alfa kenar yumuşatması yapılamaz.</p>
+  
+    
+    <p>
+<table class="cfont">
+        	<tr><th width="175">Parametre</th><td width="191">Anlamları</td></tr>
+            <tr><th>[ 1 - bool Kip = true ]</th><td>Kenar yumuşatma uygulanıp uygulanmayacağı; true öntanımlıdır.</td></tr>
+</table>
+    </p>
+	<p><div type="code">
+<pre>
+GD::canvas(<if>200</if>, <if>400</if>, <sf>'transparent'</sf>)
+  ->smooth()
+  ->rectangle(<kf>array</kf>(<sf>'color'</sf> => <sf>'blue'</sf >))
+  ->generate(<sf>'png'</sf>);
+</pre>   
+    </div></p>
+    
+    
+    
+    <p class="cstfont" id="fill">Resme Dolgu Uygulamak
+    <p><ftype> GD::fill( <kf>array</kf> <vf>$ayarlar</vf>)</ftype></p>
+    <p>Belirtilen koordinattan başlayarak belirtilen resmi boyar.</p>
+  
+    <p>
+<table class="cfont">
+        	<tr><th width="175">Parametre</th><td width="191">Anlamları</td></tr>
+            <tr><th>1 - array Ayarlar</th><td>x, y ve renk değerlerinin ayarlanabildiği bir ayarlar dizisidir.</td></tr>
+            <tr><th>Ayarlar</th><td>İşlevler.</td></tr>
+            <tr><th>x</th><td>Başlangıç noktasının X konumu.</td></tr>
+            <tr><th>y</th><td>Başlangıç noktasının Y konumu.</td></tr>
+            <tr><th>color</th><td>Dolgu rengi.</td></tr>
+</table>
+    </p>
+	<p><div type="code">
+<pre>
+GD::canvas(<if>200</if>, <if>400</if>, <sf>'transparent'</sf>)
+  ->fill(<kf>array</kf>(<sf>'color'</sf> => <sf>'blue'</sf >))
+  ->generate(<sf>'png'</sf>);
+</pre>   
+    </div></p>
+    
+    
+    <p class="cstfont" id="fillArea">Resmin Belirli Bir Alanına Renk Dolgusu Uygulamak
+    <p><ftype> GD::fillArea( <kf>array</kf> <vf>$ayarlar</vf>)</ftype></p>
+    <p>GD::fillArea() işlevi sınırları kenar rengi ile tanımlanmış bir bölgeyi dolgu renginde boyar. Doldurma işleminin başlangıç noktası x ve y ile belirtilir. Resmin sol üst köşesinin koordinatları 0,0'dır.</p>
+  
+    <p>
+<table class="cfont">
+        	<tr><th width="175">Parametre</th><td width="191">Anlamları</td></tr>
+            <tr><th>1 - array Ayarlar</th><td>x, y ve renk değerlerinin ayarlanabildiği bir ayarlar dizisidir.</td></tr>
+            <tr><th>Ayarlar</th><td>İşlevler.</td></tr>
+            <tr><th>x</th><td>Başlangıç noktasının X konumu.</td></tr>
+            <tr><th>y</th><td>Başlangıç noktasının Y konumu.</td></tr>
+            <tr><th>borderColor</th><td>Kenar rengi.</td></tr>
+            <tr><th>color</th><td>Dolgu rengi.</td></tr>
+</table>
+    </p>
+	<p><div type="code">
+<pre>
+GD::canvas(<if>200</if>, <if>400</if>, <sf>'transparent'</sf>)
+  ->ellipse(<kf>array</kf>(<sf>'x'</sf> => <if>0</if>, <sf>'y'</sf> => <if>0</if>, <sf>'width'</sf> => <if>100</if>, <sf>'height'</sf> => <if>100</if>, <sf>'color'</sf> => <sf>'lime'</sf>))
+  ->fillArea(<kf>array</kf>(<sf>'color'</sf> => <sf>'blue'</sf >, <sf>'borderColor'</sf> => <sf>'black'</sf >))
+  ->generate(<sf>'png'</sf>);
+</pre>   
+    </div></p>
+    
+    <p class="cstfont" id="filter">Resme Filtre Uygulamak
+    <p><ftype> GD::filter( <kf>mixed</kf> <vf>$filter</vf>, $arg1, $arg2, $arg3, $arg4)</ftype></p>
+    <p>Bir resme bir süzgeç uygular.</p>
+  
+    <p>
+<table class="cfont">
+        	<tr><th width="150">Parametre</th><td width="191">Anlamları</td></tr>
+            <tr><th>1 - mixed Filtre</th><td>Uygulanacak filtre.</td></tr>
+            <tr><th>Filtreler</th><td>İşlev</td></tr>
+            <tr><th>negate</th><td>Resimdeki tüm renkleri zıt renge dönüştürür.</td></tr>
+            <tr><th>grayscale</th><td>Resmi gri tonlamalı hale getirir.</td></tr>
+            <tr><th>brightness</th><td>Resmin parlaklığın değiştirir. Parlaklık seviyesini belirtmek için <strong>$arg1</strong> değiştirgesini kullanın.</td></tr>
+            <tr><th>contrast</th><td>Resmin karşıtlık seviyesini değiştirir. Karşıtlık seviyesini belirtmek için <strong>$arg1</strong> değiştirgesini kullanın.</td></tr>
+            <tr><th>colorize</th><td>Rengi sizin belirtmeniz dışında <strong>grayscale</strong> gibidir. Kırmızı, yeşil ve mavi renk seviyeleri belirtmek için sırayla <strong>$arg1</strong>, <strong>$arg2</strong> ve <strong>$arg3</strong> değiştirgelerini, alfa kanalı için de <strong>$arg4</strong> değiştirgesini kullanın. Ana renklerin seviyesi 0 ile 255 arasında belirtilebilir.</td></tr>
+            <tr><th>edgedetect</th><td>Resmin kenarlarını vurgulamak için kenar algılaması kullanılır.</td></tr>
+            <tr><th>emboss</th><td>Resme kabartma uygular.</td></tr>
+            <tr><th>gaussian_blur</th><td>Resmi Gauss yöntemiyle bulanıklaştırır.</td></tr>
+            <tr><th>selective_blur</th><td>Resmi bulanıklaştırır.</td></tr>
+            <tr><th>mean_removal</th><td>Karalama taslak etkisi oluşturmak için silme işlemi uygular.</td></tr>
+           	<tr><th>smooth</th><td>Resmin sert hatlarını yumuşatır. Yumuşatma seviyesini belirtmek için <strong>$arg1</strong> değiştirgesini kullanın.</td></tr>
+            <tr><th>pixelate</th><td>Resme mozaik etkisi verir. Mozaik boyutu için <strong>$arg1</strong> mozaik etki kipini belirtmek için <strong>$arg2</strong> değiştirgesini kullanın.</td></tr>
+            <tr><th>[ 2 - numeric $arg1 ]</th><td>Etkilenen Filtreler: brightness, contrast, colorize, smooth, pixelate</td></tr>
+            <tr><th>[ 3 - numeric $arg2 ]</th><td>Etkilenen Filtreler: colorize, pixelate </td></tr>
+            <tr><th>[ 4 - numeric $arg3 ]</th><td>Etkilenen Filtreler: colorize </td></tr>
+            <tr><th>[ 5 - numeric $arg4 ]</th><td>Etkilenen Filtreler: colorize </td></tr>
+</table>
+
+    </p>
+<p><div type="code">
+<pre>
+GD::canvas(<sf>'resim.png'</sf>)
+  ->filter(<sf>'colorize'</sf>, <if>0</if>, <if>255</if>, <if>0</if>)
+  ->filter(<sf>'grayscale'</sf>)
+  ->filter(<sf>'emboss'</sf>)
+  ->save(<sf>'yeniResim.png'</sf>)
+  ->generate();
+  
+<kf>echo</kf> GD::result(); <comment>// Kaydedilen resmin sonuçu ekrana basılıyor.</comment>
+</pre>   
+    </div></p>
+    
+    
+    <p class="cstfont" id="flip">Resmi Çevirmek( PHP >= 5.5.0 )
+    <p><ftype> GD::flip( <kf>mixed</kf> <vf>$mod</vf> = <sf>'both'</sf>)</ftype></p>
+    <p>Resmi çevirmek için kullanılır. Bu yöntem PHP'nin <strong>5.5.0 sürümü</strong> ve sonrası için geçerlidir.</p>
+  
+    <p>
+		<table class="cfont">
+        	<tr><th width="150">Parametre</th><td width="191">Anlamları</td></tr>
+            <tr><th>1 - mixed Mod = both</th><td>Uygulanacak mod.</td></tr>,
+            <tr><th>Modlar</th><th>İşlev</th></tr>
+            <tr><th>both</th><td>Resmi hem yatay hemde dikey olarak çevirir.</td></tr>
+            <tr><th>vertical</th><td>Resmi dikey olarak çevirir.</td></tr>
+            <tr><th>horizotal</th><td>Resmi yatay olarak çevirir.</td></tr>
+		</table>
+
+    </p>
+<p><div type="code">
+<pre>
+GD::canvas(<sf>'resim.png'</sf>)
+  ->flip(<sf>'vertical'</sf>)
+  ->save(<sf>'yeniResim.png'</sf>)
+  ->generate();
+  
+<kf>echo</kf> GD::result(); <comment>// Kaydedilen resmin sonuçu ekrana basılıyor.</comment>
+</pre>   
+    </div></p>
+    
+    <p class="cstfont" id="rotate">Resmi Döndürmek
+    <p><ftype> GD::rotate( <kf>float</kf> <vf>$aci</vf>, <kf>string</kf> <vf>$boslukRengi</vf> = <sf>'0|0|0'</sf>, <kf>numeric</kf> <vf>$seffafligiYoksay</vf> = <if>0</if> )</ftype></p>
+    <p>Bir resmi belirtilen açıya göre döndürür. Dönüş merkezi resmin merkezi olup, döndürülen resim özgün resimden farklı boyutlara sahip olabilir..</p>
+  
+    <p>
+		<table class="cfont">
+        	<tr><th width="150">Parametre</th><td width="191">Anlamları</td></tr>
+            <tr><th>1 - float aci</th><td>Döndürme açısı.</td></tr>
+            <tr><th>2 - string Bosluk Rengi = '0|0|0'</th><td>Döndürme işleminden sonra boşta kalan yerin rengi.</td></tr>
+            <tr><th>3 - numeric Şeffaflığı Yoksay = 0</th><td><strong>Sıfırdan farklı bir değer belirtildiğinde</strong> şeffaf renkler yok sayılır.</td></tr>
+		</table>
+
+    </p>
+<p><div type="code">
+<pre>
+GD::canvas(<sf>'resim.png'</sf>)
+  ->rotate(<if>90</if>)
+  ->save(<sf>'yeniResim.png'</sf>)
+  ->generate();
+ 
+<kf>echo</kf> GD::result(); <comment>// Kaydedilen resmin sonuçu ekrana basılıyor.</comment>
+</pre>   
+    </div></p>
+    
+    
+    <p class="cstfont" id="scale">Resmi Ölçeklendirmek( PHP >= 5.5.0 )
+    <p><ftype> GD::scale( <kf>numeric</kf> <vf>$genislik</vf>, <kf>numeric</kf> <vf>$yukseklik</vf> = <if>-1</if>, <kf>mixed</kf> <vf>$kip</vf> = <sf>'bilinear_fixed'</sf> )</ftype></p>
+    <p>Resmi yeniden ölçeklendirmek için kullanılır. Bu işlevi kullanabilmek için PHP sürümünün 5.5.0 ve üzerinde olması gerekir.</p>
+  
+    <p>
+		<table class="cfont">
+        	<tr><th width="150">Parametre</th><td width="191">Anlamları</td></tr>
+            <tr><th>1 - numeric Genişlik</th><td>Yeni ölçünün genişlik değeri.</td></tr>
+            <tr><th>2 - numeric Yükseklik = -1</th><td>Bu değer ayarlanmadığında yükseklik değeri genişlik değerine göre ayarlanır.</td></tr>
+            <tr><th>3 - mixed Kip = 'bilinear_fixed'</th><td>Ölçeklendirme türü.</td></tr>
+            <tr><th>Kipler</th><th>İşlev</th></tr>
+            <tr><th>bilinear_fixed</th><td>Ölçeklendirme türü.</td></tr>
+            <tr><th>nearest_neightbour</th><td>Ölçeklendirme türü.</td></tr>
+            <tr><th>bicubic</th><td>Ölçeklendirme türü.</td></tr>
+            <tr><th>bicubic_fixed</th><td>Ölçeklendirme türü.</td></tr>
+		</table>
+
+    </p>
+<p><div type="code">
+<pre>
+GD::canvas(<sf>'resim.png'</sf>)
+  ->scale(<if>100</if>, <if>50</if>)
+  ->save(<sf>'yeniResim.png'</sf>)
+  ->generate();
+  
+<kf>echo</kf> GD::result(); <comment>// Kaydedilen resmin sonuçu ekrana basılıyor.</comment>
+</pre>   
+    </div></p>
+    
+<div type="prev-next">
+    	<div type="prev-btn"><a href="imageprocessing_thumb.html">Önceki</a></div><div type="next-btn"><a href="java.html">Sonraki</a></div>
+    </div>
+ 
+</body>
+</html>              

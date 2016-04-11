@@ -1,0 +1,233 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>ZN KOD ÇATISI</title>
+<link type="text/css" rel="stylesheet" href="../Styles/Structure.css" />
+<script src="../Scripts/Jquery.js"></script>
+<script src="../Scripts/Structure.js"></script>
+</head>
+
+<body>
+    <div id="content-document"><a href="#">Döküman</a> » <a href="xmlmanipulation.html">XML Manipulation</a> » XML Kütüphanesi</div> 
+    <p class="ctfont">XML Kütüphanesi</p>
+    <p>XML belgesi oluşturma ile ilgili işlemler.</p>
+    
+    <p>
+<table class="cfont" width="100%">
+        <tr><th colspan="2">XMLBuilder(Oluşturucu) Kütüphanesi Yöntemleri</th></tr>
+        <tr><th width="38%"><a href="#version">XML Belgesinin Versiyonunu Ayarlamak</a></th><td><b><cf>XML::version( <vf>$versiyon</vf> = <sf>'1.0'</sf> )</cf></b></td></tr>
+        <tr><th><a href="#encoding">XML Belgesinin Karakter Kodlamasını Ayarlamak</a></th><td><b><cf>XML::encoding( <vf>$kodlama</vf> = <sf>'UTF-8'</sf> )</cf></b></td></tr> 
+        <tr><th><a href="#build">XML Verisi Oluşturmak</a></th><td><b><cf>XML::build( <vf>$elemanlar</vf>, [ <vf>$versiyon</vf> ], [ <vf>$kodlama</vf> ] )</cf></b></td></tr>
+        <tr><th><a href="#save">XML Verisini Dosyaya Kaydetmek</a></th><td><b><cf>XML::save( <vf>$dosyaAdi</vf>, <vf>$xmlVerisi</vf> )</cf></b></td></tr>
+        <tr><th><a href="#load">XML Dosyasını Yüklemek</a></th><td><b><cf>XML::load( <vf>$dosyaAdi</vf> )</cf></b></td></tr>
+        <tr><th><a href="#parse">XML Verisini Ayrıştırmak</a></th><td><b><cf>XML::parse( <vf>$xmlVerisi</vf>, <vf>$tur</vf> = <sf>'object'</sf> )</cf></b></td></tr>
+        <tr><th><a href="#parseObject">XML Verisini Nesne Veri Türüne Çevirmek</a></th><td><b><cf>XML::parseObject( <vf>$xmlVerisi</vf> )</cf></b></td></tr>
+        <tr><th><a href="#parseArray">XML Verisini Dizi Veri Türüne Çevirmek</a></th><td><b><cf>XML::parseArray( <vf>$xmlVerisi</vf> )</cf></b></td></tr>
+        <tr><th><a href="#parseJson">XML Verisini Json Veri Türüne Çevirmek</a></th><td><b><cf>XML::parseJson( <vf>$xmlVerisi</vf> )</cf></b></td></tr>
+</table>
+    </p>
+    
+<p class="cstfont" id="version">XML Belgesinin Versiyonunu Ayarlamak</p>
+    <p><ftype>XML::version( <vf>$versiyon</vf> = <sf>'1.0'</sf> )</ftype></p>
+    <p>XML belgesinin versiyon bilgisini ayarlamak için kullanılır.</p>
+    
+    <p>
+    	<table class="cfont">
+        	<tr><th>Parametreler</th><td>Anlamları</td></tr>
+            <tr><th>1 - string Versiyon</th><td>XML Versinin versiyon. Varsayılan:1.0</td></tr>
+        </table>
+    </p>
+    
+	<div type="code">
+	<pre>
+XML::version(<sf>'1.1'</sf>);    
+	</pre>
+    </div>
+    
+    <p class="cstfont" id="encoding">XML Belgesinin Karakter Kodlamasını Ayarlamak</p>
+    <p><ftype>XML::encoding( <vf>$kodlama</vf> = <sf>'UTF-8'</sf> )</ftype></p>
+    <p>XML belgesinin karakter kodlamasını ayarlamak için kullanılır .</p>
+    
+    <p>
+    	<table class="cfont">
+        	<tr><th>Parametreler</th><td>Anlamları</td></tr>
+            <tr><th>1 - string Kodlama</th><td>XML Versinin karakter kodlaması. Varsayılan:UTF-8</td></tr>
+        </table>
+    </p>
+    
+	<div type="code">
+	<pre>
+XML::version(<sf>'1.1'</sf>)->encoding(<sf>'UTF-8'</sf>);    
+	</pre>
+    </div>
+    
+    <p class="cstfont" id="build">XML Verisi Oluşturmak</p>
+    <p><ftype>XML::build( <kf>array</kf> <vf>$elemanlar</vf>, [ <vf>$versiyon</vf> ], [ <vf>$kodlama</vf> ] )</ftype></p>
+    <p>XML verisi oluşturmak için kullanılır.</p>
+    
+    <p>
+    	<table class="cfont">
+        	<tr><th>Parametreler</th><td>Anlamları</td></tr>
+            <tr><th>1 - array Veriler</th><td>XML verisi içinde yer alacak elemanlar</td></tr>
+            <tr><th>Veriler</th><th>İşlev</th></tr>
+            <tr><th>name</th><td>Elemanın adı</td></tr>
+            <tr><th>attr</th><td>Elemana eklenecek olan özellik değer çiftlerinin belirtileceği dizi.</td></tr>
+            <tr><th>content</th><td>Elemanın içeriği.</td></tr>
+            <tr><th>child</th><td>Elemanın altında başka elemanlar olacaksa <strong>content yerine child</strong> olarak belirtilir.</td></tr>
+            <tr><th>[ 2 - string Versiyon ]</th><td>Belirtilmediği takdirde 1.0 ön tanımlıdır.</td></tr>
+            <tr><th>[ 3 - string Kodlama ]</th><td>Belirtilmediği takdirde UTF-8 ön tanımlıdır.</td></tr>
+        </table>
+    </p>
+    
+	<div type="code">
+	<pre>
+<vf>$data</vf> = XML::build(<kf>array</kf>
+        (
+            <sf>'name'</sf>    => <sf>'media'</sf>,
+            <sf>'attr'</sf>    => <kf>array</kf>(<sf>'id'</sf> => 1),
+            <sf>'child'</sf>   => <kf>array</kf>
+            (
+                 <kf>array</kf>(<sf>'name'</sf> => <sf>'video'</sf>, <sf>'attr'</sf> => <kf>array</kf>(<sf>'id'</sf> => 2), <sf>'content'</sf> => <sf>'Vidyo'</sf>),
+                 <kf>array</kf>
+                 (
+                      <sf>'name'</sf>  => <sf>'music'</sf>, 
+                      <sf>'attr'</sf>  => <kf>array</kf>(<sf>'id'</sf> => 3),
+                      <sf>'child'</sf> => <kf>array</kf>
+                      (
+                           <kf>array</kf>(<sf>'name'</sf> => <sf>'video'</sf>, <sf>'attr'</sf> => <kf>array</kf>(<sf>'id'</sf> => 2), <sf>'content'</sf> => <sf>'Vidyo'</sf>),
+                           <kf>array</kf>(<sf>'name'</sf> => <sf>'video'</sf>, <sf>'attr'</sf> => <kf>array</kf>(<sf>'id'</sf> => 2), <sf>'content'</sf> => <sf>'Vidyo'</sf>),
+                           <kf>array</kf>(<sf>'name'</sf> => <sf>'video'</sf>, <sf>'attr'</sf> => <kf>array</kf>(<sf>'id'</sf> => 2), <sf>'content'</sf> => <sf>'Vidyo'</sf>)
+                      )
+                 )
+            )
+        )); 
+        
+<comment>Kaynak Kod:
+<x><</x>?xml version="1.0" encoding="UTF-8"?>
+<x><</x>media id="1">
+	<x><</x>video id="2">Vidyo<x><</x>/video>
+	<x><</x>music id="3">
+		<x><</x>video id="2">Vidyo<x><</x>/video>
+		<x><</x>video id="2">Vidyo<x><</x>/video>
+		<x><</x>video id="2">Vidyo<x><</x>/video>
+	<x><</x>/music>
+<x><</x>/media>
+
+</comment>  
+	</pre>
+    </div>
+    
+    <p class="cstfont" id="save">XML Versini Dosyaya Kaydetmek</p>
+    <p><ftype>XML::save( <vf>$dosyaAdi</vf> )</ftype></p>
+    <p>XML dosyası oluşturmak için kullanılır.</p>
+    
+    <p>
+    	<table class="cfont">
+        	<tr><th>Parametreler</th><td>Anlamları</td></tr>
+            <tr><th>1 - string Dosya Adı</th><td>Kaydedilecek XML dosyasının adı. <strong>.xml</strong> uzantısı kullanmaya gerek yoktur.</td></tr>
+            <tr><th>2 - string XML Verisi</th><td>Kaydedilecek XML verisi.</td></tr>
+        </table>
+    </p>
+    
+   <div type="code">
+	<pre>
+XML::save(<sf>'test'</sf>, <vf>$data</vf>); <comment> // test.xml</comment> 
+	</pre>
+    </div>
+    
+    <p class="cstfont" id="load">XML Dosyasını Yüklemek</p>
+    <p><ftype>XML::load( <vf>$dosyaAdi</vf> )</ftype></p>
+    <p>Bir XML belgesini yüklemek için kullanılır.</p>
+    
+    <p>
+    	<table class="cfont">
+        	<tr><th>Parametreler</th><td>Anlamları</td></tr>
+            <tr><th>1 - string Dosya Adı</th><td>Yüklenecek XML dosyasının adı.</td></tr>
+        </table>
+    </p>
+    
+	<div type="code">
+	<pre>
+XML::load(<sf>'test'</sf>); <comment>// test.xml</comment>   
+	</pre>
+    </div>
+    
+    <p class="cstfont" id="parse">XML Verisini Ayrıştırmak</p>
+    <p><ftype>XML::parse( <vf>$xmlVerisi</vf>, <vf>$tur</vf> = <sf>'object'</sf> )</ftype></p>
+    <p>Bir XML belgesini ayrıştırmak için kullanılır. <strong>Nesne</strong> veya <strong>dizi</strong> veri türünde bir dönüşüm yapmak için kullanılır.</p>
+    
+    <p>
+    	<table class="cfont">
+        	<tr><th>Parametreler</th><td>Anlamları</td></tr>
+            <tr><th>1 - string XML Verisi</th><td>Ayrıştırılacak XML verisi.</td></tr>
+            <tr><th>2 - string Tür</th><td>Hangi veri türüne dönüştürüleceği. Varsayılan::object</td></tr>
+            <tr><th>Türler</th><th>İşlev</th></tr>
+            <tr><th>object</th><td>Nesne veri türüne çevirir.</td></tr>
+            <tr><th>array</th><td>Dizi veri türüne çevirir.</td></tr>
+        </table>
+    </p>
+    
+	<div type="code">
+	<pre>
+XML::parse(<vf>$data</vf>, <sf>'array'</sf>); <comment>// Return array</comment>   
+	</pre>
+    </div>
+    
+    <p class="cstfont" id="parseObject">XML Verisini Nesne Veri Türüne Çevirmek</p>
+    <p><ftype>XML::parseObject( <vf>$xmlVerisi</vf> )</ftype></p>
+    <p>Bir XML belgesini nesne veri türüne dönüştürmek için kullanılır.</p>
+    
+    <p>
+    	<table class="cfont">
+        	<tr><th>Parametreler</th><td>Anlamları</td></tr>
+            <tr><th>1 - string XML Verisi</th><td>Ayrıştırılacak XML verisi.</td></tr>
+        </table>
+    </p>
+    
+	<div type="code">
+	<pre>
+XML::parseObject(<vf>$data</vf>); <comment>// Return object</comment>   
+	</pre>
+    </div>
+    
+    <p class="cstfont" id="parseArray">XML Verisini Dizi Veri Türüne Çevirmek</p>
+    <p><ftype>XML::parseArray( <vf>$xmlVerisi</vf> )</ftype></p>
+    <p>Bir XML belgesini dizi veri türüne dönüştürmek için kullanılır.</p>
+    
+    <p>
+    	<table class="cfont">
+        	<tr><th>Parametreler</th><td>Anlamları</td></tr>
+            <tr><th>1 - string XML Verisi</th><td>Ayrıştırılacak XML verisi.</td></tr>
+        </table>
+    </p>
+    
+	<div type="code">
+	<pre>
+XML::parseArray(<vf>$data</vf>); <comment>// Return array</comment>   
+	</pre>
+    </div>
+   
+   	<p class="cstfont" id="parseJson">XML Verisini Json Veri Türüne Çevirmek</p>
+    <p><ftype>XML::parseJson( <vf>$xmlVerisi</vf> )</ftype></p>
+    <p>Bir XML belgesini dizi veri türüne dönüştürmek için kullanılır.</p>
+    
+    <p>
+    	<table class="cfont">
+        	<tr><th>Parametreler</th><td>Anlamları</td></tr>
+            <tr><th>1 - string XML Verisi</th><td>Ayrıştırılacak XML verisi.</td></tr>
+        </table>
+    </p>
+    
+	<div type="code">
+	<pre>
+XML::parseJson(<vf>$data</vf>); <comment>// Return json</comment>   
+	</pre>
+    </div>
+   
+    <div type="prev-next">
+    	<div type="prev-btn"><a href="xmlmanipulation.html">Önceki</a></div><div type="next-btn"><a href="contribution.html">Sonraki</a></div>
+    </div>
+ 
+</body>
+</html>              

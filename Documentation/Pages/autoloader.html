@@ -1,0 +1,101 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>ZN KOD ÇATISI</title>
+<link type="text/css" rel="stylesheet" href="../Styles/Structure.css" />
+<script src="../Scripts/Jquery.js"></script>
+<script src="../Scripts/Structure.js"></script>
+</head>
+
+<body>
+    <div id="content-document"><a href="#">Döküman</a> » <a href="autoloader.html">Otomatik Yükleyici Kütüphanesi</a> » Autoloader Kullanımı</div>  
+    <p class="ctfont">Autoloader Kullanımı</p>
+    <p><strong>Autoloader</strong> zeroneed framework'te tanımlanan sınıf yapılarının dahil edilmeksiniz doğrudan kullanımını sağlar. Böylece sizler hem kişisel hemde farklı kaynaklardan taşıyacağınız kütüphaneleri rahatlıkla entegre edebilirsiniz. Autoloader, Trait, Interface, Abstract Class ve Namespace'lerin de kullanımına izin verir.</p>
+    <ul><li><a href="#" class="infont">Autoloader Kullanımı</a><br><br>
+        <ul>
+        	<li><a href="#run">Autoloader'i Çalıştırmak » <b>Autoloader::run()</b></a></li>
+            <li><a href="#createClassMap">Class Map(Sınıf Haritası) Oluşturmak » <b>Autoloader::createClassMap()</b></a></li>
+      		<li><a href="#getClassFileInfo">Sınıf Adı Belirtilen Sınıf Hakkında Bilgi Almak » <b>Autoloader::getClassFileInfo()</b></a></li>
+            <li><a href="#tokenClassFileInfo">Sınıf Yolu Belirtilen Sınıf Hakkında Bilgi Almak » <b>Autoloader::tokenClassFileInfo()</b></a></li>
+            <li><a href="#restart">Autoloader'i Yeniden Başlatmak » <b>Autoloader::restart()</b></a></li>
+            <li><a href="#oop">Autoloader ile OOP KUllanımı Hakkında</a></li>
+        </ul>
+    </li></ul>
+    
+    <p class="cstfont" id="run">Autoloader'i Çalıştırmak</p>
+    <p><ftype>Autoloader::run( <kf>string</kf> <vf>$sinifAdi</vf> )</ftype></p>
+    <p>Bu yöntem <strong>sistem tarafından otomatik olarak</strong> çağırılmaktadır. Otomatik yükleyici çalıştırılarak <strong>Config/Autoloader.php</strong> dosyasında yer alan <strong>classMap</strong> ayarına belirtilen dizinlerde tarama yapılır. Yeni bir sınıf bulunmuş ise <strong>Config/ClassMap.php</strong> dosyasına ilave eder.</p>
+
+	<p class="cstfont" id="createClassMap">Class Map(Sınıf Haritası) Oluşturmak</p>
+    <p><ftype>Autoloader::createClassMap()</ftype></p>
+    <p>Bu yöntem <strong>sistem tarafından otomatik olarak</strong> çağırılmaktadır. <strong>Config/ClassMap.php</strong> dosyasına <strong>Sınıf isimleri ve İsim alanları</strong> bilgilerinin oluşturulmasını sağlar.</p>
+    
+    <p class="cstfont" id="getClassFileInfo">Sınıf Adı Belirtilen Sınıf Hakkında Bilgi Almak</p>
+    <p><ftype>Autoloader::getClassFileInfo( <kf>string</kf> <vf>$sinifAdi</vf> )</ftype></p>
+    <p>Sınıf adı belirtilen yapıya ait <strong>sınıf, isim alanı ve dosya yolu</strong> bilgilerine ulaşılır.</p>
+    <p>
+        <table class="cfont">
+            <tr><th colspan="2">query()</th></tr>
+            <tr><th>Parametre</th><th>Kullanımı</th></tr>
+            <tr><th>string Sınıf Adı</th><td>Dönen bilgiler. <strong>path</strong>, <strong>class</strong>, <strong>namespace</strong></td></tr>
+        </table>
+    </p>
+    <p>
+    <div type="code">
+  	output( Autoloader::getClassFileInfo(<sf>'DB'</sf>) );<br><br>
+    
+    <comment>/*<br>
+    path => string 'System/StaticAccess/Database/DB/__USE_STATIC_ACCESS__DB.php' ( length = 61 ),<br>
+    class => string 'DB' ( length = 4 ),<br>
+    namespace => string 'DB' ( length = 4 ),<br>
+    */<comment>
+    </div>
+  	</p>
+    
+    <p class="cstfont" id="tokenClassFileInfo">Sınıf Yolu Belirtilen Sınıf Hakkında Bilgi Almak</p>
+    <p><ftype>Autoloader::tokenClassFileInfo( <kf>string</kf> <vf>$sinifYolu</vf> )</ftype></p>
+    <p>Sınıf yolu belirtilen yapıya ait <strong>sınıf ve isim alanı</strong> bilgilerine ulaşılır.</p>
+    <p>
+        <table class="cfont">
+            <tr><th colspan="2">query()</th></tr>
+            <tr><th>Parametre</th><th>Kullanımı</th></tr>
+            <tr><th>string Sınıf Adı</th><td>Dönen bilgiler. <strong>class</strong>, <strong>namespace</strong></td></tr>
+        </table>
+    </p>
+    <p>
+    <div type="code">
+  	output( Autoloader::tokenClassFileInfo(<sf>'System/StaticAccess/Database/DB/__USE_STATIC_ACCESS__DB.php'</sf>) );<br><br>
+    
+    <comment>// class => string 'DB' ( length = 4 )<comment>
+    </div>
+  	</p>
+    
+    <p class="cstfont" id="restart">Autoloader'i Yeniden Başlatmak</p>
+    <p><ftype>Autoloader::restart()</ftype></p>
+    <p>Bu işlem genellikle istisnai kullanımlardan kaynaklı sınıfların otomatik oluşturulamamasında kullanılır. Bu istisnai durumun oluşması ise şöyledir;</p>
+    <p><strong>İstisna-1</strong> Daha önce oluşturulmuş bir sınıfın dosya ismi değiştirilmeden dosya içindeki class adının değiştirilmesi. Hali hazırda daha önceden oluşturulmuş böyle bir dosyanın varlığı söz konusu olduğu için yeniden oluşturma işlemi yapılamayacaktır.</p>
+    <p><strong>İstisna-2</strong> Libraries/Test.php dosyasının sınıf adı Test olarak oluşturulup kullanıldıktan sonra bu sınıf adının başına <strong>__USE_STATIC_ACCESS__</strong> ön ekinin getirlmeye çalışılması durumunda da oluşturma başarısızlıkla sonuçlanacaktır. Bunun nedeni yine <strong>İstisna-1</strong> de anlatılan durumla aynıdır.</p>
+    <p><strong>Sonuç:</strong> Bu gibi nedenlerle sınıf yeniden oluşturulamıyorsa Sınıf kullanımından önce <strong>Autoloader::restart()</strong> yöntemi çalıştırılır.</p>
+    <p>
+    
+    <div type="code">
+    
+  	Autoloader::restart();<br><br />
+   
+    Test::run(); 
+     
+    </div>
+  	</p>
+	
+    <p class="cstfont" id="oop">Autoloader ile OOP KUllanımı Hakkında</p>
+    <p>ZN framework'ün sınıflarında <strong>namespace</strong> kullanımı yoktur. Günümüz uygulamalarında oldukça gerekli görülen ve bizimde öyle düşündüğümüz isim alanlarının ZN'de tercih edilmemesinin sebebi mevcut Autoloader kütüphanesi ile kolaylık sınıfların harita yol bilgilerinin oluşturulmasıdır. Ancak bizlerin isim alanı kullanmamamız sizin de kullanmayacağınız anlamına gelmez bu nedenle ZN Framework kullanıcıların kütüphane geliştirilmelerinde mevcut yeni teknolojilerin kullanımına imkan verir. <strong>Trait</strong>, <strong>Interface</strong>, <strong>Abstract Class</strong>, <strong>Namespace</strong>.</p>
+    
+    <p>Şayet kütüphanelerinizde namespace kullanırsanız <strong>Config/ClassMap.php</strong> dosyasında sınıf isimleri ile birlikte isim alanlarıda eklenir. İsim alanı ile sınıf oluşturmuşsanız ve o sınıf ismi ile aynı başka bir sınıf ismi mevcut değilse. Doğrudan isim alanı olmasına rağmen <strong>$this->sınıf->yontem()</strong> şeklinde kullanabilirsiniz. Böylece isim alanlarını harfi harfine yazmak zorunda değilsiniz. Ancak bu kural <strong>statik kullanımda mümkün değildir.</strong></p>
+     
+<div type="prev-next">
+    	<div type="prev-btn"><a href="funtions.html">Önceki</a></div><div type="next-btn"><a href="restoration.html">Sonraki</a></div>
+    </div>
+ 
+</body>
+</html>              

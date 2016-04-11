@@ -1,0 +1,306 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>ZN KOD ÇATISI</title>
+<link type="text/css" rel="stylesheet" href="../Styles/Structure.css" />
+<script src="../Scripts/Jquery.js"></script>
+<script src="../Scripts/Structure.js"></script>
+</head>
+
+<body>
+    <div id="content-document"><a href="#">Döküman</a> » <a href="variabletypes.html">Variable Types</a> » Arrays(Dizi) Kütüphanesi</div> 
+    <p class="ctfont">Arrays(Dizi) Kütüphanesi</p>
+    <p>Dizilerle ilgili işlemler.</p>
+    
+    <p>
+<table class="cfont" width="100%">
+        <tr><th colspan="2">Arrays Kütüphanesi Yöntemleri</th></tr>
+        <tr><th width="38%"><a href="#posChange">Bir Dizi Elemanının Yerini Değiştirmek</a></th><td><b><cf>Arrays::posChange(<vf>$dizi</vf>, <vf>$eskiPozisyon</vf>, <vf>$yeniPozisyon</vf>)</cf></b></td></tr>
+        <tr><th><a href="#posReverse">Bir Dizide Elemanları Birbiri İle Yer Değiştirmek</a></th><td><b><cf>Arrays::posReverse(<vf>$dizi</vf>, <vf>$eskiPozisyon</vf>, <vf>$yeniPozisyon</vf>)</cf></b></td></tr>  
+        <tr><th><a href="#multikey">Bir Değere Birden Fazla Anahtar İfade Eklemek</a></th><td><b><cf>Arrays::multikey(<vf>$dizi</vf>, [ <vf>$ayrac</vf> = <sf>'|'</sf> ])</cf></b></td></tr>
+        <tr><th><a href="#keyval">Dizinin Anahtar veya Değer Bilgisine Ulaşmak</a></th><td><b><cf>Arrays::keyval(<vf>$dizi</vf>, [ </kf> <vf>$tip</vf> = <sf>'val'</sf> ])</cf></b></td></tr>
+        <tr><th><a href="#objectData">Diziyi Object Veri Türüne Çevirmek</a></th><td><b><cf>Arrays::objectData(<vf>$dizi</vf>)</cf></b></td></tr>
+        <tr><th><a href="#casing">Dizi Elemanlarına Harf Dönüşümü Uygulamak</a></th><td><b><cf>Arrays::casing(<vf>$dizi</vf>, <vf>$tip</vf> = <sf>'lower'</sf>, <vf>$anahtarDeger</vf> = <sf>'all'</sf>)</cf></b></td></tr>
+        <tr><th><a href="#removeLast">Dizinin Sonundan Elemanını Silmek</a></th><td><b><cf>Arrays::removeLast(<vf>$dizi</vf>, <vf>$elemanSayisi</vf> = <if>1</if>)</cf></b></td></tr>
+        <tr><th><a href="#removeFirst">Dizinin Başından Elemanını Silmek</a></th><td><b><cf>Arrays::removeFirst(<vf>$dizi</vf>, <vf>$elemanSayisi</vf> = <if>1</if>)</cf></b></td></tr>  
+        <tr><th><a href="#addLast">Dizinin Sonuna Eleman Eklemek</a></th><td><b><cf>Arrays::addLast(<vf>$dizi</vf>, <vf>$eklenecekElemanlar</vf>)</cf></b></td></tr>
+        <tr><th><a href="#addFirst">Dizinin Başına Eleman Eklemek</a></th><td><b><cf>Arrays::addFirst(<vf>$dizi</vf>, <vf>$eklenecekElemanlar</vf>)</cf></b></td></tr>
+        <tr><th><a href="#getLast">Dizinin Sonundan Eleman Almak</a></th><td><b><cf>Arrays::getLast(<vf>$dizi</vf>, <vf>$elemanSayisi</vf> = <if>1</if>, <vf>$anahtarlarKorunsun</vf> = <kf>false</kf>)</cf></b></td></tr>
+        <tr><th><a href="#getFirst">Dizinin Başından Eleman Almak</a></th><td><b><cf>Arrays::getFirst(<vf>$dizi</vf>, <vf>$elemanSayisi</vf> = <if>1</if>, <vf>$anahtarlarKorunsun</vf> = <kf>false</kf>)</cf></b></td></tr>
+        <tr><th><a href="#deleteElement">Diziden Eleman Silmek</a></th><td><b><cf>Arrays::deleteElement(<vf>$dizi</vf>, <vf>$elemanlar</vf>)</cf></b></td></tr>
+        <tr><th><a href="#deleteRecurrent">Dizide Tekrarlayan Değerleri Silmek</a></th><td><b><cf>Arrays::deleteRecurrent(<vf>$dizi</vf>, <vf>$kip</vf> = <sf>'string'</sf>)</cf></b></td></tr>
+        <tr><th><a href="#order">Dizi Elemanlarını Sıralamak</a></th><td><b><cf>Arrays::order(<vf>$dizi</vf>, <vf>$siralamaTuru</vf>, <vf>$kip</vf> = <sf>'regular'</sf>)</cf></b></td></tr>
+        
+        <tr><th><a href="#length">Dizi Eleman Sayısını Almak</a></th><td><b><cf>Arrays::length(<vf>$dizi</vf>)</cf></b></td></tr>
+        <tr><th><a href="#apportion">Dizi Elemanlarını Eşit Parçalara Bölmek</a></th><td><b><cf>Arrays::apportion(<vf>$dizi</vf>, <vf>$elemanSayisi</vf> = <if>1</if>, <vf>$anahtarlarKorunsun</vf> = <kf>false</kf>)</cf></b></td></tr>
+        <tr><th><a href="#combine">İki Diziyi Anahtar Değer Çifti Olarak Birleştirmek</a></th><td><b><cf>Arrays::combine(<vf>$anahtarlar</vf>, <vf>$degerler</vf>)</cf></b></td></tr>
+        <tr><th><a href="#countSameValues">Dizinin Aynı Elamanlarının Sayısını Hesaplamak</a></th><td><b><cf>Arrays::countSameValues(<vf>$dizi</vf>, <vf>$anahtar</vf> = <kf>NULL</kf>)</cf></b></td></tr>
+        <tr><th><a href="#flip">Dizinin Anahtar ile Değerlerini Yer Değiştirmek</a></th><td><b><cf>Arrays::flip(<vf>$dizi</vf>)</cf></b></td></tr>
+        <tr><th><a href="#implementCallback">Diziye Geri Çağrım İşlevi Uygulamak</a></th><td><b><cf>Arrays::implementCallback(<vf>$fonksiyonAdi</vf>, <vf>$dizi1</vf>, <vf>$dizi2</vf>, ... <vf>$diziN</vf>)</cf></b></td></tr>
+        <tr><th><a href="#recursiveMerge">Çok Boyutlu Dizileri Birleştirmek</a></th><td><b><cf>Arrays::recursiveMerge(<vf>$dizi1</vf>, <vf>$dizi2</vf>, ... <vf>$diziN</vf>)</cf></b></td></tr>
+        <tr><th><a href="#merge">Dizileri Birleştirmek</a></th><td><b><cf>Arrays::merge(<vf>$dizi1</vf>, <vf>$dizi2</vf>, ... <vf>$diziN</vf>)</cf></b></td></tr>
+        <tr><th><a href="#reverse">Diziyi Tersine Sıralamak</a></th><td><b><cf>Arrays::reverse(<vf>$dizi</vf>, <vf>$anahtarlarKorunsun</vf> = <kf>false</kf>)</cf></b></td></tr>
+        <tr><th><a href="#product">Dizi Değerlerinin Çarpımını Hesaplamak</a></th><td><b><cf>Arrays::product(<vf>$dizi</vf>)</cf></b></td></tr>
+        <tr><th><a href="#sum">Dizi Değerlerinin Toplamını Hesaplamak</a></th><td><b><cf>Arrays::sum(<vf>$dizi</vf>)</cf></b></td></tr>
+        <tr><th><a href="#random">Diziden Rasgele Sayıda Eleman Almak</a></th><td><b><cf>Arrays::random(<vf>$dizi</vf>, <vf>$kacEleman</vf> = <if>1</if>)</cf></b></td></tr>
+        <tr><th><a href="#search">Dizide Arama Yapmak</a></th><td><b><cf>Arrays::search(<vf>$dizi</vf>, <vf>$arancakEleman</vf>, <vf>$tureBak</vf> = <kf>false</kf>)</cf></b></td></tr>
+        <tr><th><a href="#valueExists">Dizide Değerin Varlığını Kontrol Etmek</a></th><td><b><cf>Arrays::valueExists(<vf>$dizi</vf>, <vf>$aranacakDeger</vf>, <vf>$tureBak</vf> = <kf>false</kf>)</cf></b></td></tr>
+        <tr><th><a href="#keyExists">Dizide Anahtarın Varlığını Kontrol Etmek</a></th><td><b><cf>Arrays::keyExists(<vf>$dizi</vf>, <vf>$arancakAnahtar</vf>)</cf></b></td></tr>
+        <tr><th><a href="#section">Dizinin Belli Bir Bölümünü Almak</a></th><td><b><cf>Arrays::section(<vf>$dizi</vf>, <vf>$baslangic</vf>, <vf>$uzunluk</vf>, <vf>$anahtarlarKorunsun</vf> = <kf>false</kf>)</cf></b></td></tr>
+        <tr><th><a href="#resection">Dizinin Belli Bir Bölümünü Değiştirmek</a></th><td><b><cf>Arrays::resection(<vf>$dizi</vf>, <vf>$baslangic</vf>, <vf>$uzunluk</vf>, <vf>$yeniElemanlar</vf>)</cf></b></td></tr>
+        <tr><th><a href="#series">Seri Dizi Oluşturmak</a></th><td><b><cf>Arrays::series(<vf>$baslangic</vf>, <vf>$bitis</vf> = <if>0</if>, <vf>$adim</vf> = <if>1</if>)</cf></b></td></tr>
+</table>
+    </p>
+    
+<p class="cstfont" id="posChange">Bir Dizi Elemanının Yerini Değiştirmek</p>
+    <p><ftype>Arrays::posChange( <kf>array</kf> <vf>$dizi</vf> , <kf>string/int</kf> <vf>$eskiPozisyon</vf> , <kf>string/int</kf> <vf>$yeniPozisyon</vf> )</ftype></p>
+    <p>Dizide istenilen elemanın pozisyonunu değiştirmek için kullanılır.</p>
+    
+    <p>
+    	<table class="cfont">
+        	<tr><th>No</th><th>Parametreler</th><td>Anlamları</td></tr>
+            <tr><th>1</th><th>array Dizi</th><td>Değişikliğin hangi dizide yapılacağı.</td></tr>
+            <tr><th>2</th><th>string/int Eski Pozisyon</th><td>Değişiklik yapılacak elemanın pozisyon numarası.</td></tr>
+            <tr><th>3</th><th>string/int Yeni Pozisyon</th><td>Yeni pozisyon numarası.</td></tr>
+        </table>
+    </p>
+    
+	<div type="code">
+	<pre>
+<vf>$dizi</vf> = <kf>array</kf>(<sf>"a"</sf>, <sf>"b"</sf>, <sf>"c"</sf>, <sf>"d"</sf>, <sf>"e"</sf>);		
+<ff>var_dump</ff>(Arrays::posChange(<vf>$dizi</vf>, 0, 4)); <comment> // Çıktı: b c d e a</comment> 
+<ff>var_dump</ff>(Arrays::posChange(<vf>$dizi</vf>, 2, 3)); <comment> // Çıktı: a b d c e</comment>    
+	</pre>
+    </div>
+    
+    <p>Dizideki <strong>eleman isimlerini</strong> kullanarak yer değiştirmek.</p>
+
+	<div type="code">
+	<pre>
+<vf>$dizi</vf> = <kf>array</kf>(<sf>"a"</sf>, <sf>"b"</sf>, <sf>"c"</sf>, <sf>"d"</sf>, <sf>"e"</sf>);		
+<ff>var_dump</ff>(Arrays::posChange(<vf>$dizi</vf>, <sf>"a"</sf>, <sf>"c"</sf>)); <comment> // Çıktı: b c a d e</comment> 
+<ff>var_dump</ff>(Arrays::posChange(<vf>$dizi</vf>, <sf>"b"</sf>, <sf>"e"</sf>)); <comment> // Çıktı: a c d e b</comment>    
+	</pre>
+    </div>
+    
+    <p>Dizideki <strong>eleman numarası ve ismini</strong> kullanarak yer değiştirmek.</p>
+    
+    <div type="code">
+	<pre>
+<vf>$dizi</vf> = <kf>array</kf>(<sf>"a"</sf>, <sf>"b"</sf>, <sf>"c"</sf>, <sf>"d"</sf>, <sf>"e"</sf>);		
+<ff>var_dump</ff>(Arrays::posChange(<vf>$dizi</vf>, 1, <sf>"c"</sf>)); <comment> // Çıktı: a c b d e</comment> 
+<ff>var_dump</ff>(Arrays::posChange(<vf>$dizi</vf>, <sf>"b"</sf>, 4)); <comment> // Çıktı: a c d e b</comment>    
+	</pre>
+    </div>
+
+    <p></p>
+    
+        
+    <p class="cstfont" id="posReverse">Bir Dizi Elemanının Yerini Değiştirmek</p>
+    
+    <p><ftype>Arrays::posReverse( <kf>array</kf> <vf>$dizi</vf> , <kf>mixed</kf> <vf>$eskiPozisyon</vf>, <kf>mixed</kf> <vf>$yeniPozisyon</vf> )</ftype></p>
+    
+    <p>Dizide istenilen iki elemanın birbiri ile yer değiştirmesi için kullanılır.</p>
+    
+    <p>
+    	<table class="cfont">
+        	<tr><th>No</th><th>Parametreler</th><td>Anlamları</td></tr>
+            <tr><th>1</th><th>array Dizi</th><td>Değişikliğin hangi dizide yapılacağı.</td></tr>
+            <tr><th>2</th><th>string/int Yer Değiştirecek Eleman</th><td>Yer değişikliği yapılacak dizi elemanı.</td></tr>
+            <tr><th>3</th><th>string/int Yer Değiştirecek Eleman</th><td>Yer değişikliği yapılacak dizi elemanı.</td></tr>
+        </table>
+    </p>
+    
+	<div type="code">
+	<pre>
+<vf>$dizi</vf> = <kf>array</kf>(<sf>"a"</sf>, <sf>"b"</sf>, <sf>"c"</sf>, <sf>"d"</sf>, <sf>"e"</sf>);		
+<ff>var_dump</ff>(Arrays::posReverse(<vf>$dizi</vf>, 0, 4)); <comment> // Çıktı: e b c d a</comment> 
+<ff>var_dump</ff>(Arrays::posReverse(<vf>$dizi</vf>, 1, 3)); <comment> // Çıktı: a d c b e</comment>    
+	</pre>
+    </div>
+    
+    <p>Dizideki <strong>eleman isimlerini</strong> kullanarak yer değiştirmek.</p>
+
+	<div type="code">
+	<pre>
+<vf>$dizi</vf> = <kf>array</kf>(<sf>"a"</sf>, <sf>"b"</sf>, <sf>"c"</sf>, <sf>"d"</sf>, <sf>"e"</sf>);		
+<ff>var_dump</ff>(Arrays::posReverse(<vf>$dizi</vf>, <sf>"a"</sf>, <sf>"c"</sf>)); <comment> // Çıktı: c b a d e</comment> 
+<ff>var_dump</ff>(Arrays::posReverse(<vf>$dizi</vf>, <sf>"b"</sf>, <sf>"e"</sf>)); <comment> // Çıktı: a e c d b</comment>    
+	</pre>
+    </div>
+    
+    <p>Dizideki <strong>eleman numarası ve ismini</strong> kullanarak yer değiştirmek.</p>
+    
+    <div type="code">
+	<pre>
+<vf>$dizi</vf> = <kf>array</kf>(<sf>"a"</sf>, <sf>"b"</sf>, <sf>"c"</sf>, <sf>"d"</sf>, <sf>"e"</sf>);		
+<ff>var_dump</ff>(Arrays::posReverse(<vf>$dizi</vf>, 1, <sf>"c"</sf>)); <comment> // Çıktı: a c b d e</comment> 
+<ff>var_dump</ff>(Arrays::posReverse(<vf>$dizi</vf>, <sf>"b"</sf>, 4)); <comment> // Çıktı: a e c d b</comment>    
+	</pre>
+    </div>
+    
+    
+    <p class="cstfont" id="deleteElement">Diziden Eleman Silmek</p>
+    <p><ftype>Arrays::deleteElement( <kf>array</kf> <vf>$dizi</vf> , <kf>mixed</kf> <vf>$eleman</vf> )</ftype></p>
+    <p>Dizide istenilen elemanı silmek için kullanılır.</p>
+    
+    <p>
+    	<table class="cfont">
+        	<tr><th>No</th><th>Parametreler</th><td>Anlamları</td></tr>
+            <tr><th>1</th><th>array Dizi</th><td>Değişikliğin hangi dizide yapılacağı.</td></tr>
+            <tr><th>2</th><th>array/string/int Silinecek Eleman</th><td>Silinecek dizi elemanı veya elemanları.</td></tr>
+        </table>
+    </p>
+    
+	<div type="code">
+	<pre>
+<vf>$dizi</vf> = <kf>array</kf>(<sf>"a"</sf>, <sf>"b"</sf>, <sf>"c"</sf>, <sf>"d"</sf>, <sf>"e"</sf>);		
+<ff>var_dump</ff>(Arrays::deleteElement(<vf>$dizi</vf>, 1)); <comment> // Çıktı: a c d e</comment>  
+<ff>var_dump</ff>(Arrays::deleteElement(<vf>$dizi</vf>, 3)); <comment> // Çıktı: a b c e</comment>  
+	</pre>
+    </div>
+    
+    <p>Dizideki <strong>eleman isimlerini</strong> kullanarak silmek.</p>
+
+	<div type="code">
+	<pre>
+<vf>$dizi</vf> = <kf>array</kf>(<sf>"a"</sf>, <sf>"b"</sf>, <sf>"c"</sf>, <sf>"d"</sf>, <sf>"e"</sf>);		
+<ff>var_dump</ff>(Arrays::deleteElement(<vf>$dizi</vf>, <sf>"a"</sf>)); <comment> // Çıktı: b c d e</comment>
+<ff>var_dump</ff>(Arrays::deleteElement(<vf>$dizi</vf>, <sf>"c"</sf>)); <comment> // Çıktı: a b d e</comment
+	></pre>
+    </div>
+    
+    <p>Dizideki <strong>elemanları toplu olarak</strong> silmek.</p>
+    
+    <div type="code">
+	<pre>
+<vf>$dizi</vf> = <kf>array</kf>(<sf>"a"</sf>, <sf>"b"</sf>, <sf>"c"</sf>, <sf>"d"</sf>, <sf>"e"</sf>);		
+<ff>var_dump</ff>(Arrays::deleteElement(<vf>$dizi</vf>, <kf>array</kf>(<sf>"a"</sf>, <sf>"c"</sf>))); <comment> // Çıktı: b d e</comment> 
+<ff>var_dump</ff>(Arrays::deleteElement(<vf>$dizi</vf>, <kf>array</kf>(<sf>1</sf>, <sf>2</sf>))); <comment> // Çıktı: a d e</comment>  
+	</pre>
+    </div>
+    
+    <p><div type="note"><div>NOT</div><div><strong>Anahtar değer çifti</strong> içeren dizilerde <strong>ister anahtar</strong> ifadeyi <strong>isterseniz de değeri</strong> kullanarak verileri silebilirsiniz.</div></div></p>
+    
+    <p class="cstfont" id="multikey">Bir Değere Birden Fazla Anahtar İfade Eklemek</p>
+    <p><ftype>Arrays::multikey( <kf>array</kf> <vf>$dizi</vf> , [ <kf>string</kf> <vf>$ayrac</vf> = <sf>'|'</sf> ] )</ftype></p>
+    <p>Dizide istenilen elemanı silmek için kullanılır.</p>
+    
+    <p>
+    	<table class="cfont">
+        	<tr><th>No</th><th>Parametreler</th><td>Anlamları</td></tr>
+            <tr><th>1</th><th>array Dizi</th><td>Anatar eklenmiş dizi.</td></tr>
+            <tr><th>2</th><th>[ string Ayraç ]</th><td>Çoklu anahtarları ayıran karakter.</td></tr>
+        </table>
+    </p>
+    
+	<div type="code">
+	<pre><vf>$dizi</vf> = <kf>array</kf>
+(
+	<sf>'a|b|c|d'</sf> => <sf>'deger'</sf>
+);		
+<vf>$dizi</vf> = Arrays::multikey(<vf>$dizi</vf>);
+
+<ff>var_dump</ff>(<vf>$dizi</vf>);
+
+<comment>/*
+array (size=4)
+  'a' => string 'deger' (length=5)
+  'b' => string 'deger' (length=5)
+  'c' => string 'deger' (length=5)
+  'd' => string 'deger' (length=5)
+*/</comment></pre>
+    </div>
+    
+    <p class="cstfont" id="keyval">Dizinin Anahtar veya Değer Bilgisine Ulaşmak</p>
+    <p><ftype>Arrays::keyval( <kf>array</kf> <vf>$dizi</vf> , [ <kf>string</kf> <vf>$tip</vf> = <sf>'val'</sf> ] )</ftype></p>
+    <p>Dizinin anahtarına veya değerine ulaşmak.</p>
+    
+    <p>
+    	<table class="cfont">
+        	<tr><th>No</th><th>Parametreler</th><td>Anlamları</td></tr>
+            <tr><th>1</th><th>array Dizi</th><td>Anahtarın yada değerin istendiği dizi.</td></tr>
+            <tr><th>2</th><th>[ string Tip = "val" ]</th><td>Anahtar mı değer mi.</td></tr>
+            <tr><th colspan="2">2. Parametrenin Alabileceği Değerler</th><th>Anlamları</th></tr>
+            <tr><th colspan="2">val veya value</th><td>Dizinin değerini metinsel veri tipi olarak döndürür.</td></tr>
+            <tr><th colspan="2">key</th><td>Dizinin anahtarını metinsel veri tipi olarak  döndürür.</td></tr>
+            <tr><th colspan="2">vals veya values</th><td>Dizinin değer veya değerlerini dizi veri tipi olarak döndürür.</td></tr>
+            <tr><th colspan="2">keys</th><td>Dizinin anahtar veya anahtarlarını dizi veri tipi olarak döndürür.</td></tr>
+        </table>
+    </p>
+    
+	<div type="code">
+	<pre>
+<vf>$dizi</vf> = <kf>array</kf>(<sf>"a"</sf> => <sf>"b"</sf>);		
+<kf>print</kf>(Arrays::keyval(<vf>$dizi</vf>)); <comment> // Çıktı: b</comment>  
+<kf>print</kf>(Arrays::keyval(<vf>$dizi</vf>, <sf>"key"</sf>)); <comment> // Çıktı: a</comment>  
+<vf>$dizi</vf> = <kf>array</kf>(<sf>"1"</sf> => <sf>"a"</sf>, <sf>"2"</sf> => <sf>"b"</sf>);		
+<ff>var_dump</ff>(Arrays::keyval(<vf>$dizi</vf>, <sf>"values"</sf>))); <comment> // Çıktı: a, b</comment>  
+<ff>var_dump</ff>(Arrays::keyval(<vf>$dizi</vf>, <sf>"keys"</sf>)); <comment> // Çıktı: 1, 2</comment> 
+	</pre>
+    </div>
+    
+    <p class="cstfont" id="objectData">Diziyi Object Veri Türüne Çevirmek</p>
+    <p><ftype>Arrays::objectData( <kf>array</kf> <vf>$dizi</vf> )</ftype></p>
+    <p>Object veri türüne çevrilmek istenen dizi.</p>
+    
+    <p>
+    	<table class="cfont">
+        	<tr><th>No</th><th>Parametreler</th><td>Anlamları</td></tr>
+            <tr><th>1</th><th>array Dizi</th><td>Değiştirilecek dizi.</td></tr>
+        </table>
+    </p>
+    
+	<div type="code">
+<pre><kf>echo</kf> Arrays::objectData(<kf>array</kf>(<if>1</if> => <kf>true</kf>, <if>2</if> => <kf>false</kf>))</vf>; <comment>// {1:true, 2:false}</comment></pre>
+    </div>
+    
+    <p class="cstfont" id="order">Dizilerde Sıralama Yapmak</p>
+    <p><ftype>Arrays::order( <kf>array</kf> <vf>$dizi</vf>, <kf>string</kf> <vf>$siralamaTuru</vf>, <kf>string</kf> <vf>$siralamaKipi</vf> = <sf>'regular'</sf>)</ftype></p>
+    <p>Dizilerde belli kriterlere göre sıralama yapmak için kullanılır. 12 Farklı dizi sıralama yönemi bu fonksiyon altında toplanmıştır.</p>
+    
+    <p>
+    	<table class="cfont">
+        	<tr><th>No</th><th>Parametreler</th><td>Anlamları</td></tr>
+            <tr><th>1</th><th>array Dizi</th><td>Sıralama yapılacak dizi.</td></tr>
+            <tr><th colspan="2">string Sıralama Türü</th><td>Sıralama türü.</td></tr>
+            <tr><th colspan="2">Parametreler</th><td>Anlamları</td></tr>
+            <tr><th colspan="2">asc</th><td>Bir dizinin değerlerini anahtarlarıyla ilişkilerini bozmadan sıralar.</td></tr>
+            <tr><th colspan="2">desc</th><td>Bir dizinin değerlerini anahtarlarıyla ilişkilerini bozmadan tersine sıralar.</td></tr>
+            <tr><th colspan="2">asckey</th><td>Bir diziyi anahtarlarına göre sıralar.</td></tr>
+            <tr><th colspan="2">desckey</th><td>Bir diziyi anahtarlarına göre tersine sıralar.</td></tr>
+            <tr><th colspan="2">user</th><td>Bir diziyi kullanıcı tanımlı bir işlev kullanarak değerlerine göre sıralar.</td></tr>
+            <tr><th colspan="2">userassoc</th><td>Bir diziyi kullanıcı tanımlı bir işlev kullanarak indislerine göre sıralarken anahtar/değer ilişkisini korur.</td></tr>
+            <tr><th colspan="2">userkey</th><td>Bir diziyi kullanıcı tanımlı bir işlev kullanarak anahtarlarına göre sıralar.</td></tr>
+            <tr><th colspan="2">insens</th><td>Bir diziyi harf büyüklüğüne duyarsız "doğal sıralama" algoritmasıyla sıralar.</td></tr>
+            <tr><th colspan="2">natural</th><td> Bir diziyi "doğal sıralama" algoritmasıyla sıralar.</td></tr>
+            <tr><th colspan="2">reverse</th><td>Bir diziyi tersine sıralar.</td></tr>
+            <tr><th colspan="2">random</th><td>Bir diziyi rasgele sıralar.</td></tr>
+            <tr><th colspan="2">default</th><td>Bir diziyi sıralar.</td></tr>
+            <tr><th colspan="2">string Sıralama Kipi = Regular</th><td>Sıralama kipi.</td></tr>
+            <tr><th colspan="2">Parametreler</th><td>Anlamları</td></tr>
+            <tr><th colspan="2">regular</th><td>Elemanlar normal olarak sıralanır.</td></tr>
+            <tr><th colspan="2">numeric</th><td>Elemanlar sayısal olarak sıralanır.</td></tr>
+            <tr><th colspan="2">string</th><td>Elemanlar dizgesel olarak sıralanır.</td></tr>
+            <tr><th colspan="2">locale_string</th><td>Yerele göre dizgesel sıralama yapılır.</td></tr>
+            <tr><th colspan="2">flag_case</th><td>Kip anahtarına göre sıralama yapılır.</td></tr>
+            <tr><th colspan="2">natural</th><td>Doğar sıralama yapılır.</td></tr>
+        </table>
+    </p>
+    
+	<div type="code">
+<pre><vf>$dizi</vf> = <kf>array</kf>(<sf>'1'</sf>, <sf>'2'</sf>, <sf>'3'</sf>);
+
+output( Arrays::order(<vf>$dizi</vf>, <sf>'random'</sf>) );
+output( Arrays::order(<vf>$dizi</vf>, <sf>'asc'</sf>, <sf>'natural'</sf>) );
+output( Arrays::order(<vf>$dizi</vf>, <sf>'desc'</sf>) );</pre>
+    </div>
+    
+ 
+    <div type="prev-next">
+    	<div type="prev-btn"><a href="variabletypes.html">Önceki</a></div><div type="next-btn"><a href="variabletypes_collection.html">Sonraki</a></div>
+    </div>
+ 
+</body>
+</html>              

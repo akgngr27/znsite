@@ -1,0 +1,201 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>ZN KOD ÇATISI</title>
+<link type="text/css" rel="stylesheet" href="../Styles/Structure.css" />
+<script src="../Scripts/Jquery.js"></script>
+<script src="../Scripts/Structure.js"></script>
+</head>
+
+<body>
+    <div id="content-document"><a href="#">Döküman</a> » <a href="components.html">Bileşenler</a> » Captcha(Güvenlik Kodu) Kütüphanesi</div> 
+    <p class="ctfont">Captcha(Güvenlik Kodu) Kütüphanesi</p>
+    <p>Güvenlik kodu oluşturmak ve üzerinde değişiklik yapabilmek için oluşturulmuştur .</p>
+    <p>
+    	<table class="cfont" width="100%">
+        	<tr><th colspan="2">Captcha(Güvenlik Kodu) Kütüphanesi ve Yöntemleri</th></tr>
+            <tr><th colspan="2"><a href="#others">Güvenlik Kodu Kütüphanesi Yöntemleri</b></a></td></tr>
+            <tr><th colspan="2"><a href="#get_code">Güvenlik Kodu Bilgisini Öğrenmek</b></a></td></tr>
+        </table>
+    </p>
+
+    <p class="cstfont" id="others">Güvenlik Kodu Kütüphanesi Yöntemleri</p>
+    <p>Güvenlik Kodu kütüphanesine ait yöntemler aşağıdaki tabloda listelenmiştir. Kod üzerinden güvenlik kodu ayarlarını yapılandırabileceğiniz gibi <strong>Config/Components.php</strong> ayar dosyasından da yapılandırmaları gerçekleştirebilirsiniz.</p>
+    
+  	<p>
+    <table class="cfont">
+    	<tr><th width="30%">Güvenlik Kodu Oluşturma Yöntemleri</th><td>Anlamları</td></tr>
+        
+        <tr>
+        	<td><cf>width(<vf>$param</vf> = <if>0</if>)</cf></td>
+            <td>
+           	Oluşturulacak güvenlik kodunun <strong>genişlik</strong> değeridir. Bu yöntem kullanılmadığı taktirde <strong>varsayılan genişlik</strong> değerini <strong>Config/Captcha.php</strong> dosyasındaki genişlik değerine göre ayarlayacaktır.
+            </td>
+        </tr>
+        
+        <tr>
+        	<td><cf>height(<vf>$param</vf> = <if>0</if>)</cf></td>
+            <td>
+           	Oluşturulacak güvenlik kodunun <strong>yükseklik</strong> değeridir. Bu yöntem kullanılmadığı taktirde <strong>varsayılan yükseklik</strong> değerini <strong>Config/Captcha.php</strong> dosyasındaki yükseklik değerine göre ayarlayacaktır.
+            </td>
+        </tr>
+        
+        <tr>
+        	<td><cf>size(<vf>$width</vf> = <if>0</if>, <vf>$height</vf> = <if>0</if>)</cf></td>
+            <td>
+           	<strong>Width() ve Height() yönteminin alternatifi</strong> olarak oluşturulmuştur. Oluşturulacak güvenlik kodunun <strong>genişik ve yükseklik</strong> değerini ayarlamak için kullanılır. Bu yöntem kullanılmadığı taktirde <strong>varsayılan genişik yükseklik</strong> değerini <strong>Config/Captcha.php</strong> dosyasındaki genişlik ve yükseklik değerine göre ayarlayacaktır.
+            </td>
+        </tr>
+                
+        <tr>
+        	<td><cf>length(<vf>$param</vf> = <if>0</if>)</cf></td>
+            <td>
+           	Güvenlik kodunda yer alan <strong>metnin kaç karakterden oluşacağını</strong> ayarlamak için kullanılır. Bu yöntem kullanılmadığı taktirde <strong>varsayılan karakter uzunluğu(<strong>char_count</strong>)</strong> değerini <strong>Config/Captcha.php</strong> dosyasındaki karakter uzunluğu değerine göre ayarlayacaktır.
+            </td>
+        </tr>
+        
+        
+         <tr>
+        	<td><cf>border(<vf>$is</vf> = <kf>false</kf>, <vf>$color</vf> = <sf>''</sf>)</cf></td>
+            <td>
+           	Güvenlik kodu resminde <strong>çerçeve olup olmayacağını</strong> ayarlamak için kullanılırken ayrı zamanda bu çerçevenin <strong>rengide</strong> ayarlanabilir. <br><strong>1. parametre</strong> çerçevenin olup olmayacağını ayarlar ve <strong>true veya false</strong> değeri alır. <br><strong>2. parametre</strong> ise renginin ne olacağını belirtilir. Parametre olarak <strong>RGB</strong> standartına uygun metinsel değer girilir. <strong>Örnek:</strong> 100|255|190. <br>Bu yöntem kullanılmadığı taktirde <strong>varsayılan çerçeve </strong> değerlerini <strong>Config/Captcha.php</strong> dosyasındaki çerçeve değerlerine göre ayarlayacaktır.
+            </td>
+        </tr>
+        
+        <tr>
+        	<td><cf>borderColor(<vf>$color</vf> = <sf>''</sf>)</cf></td>
+            <td>
+           	<strong>Border()</strong> yönteminin 2. parametresi ile aynı işi görür. <strong>Yani çerçevenin rengini ayarlamak için kullanılır</strong>. Parametrenin kullanımı yukarıda anlatıldığı gibidir.<br>Bu yöntem kullanılmadığı taktirde <strong>varsayılan çerçeve rengi</strong> değerini <strong>Config/Captcha.php</strong> dosyasındaki çerçeve rengi değerine göre ayarlayacaktır.
+            </td>
+        </tr>
+        
+         <tr>
+        	<td><cf>bgColor(<vf>$color</vf> = <sf>''</sf>)</cf></td>
+            <td>
+           	Güvenlik kodunun <strong>arkaplan rengini</strong> ayarlamak için kullanılır. Parametrenin kullanımı yukarıda anlatıldığı gibidir.<br>Bu yöntem kullanılmadığı taktirde <strong>varsayılan arkplan rengi</strong> değerini <strong>Config/Captcha.php</strong> dosyasındaki arkaplan rengi değerine göre ayarlayacaktır.
+            </td>
+        </tr>
+        
+        <tr>
+        	<td><cf>bgImage(<vf>$image</vf> = <kf>array</kf>())</cf></td>
+            <td>
+           	Güvenlik kodunun <strong>arkaplanında yer alacak resimleri</strong> ayarlamak için kullanılır. Arkaplan için <strong>tek bir resim</strong> kullanılacaksa <strong>string</strong> türde veri girilebilir. Ancak <strong>Birden fazla resim bilgisi eklenecekse</strong> dizi türünde veri girilmelidir.
+            </td>
+        </tr>
+        
+         <tr>
+        	<td><cf>background(<vf>$background</vf> = <sf>''</sf>)</cf></td>
+            <td>
+           <strong>	Bgimage() ve Bgcolor()</strong> yöntemlerine alternatif olarak oluşturulmuştur. İster metinsel olarak <strong>R|G|B</strong> formunda renk kodu girebilirsiniz. İsterseniz de <strong>dizi</strong> türünde arkaplan resimleri ekleyebilirsiniz. Bu yöntem yukarıda anlatılan 2 yöntemin işinide üstlenir.
+            </td>
+        </tr>
+        
+         <tr>
+        	<td><cf>textSize(<vf>$size</vf> = <if>0</if>)</cf></td>
+            <td>
+            Güvenlik kodu <strong>metninin boyutunu</strong> ayarlamak için kullanılır. Bu yöntem kullanılmadığı takdirde varsayılan ayar kullanılacaktır.
+            </td>
+        </tr>
+        
+        <tr>
+        	<td><cf>textCoordinate(<vf>$x</vf> = <if>0</if>, <vf>$y</vf> = <if>0</if>)</cf></td>
+            <td>
+            Güvenlik kodu <strong>metninin x ve y değerlerini</strong> ayarlamak için kullanılır. Bu yöntem kullanılmadığı takdirde varsayılan ayar kullanılacaktır.
+            </td>
+        </tr>
+        
+        <tr>
+        	<td><cf>textColor(<vf>$color</vf> = <sf>''</sf>)</cf></td>
+            <td>
+            Güvenlik kodu <strong>metninin rengini</strong> ayarlamak için kullanılır. <strong>R|G|B</strong> standartına uygun olarak metinsel veril girilmelidir. Bu yöntem kullanılmadığı takdirde varsayılan ayar kullanılacaktır.
+            </td>
+        </tr>
+        
+         <tr>
+        	<td><cf>text(<vf>$size</vf> = <if>0</if>, <vf>$x</vf> = <if>0</if>, <vf>$y</vf> = <if>0</if>, <vf>$color</vf> = <sf>''</sf>)</cf></td>
+            <td>
+            <strong>text_size(), text_coodinate() ve text_color()</strong> yöntemlerinin alternatifi olarak kullanılabilir. Belirtilen bu yöntemlerin işini tek seferde yapabilir. Bu yöntem kullanılmadığı takdirde varsayılan ayarlar kullanılacaktır.
+            </td>
+        </tr>
+        
+        <tr>
+        	<td><cf>grid(<vf>$is</vf> = <kf>false</kf>, <vf>$color</vf> = <sf>''</sf>)</cf></td>
+            <td>
+           	Güvenlik kodu resminde <strong>ızgara olup olmayacağını</strong> ayarlamak için kullanılırken ayrı zamanda bu ızgaranın <strong>rengide</strong> ayarlanabilir. <br><strong>1. parametre</strong> ızgaranın olup olmayacağını ayarlar ve <strong>true veya false</strong> değeri alır. <br><strong>2. parametre</strong> ise renginin ne olacağını belirtilir. Parametre olarak <strong>RGB</strong> standartına uygun metinsel değer girilir. <strong>Örnek:</strong> 100|255|190. <br>Bu yöntem kullanılmadığı taktirde <strong>varsayılan çerçeve </strong> değerlerini <strong>Config/Captcha.php</strong> dosyasındaki ızgara değerlerine göre ayarlayacaktır.
+            </td>
+        </tr>
+        
+        <tr>
+        	<td><cf>gridSpace(<vf>$x</vf> = <if>0</if>, <vf>$y</vf> = <if>0</if>)</cf></td>
+            <td>
+            Izgaraların <strong>yatayda ve dikeyde</strong> kaçar adet olacağını belirlemek için kullanılır.<br>
+            <strong>1. parametre:</strong> yatayda kaç çizgi olacağını belirler.<br>
+            <strong>2. parametre:</strong> dikeyde kaç çizgi olacağını belirler.<br>
+            Bu yöntem kullanılmadığı taktirde <strong>varsayılan ızgara </strong> değerini <strong>Config/Captcha.php</strong> dosyasındaki ızgara değerine göre ayarlayacaktır.
+            </td>
+        </tr>
+        
+        <tr>
+        	<td><cf>gridColor(<vf>$color</vf> = <sf>''</sf>)</cf></td>
+            <td>
+           	<strong>Grid()</strong> yönteminin 2. parametresi ile aynı işi görür. <strong>Yani ızgara rengini ayarlamak için kullanılır</strong>. Parametrenin kullanımı yukarıda anlatıldığı gibidir.<br>Bu yöntem kullanılmadığı taktirde <strong>varsayılan ızgara rengi</strong> değerini <strong>Config/Captcha.php</strong> dosyasındaki ızgara rengi değerine göre ayarlayacaktır.
+            </td>
+        </tr>
+      
+        <tr>
+        	<td><cf>create(<vf>$img</vf> =  <kf>false</kf>)</cf></td>
+            <td>
+           	Güvenlik kodu oluşturma yöntemidir. En son bu yöntem kullanılarak güvenlik kodu oluşturulması sağlanır. 1 parametresi vardır. Bu parametre <strong>true</strong> olarak ayarlandığı zaman güvenlik kodu linkini <strong>html img</strong> etiketi içerisinde kullanarak çıktılar.
+            </td>
+        </tr>
+   
+    </table>
+    </p>
+    
+    <p>Yukarıdaki yöntemlerin kullanımına yönelik örnekler aşağıda verilmiştir.</p>
+    
+    <p>
+    <div type="code">
+<pre>
+<comment>// Metnin kaç karakter olacağı ayarlanıyor.</comment>
+<comment>// Kullanımı zorunlu değildir. Varsayılan: 6</comment>
+Captcha::length(<if>6</if>) 
+       <comment>// Metnin rengi ayarlanıyor.</comment>
+       <comment>// Kullanımı zorunlu değildir. Varsayılan: 255|255|255</comment>
+       ->textColor(<sf>'180|20|10'</sf>) 
+       <comment>// Grid ve rengi ayarlanıyor.</comment>
+       <comment>// Kullanımı zorunlu değildir. Varsayılan: true, 50|50|50</comment>
+       ->grid(<kf>true</kf>, <sf>'30|30|30'</sf>) 
+       <comment>// Yatayda ve dikeyte ızgara sayısı ayarlanıyor.</comment>
+       <comment>// Kullanımı zorunlu değildir. Varsayılan: 12, 4</comment>
+       ->gridSpace(<if>2</if>, <if>6</if>) 
+       <comment>// Güvenlik kodunun arkaplan rengi ayarlanıyor.</comment>
+       <comment>// Kullanımı zorunlu değildir. Varsayılan: 80|80|80</comment>
+       ->background(<sf>'200|200|200'</sf>) 
+       <comment>// Güvenlik kodunu oluşturan nihai yöntemdir.</comment>
+       ->create(<kf>true</kf>);</pre>
+    </div>
+    </p>
+   	
+    <p><img src="../Images/Result/captcha.PNG" /> </p>
+    
+    <p>Yukarıda kodların çıktısı olan güvenlik kodu görüntüsü yer almaktadır.</p>
+    
+    <p class="cstfont" id="get_captcha_code">Güvenlik Kodunu Öğrenmek</p>
+    <p><ftype>Captcha::getCode()</ftype></p>
+    <p>Oluşturulan güvenlik kodunu öğrenmek için kullanılır.</p>
+  
+  	<div type="code">
+	<pre>
+<kf>echo</kf> Captcha::getCode(); <comment>// Çıktı: 1A4D31 </comment>
+
+	</pre>
+    </div>
+    
+    <div type="prev-next">
+    	<div type="prev-btn"><a href="component_calendar.html">Önceki</a></div><div type="next-btn"><a href="component_datagrid.html">Sonraki</a></div>
+    </div>
+ 
+</body>
+</html>              

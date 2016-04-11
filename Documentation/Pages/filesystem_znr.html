@@ -1,0 +1,260 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>ZN KOD ÇATISI</title>
+<link type="text/css" rel="stylesheet" href="../Styles/Structure.css" />
+<script src="../Scripts/Jquery.js"></script>
+<script src="../Scripts/Structure.js"></script>
+</head>
+
+<body>
+    <div id="content-document"><a href="#">Döküman</a> » <a href="filesystem.html">File System</a> » Record Kütüphanesi</div> 
+    <p class="ctfont">Record Kütüphanesi</p>
+    <p>ZNR basit çapta kayıt işlemleri gerçekleştirmek için oluşturulmuş mini database mantığında çalışan sınıftır.</p>
+    <ul><li><a href="#" class="infont">Record Kütüphanesi ve Yöntemleri</a><br><br>
+        <ul>  	  
+            <li><a href="#config">Config/Record.php Dosyasından Kayıt İsmi Belirtmek</a></li> 
+            <li><a href="#createRecord">Kayıt Oluşturmak » <b>Record::createRecord()</b></a></li>
+            <li><a href="#selectRecord">Kayıt Seçmek » <b>Record::selectRecord()</b></a></li> 
+            <li><a href="#createTable">Tablo Oluşturmak » <b>Record::createTable()</b></a></li>
+            <li><a href="#table">Tablo Seçmek » <b>Record::table()</b></a></li>
+            <li><a href="#insert">Tabloya Veri Eklemek » <b>Record::insert()</b></a></li>
+            <li><a href="#select">Tablodaki Verileri Seçmek » <b>Record::select(), Record::get()</b></a></li>
+            <li><a href="#update">Tablodaki Veriyi Güncellemek » <b>Record::update()</b></a></li>
+            <li><a href="#delete">Tablodaki Veriyi Silmek » <b>Record::delete()</b></a></li>
+            <li><a href="#secure">Veri Güvenliği Hakkında</a></li>  
+        </ul>
+    </li></ul>
+    
+    <p class="cstfont" id="config">Config/Record.php Dosyasından Kayıt İsmi Belirtmek</p>
+  
+    <p>Bu ayar dosyasında yer alan <strong>record</strong> parametresine ön tanımlı olarak kullanılacak kayıt adı belirtilebilir. Veritabanı ismi belirtmek gibi düşünülebilir.</p> 
+  
+    <div type="code">
+    Config/Record.php
+    <pre>
+<vf>$config</vf>[<sf>'Record'</sf>][<sf>'record'</sf>] = <sf>'Test'</sf>; <comment> // Ön tanımlı olarak "Test" isimlendirmesi kullanılmıştır.</comment>
+    </pre>
+    </div>
+    
+    <p class="cstfont" id="createRecord">Kayıt Oluşturmak</p>
+    <p><ftype>Record::createRecord( <kf>string</kf> <vf>$record</vf> )</ftype></p>
+    <p>Kayıtların tutulacağı dizini oluşturmak için kullanılır. Yukarıdaki ayar kullanılmayacaksa bu yöntemle bir kayıt oluşturulmalıdır.</p> 
+    
+    <p>
+    	<table class="cfont">
+        	<tr><th>Parametre</th><td>Anlamları</td></tr>
+            <tr><th>1. Parametre = Record</th><td>Kayıtların tutulması için oluşturulacak dizinin adı.</td></tr>
+        </table>
+    </p>
+    
+    <div type="code">
+    <pre>
+Record::createRecord(<sf>'Test'</sf>); <comment> // Storage/ZNRecords/Test adlı dizin oluşturuldu.</comment>
+    </pre>
+    </div>
+    
+    <p class="cstfont" id="selectRecord">Kayıt Seçmek</p>
+    <p><ftype>Record::selectRecord( <kf>string</kf> <vf>$record</vf> )</ftype></p>
+    <p>Oluşturulan kayıt dizinin seçmek için kullanılır.</p> 
+    
+    <p>
+    	<table class="cfont">
+        	<tr><th>Parametre</th><td>Anlamları</td></tr>
+            <tr><th>1. Parametre = Record</th><td>Seçilecek kayıt dizini.</td></tr>
+        </table>
+    </p>
+    
+    <div type="code">
+    <pre>
+Record::selectRecord(<sf>'Test'</sf>); <comment> // Test dizini seçildi.</comment>
+    </pre>
+    </div>
+    
+    
+    <p class="cstfont" id="createTable">Kayıta Tablo Oluşturmak</p>
+    <p><ftype>Record::createTable( <kf>string</kf> <vf>$table</vf> )</ftype></p>
+    <p>Oluşturulan kayıta tablo yani tablo verilerini tutacak dosyayı oluşturmak için kullanılır.</p> 
+    
+    <p>
+    	<table class="cfont">
+        	<tr><th>Parametre</th><td>Anlamları</td></tr>
+            <tr><th>1. Parametre = Tablo Adı</th><td>Kayıt içine oluşturulacak dosyanın adı.</td></tr>
+        </table>
+    </p>
+    
+    <div type="code">
+    <pre>
+Record::createTable(<sf>'uyeler'</sf>); <comment> // ../Test/uyeler.znr.php adlı dosya oluşturuldu.</comment>
+    </pre>
+    </div>
+    
+    
+    <p class="cstfont" id="table">Tablo Seçmek</p>
+    <p><ftype>Record::table( <kf>string</kf> <vf>$table</vf> )</ftype></p>
+    <p>Oluşturulan dosyalardan birini seçmek için kullanılır.</p> 
+    
+    <p>
+    	<table class="cfont">
+        	<tr><th>Parametre</th><td>Anlamları</td></tr>
+            <tr><th>1. Parametre = Tablo Adı</th><td>Seçilecek dosya adı.</td></tr>
+        </table>
+    </p>
+    
+    <div type="code">
+    <pre>
+Record::table(<sf>'uyeler'</sf>); <comment> // Yukarıda oluşturulan uyeler.znr.php dosyası seçildi.</comment>
+    </pre>
+    </div>
+    
+    
+    <p class="cstfont" id="insert">Tabloya Veri Eklemek</p>
+    <p><ftype>Record::insert( <kf>string</kf> <vf>$table</vf> , <kf>array</kf> <vf>$data</vf> )</ftype></p>
+    <p>Tabloya eklenecek veriler.</p> 
+    
+    <p>
+    	<table class="cfont">
+        	<tr><th>Parametre</th><td>Anlamları</td></tr>
+            <tr><th>1. Parametre = Tablo Adı</th><td>Verilerin hangi dosyaya ekleneceği.</td></tr>
+            <tr><th>2. Parametre = Veriler</th><td>Tabloya hangi verilerin ekleneceği.</td></tr>
+
+        </table>
+    </p>
+    
+    <div type="code">
+    <pre>
+Record::selectRecord(<sf>'Test'</sf>); <comment> // Config/Record.php ayar dosyasından ön tanımlı ayarlanmışsa bu komutu kullanmanıza gerek yoktur.</comment>
+Record::insert(<sf>'uyeler'</sf>, <kf>array</kf>(<sf>'isim'</sf> => <sf>'zntr'</sf>, <sf>'numara'</sf> => <if>100</if>)); <comment> // uyeler.znr.php dosyasına belirtilen veriler eklendi.</comment>
+    </pre>
+    </div>
+    
+    <p><strong>table()</strong> yönetmini kullanarak da tablo ismi belirtilebilir.</p>
+    
+    <div type="code">
+    <pre>
+Record::selectRecord(<sf>'Test'</sf>); <comment> // Config/Record.php ayar dosyasından ön tanımlı ayarlanmışsa bu komutu kullanmanıza gerek yoktur.</comment>
+Record::table(<sf>'uyeler'</sf>)->insert(<kf>array</kf>(<sf>'isim'</sf> => <sf>'zntr'</sf>, <sf>'numara'</sf> => <if>100</if>)); <comment> // insert() yönteminin 1. parametresi artık 2. parametre olan data parametresi olduğuna dikkat ediniz.</comment>
+    </pre>
+    </div>
+    
+    
+    
+    <p class="cstfont" id="select">Tablodan Verileri Seçmek</p>
+    <p><ftype>Record::select( <kf>string</kf> <vf>$table</vf> , [ <kf>numeric</kf> <vf>$whereId</vf> ] )</ftype></p>
+    <p><ftype>Record::get( <kf>string</kf> <vf>$table</vf> , [ <kf>numeric</kf> <vf>$whereId</vf> ] )</ftype></p>
+    <p>Tablodan veri seçmek için kullanılırlar.</p> 
+    
+    <p>
+    	<table class="cfont">
+        	<tr><th>Parametre</th><td>Anlamları</td></tr>
+            <tr><th>1. Parametre = Tablo Adı</th><td>Tablo adı.</td></tr>
+            <tr><th>[2. Parametre = Kayıt Numarası]</th><td>İstenilen kayıtın numarası.</td></tr>
+        </table>
+    </p>
+    
+	<div type="code">
+    <pre>
+Record::select(<sf>'uyeler'</sf>)->result(); <comment> // Tüm veriler object veri türünde elde edildi.</comment>
+Record::select(<sf>'uyeler'</sf>)->resultArray(); <comment> // Tüm veriler dizi veri türünde elde edildi.</comment>
+Record::select(<sf>'uyeler'</sf>)->row(); <comment> // Tek bir kayıt elde edildi.</comment>
+    </pre>
+    </div>
+    
+    <div type="code">
+    <pre>
+Record::select(<sf>'uyeler'</sf>, <if>5</if>)->result(); <comment> // 5 numaralı veri elde edildi.</comment>
+    </pre>
+    </div>
+    
+    <div type="note"><div>NOT</div><div>Kayıtların numaraları <strong>1'den</strong> başlamaktadır.</div></div>
+    
+    <p>Row() yöntemine parametre belirtilerek ilk, son veya istediğiniz kayıtı seçebilirsiniz.</p>
+    
+    <div type="code">
+    <pre>
+Record::select(<sf>'uyeler'</sf>)->row(<sf>'last'</sf>); <comment> // Son veri elde edildi.</comment>
+Record::select(<sf>'uyeler'</sf>)->row(); <comment> // İlk veri elde edildi.</comment>
+Record::select(<sf>'uyeler'</sf>)->row(3); <comment> // 3 nnumaralı veri elde edildi.</comment>
+    </pre>
+    </div>
+    
+    <div type="code">
+    <pre>
+Record::select(<sf>'uyeler'</sf>, <if>5</if>)->result(); <comment> // 5 numaralı veri elde edildi.</comment>
+    </pre>
+    </div>
+    
+    <p>Aşağıdaki gibi bir kullanımda mümkündür.</p>
+    <div type="code">
+    <pre>
+Record::table(<sf>'uyeler'</sf>)->where(<if>5</if>)->get()->row(); <comment> // 5 numaralı veri elde edildi.</comment>
+    </pre>
+    </div>
+    
+    <p class="cstfont" id="update">Tablodaki Veriyi Güncellemek</p>
+    <p><ftype>Record::update( <kf>string</kf> <vf>$table</vf> , <kf>array</kf> <vf>$newData</vf>, [ <kf>numeric</kf> <vf>$whereId</vf> ] )</ftype></p>
+    <p>Tablodan veri seçmek için kullanılırlar.</p> 
+    
+    <p>
+    	<table class="cfont">
+        	<tr><th>Parametre</th><td>Anlamları</td></tr>
+            <tr><th>1. Parametre = Tablo Adı</th><td>Tablo adı.</td></tr>
+            <tr><th>2. Parametre = Yeni Kayıt Dizisi</th><td>Yeni değerlerin yazılacağı dizi.</td></tr>
+            <tr><th>[3. Parametre = Kayıt Numarası]</th><td>İstenilen kayıtın numarası.</td></tr>
+        </table>
+    </p>
+    
+	<div type="code">
+    <pre>
+Record::update(<sf>'uyeler'</sf>, <kf>array</kf>(<sf>'isim'</sf> => <sf>'ZNTR'</sf>, <sf>'numara'</sf> => <if>200</if>), <if>5</if>); <comment> // 5 Numaralı veriyi güncelle.</comment>
+    </pre>
+    </div>
+    <p>Ya da</p>
+    <div type="code">
+    <pre>
+Record::where(<if>5</if>)->update(<sf>'uyeler'</sf>, <kf>array</kf>(<sf>'isim'</sf> => <sf>'ZNTR'</sf>, <sf>'numara'</sf> => <if>200</if>)); <comment> // 5 Numaralı veriyi güncelle.</comment>
+    </pre>
+    </div>
+    <p>Ya da</p>
+    <div type="code">
+    <pre>
+Record::table(<sf>'uyeler'</sf>)->where(<if>5</if>)->update(<kf>array</kf>(<sf>'isim'</sf> => <sf>'ZNTR'</sf>, <sf>'numara'</sf> => <if>200</if>)); <comment> // 5 Numaralı veriyi güncelle.</comment>
+    </pre>
+    </div>
+    
+    <p class="cstfont" id="delete">Tablodaki Veriyi Silmek</p>
+    <p><ftype>Record::delete( <kf>string</kf> <vf>$table</vf> , [ <kf>numeric</kf> <vf>$whereId</vf> ] )</ftype></p>
+    <p>Tablodan veriyi silmek için kullanılırlar.</p> 
+    
+    <p>
+    	<table class="cfont">
+        	<tr><th>Parametre</th><td>Anlamları</td></tr>
+            <tr><th>1. Parametre = Tablo Adı</th><td>Tablo adı.</td></tr>
+            <tr><th>2. Parametre = Kayıt Numarası</th><td>İstenilen kayıtın numarası.</td></tr>
+        </table>
+    </p>
+    
+	<div type="code">
+    <pre>
+Record::delete(<sf>'uyeler'</sf>, <if>5</if>); <comment> // 5 Numaralı veriyi sil.</comment>
+    </pre>
+    </div>
+ 
+ 	<div type="note"><div>NOTE</div><div><strong>Tüm kayıtları silmek istenirse</strong> id değeri belirtilmez.</div></div>
+    
+    <div type="code">
+    <pre>
+Record::delete(<sf>'uyeler'</sf>); <comment> // Tüm verileri siler.</comment>
+    </pre>
+    </div>
+    
+    <p class="cstfont" id="secure">Veri Güvenliği Hakkında</p>
+    <p>Veriler dosyalara oluşturulduğu için URL üzerinden görünmesini engellemek için <strong>exit</strong> yönteminden yararlanılmıştır. Yani URL üzerinden oluşturacağınız verilerin görülmesi mümkün değildir. Ayrıca oluşturulan dosyalar <strong>.php</strong> uzantılı oluşturulduğundan uzaktan bağlantı ile indirilmeye de kapalıdır.</p>
+    
+    <div type="prev-next">
+    	<div type="prev-btn"><a href="filesystem_folder.html">Önceki</a></div><div type="next-btn"><a href="foundations.html">Sonraki</a></div>
+    </div>
+ 
+</body>
+</html>              

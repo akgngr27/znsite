@@ -1,0 +1,60 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>ZN KOD ÇATISI</title>
+<link type="text/css" rel="stylesheet" href="../Styles/Structure.css" />
+<script src="../Scripts/Jquery.js"></script>
+<script src="../Scripts/Structure.js"></script>
+</head>
+
+<body>
+    <div id="content-document"><a href="#">Döküman</a> » <a href="components.html">Bileşenler</a> » Schedule(Liste) Kütüphanesi</div> 
+    <p class="ctfont">Schedule(Liste) Kütüphanesi</p>
+    <p>Liste işlemlerini yapmak için oluşturulmuştur .</p>
+     <p>
+    	<table class="cfont" width="100%">
+            <tr><th colspan="2"><a href="#list_others">Schedule Kütüphanesini ve Yöntemleri</a></th></tr>
+            <tr><th width="40%">Liste Oluşturmak</th><td><a href="#create"><b>Schedule::create()</b></a></td></tr>
+        </table>
+    </p>
+    
+    <p class="cstfont" id="create">Liste Oluşturmak</p>
+    <p><ftype>Schedule::create( <kf>array</kf> <vf>$elements</vf> )</ftype></p>
+    <p>Liste oluşturmak için kullanılır.</p>
+    
+    <p>
+    	<table class="cfont">
+        	<tr><th>No</th><th>Parametreler</th><td>Anlamları</td></tr>
+            <tr><th>1</th><th>array Elemanlar</th><td>Listeye konu olacak elemanlar.</td></tr>
+        </table>
+    </p>
+    
+	<div type="code">
+<pre>
+<kf>echo</kf> Schedule::create(<kf>array</kf>(<sf>'ul'</sf> => <kf>array</kf>(<if>1</if>, <if>2</if>, <if>3</if>, <if>4</if>))); 
+</pre> 
+    </div> 
+    
+    <p>Liste içinde listede oluşturabilirsiniz</p>
+    
+    <div type="code">
+<pre>
+<kf>echo</kf> Schedule::create(<kf>array</kf>(<sf>'ul type="disc"'</sf> => <kf>array</kf>
+(
+    <if>1</if>, 
+    <if>2</if>, 
+    <if>4</if>,
+    <sf>'ol type="i"'</sf> => <kf>array</kf>(<sf>'a'</sf>, <sf>'b'</sf>)
+))); 
+</pre> 
+    </div> 
+    
+
+     
+    <div type="prev-next">
+    	<div type="prev-btn"><a href="component_pagination.html">Önceki</a></div><div type="next-btn"><a href="component_table.html">Sonraki</a></div>
+    </div>
+ 
+</body>
+</html>              

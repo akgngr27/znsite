@@ -1,0 +1,70 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>ZN KOD ÇATISI</title>
+<link type="text/css" rel="stylesheet" href="../Styles/Structure.css" />
+<script src="../Scripts/JSuery.js"></script>
+<script src="../Scripts/Structure.js"></script>
+</head>
+
+<body>
+    <div id="content-document">Döküman</a> » <a href="java.html">Javascript & Jquery</a> » Script Kütüphanesi</div> 
+    <p class="ctfont">Script Kütüphanesi</p>
+    <p>Bu kütüphane tamamen JSuery kütüphanelerine yardımcı parçalar sağlamak için oluşturulmuştur. JSuery'ye ait bazı kod parçaları gerekli olduğunda bu ihtiyacı gidermek için bu kütüphaneden yararlanılabilir. Örnek olarak .show(); gibi bir kod parçası lazım olduğunda bu kütüphaneden yararlanılır. Ya da $(xx).serialize() gibi bir veri gönderimi için de yine bu kütüphaneden yararlanılır.</p>
+    
+    <p>
+    	<table class="cfont" width="100%">
+        	<tr><th colspan="2">JS Kütüphanesi Yöntemleri</th></tr>
+            <tr><th width="40%">Script Tagı Açmak</th><td><b><cf>Script::open(<cf><kf>bool</kf> <vf>$ready</kf> = <kf>true</kf></cf>)</cf></b></td></tr>
+           	<tr><th>Script Tagı Kapatmak</th><td><b><cf>Script::close()</cf></b></td></tr>
+            <tr><th>Script Türünü Ayarlamak</th><td><b><cf>Script::type(<cf><kf>string</kf> <vf>$type</kf> = <sf>'text/javascript'</sf>)</cf></b></td></tr>
+            <tr><th>Harici Script Kütüphaneleri Dahil Etmek</th><td><b><cf>Script::library(<cf><kf>arguments</kf> ... )</cf></b></td></tr>
+        </table>
+    </p>
+   
+	<p class="cstfont" id="process">Script Kütüphanesi Yöntemleri</p>
+    <p>Script taglarını açmak kapamak gibi bir takım işlevleri yerine getirmek için oluşturulmuştur.</p>
+
+    <div type="code">
+    <pre>
+<kf>echo</kf> Script::open(); 
+<comment>
+/*
+<x><</x>script type="text/javascript" src="https://code.jquery.com/jquery-latest.js"><x><</x>/script>
+<x><</x>script type="text/javascript">
+$(document).ready(function()
+{
+*/
+</comment>
+
+<kf>echo</kf> Script::close(); 
+<comment>
+/*
+});
+<x><</x>/script>
+*/
+</comment>
+
+<div type="code">
+    <pre>
+<kf>echo</kf> Script::library(<sf>'script1'</sf>, <sf>'script2'</sf>)->open(<kf>false</kf>);<comment>// ready tagı açılmasın istiyoruz</comment> 
+<comment>
+/*
+<x><</x>script type="text/javascript" src="https://code.jquery.com/jquery-latest.js"><x><</x>/script>
+<x><</x>script type="text/javascript" src="http://ex.com/Application/Resources/Scipts/script1.js"><x><</x>/script>
+<x><</x>script type="text/javascript" src="http://ex.com/Application/Resources/Scipts/script2.js"><x><</x>/script>
+<x><</x>script type="text/javascript">
+*/
+</comment>
+    </pre>
+    </div>
+
+    
+    
+    <div type="prev-next">
+    	<div type="prev-btn"><a href="java_jq.html">Önceki</a></div><div type="next-btn"><a href="permission.html">Sonraki</a></div>
+    </div>
+ 
+</body>
+</html>              

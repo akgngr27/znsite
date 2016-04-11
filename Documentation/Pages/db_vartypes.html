@@ -1,0 +1,71 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>ZN KOD ÇATISI</title>
+<link type="text/css" rel="stylesheet" href="../Styles/Structure.css" />
+<script src="../Scripts/Jquery.js"></script>
+<script src="../Scripts/Structure.js"></script>
+</head>
+
+<body>
+    <div id="content-document"><a href="#">Döküman</a> » <a href="db_dynamic.html">Database(Veritabanı) Kütüphanesi Yöntemleri</a> » Nitelik Türleri ve Kullanımı</div> 
+    <p class="ctfont">Nitelik Türleri ve Kullanımı</p>
+    <p>Bu bölümde veritabanı sürücülerine göre farklılık gösteren nitelik türlerinin nasıl hepsinde ortak kullanılacağını göstereceğiz.</p>
+    
+    <p>
+    	<table class="cfont" width="100%">
+        	<tr><th colspan="2">Nitelik Türleri ve Kullanımı</th></tr>
+            <tr><th width="40%">Nitelik Türleri Kullanmak</th><td><a href="#vartypes"><strong>DB::property()</strong></a></td></tr>
+        </table>
+    </p>
+  
+    
+    <p class="ctfont" id="vartypes">Veritabanında Kullanılabilir Yöntemsel Nitelik Türleri</p>
+    <p>Veritabanı sorgularınızda kullanabileceğiniz nitelik türlerinin yöntemsel hale getirilerek farklı platformlar tarafından desteklenesini sağlanmıştır. Kullanılabilir nitelik türleri aşağıdakiler gibidir. <strong>Genellikle DBForge::createTable() yöntemi ile kullanılırlar</strong>.</p>
+    
+    <P>Aşağıda bazı sürücülere göre veri türlerindeki farklıklar gösterilmiştir.</P>
+    <p>
+        <table class="cfont">
+        	
+            <tr><th>Veri Türleri</th><td>CUBRID</td><td>FBSQL</td><td>IBASE</td><td>MYSQL</td><td>OCI8</td><td>POSTGRE</td></tr>
+            <tr><th>DB::int/integer($uzunluk)</th><td>INT</td><td>INT</td><td>INTEGER</td><td>INT</td><td>NUMERIC</td><td>INTEGER</td></tr>
+			<tr><th>DB::smallInt($uzunluk)</th><td>SMALLINT</td><td>SMALLINT</td><td>SMALLINT</td><td>SMALLINT</td><td>NUMERIC</td><td>SMALLINT</td></tr>
+            <tr><th>DB::tinyInt($uzunluk)</th><td>SMALLINT</td><td>SMALLINT</td><td>SMALLINT</td><td>TINYINT</td><td>NUMERIC</td><td>SMALLINT</td></tr>
+            <tr><th>DB::mediumInt($uzunluk)</th><td>INT</td><td>INT</td><td>INTEGER</td><td>MEDIUMINT</td><td>NUMERIC</td><td>INTEGER</td></tr>
+            <tr><th>DB::bigInt($uzunluk)</th><td>BIGINT</td><td>INT</td><td>INTEGER</td><td>BIGINT</td><td>NUMERIC</td><td>BIGINT</td></tr>
+            <tr><th>DB::decimal($uzunluk)</th><td>DOUBLE</td><td>DECIMAL</td><td>DECIMAL</td><td>DECIMAL</td><td>DECIMAL</td><td>DECIMAL</td></tr>
+            <tr><th>DB::double($uzunluk)</th><td>DOUBLE</td><td>DOUBLE PRECISION</td><td>DOUBLE PRECISION</td><td>DOUBLE</td><td>BINARY_DOUBLE</td><td>DOUBLE PRECISION</td></tr>
+            <tr><th>DB::float($uzunluk)</th><td>NUMERIC</td><td>FLOAT</td><td>FLOAT</td><td>FLOAT</td><td>BINARY_FLOAT</td><td>NUMERIC</td></tr>
+            <tr><th>DB::char($uzunluk)</th><td>CHAR</td><td>CHAR</td><td>CHAR</td><td>CHAR</td><td>CHAR</td><td>CHARACTER</td></tr>
+            <tr><th>DB::varChar($uzunluk)</th><td>VARCHAR</td><td>VARCHAR</td><td>VARCHAR</td><td>VARCHAR</td><td>VARCHAR2</td><td>CHARACTER VARYING</td></tr>
+            <tr><th>DB::tinyText()</th><td>VARCHAR(255)</td><td>VARCHAR(255)</td><td>VARCHAR(255)</td><td>TINYTEXT</td><td>VARCHAR2(255)</td><td>CHARACTER VARYING(255)</td></tr>
+            <tr><th>DB::text()</th><td>VARCHAR(65535)</td><td>VARCHAR(65535)</td><td>VARCHAR(65535)</td><td>TEXT</td><td>VARCHAR2(65535)</td><td>TEXT</td></tr>
+            <tr><th>DB::mediumText()</th><td>VARCHAR(16277215)</td><td>VARCHAR(16277215)</td><td>VARCHAR(16277215)</td><td>MEDIUMTEXT</td><td>VARCHAR2(16277215)</td><td>TEXT</td></tr>
+            <tr><th>DB::longText()</th><td>STRING</td><td>CLOB</td><td>BLOB</td><td>LONGTEXT</td><td>CLOB</td><td>TEXT</td></tr>
+            <tr><th>DB::date($uzunluk)</th><td>DATE</td><td>DATE</td><td>DATE</td><td>DATE</td><td>DATE</td><td>DATE</td></tr>
+            <tr><th>DB::datetime($uzunluk)</th><td>DATETIME</td><td>TIMESTAMP</td><td>DATETIME</td><td>DATETIME</td><td>TIMESTAMP</td><td>TIMESTAMP</td></tr>
+            <tr><th>DB::time($uzunluk)</th><td>TIME</td><td>TIME</td><td>TIME</td><td>TIME</td><td>TIMESTAMP</td><td>TIME</td></tr>
+            <tr><th>DB::timeStamp($uzunluk)</th><td>TIMESTAMP</td><td>TIMESTAMP($uzunluk)</td><td>TIMESTAMP</td><td>TIMESTAMP</td><td>TIMESTAMP</td><td>TIMESTAMP</td></tr>    
+        </table>
+    </p>
+    
+    <p>Yukarıdaki farklılıkları gidermek için bu veri türlerine göre yöntemler oluşturulmuştur. Bu yöntemlerin nasıl kullanılacağı ile ilgili bir örnek aşağıda verilmiştir.</p>
+    
+     <p>
+    <div type="code">
+  	<pre>DBForge::table(<sf>'ornektablo'</sf>)
+       ->column(<sf>'id'</sf>, <kf>array</kf>(<strong>DB::int</strong>(<if>11</if>), DB::autoIncrement()))
+       ->column(<sf>'isim'</sf>, <kf>array</kf>(<strong>DB::varchar</strong>(<if>50</if>), DB::notNull(), DB::collate(<sf>'utf8_unicode_ci'</sf>)))
+       ->createTable();</pre>
+    </div>
+  	</p>
+    
+    <p>Yukarıdaki yöntemlerin hepsini <strong>vartype()</strong> yöntemi ilede gerçekleştirebilirsiniz.</p>        
+    
+    <div type="prev-next">
+    	<div type="prev-btn"><a href="db_forge.html">Önceki</a></div><div type="next-btn"><a href="db_property.html">Sonraki</a></div>
+    </div>
+ 
+</body>
+</html>              

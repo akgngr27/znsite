@@ -1,0 +1,150 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>ZN KOD ÇATISI</title>
+<link type="text/css" rel="stylesheet" href="../Styles/Structure.css" />
+<script src="../Scripts/Jquery.js"></script>
+<script src="../Scripts/Structure.js"></script>
+</head>
+
+<body>
+    <div id="content-document"><a href="#">Döküman</a> » <a href="foundations.html">Foundations</a> » Route Kütüphanesi</div> 
+    <p class="ctfont">Route Kütüphanesi</p>
+    <p>Alternatif kontrolcü kullanımıdır. Bu kontrolcü kullanımında sayfa bir sınıf biçiminde olmak zorunda değildir. Bu kütüphane nesne yönelim konusunda çok fazla bilgi sahibi olmayan veya biraz daha pratik kullanım olması açısından kullanıcılar için oluşturulmuştur.</p>
+    <ul><li><a href="#" class="infont">Route Kütüphanesi ve Yöntemleri</a><br><br>
+        <ul>    
+            <li><a href="#run">Rotayı Çalıştırmak » <b>Route::run()</b></a></li>
+            <li><a href="#change">Rotayı Değiştirmek » <b>Route::change()</b></a></li>
+        </ul>
+    </li></ul>
+
+    
+   	<p class="cstfont" id="run">Rotayı Çalıştırmak</p>
+    <p><ftype>Route::run( <kf>string</kf> <vf>$fonksiyonIsmi</vf> , <kf>function</kf> <vf>$calistirilacakFonksiyonIcerigi</vf> ] )</ftype></p>
+    <p>Rotayı çalıştırmak amacı ile kullanılır.</p>
+ 
+    <p>
+    	<table class="cfont">
+        	<tr><th>Parametre</th><td>Anlamları</td></tr>
+            <tr><th>1. Parametre = Fonksiyon İsmi</th><td>URL'den belirtilen yola göre hangi fonksiyonun çalıştırılacağını belirlemek için kullanılır.</td></tr>
+            <tr><th>2. Parametre = Fonksiyon İçeriği</th><td>Fonksiyonun çalıştıracağı kodlar.</td></tr>
+        </table>
+    </p>
+	<p>
+ 
+    	<div type="code">
+ Controllers/anasayfa.php
+<pre><comment>// Fonksiyon ismi index olarak ayarlanırsa URL üzerinde 
+// fonksiyon bilgisini kullanmak gerekmez.
+// Bu kod bloğunu çalıştırmak için adres çubuğuna: xxx.com/index.php/anasayfa bilgisi girilir.</comment>
+Route::run(<sf>'index'</sf>, <ff>function</ff>()
+{
+    <kf>echo</kf> DB::get(<sf>'members'</sf>)->result();
+});
+
+<comment>// Bu kod bloğunu çalıştırmak için adres çubuğuna: xxx.com/index.php/anasayfa/test bilgisi girilir.</comment>
+Route::run(<sf>'test'</sf>, <ff>function</ff>()
+{
+    Import::view(<sf>'test'</sf>);
+});</pre>
+    	</div>
+    </p>
+ 
+ 	<p>İstenirse URL üzerinden <strong>parametre de gönderilebilir.</strong></p>
+    
+    <div type="code">
+ Controllers/anasayfa.php
+<pre>
+<comment>// URL: xxx.com/index.php/anasayfa/test/merhaba/dunya</comment>
+Route::run(<sf>'test'</sf>, <ff>function</ff>(<vf>$hello</vf>, <vf>$world</vf>)
+{
+    <kf>echo</kf> <vf>$hello.<sf>' - '</sf>.$world</vf>; <comment>// merhaba - dunya</comment>
+});</pre>
+    	</div>
+    </p>
+    
+    <p>Route sınıfında <strong>__costruct() veya __destruct()</strong> gibi yapılarla aynı işlevi gören yani başlangıçta çalıştırılacak kodları ayarlamak için aşağıdaki gibi bir kullanım da mümkündür.</p>
+    
+    <div type="code">
+<pre>
+<comment>// Tüm sayfa için geçerli başlangıçta çalıştırılması istenen kodlar</comment>
+Route::run(<sf>'construct'</sf>, <ff>function</ff>()
+{
+    <kf>echo</kf> <sf>'Başlangıçta çalıştırılıyor...'</sf>;
+});
+
+<comment>// URL: xxx.com/index.php/anasayfa/test/merhaba/dunya</comment>
+Route::run(<sf>'test'</sf>, <ff>function</ff>(<vf>$hello</vf>, <vf>$world</vf>)
+{
+    <kf>echo</kf> <vf>$hello.<sf>' - '</sf>.$world</vf>; <comment>// merhaba - dunya</comment>
+});
+
+<comment>// Tüm sayfa için geçerli sayfa sonunda çalıştırılması istenen kodlar</comment>
+Route::run(<sf>'destruct'</sf>, <ff>function</ff>()
+{
+    <kf>echo</kf> <sf>'Sayfa sonunda çalıştırılıyor...'</sf>;
+});</pre>
+    	</div>
+    </p>
+	
+    <p>Route kütüphanesinde <strong>statik olmayan</strong> model ve sınıflar için <strong>$this</strong> erişimi dışında yer alan diğer nesne erişim yöntemlerinden yararlanabilirsiniz.</p>
+    
+    <div type="code">
+<pre>
+Route::run(<sf>'test'</sf>, <ff>function</ff>()
+{
+    <comment>// Kodlar örnektir.</comment>
+    output( uselib(<sf>'Model'</sf>)->get(<sf>'tablo'</sf>) );
+    
+    <comment>// Ya da</comment>
+    
+    output( zn::<vf>$use</vf>->Model->get(<sf>'tablo'</sf>) );
+    
+    <comment>// Ya da</comment>
+    
+    <vf>$model</vf> = <kf>new</kf> Model;
+    
+    output( <vf>$model</vf>->get(<sf>'tablo'</sf>) );
+});</pre>
+    	</div>
+        
+        <p class="cstfont" id="change">Rotayı Değiştirmek</p>
+    <p><ftype>Route::change( <kf>array</kf> <vf>$changeUri</vf> )</ftype></p>
+    <p>Config/Route.php üzerinden yapılan uri yönlendirmeyi aynı mantıkda bu fonksiyon üzerinden de yapabilirsiniz.</p>
+ 
+    <p>
+    	<table class="cfont">
+        	<tr><th>Parametre</th><td>Anlamları</td></tr>
+            <tr><th>1. Parametre = Değişiklikler</th><td>Değiştirilmek istenen dizge anahtar değer çifti olarak belirtilir.</td></tr>
+        </table>
+    </p>
+	<p>
+ 
+    	<div type="code">
+ Controllers/anasayfa.php
+<pre><comment>// contact olan erişim adını iletisim olarak değiştiriyoruz.</comment>
+<comment>// URI: anasayfa/contact yerine anasayfa/iletisim olarak girilir.</comment>
+Route::change(<kf>array</kf>(<sf>'iletisim'</sf> => <sf>'contact'</sf>))->run(<sf>'contact'</sf>, <ff>function</ff>()
+{
+    <kf>echo</kf> DB::get(<sf>'members'</sf>)->result();
+});</pre>
+    	</div>
+    </p>
+    
+    <p>Değişim dizisinin anahtar bölümüne düzenli ifadeler desenide yazılabilir.</p>
+    
+    <div type="code"><pre>
+Route::change(<kf>array</kf>(<sf>'iletisim\/([0-9]+)\/(\w+$)'</sf> => <sf>'contact/$1/$2'</sf>))->run(<sf>'contact'</sf>, <ff>function</ff>(<vf>$p1</vf>, <vf>$p2</vf>)
+{
+    <kf>echo</kf> <vf>$p1</vf>.<sf>':'</sf>.<vf>$p2</vf>;
+});</pre>
+    	</div>
+    </p>
+    
+    <div type="prev-next">
+    	<div type="prev-btn"><a href="foundations_staticaccess.html">Önceki</a></div><div type="next-btn"><a href="foundations_redirect.html">Sonraki</a></div>
+    </div>
+ 
+</body>
+</html>              

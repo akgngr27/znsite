@@ -1,0 +1,295 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>ZN KOD ÇATISI</title>
+<link type="text/css" rel="stylesheet" href="../Styles/Structure.css" />
+<script src="../Scripts/Jquery.js"></script>
+<script src="../Scripts/Structure.js"></script>
+</head>
+
+<body>
+    <div id="content-document"><a href="#">Döküman</a> » <a href="db_dynamic.html">Database(Veritabanı) Kütüphanesi Yöntemleri</a> » Database Forge Kütüphanesi ve Kullanımı</div> 
+    <p class="ctfont">Database Forge Kütüphanesi ve Kullanımı</p>
+    <p>Bu bölümde veritabanı oluşturma yöntemlerinin anlatımına yer verdik.</p>
+    
+    <p>
+    	<table class="cfont" width="100%">
+        	<tr><th colspan="2">DBForge Kütüphanesi ve Yöntemleri</th></tr>     
+            <tr><th>Veritabanı Oluşturmak</th><td><a href="#db_create"><strong>DBForge::createDatabase()</strong></a></td></tr>
+            <tr><th>Veritabanını Silmek</th><td><a href="#db_drop"><strong>DBForge::dropDatabase()</strong></a></td></tr>
+            <tr><th width="40%">Tablo Oluşturmak</th><td><a href="#db_create_table"><strong>DBForge::createTable()</strong></a></td></tr>
+            <tr><th>Tablo Silmek</th><td><a href="#db_drop_table"><strong>DBForge::dropTable()</strong></a></td></tr>
+            <tr><th>Tabloyu Düzenlemek</th><td><a href="#db_alter_table"><strong>DBForge::alterTable()</strong></a></td></tr>
+            <tr><th>Tablo İsmini Değiştirmek</th><td><a href="#db_renameTable"><strong>DBForge::renameTable()</strong></a></td></tr>
+            <tr><th>Tabloya Sütun Eklemek</th><td><a href="#db_addColumn"><strong>DBForge::addColumn()</strong></a></td></tr>
+            <tr><th>Tablodan Sütun Silmek</th><td><a href="#db_drop_column"><strong>DBForge::dropColumn()</strong></a></td></tr>
+            <tr><th>Sütun İsmini Değiştirmek</th><td><a href="#db_rename_column"><strong>DBForge::renameColumn()</strong></a></td></tr>
+            <tr><th>Sütün Bilgilerini Düzenlemek</th><td><a href="#db_modify_column"><strong>DBForge::modifyColumn()</strong></a></td></tr>
+            <tr><th>Tablo Verilerini Boşaltmak</th><td><a href="#db_truncate"><strong>DBForge::truncate()</strong></a></td></tr>
+        </table>
+    </p>
+    
+    <p class="cstfont" id="db_create">Veritabanı Oluşturmak</p>
+    <p><ftype>DBForge::createDatabase( <kf>string</kf> <vf>$veritabani_adi</vf> )</ftype></p>
+    <p>Veritabanı oluşturmak için kullanılır.</p>
+    
+    <table class="cfont">
+    	<tr><th>Parametre</th><td>Kullanımı</td></tr>
+        <tr><th>string Veritabanı Adı</th><td>Oluşturulacak veritabanının adı.</td></tr>
+    </table>
+    
+    <p>
+    <div type="code">
+  	DBForge::createDatabase(<sf>'OrnekDatabase'</sf>);<br>
+    </div>
+    </p>
+    
+    <p class="cstfont" id="db_drop">Veritabanını Silmek</p>
+    <p><ftype>DBForge::dropDatabase( <kf>string</kf> <vf>$veritabani_adi</vf> )</ftype></p>
+    <p>Veritabanı oluşturmak için kullanılır.</p>
+    
+    <table class="cfont">
+    	<tr><th>Parametre</th><td>Kullanımı</td></tr>
+        <tr><th>string Veritabanı Adı</th><td>Silinecek veritabanının adı.</td></tr>
+    </table>
+    
+    <div type="code">
+  	DBForge::dropDatabase(<sf>'OrnekDatabase'</sf>);<br>
+    </div>
+    
+    
+    <p class="cstfont" id="db_create_table">Tablo Oluşturmak</p>
+    <p><ftype>DBForge::createTable( <kf>string</kf> <vf>$tablo_adi</vf> , <kf>array</kf> <vf>$sutun_ozellikleri</vf> )</ftype></p>
+    <p>Yeni bir tablo oluşturmak için kullanılır.</p>
+    
+      <p>
+    	<table class="cfont">
+        	<tr><th colspan="2">DBForge::createTable()</th></tr>
+            <tr><th colspan="2">Parametreler</th></tr>
+            <tr><th>1.Parametre Tablo Adı</th><td>'YeniTablo'</td></tr>
+    		<tr><th>2.Parametre Tablo Sütunları</th><td>array('sutun adı' => 'sutun ozelligi')</td></tr>
+            <tr><th>[3.Parametre string/array Extralar]</th><td>Komutun sonuna veri eklemek için kullanılabilir. CREATE TABLE (...) ekstralar ;</td></tr>
+        </table>
+    </p>
+    
+    <div type="code"><pre>
+<vf>$sutunlar</vf> = <kf>array</kf>(
+	<sf>'id'</sf> => <sf>'int(11) not null'</sf>,
+    	<sf>'isim'</sf> => <sf>'varchar(50) COLLATE utf8_unicode_ci NOT NULL'</sf>
+);
+<strong>DBForge::createTable</strong>(<sf>'IF NOT EXISTS YeniTablo'</sf>, <vf>$sutunlar</vf>, DB::encoding(<sf>'utf-8'</sf>, <sf>'utf8_general_ci'</sf>));
+    </pre></div>
+    
+    
+    <p>Ya da aşağıdaki gibi biraz daha evrensel bir yapı ile tablonuzu oluşturabilirsiniz.</p>
+    
+    <div type="code"><pre>
+<vf>$sutunlar</vf> = <kf>array</kf>(
+    <sf>'id'</sf>   => <kf>array</kf>(DB::int(<if>11</if>), DB::notNull(), DB::autoIncrement()),
+    <sf>'isim'</sf> => <kf>array</kf>(DB::varchar(<if>50</if>), DB::notNull(), DB::collate(<sf>'utf8_unicode_ci'</sf>))
+);
+<strong>DBForge::createTable</strong>(<sf>'IF NOT EXISTS YeniTablo'</sf>, <vf>$sutunlar</vf>, DB::encoding(<sf>'utf-8'</sf>, <sf>'utf8_general_ci'</sf>));
+    </pre></div>
+    
+    <p>Aşağıdaki gibi bir kullanımda mümkündür.</p>
+    
+    <p>
+    <div type="code">
+  	<pre>DBForge::table(<sf>'ornektablo'</sf>)
+       ->column(<sf>'id'</sf>, <kf>array</kf>(DB::int(<if>11</if>), DB::notNull(), DB::autoIncrement()))
+       ->column(<sf>'isim'</sf>, <kf>array</kf>(DB::varchar(<if>50</if>), DB::notNull(), DB::collate(<sf>'utf8_unicode_ci'</sf>)))
+       ->createTable();</pre>
+    </div>
+  	</p>
+    
+     <p class="cstfont" id="db_drop_table">Tablo Silmek</p>
+     <p><ftype> DBForge::dropTable( <kf>string</kf> <vf>$tablo_adi</vf> )</ftype></p>
+     <p>Tablo silmek için kullanılır.</p>
+    
+      <p>
+    	<table class="cfont">
+        	<tr><th>Parametreler</th><th>Kullanımı</th></tr>
+            <tr><th>string Tablo Adı</th><td>Silinecek tablo adı.</td></tr>
+        </table>
+    </p>
+    
+    <div type="code"><strong>DBForge::dropTable</strong>(<sf>'YeniTablo'</sf>);<comment> // Tek bir tablo silinecekse değeri string olarak girin.</comment></div>
+    
+    
+     <p class="cstfont" id="db_alter_table">Tabloyu Düzenlemek</p>
+     <p><ftype> DBForge::alterTable( <kf>string</kf> <vf>$tablo_adi</vf> , <kf>array</kf> <vf>$degisiklikler</vf> )</ftype></p>
+     <p>Tablo ismini değiştirmek sütun eklemek veya kaldırmak için kullanılır. 2 Parametre kullanır.</p>
+    
+      <p>
+    	<table class="cfont">
+        	<tr><th colspan="2">$this->db->alterTable()</th></tr>
+            <tr><th>Parametreler</th><th>Anlamları</th></tr>
+            <tr><th>1.Parametre Tablo İsmi</th><td>Değişiklik yapılacak tablo adı girilir. 'OrnekTablo'</td></tr>
+    		<tr><th>2.Parametre Değişikliğin Ne Olacakğını Belirtir.</th><td>Anahtar değer çiftlerinden oluşan bilgi dizisi ister.</td></tr>
+            <tr><th colspan="2">2. Parametrede Kullanılabilir Anahtar Kelimeler.</th></tr>
+            <tr><th>renameTable</th><td>Tablo ismini değiştirmek için kullanılır.</td></tr>
+            <tr><th>addColumn</th><td>Tabloya sütun eklemek için kullanılır.</td></tr>
+            <tr><th>dropColumn</th><td>Tablodan sütun silmek için kullanılır.</td></tr>
+            <tr><th>renameColumn</th><td>Tablodan sütun adını değiştirmek için kullanılır.</td></tr>
+            <tr><th>modifyColumn</th><td>Tablodan sütun bilgilerini düzenlemek için kullanılır.</td></tr>
+        </table>
+    </p>
+    
+    <div type="code"><strong>DBForge::alterTable</strong>(<sf>'YeniTablo'</sf>, <kf>array</kf>(<sf>'renameTable'</sf> => <sf>'YeniIsim'</sf>));<comment> // Tablonun ismini değiştirmek için kullanılan form.</comment></div>
+    <p></p>
+    <div type="code"><strong>DBForge::alterTable</strong>(<sf>'YeniTablo'</sf>, <kf>array</kf>(<sf>'addColumn'</sf> => <kf>array</kf>(<sf>'numara'</sf> => DB::varchar(<if>50</if>))));<comment> // Tabloya sütun eklemek için kullanılan form.</comment></div>
+    <p></p>
+    <div type="code"><strong>DBForge::alterTable</strong>(<sf>'YeniTablo'</sf>, <kf>array</kf>(<sf>'dropColumn'</sf> => <sf>'numara'</sf>));<comment> // Tablodan sütun çıkarmak için kullanılan form.</comment></div>
+    <p></p>
+    
+    <p class="cstfont" id="db_renameTable">Tablo İsmini Değiştirmek</p>
+     <p><ftype> DBForge::renameTable( <kf>string</kf> <vf>$eski_tablo_ismi</vf> , <kf>string</kf> <vf>$yeni_tablo_ismi</vf> )</ftype></p>
+     <p>Tablo ismini değiştirmek için <strong>alter table yöntemine alternatif</strong> olarak geliştirilmiş pratik tablo adı değiştirmek yöntemidir.</p>
+    
+      <p>
+    	<table class="cfont">
+            <tr><th>Parametreler</th><th>Anlamları</th></tr>
+            <tr><th>1.Parametre Eski Tablo İsmi</th><td>Eski tablo adı girilir. 'OrnekTablo'</td></tr>
+    		<tr><th>2.Parametre Yeni Tablo İsmi</th><td>Yeni tablo adı girilir. 'YeniOrnekTablo'</td></tr>
+        </table>
+    </p>
+    
+    <p>
+    <div type="code"><strong>DBForge::renameTable</strong>(<sf>'EskiTablo'</sf> , <sf>'YeniTablo'</sf>);<comment> // Tek bir tablo silinecekse değeri string olarak girin.</comment></div>
+  	</p>
+    
+    
+    <p class="cstfont" id="db_addColumn">Tabloya Sütun Eklemek</p>
+     <p><ftype> DBForge::addColumn( <kf>string</kf> <vf>$tablo_adi</vf> , <kf>array</kf> <vf>$sutunlar</vf> )</ftype></p>
+     <p>Tabloya sütun eklemek için <strong>alter table yöntemine alternatif</strong> olarak geliştirilmiş pratik sütun ekleme yöntemidir.</p>
+    
+      <p>
+    	<table class="cfont">
+            <tr><th>Parametreler</th><th>Anlamları</th></tr>
+            <tr><th>1.Parametre Tablo İsmi</th><td>Sütunların ekleneceği tablonunun ismi.</td></tr>
+    		<tr><th>2.Parametre Eklenecek Sütunlar</th><td>Eklenecek sütunlar dizisi</td></tr>
+        </table>
+    </p>
+    
+    <p>
+    <div type="code"><strong>DBForge::addColumn</strong>(<sf>'OrnekTablo'</sf> , <kf>array</kf>(<sf>'sutun1'</sf> => <kf>array</kf>(DB::int(), DB::notNull())));</div>
+  	</p>
+    
+    <p>
+    <div type="code"><strong>DBForge::addColumn</strong>(<sf>'OrnekTablo'</sf> , <kf>array</kf>(<sf>'sutun1'</sf> => <sf>'int not null'</sf>));<comment> // Sütun bilgileri string olarakta girilebilir.</comment></div>
+  	</p>
+    
+    <p>Aşağıdaki gibi bir kullanımda mümkündür.</p>
+    
+    <p>
+    <div type="code">
+  	<pre>DBForge::table(<sf>'ornektablo'</sf>)
+       ->column(<sf>'id'</sf>, <kf>array</kf>(DB::int(<if>11</if>), DB::notNull(), DB::autoIncrement()))
+       ->column(<sf>'isim'</sf>, <kf>array</kf>(DB::varchar(<if>50</if>), DB::notNull(), DB::collate(<sf>'utf8_unicode_ci'</sf>)))
+       ->addColumn();</pre>
+    </div>
+  	</p>
+    
+    <p class="cstfont" id="db_drop_column">Tablodan Sütun Silmek</p>
+     <p><ftype> DBForge::dropColumn( <kf>string</kf> <vf>$tablo_adi</vf> , <kf>string/array</kf> <vf>$sutunlar</vf> )</ftype></p>
+     <p>Tablodan sütun silmek için <strong>alter table yöntemine alternatif</strong> olarak geliştirilmiş pratik sütun silme yöntemidir.</p>
+    
+      <p>
+    	<table class="cfont">
+            <tr><th>Parametreler</th><th>Anlamları</th></tr>
+            <tr><th>1.Parametre Tablo İsmi</th><td>Sütunların silineceği tablonunun ismi.</td></tr>
+    		<tr><th>2.Parametre Silinecek Sütunlar</th><td>Silinecek sütunlar.</td></tr>
+        </table>
+    </p>
+    
+    <p>
+    <div type="code"><strong>DBForge::dropColumn</strong>(<sf>'OrnekTablo'</sf> , <kf>array</kf>(<sf>'sutun1'</sf> , <sf>'sutun2'</sf>));</div>
+  	</p>
+    
+    <p>
+    <div type="code"><strong>DBForge::dropColumn</strong>(<sf>'OrnekTablo'</sf> , <sf>'sutun1'</sf>);<comment> // Tek bir sütun silinecekse parametre string girilebilir .</comment></div>
+  	</p>
+    
+    <p>Aşağıdaki gibi bir kullanımda mümkündür.</p>
+    
+   <p>
+    <div type="code">
+  	<pre>DBForge::table(<sf>'ornektablo'</sf>)
+       ->column(<sf>'sutun1'</sf>)
+       ->column(<sf>'sutun2'</sf>)
+       ->dropColumn();</pre>
+    </div>
+  	</p>
+     
+    <p class="cstfont" id="db_rename_column">Sütun Adını Değiştirmek</p>
+     <p><ftype> DBForge::renameColumn( <kf>string</kf> <vf>$tablo_adi</vf> , <kf>array</kf> <vf>$sutunlar</vf> )</ftype></p>
+     <p>Sütun adını değiştirmek için <strong>alter table yöntemine alternatif</strong> olarak geliştirilmiş pratik sütun adı değiştirme yöntemidir.</p>
+    
+      <p>
+    	<table class="cfont">
+            <tr><th>Parametreler</th><th>Anlamları</th></tr>
+            <tr><th>1.Parametre Tablo İsmi</th><td>Sütunların ekleneceği tablonunun ismi.</td></tr>
+    		<tr><th>2.Parametre Eklenecek Sütunlar</th><td>Adı değiştirilecek sütun bilgisi</td></tr>
+        </table>
+    </p>
+    
+    <p>
+    <div type="code"><strong>DBForge::renameColumn</strong>(<sf>'OrnekTablo'</sf> , <kf>array</kf>(<sf>'sutun1 sutun2'</sf> => <kf>array</kf>(DB::int(), DB::notNull())));</div>
+  	</p>
+    
+    <p>
+    <div type="code"><strong>DBForge::renameColumn</strong>(<sf>'OrnekTablo'</sf> , <kf>array</kf>(<sf>'sutun1 sutun2'</sf> => <sf>'int not null'</sf>));<comment> // Sütun bilgileri string olarakta girilebilir.</comment></div>
+  	</p>
+    
+     <p>Aşağıdaki gibi bir kullanımda mümkündür.</p>
+    
+   <p>
+    <div type="code">
+  	<pre>DBForge::table(<sf>'ornektablo'</sf>)
+       ->column(<sf>'sutun1'</sf>, <kf>array</kf>(<sf>'yeniSutun1'</sf>, DB::int(), DB::notNull()))
+       ->column(<sf>'sutun2'</sf>, <kf>array</kf>(<sf>'yeniSutun2'</sf>, DB::char(<if>10</if>), DB::notNull()))
+       ->renameColumn();</pre>
+    </div>
+  	</p>
+    
+     <p class="cstfont" id="db_modify_column">Sütun Bilgisini Güncellemek</p>
+     <p><ftype> DBForge::modifyColumn( <kf>string</kf> <vf>$tablo_adi</vf> , <kf>array</kf> <vf>$sutunlar</vf> )</ftype></p>
+     <p>Tabloya sütun bilgisini güncellemek için <strong>alter table yöntemine alternatif</strong> olarak geliştirilmiş pratik sütun güncelleme yöntemidir.</p>
+    
+      <p>
+    	<table class="cfont">
+            <tr><th>Parametreler</th><th>Anlamları</th></tr>
+            <tr><th>1.Parametre Tablo İsmi</th><td>Sütunların ekleneceği tablonunun ismi.</td></tr>
+    		<tr><th>2.Parametre Güncellenecek Sütunlar</th><td>Güncellenecek sütunlar dizisi</td></tr>
+        </table>
+    </p>
+    
+    <p>
+    <div type="code"><strong>DBForge::modifyColumn</strong>(<sf>'OrnekTablo'</sf> , <kf>array</kf>(<sf>'sutun1'</sf> => <kf>array</kf>(DB::int(), DB::notNull())));</div>
+  	</p>
+    
+    <p>
+    <div type="code"><strong>DBForge::modifyColumn</strong>(<sf>'OrnekTablo'</sf> , <kf>array</kf>(<sf>'sutun1'</sf> => <sf>'int not null'</sf>));<comment> // Sütun bilgileri string olarakta girilebilir.</comment></div>
+  	</p>
+    
+        
+    <p class="cstfont" id="db_truncate">Tablo İçerğini Boşaltmak</p>
+    <p><ftype> DBForge::truncate( <kf>string</kf> <vf>$tablo_adi</vf> )</ftype></p>
+     <p>Tablo içeriğini boşaltmak için kullanılır.</p>
+    
+      <p>
+    	<table class="cfont">
+        	<tr><th colspan="2">$this->db->truncate()</th></tr>
+            <tr><th>Parametreler</th><th>Anlamları</th></tr>
+            <tr><th>1.Parametre Tablo İsmi</th><td>İçi boşaltılacak tablo adı girilir. 'OrnekTablo'</td></tr>
+        </table>
+    </p>
+   	<p><div type="code"><strong>DBForge::truncate</strong>(<sf>'YeniTablo'</sf>);</div></p>
+  
+    <div type="prev-next">
+    	<div type="prev-btn"><a href="db_trans.html">Önceki</a></div><div type="next-btn"><a href="db_vartypes.html">Sonraki</a></div>
+    </div>
+ 
+</body>
+</html>              

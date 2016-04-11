@@ -1,0 +1,78 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>ZN KOD ÇATISI</title>
+<link type="text/css" rel="stylesheet" href="../Styles/Structure.css" />
+<script src="../Scripts/Jquery.js"></script>
+<script src="../Scripts/Structure.js"></script>
+</head>
+
+<body>
+    <div id="content-document"><a href="#">Döküman</a> » <a href="access_methods.html">Nesne Erişim Yöntemleri</a> » Statik Erişim</div> 
+    <p class="ctfont">Statik Erişim</p>
+ 	<p>Sınıflar ve import yöntemleri statik formda oluşturulduktan dolayı nesnelere statik olarak erişilebilmektedir.</p>
+    <p>Statik çağrı, <strong>performans açısından en verilimli</strong> çağrıdır.</p>
+  
+    <div type="code">
+Controllers/Anasayfa.php
+<pre><x><</x>?php
+<kf>class</kf> Anasayfa <kf>extends</kf> Controller
+{
+	<ff>function</ff> index()
+        {
+            Import::page(<sf>'Anasayfa'</sf>);
+        }
+}</pre>   
+    </div>
+    
+    <p>Statik formda tanımlanan her kütüphaneye statik olarak erişilebilmektedir.</p>
+    
+    <p class="ctfont">Statik Olmayan(Non Static) Sınıfları Statik Erişim ile Kullanmak</p>
+    <p>Statik olmayan bir kütüphanesi hem statik hemde dinamik olarak kullanmak isterseniz bu kütüphanesinın isminin başına <strong>__USE_STATIC_ACCESS__</strong> (Başında ve sonunda 2 alt tire bulunmaktadır.) ön ekini getirmeniz yeterlidir.</p>
+    
+    <p>Aşağıda statik olmayan bir kütüphanesin nasıl statik kullanılabileceği hakkında örnek verilmiştir.</p>
+    
+    <div type="code">
+Libraries/Test.php
+<pre><x><</x>?php
+<kf>class</kf> Test
+{
+	<kf>public</kf> <ff>function</ff> ornek()
+        {
+            <comment>// kodlar</comment>
+        }
+}</pre>   
+    </div>
+    
+    <p>Yukarıdaki kütüphanesi dinamik olduğu kadar statik olarakta kullanmak isterseniz aşağıdaki gibi kullanmanız gerekmektedir.</p>
+    
+    <div type="code">
+Libraries/Test.php
+<pre><x><</x>?php
+<kf>class</kf> <strong>__USE_STATIC_ACCESS__</strong>Test <comment> Dikkat! __USE_STATIC_ACCESS__ ön eki getirilmiştir.</comment>
+{
+	<kf>public</kf> <ff>function</ff> ornek()
+        {
+            <comment>// kodlar</comment>
+        }
+}</pre>   
+    </div>
+    
+    <p>Yukarıda sınıf isminin başına konulan <strong>__USE_STATIC_ACCESS__</strong> ön eki sayesinde artık bu kütüphanesi <strong>statik</strong> olarak kullanabilirsiniz.</p>
+    
+    <div type="code">
+	test::ornek();<br>
+    
+    <comment> // Ya da</comment><br>
+    
+    <vf>$this</vf>->test->ornek(); 
+    </div>
+   
+    <div type="prev-next">
+    	<div type="prev-btn"><a href="access_dynamic.html">Önceki</a></div><div type="next-btn"><a href="access_znuse.html">Sonraki</a></div>
+    </div>
+ 	
+ 
+</body>
+</html>              

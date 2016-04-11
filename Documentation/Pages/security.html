@@ -1,0 +1,253 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>ZN KOD ÇATISI</title>
+<link type="text/css" rel="stylesheet" href="../Styles/Structure.css" />
+<script src="../Scripts/Jquery.js"></script>
+<script src="../Scripts/Structure.js"></script>
+</head>
+
+<body>
+    <div id="content-document"><a href="#">Döküman</a> » <a href="security.html">Security</a> » Security(Güvenlik) Kütüphanesi</div> 
+    <p class="ctfont">Security(Güvenlik) Kütüphanesi</p>
+    <p>PHP güvenlik açıklarını en aza indirmek için oluşturulmuş sınıftır.</p>
+    <ul><li><a href="#" class="infont">Security(Güvenlik) Kütüphanesi ve Yöntemleri</a><br><br>
+        <ul>  
+        	<li><a href="#sec_nc_encode">Kötü Amaçlı Kodları Değiştirmek » <b>Security::ncEncode()</b></a></li>
+            <li><a href="#sec_xss_encode">Kötü Amaçlı Çapraz Kodları Dönüştürmek » <b>Security::xssEncode()</b></a></li>
+            <li><a href="#sec_injection_encode">Tırnak Enjeksiyonları Dönüştürmek ve Eski Haline Getirmek » <b>Security::injectionEncode() , Security::html::injectionDecode()</b></a></li>
+            <li><a href="#sec_html_encode">Html Karakterlerini Dönüştürmek ve Eski Haline Getirmek » <b>Security::htmlEncode() , Security::html::decode()</b></a></li>
+            <li><a href="#sec_php_tag_encode">PHP Taglarını Html Karakterlerine Dönüştürmek » <b>Security::phpTagEncode() , Security::phpTagDecode()</b></a></li>
+            <li><a href="#sec_nail_encode">Tırnak İşaretlerini Html Karakterlerine Dönüştürmek » <b>Security::nailEncode() , Security::nailDecode()</b></a></li>
+            <li><a href="#sec_foreign_char_encode">Yabancı Karakterleri Html Karakterlerine Dönüştürmek » <b>Security::foreignCharEncode() , Security::foreignCharDecode()</b></a></li>
+             <li><a href="#sec_escape_string_encode">Tırnak İşarelerine \ Ön Eki İlave Etmek » <b>Security::escapeStringEncode() , Security::escapeStringDecode()</b></a></li>
+        </ul>
+    </li></ul>
+    
+    
+   	<p class="cstfont" id="sec_nc_encode">Kötü Amaçlı Kodları Değiştirmek</p>
+    <p><ftype>Security::ncEncode( <kf>string</kf> <vf>$metin</vf> , <kf>string/array</kf> <vf>$kotu_amacli_kodlar</vf> , [ <kf>string/array</kf> <vf>$degistirilecek_ifade</vf> = <sf>'[badword]'</vf> ] )</ftype></p>
+    <p>Kötü içerikli olduğunu düşündüğünüz ifadeleri değiştirmek için kullanılır. 3 parametresi vardır. Metin, Kötü Amaçlı Kodlar, Değiştirilecek İfade.</p> 
+    <p>2. Parametrede kötü kodlar aranırken küçük büyük harf duyarlılığı dikkate alınmaz bu durum güvenlik açısından yarar sağlar ayrıca kötü kodları yazarken tek bir ifade yazılacaksa string olarak yazılabilir eğer birden fazla yazılacaksa dizi içerisinde kullanılabilir.</p>
+    <p>
+    	<table class="cfont">
+        	<tr><th>Parametre</th><td>Anlamları</td></tr>
+            <tr><th>1. Parametre = Metin</th><td>Kötü kodları barındırma ihtimali olan metin.</td></tr>
+			<tr><th>2. Parametre = Aranacak Kelime</th><td>Kötü kodlar.</td></tr>
+            <tr><th>3. Parametre = [Değiştirilecek İfade = [badwords]]</th><td></td></tr>
+       
+        </table>
+    </p>
+    
+    <p>
+    	<div type="code">
+<pre>
+<vf>$metin</vf> = <sf>"OR sifre = '1'"</sf>;
+
+<comment> // Metin içerisinde geçen 'or' ve 'from' kötü amaçlı ifadeleri değiştir.  </comment>
+<vf>$metin</vf> = <strong>Security::ncEncode</strong>(<vf>$metin</vf>, <kf>array</kf>(<sf>'or'</sf>,<sf>'from'</sf>), <sf>'[kötü-kelime]'</sf>);
+
+<comment> // ------------------------------ VEYA ------------------------- </comment>
+
+<comment> // Metin içerisinde geçen 'or' kötü amaçlı ifadesini değiştir.  </comment>
+<vf>$metin</vf> = <strong>Security::ncEncode</strong>(<vf>$metin</vf>, <sf>'or'</sf>, <sf>'[kötü-kelime]'</sf>);
+
+<kf>echo</kf> <vf>$metin</vf>; <comment> // Çıktı: [kötü-kelime] sifre = '1'</comment>
+</pre>
+        </div>
+    </p>
+    
+    
+    
+    <p class="cstfont" id="sec_xss_encode">Kötü Amaçlı Çapraz Kodları Dönüştürmek</p>
+    <p><ftype>Security::xssEncode( <kf>string</kf> <vf>$metin</vf> )</ftype></p>
+    <p>Genel olarak script kodlardan kaynaklı çapraz enjeksiyonları engellemek için geliştirilmiştir. Hangi karakterleri engellemesi gerektiği <strong>Aplication/Config/Security.php</strong> dosyasında yer almaktadır.</p> 
+    
+    <p>
+    	<table class="cfont">
+        	<tr><th>Parametre</th><td>Anlamları</td></tr>
+            <tr><th>1. Parametre = Metin</th><td>Tırnaklar temizlenecek metin.</td></tr> 
+        </table>
+    </p>
+    
+    <p>
+    	<div type="code">
+<pre>
+<vf>$metin</vf> = <sf>"<x><</x>script><x><</x>/script>"</sf>;
+
+<vf>$metin</vf> = <strong>Security::xssEncode</strong>(<vf>$metin</vf>);
+
+<kf>echo</kf> <vf>$metin</vf>; <comment> // Çıktı: <x>&</x>#60;script<x>&</x>#62;<x>&</x>#60;/script<x>&</x>#62;</comment>
+</pre>
+        </div>
+    </p>
+    
+	<p>Dönüştürülen tırnak işaretlerini eski haline getirmek içinde Security::nailDecode() yöntemi kullanılır.</p>
+    
+    <div type="code">
+<pre>
+<vf>$metin</vf> = <sf>"OR sifre = '1'"</sf>;
+
+<vf>$metin</vf> = Security::nailEncode(<vf>$metin</vf>);
+
+<vf>$metin</vf> = <strong>Security::nailDecode</strong>(<vf>$metin</vf>);
+
+<kf>echo</kf> <vf>$metin</vf>; <comment> // Çıktı: OR sifre = '1'</comment>
+</pre>
+        </div>
+    </p>
+    
+    
+    <p class="cstfont" id="sec_injection_encode">Tırnak Enjeksiyonları Dönüştürmek ve Eski Haline Getirmek </p>
+    <p><ftype>Security::injectionEncode( <kf>string</kf> <vf>$metin</vf> )</ftype></p>
+    <p><ftype>Security::injectionDecode( <kf>string</kf> <vf>$metin</vf> )</ftype></p>
+    <p>Sorgu ifadeleri içerisinde geçen (') ve (") tırnak işaretleri veri güvenliği için (\') ve (\") şekline dönüştürülmesini sağlar. Tek parametresi vardır. Metin</p> 
+    
+    <p>
+    	<table class="cfont">
+        	<tr><th>Parametre</th><td>Anlamları</td></tr>
+            <tr><th>1. Parametre = Metin</th><td>Tırnaklar temizlenecek metin.</td></tr> 
+        </table>
+    </p>
+    
+    <p>
+    	<div type="code">
+<pre>
+<vf>$metin</vf> = <sf>"OR sifre = '1'"</sf>;
+
+<vf>$metin</vf> = <strong>Security::injectionEncode</strong>(<vf>$metin</vf>);
+
+<kf>echo</kf> <vf>$metin</vf>; <comment> // Çıktı: OR sifre = \'1\'</comment>
+</pre>
+        </div>
+    </p>
+    
+	<p>Dönüştürülen tırnak işaretlerini eski haline getirmek içinde Security::injectionDecode() yöntemi kullanılır.</p>
+    
+    <div type="code">
+<pre>
+<vf>$metin</vf> = <sf>"OR sifre = '1'"</sf>;
+
+<vf>$metin</vf> = Security::injectionEncode(<vf>$metin</vf>);
+
+<vf>$metin</vf> = <strong>Security::injectionDecode</strong>(<vf>$metin</vf>);
+
+<kf>echo</kf> <vf>$metin</vf>; <comment> // Çıktı: OR sifre = '1'</comment>
+</pre>
+        </div>
+    </p>
+    
+    
+    
+    <p class="cstfont" id="sec_html_encode">Html Karakterlerini Dönüştürmek ve Eski Haline Getirmek </p>
+    <p><ftype>Security::htmlEncode( <kf>string</kf> <vf>$metin</vf> , [ <kf>string> <vf>$donusum</vf> = <sf>'quotes'</sf> ] )</ftype></p>
+    <p><ftype>Security::htmlDecode( <kf>string</kf> <vf>$metin</vf> , [ <kf>string> <vf>$donusum</vf> = <sf>'quotes'</sf> ] )</ftype></p>
+    <p>Html'ye ait <x><</x> , <x>></x> gibi karakterler ile tırnak işaretleri dönüştürülür böylece text alanları üzerinden script saldırıların önüne geçilmiş olur. 2 parametresi vardır. Metin, Dönüşüm.</p> 
+    
+    <p>
+    	<table class="cfont">
+        	<tr><th>Parametre</th><td>Anlamları</td></tr>
+            <tr><th>1. Parametre = Metin</th><td>Dönüşütürülecek metin.</td></tr>
+            <tr><th>2. Parametre = [Dönüşüm = quotes]</th><td>Alabileceği değerler = quotes, nonquotes, compat</td></tr>
+        </table>
+    </p>
+    
+    <p>
+    	<div type="code">
+<pre>
+<vf>$metin</vf> = <sf>"<x><</x>script>alert('1');<x><</x>/script>"</sf>;
+
+<vf>$metin</vf> = <strong>Security::htmlEncode</strong>(<vf>$metin</vf>);
+
+<kf>echo</kf> <vf>$metin</vf>; <comment> // Çıktı: <x>&</x>lt;script<x>&</x>gt;alert(<x>&</x>#039;1<x>&</x>#039;);<x>&</x>lt;/script<x>&</x>gt;gt;'</comment>
+</pre>
+        </div>
+    </p>
+   
+    <p>Şimdede dönüştürdüğümüz verileri eski hallerine geri getirelim.</p>
+    
+    <p>
+    	<div type="code">
+<pre>
+<vf>$metin</vf> = <sf>"<x><</x>script>alert('1');<x><</x>/script>"</sf>;
+
+<vf>$metin</vf> = Security::htmlEncode(<vf>$metin</vf>);
+
+<vf>$metin</vf> = <strong>Security::htmlDecode</strong>(<vf>$metin</vf>);
+
+<kf>echo</kf> <vf>$metin</vf>; <comment> // Çıktı: <x><</x>script>alert('1');<x><</x>/script></comment>
+</pre>
+        </div>
+    </p>
+    
+    
+     <p class="cstfont" id="sec_php_tag_encode">Php Taglarını Şifrelemek</p>
+    <p><ftype>Security::phpTagEncode( <kf>string</kf> <vf>$metin</vf> ), Security::phpTagDecode( <kf>string</kf> <vf>$metin</vf> )</ftype></p>
+    <p>Php taglarını şifrelemek için kullanılır.</p>
+    
+    <p>
+    	<table class="cfont">
+        	<tr><th>No</th><th>Parametreler</th><td>Anlamları</td></tr>
+            <tr><th>1</th><th>string Metin</th><td>Şifrelenecek metin.</td></tr>
+        </table>
+    </p>
+    
+	<div type="code">
+    <kf>echo</kf> Security::phpTagEncode(<sf>'<x><</x>?php Metin ?>'</sf>); <comment>/* Kaynak Kod Çıktı: <x>&</x>#60;<x>&</x>#63;php Metin <x>&</x>#63;<x>&</x>#62; => <x><</x>?php Metin ?> */</comment><br>
+    </div>
+    
+    
+    <p class="cstfont" id="sec_nail_encode">Tırnak İşaretlerini Şifrelemek</p>
+    <p><ftype>Security::nailEncode( <kf>string</kf> <vf>$metin</vf> ), Security::nailDecode( <kf>string</kf> <vf>$metin</vf> )</ftype></p>
+    <p>Tırnak işaretlerini şifrelemek için kullanılır.</p>
+    
+    <p>
+    	<table class="cfont">
+        	<tr><th>No</th><th>Parametreler</th><td>Anlamları</td></tr>
+            <tr><th>1</th><th>string Metin</th><td>Şifrelenecek metin.</td></tr>
+        </table>
+    </p>
+    
+	<div type="code">
+    <kf>echo</kf> Security::nailEncode(<sf>'"Metin"'</sf>); <comment>/* Kaynak Kod Çıktı: <x>&</x>#147;Metin<x>&</x>#147; => "Metin" */</comment><br>
+    </div>
+    
+    
+    <p class="cstfont" id="sec_foreign_char_encode">Yabancı Karakterleri Şifrelemek</p>
+    <p><ftype>security::foreignCharEncode( <kf>string</kf> <vf>$metin</vf> ), secuirty::foreignCharDecode( <kf>string</kf> <vf>$metin</vf> )</ftype></p>
+    <p>Tırnak işaretlerini şifrelemek için kullanılır.</p>
+    
+    <p>
+    	<table class="cfont">
+        	<tr><th>No</th><th>Parametreler</th><td>Anlamları</td></tr>
+            <tr><th>1</th><th>string Metin</th><td>Şifrelenecek metin.</td></tr>
+        </table>
+    </p>
+    
+	<div type="code">
+    <kf>echo</kf> security::foreignCharEncode(<sf>'Türkçe'</sf>); <comment>/* Kaynak Kod Çıktı: T<x>&</x>#252;rk<x>&</x>#231;e => Türkçe */</comment><br>
+    </div>
+    
+    <p class="cstfont" id="sec_escape_string_encode">Tırnak İşareleri Önüne \ Eki İlave Etmek</p>
+    <p><ftype>security::escapeStringEncode( <kf>string</kf> <vf>$metin</vf> ), secuirty::escapeStringDecode( <kf>string</kf> <vf>$metin</vf> )</ftype></p>
+    <p>Tırnak işaretlerine \ ön eki koymak için kullanılır.</p>
+    
+    <p>
+    	<table class="cfont">
+        	<tr><th>No</th><th>Parametreler</th><td>Anlamları</td></tr>
+            <tr><th>1</th><th>string Metin</th><td>Şifrelenecek metin.</td></tr>
+        </table>
+    </p>
+    
+	<div type="code">
+    <kf>echo</kf> security::escapeStringEncode(<sf>'Türkçe'dir'</sf>); <comment>/* Kaynak Kod Çıktı: Türkçe\'dir */</comment><br>
+    </div>
+    
+    
+    <div type="prev-next">
+    	<div type="prev-btn"><a href="permission.html">Önceki</a></div><div type="next-btn"><a href="services.html">Sonraki</a></div>
+    </div>
+ 
+</body>
+</html>              

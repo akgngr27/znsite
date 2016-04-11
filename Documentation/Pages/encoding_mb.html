@@ -1,0 +1,88 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>ZN KOD ÇATISI</title>
+<link type="text/css" rel="stylesheet" href="../Styles/Structure.css" />
+<script src="../Scripts/Jquery.js"></script>
+<script src="../Scripts/Structure.js"></script>
+</head>
+
+<body>
+    <div id="content-document"><a href="#">Döküman</a> » <a href="encoding.html">Encoding Support</a> » Multi Byte(MB) Kütüphanesi</div> 
+    <p class="ctfont">Multi Byte(MB) Kütüphanesi</p>
+    <p>Bu kütüphane PHP'nin <strong>mb_</strong> yöntemlerini kullanarak <strong>sınıf</strong> biçimine dönüştürülerek oluşturulmuştur. İşinize yaracağınız düşündüğümüz yöntemleri kullandık. İsimlendirmeleri akılda kalacak şekilde düzenlemeye özen gösterilmiştir.</p>
+    <p>0 - 255 arasıdan değere sahip olan karakterler dışındaki karakterlerin kullanımı her zaman sorunlar oluşturmaktadır. Mesela substr() yönteminde normal karakter dışındaki karakterlerin kesitlenmesinde karakter hataları oluşmaktadır. Bu sorunu aşmak için mb_substr() yöntemi kullanılır. İşte bizde <strong>mb_</strong> yöntemlerinden sık kullanılması düşünülen yöntemleri bir araya getirdik.</p>
+    
+     <p>
+    	<table class="cfont" width="100%">
+        	<tr><th colspan="3">Multi Byte(MB) Kütüphanesi ve Yöntemleri</th></tr>
+            <tr><th width="20%">Nesne Yönelimli Kullanım</th><td>Fonksiyonel Kullanım</td><td>İşlev</td></tr>
+            <tr><th>MB::split()</th><td><a href="#extract"> <b>mb_split()</b></a></td><td>Çok baytlı bir dizgeyi düzenli ifade ile parçalara ayırır.</td></tr>
+            <tr><th>MB::search()</th><td><a href="#extract"> <b>mb_ststr(), mb_stristr(), mb_strpos(), mb_stripos()</b></a></td><td>Belirtilen yöntemlerin bir arada kullanılabilir halidir.</td></tr>
+            <tr><th>MB::section()</th><td><a href="#extract"> <b>mb_substr()</b></a></td><td>Dizgenin bir alt dizgesini alır.</td></tr>
+            <tr><th>MB::parseGet()</th><td><a href="#extract"> <b>parse_str()</b></a></td><td>GET verisini çözümler ve küresel değişkenleri tanımlar.</td></tr>
+            <tr><th>MB::check()</th><td><a href="#extract"><b>mb_check_encoding()</b></a></td><td>Dizgenin belirtilen kodlama için geçerli olup olmadığını sınar.</td></tr>
+            <tr><th>MB::casing()</th><td><a href="#extract"> <b>mb_convert_case()</b></a></td><td>Bir dizgeye büyük-küçük harf dönüşümü uygular.</td></tr>
+            <tr><th>MB::convert()</th><td><a href="#extract"> <b>mb_convert_encoding()</b></a></td><td>Karakter kodlaması dönüşümü yapar.</td></tr>
+            <tr><th>MB::mimeDecode()</th><td><a href="#extract"> <b>mb_decode_mimeheader()</b></a></td><td>MIME başlık alanındaki dizgeyi dönüştürür.</td></tr>
+            <tr><th>MB::mimeEncode()</th><td><a href="#extract"> <b>mb_encode_mimeheader()</b></a></td><td>Dizgeyi MIME başlığı için kodlar.</td></tr>
+            <tr><th>MB::toEntity()</th><td><a href="#extract"> <b>mb_decode_numericentity()</b></a></td><td>HTML sayısal karakter gösterimini karaktere dönüştürür.</td></tr>
+            <tr><th>MB::toNumeric()</th><td><a href="#extract"> <b>mb_encode_numericentity()</b></a></td><td>Karakter kodlarını HTML sayısal karakter gösterimlerine dönüştürür.</td></tr>
+            <tr><th>MB::detect()</th><td><a href="#extract"> <b>mb_detect_encoding()</b></a></td><td>Karakter kodlamasını algılar.</td></tr>
+            <tr><th>MB::detectOrder()</th><td><a href="#extract"><b>mb_detect_order()</b></a></td><td>Karakter kodlaması algılama sırasını tanımlar..</td></tr>
+            <tr><th>MB::aliases()</th><td><a href="#extract"> <b>mb_encoding_aliases()</b></a></td><td>Karakter setinin takma adını döndürür.</td></tr>
+            <tr><th>MB::info()</th><td><a href="#extract"> <b>mb_get_info()</b></a></td><td>Mbstring değiştirgelerinin dahili ayarlarını döndürür.</td></tr>
+            <tr><th>MB::httpInput()</th><td><a href="#extract"> <b>mb_http_input()</b></a></td><td>HTTP girdi karakter kodlamasını algılar.</td></tr>
+            <tr><th>MB::httpOutput()</th><td><a href="#extract"> <b>mb_decode_numericentity()</b></a></td><td>HTTP çıktı karakter kodlamasını tanımlar.</td></tr>
+            <tr><th>MB::lang()</th><td><a href="#extract"> <b>mb_lang()</b></a></td><td>Geçerli dili tanımlar.</td></tr>
+            <tr><th>MB::encodings()</th><td><a href="#extract"> <b>mb_list_encodings()</b></a></td><td>Desteklenen kodlamaların tamamını bir dizi olarak döndürür.</td></tr>
+            <tr><th>MB::outputHandler()</th><td><a href="#extract"> <b>mb_output_handler()</b></a></td><td>Çıktı tamporundaki karakter kodlamasını dönüştüren geriçağırım işlevi.</td></tr>
+            <tr><th>MB::mimeName()</th><td><a href="#extract"> <b>mb_preferred_mime_name()</b></a></td><td>MIME karakter kümesi dizgesini döndürür.</td></tr>
+        </table>
+    </p>
+    
+  
+   <p class="cstfont" id="example">Kullanım Farklılığı Olan Yöntemler</p>
+	<p>Search() yöntemi string yöntemlerin bir kaçının bir araya getirilerek oluşturulmuş halidir. Hangi yöntemleri kullandığı yukarıda belirtilmiştir. Şimdi bu yöntemin kullanımına dair bir örnek verelim.
+    
+    <div type="code">
+<pre><comment>/*
+@param string -> Arayamaya tabi tutulacak metinsel ifade
+@param string -> Aranılan veri
+@param string -> Yöntem: str/string, pos/position -> str seçilirse strstr(), pos seçilirse strpos() yöntemi kullanılmış olur. Varsayılan:str
+@param bool   -> Duyarlılık: true -> Büyük-küçük harf duyarlılığını kaldırmak isterseniz false olarak ayarlamalısınız.
+*/
+</comment>
+MB::search(<sf>'ZN Framework 2'</sf>, <sf>'Framework'</sf>); <comment>// Çıktı: Framework 2</comment>
+
+<comment>// 4. parametrenin false olarak ayarlanması ile harf duyarlılığını kaldırmış olduk.</comment>
+MB::search(<sf>'ZN Framework 2'</sf>, <sf>'framework'</sf>, <sf>'str'</sf>, <kf>false</kf>); <comment>// Çıktı: Framework 2</comment>
+
+<comment>// Şimdide strpos() yöntemi ile aram işlemi yapalım. 3. parametre pos/position olarak ayarlanıyor.</comment>
+MB::search(<sf>'ZN Framework 2'</sf>, <sf>'framework'</sf>, <sf>'pos'</sf>, <kf>false</kf>); <comment>// Çıktı: 3</comment>
+</pre>
+    </div>
+    
+    <p>mb_convert_case() yönteminin kullanımında da küçük fark var. MB case sabitlerinde yer alan <strong>MB_CASE_</strong> ön eki kullanılmaz.
+    
+    <div type="code">
+<pre>
+<comment>// MB_CASE_ sabiti kullanılıyor.</comment>
+mb_convert_case(<sf>'çevir'</sf>, <tf>MB_CASE_UPPER</tf>);
+
+<comment>// MB_CASE_ sabiti kullanılmıyor.</comment>
+MB::casing(<sf>'çevir'</sf>, <sf>'upper'</sf>);
+</pre>
+    </div>
+    
+    <p>Diğer yöntemlerin kullanımları genel olarak aynıdır.</p>
+    
+    <p>Data detaylı kullanım için <a href="http://php.net/manual/tr/ref.mbstring.php" target="_blank">multi byte</a> php.net kaynaklarını inceleyiniz.</p>
+    
+    <div type="prev-next">
+    	<div type="prev-btn"><a href="encoding_iconv.html">Önceki</a></div><div type="next-btn"><a href="errorhandling.html">Sonraki</a></div>
+    </div>
+ 
+</body>
+</html>              

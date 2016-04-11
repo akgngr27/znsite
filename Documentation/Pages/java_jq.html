@@ -1,0 +1,194 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>ZN KOD ÇATISI</title>
+<link type="text/css" rel="stylesheet" href="../Styles/Structure.css" />
+<script src="../Scripts/Jquery.js"></script>
+<script src="../Scripts/Structure.js"></script>
+</head>
+
+<body>
+    <div id="content-document">Döküman</a> » <a href="java.html">Javascript & Jquery</a> » JQ & JS Kütüphanesi</div> 
+    <p class="ctfont">JQ & JS Kütüphanesi</p>
+    <p>Bu kütüphane tamamen Jquery kütüphanelerine yardımcı parçalar sağlamak için oluşturulmuştur. Jquery'ye ait bazı kod parçaları gerekli olduğunda bu ihtiyacı gidermek için bu kütüphaneden yararlanılabilir. Örnek olarak .show(); gibi bir kod parçası lazım olduğunda bu kütüphaneden yararlanılır. Ya da $(xx).serialize() gibi bir veri gönderimi için de yine bu kütüphaneden yararlanılır.</p>
+    
+     <p>
+    	<table class="cfont" width="100%">
+        	<tr><th colspan="2">JQ Kütüphanesi Yöntemleri ve Jquery Kod Karşılıkları</th></tr>
+            <tr><th width="55%"><b><cf>JQ::selector(<kf>string</kf> <vf>$selector</kf>)</cf></b></th><td><b><cf>$(selector)</cf></b></td></tr>
+           	<tr><th><b><cf>JQ::property(<kf>string</kf> <vf>$selector</vf>, <kf>string/array</kf> <vf>$params</vf>, <kf>bool</kf> <vf>$virgul</vf> = <kf>false</kf>)</cf></b></th><td><b><cf>.property(p1, p2, ... pN)</cf></b></td></tr>
+            <tr><th><b><cf>JQ::callback/func(<kf>string</kf> <vf>$params</vf>, <kf>string</kf> <vf>$code</vf>, <kf>bool</kf> <vf>$virgul</vf> = <kf>false</kf>)</cf></b></th><td><b><cf>function(params){code}</cf></b></td></tr>
+           
+          <tr><th><b><cf>JQ::combine(<vf>$selector</vf>, <vf>$property</vf>, <vf>$params</vf>, <vf>$callback</vf>, <vf>$virgul</vf>)</cf></b></th><td><b><cf>$(selector).property(params, function(e){callback})[(;)virgul]</cf></b></td></tr>
+           <tr><th colspan="2"><b>Diğer Jquery Yöntemleri</b></th></tr>
+            <tr><th><b><cf>JQ::serialize($selector = '', $params = array(), $comma = true)</cf></b></th><td></td></tr>
+      		<tr><th><b><cf>JQ::serializeArray($selector = '', $params = array(), $comma = true)</cf></b></th><td></td></tr>
+            <tr><th><b><cf>JQ::toJson($params = array(), $comma = true)</cf></b></th><td></td></tr>
+            <tr><th><b><cf>JQ::getJson($params = array(), $comma = true)</cf></b></th><td></td><td></td></tr>
+            <tr><th><b><cf>JQ::getScript($params = array(), $comma = true)</cf></b></th><td></td></tr>
+            <tr><th><b><cf>JQ::param($params = array(), $comma = true)</cf></b></th><td></td></tr>
+            <tr><th><b><cf>JQ::noConflict($params = array(), $comma = true)</cf></b></th><td></td></tr>
+            <tr><th><b><cf>JQ::get($url = '', $callback = '', $comma = true)</cf></b></th><td></td></tr>
+            <tr><th><b><cf>JQ::post($url = '', $data = '', $callback = '', $comma = true)</cf></b></th><td></td></tr>
+            <tr><th><b><cf>JQ::text($selector = '', $params = array(), $comma = true)</cf></b></th><td></td></tr>
+            <tr><th><b><cf>JQ::val($selector = '', $params = array(), $comma = true)</cf></b></th><td></td></tr>
+            <tr><th><b><cf>JQ::html($selector = '', $params = array(), $comma = true)</cf></b></th><td></td></tr>
+            <tr><th><b><cf>JQ::attr($selector = '', $params = array(), $comma = true)</cf></b></th><td></td></tr>
+            <tr><th><b><cf>JQ::append($selector = '', $params = array(), $comma = true)</cf></b></th><td></td></tr>
+            <tr><th><b><cf>JQ::prepend($selector = '', $params = array(), $comma = true)</cf></b></th><td></td></tr>
+            <tr><th><b><cf>JQ::after($selector = '', $params = array(), $comma = true)</cf></b></th><td></td></tr>
+            <tr><th><b><cf>JQ::before($selector = '', $params = array(), $comma = true)</cf></b></th><td></td></tr>
+            <tr><th><b><cf>JQ::remove($selector = '', $params = array(), $comma = true)</cf></b></th><td></td></tr>
+            <tr><th><b><cf>JQ::free($selector = '', $params = array(), $comma = true)</cf></b></th><td></td></tr>
+            <tr><th><b><cf>JQ::addClass($selector = '', $params = array(), $comma = true)</cf></b></th><td></td></tr>
+            <tr><th><b><cf>JQ::removeClass($selector = '', $params = array(), $comma = true)</cf></b></th><td></td></tr>
+            <tr><th><b><cf>JQ::toggleClass($selector = '', $params = array(), $comma = true)</cf></b></th><td></td></tr>
+            <tr><th><b><cf>JQ::css($selector = '', $params = array(), $comma = true)</cf></b></th><td></td></tr>
+            <tr><th><b><cf>JQ::width($selector = '', $params = array(), $comma = true)</cf></b></th><td></td></tr>
+            <tr><th><b><cf>JQ::height($selector = '', $params = array(), $comma = true)</cf></b></th><td></td></tr>
+            <tr><th><b><cf>JQ::innerWidth($selector = '', $params = array(), $comma = true)</cf></b></th><td></td></tr>
+            <tr><th><b><cf>JQ::innerHeight($selector = '', $params = array(), $comma = true)</cf></b></th><td></td></tr>
+            <tr><th><b><cf>JQ::outerWidth($selector = '', $params = array(), $comma = true)</cf></b></th><td></td></tr>
+            <tr><th><b><cf>JQ::outerHeight($selector = '', $params = array(), $comma = true)</cf></b></th><td></td></tr>
+            <tr><th><b><cf>JQ::parent($selector = '', $params = array(), $comma = true)</cf></b></th><td></td></tr>
+            <tr><th><b><cf>JQ::parents($selector = '', $params = array(), $comma = true)</cf></b></th><td></td></tr>
+            <tr><th><b><cf>JQ::parentsUntil($selector = '', $params = array(), $comma = true)</cf></b></th><td></td></tr>
+            <tr><th><b><cf>JQ::children($selector = '', $params = array(), $comma = true)</cf></b></th><td></td></tr>
+            <tr><th><b><cf>JQ::find($selector = '', $params = array(), $comma = true)</cf></b></th><td></td></tr>
+            <tr><th><b><cf>JQ::siblings($selector = '', $params = array(), $comma = true)</cf></b></th><td></td></tr>
+            <tr><th><b><cf>JQ::next($selector = '', $params = array(), $comma = true)</cf></b></th><td></td></tr>
+            <tr><th><b><cf>JQ::nextAll($selector = '', $params = array(), $comma = true)</cf></b></th><td></td></tr>
+            <tr><th><b><cf>JQ::nextUntil($selector = '', $params = array(), $comma = true)</cf></b></th><td></td></tr>
+            <tr><th><b><cf>JQ::prev($selector = '', $params = array(), $comma = true)</cf></b></th><td></td></tr>
+            <tr><th><b><cf>JQ::prevAll($selector = '', $params = array(), $comma = true)</cf></b></th><td></td></tr>
+            <tr><th><b><cf>JQ::prevUntil($selector = '', $params = array(), $comma = true)</cf></b></th><td></td></tr>
+            <tr><th><b><cf>JQ::first($selector = '', $params = array(), $comma = true)</cf></b></th><td></td></tr>
+            <tr><th><b><cf>JQ::last($selector = '', $params = array(), $comma = true)</cf></b></th><td></td></tr>
+            <tr><th><b><cf>JQ::eq($selector = '', $params = array(), $comma = true)</cf></b></th><td></td></tr>
+            <tr><th><b><cf>JQ::filter($selector = '', $params = array(), $comma = true)</cf></b></th><td></td></tr>
+            <tr><th><b><cf>JQ::not($selector = '', $params = array(), $comma = true)</cf></b></th><td></td></tr>
+            <tr><th><b><cf>JQ::load($selector = '', $params = array(), $comma = true)</cf></b></th><td></td></tr>
+            <tr><th><b><cf>JQ::data($selector = '', $params = array(), $comma = true)</cf></b></th><td></td></tr>
+            <tr><th><b><cf>JQ::each($selector = '', $params = array(), $comma = true)</cf></b></th><td></td></tr>
+            <tr><th><b><cf>JQ::index($selector = '', $params = array(), $comma = true)</cf></b></th><td></td></tr>
+            <tr><th><b><cf>JQ::removeData($selector = '', $params = array(), $comma = true)</cf></b></th><td></td></tr>
+            <tr><th><b><cf>JQ::size($selector = '', $params = array(), $comma = true)</cf></b></th><td></td></tr>
+            <tr><th><b><cf>JQ::toArray($selector = '', $params = array(), $comma = true)</cf></b></th><td></td></tr>
+</table>
+    </p>
+    
+    <table class="cfont" width="100%">
+    	<tr><th>Parametreler</th><th>Anlamları</th></tr>
+        <tr><th>1 - string Seçici</th><th>Seçici seçimdir</th></tr>
+        <tr><th>2 - string/array Parametreler</th><th>Kodlara ait parametrelerdir. Tek bir parametre için string çoklu parametre için array türü kullanılabilir</th></tr>
+        <tr><th>3 - boolean Virgül</th><th>Kodun sonunda virgül kullanıllıp kullanılmayacağını belirtmek için kullanılır</th></tr>
+    </table>
+
+<p>Yukarıdaki JQ yöntemlerinin kullanımları hakkında detaylı bilgiye Jquery kaynaktalarından ulaşabilirsiniz. Bizim yaptığımız bu kodların PHP ile kullanımı sağlamaktır.</p>
+    
+    <p>
+    
+<table class="cfont" width="100%">
+        	<tr><th colspan="2">JS Kütüphanesi Yöntemleri ve Javascript Kod Karşılıkları</th></tr>
+           <tr><th><b><cf>JS::alert(<kf>string</kf> <vf>$message</vf>, <kf>bool</kf> <vf>$virgul</vf> = <kf>true</vf>)</cf></b></th><td><b><cf>alert(message);</cf></b></td></tr>
+           <tr><th><b><cf>JS::confirm(<kf>string</kf> <vf>$message</vf>, <kf>string</kf> <vf>$trueCode</vf>, <kf>string</kf> <vf>$falseCode</vf>)</cf></b></th><td><b><cf>if(confirm(message)){trueCode}else{falseCode}</cf></b></td></tr>
+           <tr><th><b><cf>JS::ifClause(<kf>string</kf> <vf>$kosul</vf>, <kf>string</kf> <vf>$kodlar</vf>, [ <kf>string</kf> <vf>$degilseKodlar</vf> ] )</cf></b></th><td><b><cf>if(kosul){kodlar}[else{kodlar}]</cf></b></td></tr>
+           <tr><th><b><cf>JS::elseClause(<kf>string</kf> <vf>$kodlar</vf>)</cf></b></th><td><b><cf>else{kodlar}</cf></b></td></tr>
+           <tr><th><b><cf>JS::elseIfClause(<kf>string</kf> <vf>$kosul</vf>, <kf>string</kf> <vf>$kodlar</vf>)</cf></b></th><td><b><cf>else if(kosul){kodlar}</cf></b></td></tr>
+           <tr><th><b><cf>JS::switchClause(<kf>string</kf> <vf>$kosul</vf>, <kf>array</kf> <vf>$anahtarlar</vf>)</cf></b></th><td><b><cf>switch(kosul){anahtarlar}</cf></b></td></tr>
+           <tr><th><b><cf>JS::forLoop(<kf>string</kf> <vf>$kosul</vf>, <kf>string</kf> <vf>$kodlar</vf>)</cf></b></th><td><b><cf>for(kosul){kodlar}</cf></b></td></tr>
+           <tr><th><b><cf>JS::whileLoop(<kf>string</kf> <vf>$kosul</vf>, <kf>string</kf> <vf>$kodlar</vf>)</cf></b></th><td><b><cf>while(kosul){kodlar}</cf></b></td></tr>
+           <tr><th><b><cf>JS::doWhileLoop(<kf>string</kf> <vf>$kosul</vf>, <kf>string</kf> <vf>$kodlar</vf>)</cf></b></th><td><b><cf>do{kodlar}while(kosul)</cf></b></td></tr>
+           
+           
+           <tr><th colspan="2"><b>Diğer Javascript Yöntemleri</b></th></tr>
+           <tr><th><b><cf>JS::interval($time = '', $code = '', $comma = true)</cf></b></th><td></td></tr>
+           <tr><th><b><cf>JS::timeout($time = '', $code = '', $comma = true)</cf></b></th><td></td></tr>
+           <tr><th><b><cf>JS::indexOf($str = '', $find = '', $comma = true)</cf></b></th><td></td></tr>
+           <tr><th><b><cf>JS::arrayIndexOf($str = '', $find = '', $comma = true)</cf></b></th><td></td></tr>
+           <tr><th><b><cf>JS::arrayJoin($str = '', $find = '', $comma = true)</cf></b></th><td></td></tr>
+           <tr><th><b><cf>JS::lastIndexOf($str = '', $find = '', $comma = true)</cf></b></th><td></td></tr>
+           <tr><th><b><cf>JS::arrayLastIndexOf($str = '', $find = '', $comma = true)</cf></b></th><td></td></tr>
+           <tr><th><b><cf>JS::arraySplice($str = '', $p1 = '', $p2 = '', $p3 = '', $p4 = '', $comma = true)</cf></b></th><td></td></tr>
+           <tr><th><b><cf>JS::arrayLength($str = '', $comma = true)</cf></b></th><td></td></tr>
+           <tr><th><b><cf>JS::arrayUnshift$str = '', $find = '', $comma = tru()</cf></b></th><td></td></tr>
+           <tr><th><b><cf>JS::arraySort($str = '', $find = '', $comma = tru)</cf></b></th><td></td></tr>
+           <tr><th><b><cf>JS::arrayPop($str = '', $comma = true)</cf></b></th><td></td></tr>
+           <tr><th><b><cf>JS::arrayReverse($str = '', $comma = true)</cf></b></th><td></td></tr>
+           <tr><th><b><cf>JS::arrayToString($str = '', $comma = true)</cf></b></th><td></td></tr>
+           <tr><th><b><cf>JS::arrayShift($str = '', $comma = true)</cf></b></th><td></td></tr>
+           <tr><th><b><cf>JS::arrayPush($str = '', $param = '', $comma = true)</cf></b></th><td></td></tr>
+           <tr><th><b><cf>JS::search($str = '', $find = '', $comma = true)</cf></b></th><td></td></tr>
+           <tr><th><b><cf>JS::slice($str  = '', $p1 = '', $p2 ='', $comma = true)</cf></b></th><td></td></tr>
+           <tr><th><b><cf>JS::arraySlice($str  = '', $p1 = '', $p2 ='', $comma = true)</cf></b></th><td></td></tr>
+           <tr><th><b><cf>JS::substr($str  = '', $p1 = '', $p2 = '', $comma = true)</cf></b></th><td></td></tr>
+           <tr><th><b><cf>JS::substring($str  = '', $p1 = '', $p2 = '', $comma = true)</cf></b></th><td></td></tr>
+           <tr><th><b><cf>JS::replace($str  = '', $p1 = '', $p2 = '', $comma = true)</cf></b></th><td></td></tr>
+           <tr><th><b><cf>JS::upperCase($str  = '', $comma = true)</cf></b></th><td></td></tr>
+           <tr><th><b><cf>JS::lowerCase($str  = '', $comma = true)</cf></b></th><td></td></tr>
+           <tr><th><b><cf>JS::concat($str  = '', $param  = '', $comma = true)</cf></b></th><td></td></tr>
+           <tr><th><b><cf>JS::arrayConcat($str  = '', $param  = '', $comma = true)</cf></b></th><td></td></tr>
+           <tr><th><b><cf>JS::charAt($str  = '', $param  = '', $comma = true)</cf></b></th><td></td></tr>
+           <tr><th><b><cf>JS::codeAt($str  = '', $param  = '', $comma = true)</cf></b></th><td></td></tr>
+ 			<tr><th><b><cf>JS::split($str  = '', $param  = '', $comma = true)</cf></b></th><td></td></tr>
+            <tr><th><b><cf>JS::localeCompare($str  = '', $param  = '', $comma = true)</cf></b></th><td></td></tr>
+            <tr><th><b><cf>JS::match($str  = '', $param  = '', $comma = true)</cf></b></th><td></td></tr>
+            <tr><th><b><cf>JS::trim($str  = '', $comma = true)</cf></b></th><td></td></tr>
+            <tr><th><b><cf>JS::anchor($str  = '', $param  = '', $comma = true)</cf></b></th><td></td></tr>
+            <tr><th><b><cf>JS::fontColor($str  = '', $param  = '', $comma = true)</cf></b></th><td></td></tr>
+            <tr><th><b><cf>JS::fontSize($str  = '', $param  = '', $comma = true)</cf></b></th><td></td></tr>
+            <tr><th><b><cf>JS::link($str  = '', $param  = '', $comma = true)</cf></b></th><td></td></tr>
+            <tr><th><b><cf>JS::big($str  = '', $comma = true)</cf></b></th><td></td></tr>
+            <tr><th><b><cf>JS::small($str  = '', $comma = true)</cf></b></th><td></td></tr>
+            <tr><th><b><cf>JS::strike($str  = '', $comma = true)</cf></b></th><td></td></tr>
+            <tr><th><b><cf>JS::sub($str  = '', $comma = true)</cf></b></th><td></td></tr>
+            <tr><th><b><cf>JS::sup($str  = '', $comma = true)</cf></b></th><td></td></tr>
+            <tr><th><b><cf>JS::toString($str  = '', $comma = true)</cf></b></th><td></td></tr>
+            <tr><th><b><cf>JS::valueOf($str  = '', $comma = true)</cf></b></th><td></td></tr>
+            <tr><th><b><cf>JS::toExponential($str  = '', $param = '', $comma = true)</cf></b></th><td></td></tr>
+            <tr><th><b><cf>JS::toFixed($str  = '', $param = '', $comma = true)</cf></b></th><td></td></tr>
+            <tr><th><b><cf>JS::toPrecision($str  = '', $param = '', $comma = true)</cf></b></th><td></td></tr>
+            <tr><th><b><cf>JS::sqrt($param = '', $comma = true)</cf></b></th><td></td></tr>
+            <tr><th><b><cf>JS::abs($param = '', $comma = true)</cf></b></th><td></td></tr>
+            <tr><th><b><cf>JS::acos($param = '', $comma = true)</cf></b></th><td></td></tr>
+            <tr><th><b><cf>JS::asin($param = '', $comma = true)</cf></b></th><td></td></tr>
+            <tr><th><b><cf>JS::atan($param = '', $comma = true)</cf></b></th><td></td></tr>
+            <tr><th><b><cf>JS::atan2($p1 = '', $p2 = '', $comma = true)</cf></b></th><td></td></tr>
+            <tr><th><b><cf>JS::ceil($param = '', $comma = true)</cf></b></th><td></td></tr>
+            <tr><th><b><cf>JS::cos($param = '', $comma = true)</cf></b></th><td></td></tr>
+            <tr><th><b><cf>JS::exp($param = '', $comma = true)</cf></b></th><td></td></tr>
+            <tr><th><b><cf>JS::floor($param = '', $comma = true)</cf></b></th><td></td></tr>
+            <tr><th><b><cf>JS::log($param = '', $comma = true)</cf></b></th><td></td></tr>
+            <tr><th><b><cf>JS::max($param = '', $comma = true)</cf></b></th><td></td></tr>
+            <tr><th><b><cf>JS::round($comma = true)</cf></b></th><td></td></tr>
+            <tr><th><b><cf>JS::sin($param = '', $comma = true)</cf></b></th><td></td></tr>
+            <tr><th><b><cf>JS::tan($param = '', $comma = true)</cf></b></th><td></td></tr>
+            <tr><th><b><cf>JS::random($comma = true)</cf></b></th><td></td></tr>
+            <tr><th><b><cf>JS::min($param = '', $comma = true)</cf></b></th><td></td></tr>
+            <tr><th><b><cf>JS::pow($p1 = '', $p2 = '', $comma = true)</cf></b></th><td></td></tr>
+            <tr><th><b><cf>JS::pi($comma = true)</cf></b></th><td></td></tr>
+            <tr><th><b><cf>JS::blink($param = '', $comma = true)</cf></b></th><td></td></tr>
+            <tr><th><b><cf>JS::bold($param = '', $comma = true)</cf></b></th><td></td></tr>
+            <tr><th><b><cf>JS::fixed($param = '', $comma = true)</cf></b></th><td></td></tr>
+            <tr><th><b><cf>JS::italic($param = '', $comma = true)</cf></b></th><td></td></tr>
+            <tr><th><b><cf>JS::ascii($param = '', $comma = true)</cf></b></th><td></td></tr>
+</table>
+    </p>
+   
+	<p class="cstfont" id="process">JQ Kütüphanesi ve Yöntemleri Hakkında</p>
+    <p>Yukarıdaki tabloda JQ:: kodları ve Jquery kod karşıklarına yer verilmiştir. Dikkat edilirse son parametreler comma(virgül) parametresidir. Eğer kod parçasını kullanacağınız yerde ; ile sonlandırmanız gerekirse bu parametre <strong>true</strong> olarak ayarlanmalıdır. Zaten bu kütüphanenin amacı ihtiyaç duyulan bu kod parçalarına jquery yazmadan kullanabilmenizi sağlamaktır. Bu kodların nasıl kullanılacağı ile ilgili önceki bölümlerde bir kaç örnek verilmiştir.</p>
+
+<p>Aşağıda create(); yöntemi ile sonlanmış herhangi bir jquery kodunun sonuna kuyruk oluşturmak istenebilir. Bu durumda aşağıdaki gibi kullanım gerekir.
+    
+    <div type="code">->create(JQ::property(<sf>'show'</sf>, <if>1000</if>), JQ::property(<sf>'fadeIn'</sf>, <kf>array</kf>(<sf>'slow'</sf>, <sf>'linear'</sf>)));<br>
+    <comment>// Kaynak Kod: ...   .show(1000).fadeIn("slow");</comment>
+    </div>
+
+    
+    <div type="prev-next">
+    	<div type="prev-btn"><a href="java_jqbuilder.html">Önceki</a></div><div type="next-btn"><a href="java_js.html">Sonraki</a></div>
+    </div>
+ 
+</body>
+</html>              

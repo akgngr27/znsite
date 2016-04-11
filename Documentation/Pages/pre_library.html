@@ -1,0 +1,77 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>ZN KOD ÇATISI</title>
+<link type="text/css" rel="stylesheet" href="../Styles/Structure.css" />
+<script src="../Scripts/Jquery.js"></script>
+<script src="../Scripts/Structure.js"></script>
+</head>
+
+<body>
+    <div id="content-document"><a href="#">Döküman</a> » <a href="functions.html">Ön Tanımlı Sabitler ve Fonksiyonlar</a> » Kütüphane Kullanım Komutları</div> 
+    <p class="ctfont">Kütüphane Kullanım Komutları</p>
+    <p>Kütüphanelere erişim sağlayan bir kaç yöntemden oluşmaktadır.</p>
+    <ul><li><a href="#" class="infont">Kütüphane Kullanım Komutları</a><br><br>
+        <ul>
+            <li><a href="#library">Hızlı Kütüphane ve Yöntemlerini Kullanmak » <b>library()</b></a></li>
+            <li><a href="#uselib">Doğrudan Kütüphane Kullanmak » <b>uselib()</b></a></li>
+        </ul>
+    </li></ul>
+    
+    <p class="cstfont" id="library">Hızlı Kütüphane ve Yöntemlerini Kullanmak</p>
+    <p><ftype>library( <kf>string/array</kf> <vf>$sinif_dosyasi_adi</vf> , <kf>string</kf> <vf>$fonksiyon_adi</vf> , [ <kf>array</kf> <vf>$parametreler</vf> ] )</ftype></p>
+   	<p>Bu yöntem kullanmak istediğiniz kütüphanenin yöntemlerine kolay erişim sağlamak için oluşturulmuştur.</p>
+    <p>
+    	<table class="cfont">
+        	<tr><th>No</th><th>Parametreler</th><td>Anlamları</td></tr>
+            <tr><th>1</th><th>string/array Sınıf Adı</th><td>Çağrılacak kütüphanesin sınıf yada dosya adı.</td></tr>
+            <tr><th>2</th><th>string Fonksiyon</th><td>Kütüphanenin kullanılacak olan yönteminin adı.</td></tr>
+            <tr><th>3</th><th>[ array Parametreler ]</th><td>Varsa yöntemin parametreleri.</td></tr>
+        </table>
+    </p>
+    
+ 
+    <div type="code">
+    <kf>echo</kf> library(<sf>'Encode'</sf>, <sf>'golden'</sf>, <kf>array</kf>(<sf>'Metni Şifrele'</sf>, <sf>'Şifre Eki'</sf>)); <comment> // Çıktı: bc35185a25c5aa7330114a28525bee76 </comment><br />
+    </div>
+   	
+    <div type="code">
+    library(<sf>'Cookie'</sf>, <sf>'insert'</sf>, <kf>array</kf>(<sf>'yeni_cerez'</sf>, <sf>'Yeni Değer'</sf>)); <br />
+    <kf>echo</kf> library('Cookie', <sf>'select'</sf>, <kf>array</kf>(<sf>'yeni_cerez'</sf>)); <comment> // Çıktı: Yeni Değer </comment><br />
+    </div>
+    
+    <p class="cstfont" id="uselib">Doğrudan Kütüphane Kullanmak</p>
+    <p><ftype>uselib( <kf>string</kf> <vf>$sinif_adi</vf> ) v1.4</ftype></p>
+   	<p>Bu yöntem, bir kütüphaneyi doğrudan kullanmak için kullanılır. Her kullanımında yeni bir <strong>New</strong> kullanımı gerektirdiği için tek sefer kullanımı uygundur.</p>
+    <p>
+    	<table class="cfont">
+        	<tr><th>No</th><th>Parametreler</th><td>Anlamları</td></tr>
+            <tr><th>1</th><th>string Sınıf Adı</th><td>Çağrılacak kütüphanesin sınıf yada dosya adı.</td></tr>
+        </table>
+    </p>
+    
+ 
+    <div type="code">
+    <kf>print</kf>( uselib(<sf>'DB'</sf>)->get(<sf>'Download'</sf>)->result() ); <br />
+    </div>
+    
+    <p>Sadece kütüphane değil aynı zamanda bileşenlerde</strong> kullanılabilir.</p>
+    
+    <div type="code">
+    <kf>print</kf>( uselib(<sf>'CCss'</sf>)->file(<sf>'style'</sf>)->getSelector(<sf>'bold'</sf>) ); <br />
+    </div>
+    
+    <p>Bir değişkene atama ile kullanım.</p>
+    
+    <div type="code">
+    <vf>$db</vf> = uselib(<sf>'DB'</sf>); <br />
+    <kf>print</kf>( <vf>$db</vf>->get(<sf>'Download'</sf>)->result() ); <br />
+    </div>
+    
+    <div type="prev-next">
+    	<div type="prev-btn"><a href="pre_server.html">Önceki</a></div><div type="next-btn"><a href="pre_other.html">Sonraki</a></div>
+    </div>
+ 
+</body>
+</html>              

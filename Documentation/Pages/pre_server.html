@@ -1,0 +1,95 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>ZN KOD ÇATISI</title>
+<link type="text/css" rel="stylesheet" href="../Styles/Structure.css" />
+<script src="../Scripts/Jquery.js"></script>
+<script src="../Scripts/Structure.js"></script>
+</head>
+
+<body>
+    <div id="content-document"><a href="#">Döküman</a> » <a href="functions.html">Ön Tanımlı Sabir ve Fonksiyonlar</a> » Ip ve Server Komutları</div> 
+    <p class="ctfont">Ip ve Server Komutları</p>
+    <p>Server ve kullanıcı ip'si hakkında bilgi almak için kullanılan yöntemlerdir.</p>
+    <ul><li><a href="#" class="infont">Ip ve Server Komutları</a><br><br>
+        <ul>
+            <li><a href="#ipv4">Ip Numarasını Öğrenmek » <b>ipv4() v1.0</b></a></li>
+            <li><a href="#server">Server Verilerine Erişmek » <b>server() v1.0</b></a></li> 
+        </ul>
+    </li></ul>
+    
+    <p class="cstfont" id="ipv4">Ip Numarasını Öğremek</p>
+    <p><ftype>ipv4() v1.0</ftype></p>
+   	<p>Kullanıcıların ip v4 adreslerini öğrenmek için kullanılır.</p>
+   
+ 
+    <div type="code">
+    <kf>echo</kf> ipv4(); <comment> // Çıktı: 127.0.0.1 </comment><br>
+    </div>
+    
+    
+    <p class="cstfont" id="server">Server Verilerine Erişmek</p>
+    <p><ftype>server( <kf>string</kf> <vf>$veri_turu</vf> ) v1.0</ftype></p>
+   	<p>$_SERVER Global değişkeninin işlevini üstlenir. Ancak <cf>server()</cf> yönteminin yazımı ve kullanımı biraz daha kolaydır.</p>
+    <p>
+    	<table class="cfont">
+        	<tr><th>No</th><th>Parametreler</th><td width="100%">Anlamları</td></tr>
+            <tr><th>1</th><th>string Veri Türü</th><td>Öğrenilmek istenen veri türü.</td></tr>
+            <tr><th colspan="3">Veri Türleri ve Server Komut Karşılıkları</th></tr>
+            <tr><th>''</th><td colspan="2">$_SERVER</td></tr>
+            <tr><th>name</th><td colspan="2">SERVER_NAME</td></tr>
+            <tr><th>admin</th><td colspan="2">SERVER_ADMIN</td></tr>
+            <tr><th>protocol</th><td colspan="2">SERVER_PROTOCOL</td></tr>          
+            <tr><th>signature</th><td colspan="2">SERVER_SIGNATURE</td></tr>
+            <tr><th>software</th><td colspan="2">SERVER_SOFTWARE</td></tr>
+            <tr><th>remoteAddr</th><td colspan="2">REMOTE_ADDR</td></tr>
+            <tr><th>remotePort</th><td colspan="2">REMOTE_PORT</td></tr>
+            <tr><th>requestMethod</th><td colspan="2">REQUEST_METHOD</td></tr>
+            <tr><th>requestUri</th><td colspan="2">REQUEST_URI</td></tr>
+            <tr><th>requestTime</th><td colspan="2">REQUEST_TIME</td></tr>
+            <tr><th>accept</th><td colspan="2">HTTP_ACCEPT</td></tr>
+            <tr><th>acceptCharset</th><td colspan="2">HTTP_ACCEPT_CHARSET</td></tr>            
+            <tr><th>acceptEncoding</th><td colspan="2">HTTP_ACCEPT_ENCODING</td></tr>
+            <tr><th>acceptLanguage</th><td colspan="2">HTTP_ACCEPT_LANGUAGE</td></tr>
+            <tr><th>clientIp</th><td colspan="2">HTTP_CLIENT_IP</td></tr>
+            <tr><th>xForwardedFor</th><td colspan="2">HTTP_X_FORWARDED_FOR</td></tr>
+            <tr><th>connection</th><td colspan="2">HTTP_CONNECTION</td></tr>
+            <tr><th>host</th><td colspan="2">HTTP_HOST</td></tr>
+            <tr><th>referer</th><td colspan="2">HTTP_REFERER</td></tr>
+            <tr><th>userAgent</th><td colspan="2">HTTP_USER_AGENT</td></tr>
+            <tr><th>cookie</th><td colspan="2">HTTP_COOKIE</td></tr>
+            <tr><th>cacheControl</th><td colspan="2">HTTP_CACHE_CONTROL</td></tr>
+            <tr><th>https</th><td colspan="2">HTTPS</td></tr>
+            <tr><th>scriptFileName</th><td colspan="2">SCRIPT_FILENAME</td></tr>
+            <tr><th>scriptName</th><td colspan="2">SCRIPT_NAME</td></tr>
+            <tr><th>path</th><td colspan="2">PATH</td></tr>
+            <tr><th>pathInfo</th><td colspan="2">PATH_INFO</td></tr>
+            <tr><th>currentPath</th><td colspan="2">PATH_INFO eğer değer almamış ise QUERY_STRING</td></tr>
+            <tr><th>pathTranslated</th><td colspan="2">PATH_TRANSLATED</td></tr>
+            <tr><th>pathext</th><td colspan="2">PATHEXT</td></tr>
+            <tr><th>redirectQueryString</th><td colspan="2">REDIRECT_QUERY_STRING</td></tr>
+            <tr><th>redirectUrl</th><td colspan="2">REDIRECT_URL</td></tr>
+            <tr><th>phpSelf</th><td colspan="2">PHP_SELF</td></tr>
+            <tr><th>queryString</th><td colspan="2">QUERY_STRING</td></tr>
+            <tr><th>originalUrl</th><td colspan="2">HTTP_X_ORIGINAL_URL</td></tr>
+            <tr><th>documentRoot</th><td colspan="2">DOCUMENT_ROOT</td></tr>
+            <tr><th>windir</th><td colspan="2">WINDIR</td></tr>
+            <tr><th>comspec</th><td colspan="2">COMSPEC</td></tr>
+            <tr><th>systemRoot</th><td colspan="2">SystemRoot</td></tr>
+            <tr><th>gatewayInterface</th><td colspan="2">GATEWAY_INTERFACE</td></tr>
+        </table>
+    </p>   
+ 
+    <div type="code">
+    <kf>echo</kf> server(<sf>'requestMethod'</sf>); <comment> // Çıktı: GET </comment><br>
+    <kf>echo</kf> server(<sf>'host'</sf>); <comment> // Çıktı: localhost </comment><br>
+    </div>
+    
+    
+    <div type="prev-next">
+    	<div type="prev-btn"><a href="pre_redirect.html">Önceki</a></div><div type="next-btn"><a href="pre_library.html">Sonraki</a></div>
+    </div>
+ 
+</body>
+</html>              

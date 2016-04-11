@@ -1,0 +1,77 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>ZN KOD ÇATISI</title>
+<link type="text/css" rel="stylesheet" href="../Styles/Structure.css" />
+<script src="../Scripts/Jquery.js"></script>
+<script src="../Scripts/Structure.js"></script>
+</head>
+
+<body>
+    <div id="content-document"><a href="#">Döküman</a> » <a href="functions.html">Ön Tanımlı Sabiler ve Fonksiyonlar</a> » Dil Kullanım Komutları</div> 
+    <p class="ctfont">Dil Kullanım Komutları</p>
+    <p>Dil dosyalarının ve verilerinin kullanımı ile ilgili yöntemlerin yer aldığı bölümdür.</p>
+    <ul><li><a href="#" class="infont">Dil Kullanım Komutları</a><br><br>
+        <ul>
+            <li><a href="#set_lang">Sitenin Dil İçeriğini Ayarlamak » <b>setLang() v1.0</b></a></li>
+            <li><a href="#get_lang">Sitenin Aktif Dil İçeriğini Öğrenmek » <b>getLang() , currentLang() v1.0</b></a></li>
+         	<li><a href="#lang">Dil Dosyalarını Kullanmak » <b>lang() v1.0</b></a></li>
+        </ul>
+    </li></ul>
+    
+    <p class="cstfont" id="set_lang">Sitenin Dil İçeriğini Ayarlamak</p>
+    <p><ftype>setLang( [ <kf>string</kf> <vf>$dil</vf> = <sf>'tr'</sf> ] )</ftype></p>
+   	<p>Sitenin dil içeriğini ayarlamak için kullanılır. Parametrenin varsayılan değeri <sf>'tr'</sf>, yani türkçedir. Sistemde varsayılan olarak iki dil ayarı mevcuttur. Bunlar; <strong>tr</strong> ve <strong>en</strong> 'dir. Bu ayarları değiştirmek yada daha fazla dil seçeneği eklemek için gerekli ayarlamaları <strong>Config/Language.php</strong> dosyasından yapmanız gerekmektedir. Unutmamanız gereken nokta ne kadar çok dil seçeneği eklerseniz <strong>Language/</strong> dizini içerisindeki dil dizinlerinin sayısını da o denli artırmanız gerekmektedir. Yani <strong>Language/</strong> dizinini kontrol ettiğinizde varsayılan olarak 2 adet dizin olduğunu görebilirsiniz. Bunlar; <strong>turkish</strong> ve <strong>english</strong> dizinleridir. Dikkat ederseniz dil dosyasının ayarları ile dil dizini içerisindeki dizinler arasında paralellik mevcuttur.</p>
+    <p>
+    	<table class="cfont">
+        	<tr><th>No</th><th>Parametreler</th><td>Anlamları</td></tr>
+            <tr><th>1</th><th>string Dil = "tr"</th><td>Varsayılan olarak tr ayarlıdır.</td></tr>
+        </table>
+    </p>
+    
+ 
+    <div type="code">
+    <kf>echo</kf> getLang(); <comment> // Çıktı: tr</comment><br>
+    setLang(<sf>'en'</sf>);<br>
+    <kf>echo</kf> getLang(); <comment> // Çıktı: en</comment><br>
+    </div>
+    
+    
+    <p class="cstfont" id="get_lang">Sitenin Dil İçeriğini Öğrenmek</p>
+    <p><ftype>getLang() ve currentLang() v1.0</ftype></p>
+   	<p>Sitenin ayarlanmış dilini öğrenmek için kullanılır. Bu işlemi gerçekleştirmek için iki yöntem vardır. Bunlardan birincisi <strong>getLang()</strong> fonksiyonudur diğeri ise <strong>currentLang()</strong> fonksiyonudur. Esasen ikisinin de yaptığı iş aynıdır ancak <strong>aralarında bir fark vardır</strong>. Bu fark <cf>currentLang()</cf> yönteminin kullanılabilmesi için <strong>Config/Uri.php</strong> dosyasındaki <cf><vf>$config</vf>[<sf>'Uri'</sf>][<sf>'lang'</sf>] = <kf>false</kf>;</cf> değerinin <cf class="keyfont">true</cf> olarak ayarlanması gerektiğidir. Bu ayar <cf class="keyfont">false</cf> olarak ayarlanırsa <cf>currentLang()</cf> yöntemi <cf class="keyfont">false</cf> değeri döndürür yani hiç bir çıktı vermez.</p>
+  
+    <div type="code">
+    <kf>echo</kf> getLang(); <comment> // Çıktı: tr</comment><br>
+    setLang(<sf>'en'</sf>);<br>
+    <kf>echo</kf> getLang(); <comment> // Çıktı: en</comment><br>
+    <kf>echo</kf> currentLang(); <comment> // Çıktı: false</comment><br>
+    </div>
+    
+    <p class="cstfont" id="lang">Dil Dosyalarını Kullanmak</p>
+    <p><ftype>lang( <kf>string</kf> <vf>$dosya_adi</vf>, <kf>string</kf> <vf>$ayar_adi</vf>, <kf>string/array</kf> <vf>$degistirilecek_ifadeler</vf> ) v1.0</ftype></p>
+   	<p>Sistemde tanımlı olan veya sizin oluşturacağınız dil dosyalarını kullanmak için bu yöntemden yararlanılır.</p>
+    <p>
+    	<table class="cfont">
+        	<tr><th>No</th><th>Parametreler</th><td>Anlamları</td></tr>
+            <tr><th>1</th><th>string Dosya Adı</th><td>Kullanılacak dil dosyasının adı.</td></tr>
+            <tr><th>2</th><th>string Ayar Adı</th><td>Dil dosyasındaki kullanılacak ayarın adı.</td></tr>
+            <tr><th>3</th><th>[ string/array Değiştirilecek Ayarlar]</th><td>Veride yer alan karakterleri değiştirmek için kullanılır.</td></tr>
+        </table>
+    </p>
+    
+ 
+    <div type="code">
+    <kf>echo</kf> lang(<sf>'Database'</sf>, <sf>'parameterError'</sf>); <comment> // Çıktı: % parametre eksik veya boş!</comment><br>
+    <kf>echo</kf> lang(<sf>'Database'</sf>, <sf>'parameterError'</sf>, <sf>'TEST'</sf>); <comment> // Çıktı: TEST parametre eksik veya boş!</comment><br>
+    <kf>echo</kf> lang(<sf>'Database'</sf>, <sf>'parameterError'</sf>, <kf>array</kf>(<sf>'%'</sf> => <sf>'TEST'</sf>, ...)); <comment> // Çıktı: TEST parametre eksik veya boş!</comment><br>
+    </div>
+  
+    
+    <div type="prev-next">
+    	<div type="prev-btn"><a href="pre_output.html">Önceki</a></div><div type="next-btn"><a href="pre_fix.html">Sonraki</a></div>
+    </div>
+ 
+</body>
+</html>              

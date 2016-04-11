@@ -1,0 +1,106 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>ZN KOD ÇATISI</title>
+<link type="text/css" rel="stylesheet" href="../Styles/Structure.css" />
+<script src="../Scripts/Jquery.js"></script>
+<script src="../Scripts/Structure.js"></script>
+</head>
+
+<body>
+    <div id="content-document"><a href="#">Döküman</a> » <a href="config.html">Ayarlar</a> » User(Kullanıcı) Ayarları</div> 
+    <p class="ctfont">User(Kullanıcı) Ayarları</p>
+    <p>Kullanıcıların kayıt, giriş aktivasyon gibi işlemlerinin gerçekleşmesi için veritabanı bağlantısı kuracak bir kaç sütun ve tablo bilgilerini içeren dosyadır.</p>
+ 
+	<p>
+    <strong>Config/User.php</strong> dosyasında yer alan ayarların nasıl yapılması gerektiğine aşağıdaki tabloda yer verilmiştir.
+    <table class="cfont">
+    	<tr><th width="250">Ayar Adı</th><th width="100">Varsayılan</th><th>İşlevi</th><th width="250">Örnek Kullanım</th></tr>
+       	
+        <tr>
+        	<th>encode</td>
+            <td>string empty</td>
+            <td>Şifre verisinin <strong>şifreleme türünü belirtmek</strong> için kullanılır. Bu ayar ayarlı iken şifreyi tekrar kodlamaya gerek yoktur. Alabileceği değerler: super, golden, md5, sha1 ... ve diğer hash algoritmaları.</td>
+            <td><strong>Örnek:</strong> 'md5'</td>
+        </tr>
+       
+        <tr>
+        	<th>matching->table</td>
+            <td>string empty</td>
+            <td>User kütüphanesinın bağlantı kurulacağı <strong>kullanıcı tablosu</strong> adı.</td>
+            <td><strong>Örnek:</strong> 'kullanicilarTablosu'</td>
+        </tr>
+        
+        <tr>
+        	<th>matching->columns->username</td>
+            <td>string empty</td>
+            <td>Yukarıda belirtilen kullanıcı tablosunda <strong>kullanıcı adını</strong> tutan sütun adı.</td>
+            <td><strong>Örnek:</strong> 'kullaniciAdi'</td>
+        </tr>
+        
+        <tr>
+        	<th>matching->columns->password</td>
+            <td>string empty</td>
+            <td>Yukarıda belirtilen kullanıcı tablosunda <strong>kullanıcı şifresini</strong> tutan sütun adı.</td>
+            <td><strong>Örnek:</strong> 'sifre'</td>
+        </tr>
+        
+        <tr>
+        	<th>matching->columns->email</td>
+            <td>string empty</td>
+            <td>Kullanıcı e-postasını tutan sütun adı. Bu sütunun kullanımı <u>zorunlu olmamakla</u> birlikte şayet kullanıcı adı sütünu e-posta bilgisi içermiyorsa bu sütun kullanılmalıdır. Yani tablonuzda en az bir e-posta sütünu olmalıdır. Bu sütun kullanıcı adını tutan sütun değilse bunun yerine bu veriyi tutacak e-posta sütunu hangisi ise o sütun bilgisi girilir.</td>
+            <td><strong>Örnek:</strong> 'epostalar'</td>
+        </tr>
+        
+        <tr>
+        	<th>matching->columns->active</td>
+            <td>string empty</td>
+            <td><u>Kullanımı zorunlu değildir</u>. Kullanıcıların aktif olma durumunu kontrol eder. Kullanıcılardan hangisinin aktif olup hangisinin aktif olmadığını öğrenmek için kullanılır. Bu sütunu kullanmak için kullanıcı tablosunda bu bölüme uygu sütun oluşturup bu bölüme yazılmadılır. <strong>Kullanılmayacaksa boş bırakılmalıdır.</strong> Kullanılacaksa bu sütunun alacağı veri türü 0 ve 1 değeri içerecek türde olmalıdır.</td>
+            <td><strong>Örnek:</strong> 'aktifDurum'</td>
+        </tr>
+        
+        
+        <tr>
+        	<th>matching->columns->banned</td>
+            <td>string empty</td>
+            <td>Kullanıcıların banlı olma durumunu kontrol eder. Bu sütun aktifse banlanmış kullanıcılar siteye giriş yapamaz. Kullanıcılardan banlananların siteye girememesini sağlar. Bu sütun<strong> kullanılmayacaksa boş bırakılmalıdır</strong>. Kullanılacaksa bu sütunun alacağı veri türü 0 ve 1 değeri içerecek türde olmalıdır.</td>
+            <td><strong>Örnek:</strong> 'banDurum'</td>
+        </tr>
+        
+        <tr>
+        	<th>matching->columns->activation</td>
+            <td>string empty</td>
+            <td>Üyelik işlemlerinde aktive zorunluluğu olmasını isterseniz kullanıcı tablosunda bu alana uygun bir sütun oluşturulmalı ve sütun adı bu bölüme eklenmelidir. <strong>Aktivasyon işlemi istenmiyorsa bu sütun boş bırakılmalıdır</strong>. Sütun Veri Türü: Char / Int. 0 veya 1 değeri tutmalıdır. 1 Aktivasyon Yapılmış, 0 Aktivasyon Yapılmamış.</td>
+            <td><strong>Örnek:</strong> 'aktivasyonDurum'</td>
+        </tr>
+        
+          <tr>
+        	<th>joining->column</td>
+            <td>string empty</td>
+            <td>Kullanıcılarla iglili birden fazla tablo sayısı varsa yukarıda belirtilen tabloya ait birleştirme için kullanılan sütun ismi belirtilir. Bu sütun genellikle ID değerini tutan sütundur.</td>
+            <td><strong>Örnek:</strong> 'ID'</td>
+        </tr>
+        
+        <tr>
+        	<th>joining->tables</td>
+            <td>array empty</td>
+            <td>Kullanıcılarla ilgili farklı tablolarla birleştirme işlemi yapılacağı zaman kullanılır. Bu ayara dizi türünde veri girilir. <strong>Dizinin anahtarı</strong> olarak birleştirlecek <strong>diğer</strong> tabloların adı, <strong>değer</strong> olarakta o <strong>tablolara ait birleştirmede kullanılan sütün adı</strong> girilir.</td>
+            <td><strong>Örnek:</strong> array('tablo1' => 'birlestirilecekSutun1', 'tablo2' => 'birlestirilecekSutun2')</td>
+        </tr>
+        
+         <tr>
+        	<th>emailSenderInfo</td>
+            <td>array empty</td>
+            <td>Aktivasyon işlemleri veya şifremini unuttum işlemleri esnasından gönderilecek <strong>e-posta'ya ait gönderen ismi ve e-posta bilgilerini</strong> belirtmek içindir. Genellikle <strong>site adı</strong> ve siteye ait <strong>e-posta</strong> adresi tercih edilir.</td>
+            <td><strong>Örnek:</strong> array('name' => 'Site Adı', 'mail' => 'info@site.com')</td>
+        </tr>
+    </table>
+    </p>
+
+    <div type="prev-next">
+    	<div type="prev-btn"><a href="auth.html">Önceki</a></div><div type="next-btn"><a href="auth_example.html">Sonraki</a></div>
+    </div>
+ 
+</body>
+</html>              

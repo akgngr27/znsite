@@ -1,0 +1,182 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>ZN KOD ÇATISI</title>
+<link type="text/css" rel="stylesheet" href="../Styles/Structure.css" />
+<script src="../Scripts/Jquery.js"></script>
+<script src="../Scripts/Structure.js"></script>
+</head>
+
+<body>
+    <div id="content-document"><a href="#">Döküman</a> » <a href="auth.html">Authencation(Kimlik Doğrulama)</a> » Örnek Kullanımlar</div> 
+    <p class="ctfont">Örnek Kullanımlar</p>
+    <p>Bu bölümde <strong>User</strong> sıfına ait örnek kullanımlara yer verilmiştir.</p>
+    
+    
+    <p class="cstfont">Yeni bir üye kadedelim.<p>
+   	
+    <div type="code">
+    <pre>
+<comment> // Bu bilgilerin form nesnelerinden geldiğini varsayalım.</comment>
+
+<vf>$veriler</vf> = <kf>array</kf>
+(
+    <sf>'kullaniciAdi'</sf>     => <sf>'bilgi@zntr.net'</sf>,
+    <sf>'sifre'</sf>            => <sf>'zntr'</sf>,
+    <sf>'eposta'</sf>           => <sf>'eposta@zntr.net'</sf>,
+    <sf>'isim'</sf>             => <sf>'ZN'</sf>,
+    <sf>'soyisim'</sf>          => <sf>'Framework'</sf>
+);
+
+<comment> 
+/*
+1. Parametre veritabanına kaydedilecek sütun isim ve değer bilgilerini içerir.
+2. Parametre true değeri ile kayıt işlemi tamamlandıktan sonra otomatik giriş yapmasını sağlar
+3. Parametre aktivasyon işlemi yapılacaksa e-posta içinde gönderilen dönüş linkinin içeriğidir.
+   http://www.siteadi.com/kayit/activation/kullanici
+*/
+</comment>
+User::register(<vf>$veriler</vf>, <kf>true</kf>, <sf>'kayit/aktivasyon/kullanici'</sf>);
+<comment> 
+/*
+Config/User.php ayarları düzgün yapılmışsa veritabanına bu verilerin kaydedilmiş olması gerekir.
+Kayıt işleminde herhangi bir problem oluşuyorsa veritabanı ayarlarınızı kontrol etmeniz gerekir.
+*/
+</comment>
+    </pre>
+    </div> 
+    
+    <p class="cstfont">Birleştirilmiş tablolarda ise üye kaydı aşağıdaki gibi yapılır.<p>
+   	
+    <div type="code">
+    <pre>
+<comment>
+// kullanicilar tablosuna kaydedilecek bilgiler.
+</comment>
+<vf>$veriler[<sf>'kullanicilar'</sf>]</vf> = <kf>array</kf>
+(
+    <sf>'kullaniciAdi'</sf>     => <sf>'bilgi@zntr.net'</sf>,
+    <sf>'sifre'</sf>            => <sf>'zntr'</sf>,
+    <sf>'eposta'</sf>           => <sf>'eposta@zntr.net'</sf>
+);
+<comment>
+// profiller tablosuna kaydedilecek bilgiler.
+</comment>
+<vf>$veriler[<sf>'profiller'</sf>]</vf> = <kf>array</kf>
+(
+    <sf>'isim'</sf>             => <sf>'ZN'</sf>,
+    <sf>'soyisim'</sf>          => <sf>'Framework'</sf>
+);
+
+<comment> 
+/*
+1. Parametre veritabanına kaydedilecek sütun isim ve değer bilgilerini içerir.
+2. Parametre kayıt işlemi bittikten sonra siteadi.com/kullanici/giris sayfasına yönlendirilir.
+3. Parametre kullanımına ihtiyaç olmadığı zaman belirtilmez.
+*/
+</comment>
+User::register(<vf>$veriler</vf>, <sf>'kullanici/giris'</sf>);
+<comment> 
+/*
+Config/User.php ayarları düzgün yapılmışsa veritabanına bu verilerin kaydedilmiş olması gerekir.
+Kayıt işleminde herhangi bir problem oluşuyorsa veritabanı ayarlarınızı kontrol etmeniz gerekir.
+*/
+</comment>
+    </pre>
+    </div> 
+    
+    <p class="cstfont">Oturum açan üyenin verilerini yönetmek için aşağıdaki yöntemden yararlanılır.<p>
+   	
+    <div type="code">
+    <pre>
+<kf>echo</kf> User::data()->kullaniciAdi; 
+<comment>
+// ->data kullanımı belirtilmezse üyenin tüm verileri elde edilir.
+</comment>
+output( User::data() );
+<comment>
+// Birleştirilmiş tablolarda verilere ulaşmak için parametreye tablo adı bilgisi belirtilmelidir.
+// Aşağıdaki kullanımda kullanıcının profiller tablosuna ait verileri istenmiştir.
+</comment>
+output( User::data(<sf>'profiller'</sf>) );
+<comment>
+// Aşağıdaki kullanımda kullanıcının profiller tablosuna ait isim verisi istenmiştir.
+</comment>
+<kf>echo</kf> User::data(<sf>'profiller'</sf>)->isim;
+    </pre>
+    </div> 
+    
+     <p class="cstfont">Aşağıda üye girişi yapmayı sağlayan yöntemin kullanımı yer verilmiştir.<p>
+   	
+    <div type="code">
+    <pre>
+<vf>$kullaniciAdi</vf> = <sf>'bilgi@zntr.net'</sf>;
+<vf>$sifre</vf>        = <sf>'zntr1234'</sf>;
+<vf>$beniHatirla</vf>  = <kf>true</kf>;
+<comment>
+/*
+1. Parametre kullanıcı adı bilgisini içerir.
+2. Parametre kullanıcı şifre bilgisini içerir.
+3. Parametre beni hatırla bölümüdür. True olması durumunda bir sonraki giriş için beni hatırla aktif edilmiş olur.
+*/
+</comment>
+User::login(<vf>$kullaniciAdi</vf>, <vf>$sifre</vf>, <vf>$beniHatirla</vf>); 
+    </pre>
+    </div> 
+
+    <p class="cstfont">Üye girişinin yapılıp yapılmadığın kontrol etmek için aşağıdaki gibi bir kullanım mümkündür.<p>
+   	
+    <div type="code">
+    <pre>
+<comment>
+// Oturumun varlığını veya yokluğunu kontrol edebilirsiniz.
+</comment>
+<kf>if</kf>( User::isLogin() )
+{
+	<kf>echo</kf> <sf>'Oturum açıldı.'</sf>;
+} 
+<kf>else</kf>
+{
+	<kf>echo</kf> <sf>'Erişim yetkiniz yok!'</sf>;
+	redirect(<sf>'kullanici/giris'</sf>, <if>2</if>);
+}
+    </pre>
+    </div> 
+    
+    <p class="cstfont">Oturumu solandırmak için aşağıdaki yöntemden yararlanılır.<p>
+   	
+    <div type="code">
+    <pre>
+<comment>
+// Oturumun sonlandırın.
+</comment>
+User::logout();
+
+<kf>echo</kf> User::isLogin(); <comment>// Return false</comment>
+    </pre>
+    </div> 
+    
+    <p class="cstfont">Oturum işlemlerinde oluşan hatalar hakkında bilgi almanızda mümkündür.<p>
+   	
+    <div type="code">
+    <pre>
+<comment>
+// Üye işlemleri esnasında oluşan hataları öğrenmek.
+</comment>
+output( User::error() );
+
+<comment>
+// Üye işlemleri esnasında başarım bilgisini öğrenmek.
+</comment>
+output( User::success() );
+
+    </pre>
+    </div> 
+   
+    <div type="prev-next">
+    	<div type="prev-btn"><a href="auth_user.html">Önceki</a></div><div type="next-btn"><a href="bench.html">Sonraki</a></div>
+    </div>
+ 
+</body>
+</html>              

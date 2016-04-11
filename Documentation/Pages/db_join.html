@@ -1,0 +1,147 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>ZN KOD ÇATISI</title>
+<link type="text/css" rel="stylesheet" href="../Styles/Structure.css" />
+<script src="../Scripts/Jquery.js"></script>
+<script src="../Scripts/Structure.js"></script>
+</head>
+
+<body>
+    <div id="content-document"><a href="#">Döküman</a> » <a href="db_dynamic.html">Database(Veritabanı) Kütüphanesi Yöntemleri</a> » Tablo Birleştirme İşlemleri</div> 
+    <p class="ctfont">Database Kütüphanesi ve Kullanımı</p>
+    <p>Bu bölümde veritabanı kütüphanesinın yöntemlerinin nasıl kullanıldığı ile ilgili anlatıma yer verdik.</p>
+    
+    <p>
+    	<table class="cfont" width="100%">
+        	<tr><th colspan="2">Tablo Birleştirme İşlemleri</th></tr>
+            <tr><th width="40%">Join ile Birleştirmek</th><td><a href="#join"><strong>DB::join()</strong></a></td></tr>
+          	<tr><th width="40%">innerJoin ile Birleştirmek</th><td><a href="#innerJoin"><strong>DB::innerJoin()</strong></a></td></tr>
+            <tr><th width="40%">outerJoin ile Birleştirmek</th><td><a href="#outerJoin"><strong>DB::outerJoin()</strong></a></td></tr>
+            <tr><th width="40%">leftJoin ile Birleştirmek</th><td><a href="#leftJoin"><strong>DB::leftJoin()</strong></a></td></tr>
+            <tr><th width="40%">rightJoin ile Birleştirmek</th><td><a href="#rightJoin"><strong>DB::rightJoin()</strong></a></td></tr>
+        </table>
+    </p>
+    
+    <p class="cstfont" id="join">Join ile Birleştirmek</p>
+    <p>Join yöntemi ile birleştirme.</p>
+    <p>
+    	<table class="cfont">
+        	<tr><th>Parametre</th><td>Anlamları</td></tr>
+            <tr><th>1. Parametre = string Birleştirilecek Tablo</th><td>Birleştirilecek tablonun adı.</td></tr>
+            <tr><th>2. Parametre = string Eşleştirme</th><td>İki tablonun sütunları eşleştirilir.</td></tr>
+            <tr><th>3. Parametre = string Birleştirme Türü</th><td>Hangi türde birleştirme yapılacağı. Kullanılabilir seçenekler: inner, outer, left, right</td></tr>
+        </table>
+    </p>
+    <p>
+    <div type="code">
+<pre>
+    DB::join(<sf>'yorumlar'</sf>, <sf>'kullanici.id = yorumlar.kullanici_id'</sf>, <sf>'left'</sf>)
+      ->join(<sf>'profil'</sf>, <sf>'profil.kullanici_id = kullanici.id'</sf>, <sf>'right'</sf>)
+      ->get(<sf>'kullanici'</sf>)
+      ->result();
+    
+    <comment>// SELECT * FROM kullanici left JOIN yorumlar ON kullanici.id = yorumlar.kullanici_id right JOIN profil ON profil.kullanici_id = kullanici.id </comment>
+</pre>
+    </div>
+    </p>
+    
+    <p class="cstfont" id="innerJoin">Inner Join ile Birleştirmek</p>
+    <p>INNER JOIN yöntemi ile birleştirme.</p>
+    <p>
+    	<table class="cfont">
+        	<tr><th>Parametre</th><td>Anlamları</td></tr>
+            <tr><th>1. Parametre = string Birleştirilecek Tablo</th><td>Birleştirilecek tablonun adı ve sütun adı.</td></tr>
+            <tr><th>2. Parametre = string Birleştirilecek Diğer Tablo ve Sütun</th><td>1. ve 2. parametreye ait verilerle hangi tablo ve sütunun birleştirleceği belirtilir.</td></tr>
+            <tr><th>[3. Parametre = string Operatör = '=']</th><td>Birlşetirme operatörü.</td></tr>
+        </table>
+    </p>
+    <p>
+    <div type="code">
+<pre>
+    DB::innerJoin(<sf>'yorumlar.kullanici_id'</sf>, <sf>'profil.kullanici_id'</sf>)
+      ->innerJoin(<sf>'profil.kullanici_id'</sf>, <sf>'kullanici.id'</sf>)
+      ->get(<sf>'kullanici'</sf>)
+      ->result();
+      
+    <comment>// SELECT * FROM kullanici INNER JOIN yorumlar ON yorumlar.kullanici_id = profil.kullanici_id INNER JOIN profil ON profil.kullanici_id = kullanici.id  </comment>
+</pre>
+    </div>
+    </p>
+    
+     <p class="cstfont" id="outerJoin">Outer Join ile Birleştirmek</p>
+    <p>OUTER JOIN yöntemi ile birleştirme.</p>
+    <p>
+    	<table class="cfont">
+        	<tr><th>Parametre</th><td>Anlamları</td></tr>
+            <tr><th>1. Parametre = string Birleştirilecek Tablo</th><td>Birleştirilecek tablonun adı ve sütun adı.</td></tr>
+            <tr><th>2. Parametre = string Birleştirilecek Diğer Tablo ve Sütun</th><td>1. ve 2. parametreye ait verilerle hangi tablo ve sütunun birleştirleceği belirtilir.</td></tr>
+            <tr><th>[3. Parametre = string Operatör = '=']</th><td>Birlşetirme operatörü.</td></tr>
+        </table>
+    </p>
+    <p>
+    <div type="code">
+<pre>
+    DB::outerJoin(<sf>'yorumlar.kullanici_id'</sf>, <sf>'profil.kullanici_id'</sf>)
+      ->innerJoin(<sf>'profil.kullanici_id'</sf>, <sf>'kullanici.id'</sf>)
+      ->get(<sf>'kullanici'</sf>)
+      ->result();
+      
+    <comment>// SELECT * FROM kullanici OUTER JOIN yorumlar ON yorumlar.kullanici_id = profil.kullanici_id INNER JOIN profil ON profil.kullanici_id = kullanici.id  </comment>
+</pre>
+    </div>
+    </p>
+    
+    <p class="cstfont" id="leftJoin">Left Join ile Birleştirmek</p>
+    <p>LEFT JOIN yöntemi ile birleştirme.</p>
+    <p>
+    	<table class="cfont">
+        	<tr><th>Parametre</th><td>Anlamları</td></tr>
+            <tr><th>1. Parametre = string Birleştirilecek Tablo</th><td>Birleştirilecek tablonun adı ve sütun adı.</td></tr>
+            <tr><th>2. Parametre = string Birleştirilecek Diğer Tablo ve Sütun</th><td>1. ve 2. parametreye ait verilerle hangi tablo ve sütunun birleştirleceği belirtilir.</td></tr>
+            <tr><th>[3. Parametre = string Operatör = '=']</th><td>Birlşetirme operatörü.</td></tr>
+        </table>
+    </p>
+    <p>
+    <div type="code">
+<pre>
+    DB::leftJoin(<sf>'yorumlar.kullanici_id'</sf>, <sf>'profil.kullanici_id'</sf>)
+      ->rightJoin(<sf>'profil.kullanici_id'</sf>, <sf>'kullanici.id'</sf>)
+      ->get(<sf>'kullanici'</sf>)
+      ->result();
+      
+    <comment>// SELECT * FROM kullanici LEFT JOIN yorumlar ON yorumlar.kullanici_id = profil.kullanici_id RIGHT JOIN profil ON profil.kullanici_id = kullanici.id  </comment>
+</pre>
+    </div>
+    </p>
+    
+    <p class="cstfont" id="rightJoin">Right Join ile Birleştirmek</p>
+    <p>RIGHT JOIN yöntemi ile birleştirme.</p>
+    <p><table class="cfont">
+        	<tr><th>Parametre</th><td>Anlamları</td></tr>
+            <tr><th>1. Parametre = string Birleştirilecek Tablo</th><td>Birleştirilecek tablonun adı ve sütun adı.</td></tr>
+            <tr><th>2. Parametre = string Birleştirilecek Diğer Tablo ve Sütun</th><td>1. ve 2. parametreye ait verilerle hangi tablo ve sütunun birleştirleceği belirtilir.</td></tr>
+            <tr><th>[3. Parametre = string Operatör = '=']</th><td>Birlşetirme operatörü.</td></tr>
+        </table>
+    </p>
+    <p>
+    <div type="code">
+<pre>
+    DB::leftJoin(<sf>'yorumlar.kullanici_id'</sf>, <sf>'profil.kullanici_id'</sf>)
+      ->rightJoin(<sf>'profil.kullanici_id'</sf>, <sf>'kullanici.id'</sf>)
+      ->get(<sf>'kullanici'</sf>)
+      ->result();
+      
+    <comment>// SELECT * FROM kullanici LEFT JOIN yorumlar ON yorumlar.kullanici_id = profil.kullanici_id RIGHT JOIN profil ON profil.kullanici_id = kullanici.id  </comment>
+</pre>
+    </div>
+    </p>
+    
+    
+    <div type="prev-next">
+    	<div type="prev-btn"><a href="db_db.html">Önceki</a></div><div type="next-btn"><a href="db_trans.html">Sonraki</a></div>
+    </div>
+ 
+</body>
+</html>              

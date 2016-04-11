@@ -1,0 +1,153 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>ZN KOD ÇATISI</title>
+<link type="text/css" rel="stylesheet" href="../Styles/Structure.css" />
+<script src="../Scripts/Jquery.js"></script>
+<script src="../Scripts/Structure.js"></script>
+</head>
+
+<body>
+    <div id="content-document"><a href="#">Döküman</a> » <a href="errorhandling.html">Error Handling</a> » Error Kütüphanesi</div> 
+    <p class="ctfont">Error(Hata) Kütüphanesi</p>
+    <p>Sınıflarda istenilen hata verilerinin tutulması ve kullanılması için oluşturulmuştur. Sınıfların hata verilerinin tutulması için ZN'in bir çok kütüphanesinde kullanıldığı için bu kütüphanelerin kullanımında oluşan hataları öğrenmek içinde kullanabilirsiniz.</p>
+    <ul><li><a href="#" class="infont">Error(Hata) Kütüphanesi ve Yöntemleri</a><br><br>
+        <ul>
+            <li><a href="#set">Hata Verisi Oluşturmak » <b>Errors::set()</b></a></li>
+            <li><a href="#get">Hata Verisini Kullanmak » <b>Errors::get()</b></a></li>
+            <li><a href="#getString">Hata Verilerini Metinsel Türde Almak » <b>Errors::getString()</b></a></li> 
+            <li><a href="#getArray">Hata Verilerini Dizi Türünde Almak » <b>Errors::getArray()</b></a></li> 
+            <li><a href="#getTable">Hata Verilerini Tablo ile Almak » <b>Errors::getTable()</b></a></li> 
+            <li><a href="#message">Tablolu Hata Çıktısı Bastırmak » <b>Errors::message()</b></a></li>      
+        </ul>
+    </li></ul>
+    
+    <p>
+    	<table class="cfont" width="100%">
+        	<tr><th colspan="3">Nesne Yönelime Dönüştürülmüş Diğer Yöntemler</th></tr>
+            <tr><th width="30%">Nesne Yönelimli Kullanım</th><td>Fonksiyonel Kullanım</td></tr>
+            <tr><th>Errors::last()</th><td><a href="#extract"><b>error_get_last()</b></a></td></tr>
+            <tr><th>Errors::log()</th><td><a href="#extract"><b>error_log()</b></a></td></tr>
+            <tr><th>Errors::report()</th><td><a href="#extract"><b>error_reporting()</b></a></td></tr>
+            <tr><th>Errors::handler()</th><td><a href="#extract"><b>set_error_handler()</b></a></td></tr>
+            <tr><th>Errors::trigger()</th><td><a href="#extract"><b>trigger_error()</b></a></td></tr>
+            <tr><th>Errors::restore()</th><td><a href="#extract"><b>restore_error_handler()</b></a></td></tr>
+        </table>
+    </p>
+    
+   	<p class="cstfont" id="set">Hata Verisi Oluşturmak</p>
+    <p><ftype> Errors::set(<kf>string</kf> <vf>$hataMesaji</vf> )</ftype></p>
+    <p>Hata verisi oluşturmak için kullanılır. Kullanılan sınıfa ait yöntemin ismini otomatik olarak almaktadır. Bunun için sizin sınıf veya fonksiyon ismi bildirmenize gerek yok. Sadece hata mesajını yazmanız yeterlidir.</p>
+    
+    <p>
+    	<table class="cfont">
+        	<tr><th>Parametre</th><td>Anlamları</td></tr>
+            <tr><th>1. Parametre = Hata Mesajı</th><td>Hangi hatanın tutlacağı.</td></tr>
+        </table>
+    </p>
+	<p><div type="code"><pre>
+<kf>class</kf> TestClass
+{
+    <kf>public static</kf> <ff>function</ff> yontem(<vf>$p1</vf>)
+    {
+        <kf>if</kf>( ! <ff>is_string</ff>(<vf>$p1</vf>) )
+        {
+            <strong>Errors::set</strong>(<sf>'Geçersiz parametre kullanımı!'</sf>); 
+        }
+    }
+}</pre></div></p>  
+    
+    <p class="cstfont" id="get">Hata Verisini Kullanmak</p>
+    <p><ftype> Errors::get( <kf>string</kf> <vf>$sinifAdi</vf>, <kf>string</kf> <vf>$yontemAdi</vf>, [ <kf>string</kf> <vf>$tur</vf> = <sf>'string'</sf> ] )</ftype></p>
+    <p>Hata verisi oluşturmak için kullanılır.</p>
+    
+    <p>
+    	<table class="cfont">
+        	<tr><th>Parametre</th><td>Anlamları</td></tr>
+            <tr><th>1. Parametre = Sınıf Adı</th><td>Hatanın hangi sınıf içinde oluşturulacağı belirtilir.</td></tr>
+            <tr><th>2. Parametre = Yöntem Adı</th><td>Hatanın hangi yöntemi kapsadığı belirtilir.</td></tr>
+            <tr><th>[3. Parametre = Mesaj Türü = string]</th><td>Hata mesajının içeriği. Alacağı Değerler: <strong>string, array ve table</strong></td></tr>
+            <tr><th colspan="2">3. Parametrenin Alabileceği Değerler</th></tr>
+            <tr><th>string</th><td><strong>Metinsel</strong> çıktı döndürür. Herhangi bir hata oluşmamışsa <strong>false</strong> değeri döner.</td></tr>
+            <tr><th>array</th><td><strong>Dizisel</strong> çıktı döndürür. Herhangi bir hata oluşmamışsa <strong>false</strong> değeri döner.</td></tr>
+            <tr><th>table</th><td><strong>Tablolu</strong> çıktı döndürür. Herhangi bir hata oluşmamışsa <strong>hata olmadığına dair mesaj</strong> değeri döner.</td></tr>
+        </table>
+    </p>
+	<p><div type="code">
+    	TestClass::yontem();<br>
+    	<kf>echo</kf> <strong>Errors::get</strong>(<sf>'TestClass'</sf>, <sf>'yontem'</sf>); <comment>// TestClass::yontem : Geçersiz parametre kullanımı!</comment><br>
+        output(<strong>Errors::get</strong>(<sf>'TestClass'</sf>, <sf>'yontem'</sf>,  <sf>'array'</sf>)); <comment>// Geçersiz parametre kullanımı!</comment>
+    </div></p>
+    
+    <p>Önceden tanımlanmış kütüphanelerin kullanımında oluşan kullanım kaynaklı hataları öğrenmek içinde kullanılabilir.</p>
+    <p><div type="code">
+    	DB::get(<kf>array</kf>())->result;<br>
+    	<kf>echo</kf> <strong>Errors::get</strong>(<sf>'DB'</sf>); <comment>// DB::get : Table parametresi string ifade içermelidir!</comment><br>
+    </div></p>
+    
+    <p class="cstfont" id="getString">Hata Verisini Metinsel Türde Almak</p>
+    <p><ftype> Errors::getString( <kf>string</kf> <vf>$sinifAdi</vf>, <kf>string</kf> <vf>$yontemAdi</vf>)</ftype></p>
+    <p>Hata verisini metinsel türde almak için kullanılır. Hata oluşmuşsa hatanın değeri oluşmamışsa false değeri döner.</p>
+    
+    <p>
+    	<table class="cfont">
+        	<tr><th>Parametre</th><td>Anlamları</td></tr>
+            <tr><th>1. Parametre = Sınıf Adı</th><td>Hatanın hangi sınıf içinde oluşturulacağı belirtilir.</td></tr>
+            <tr><th>2. Parametre = Yöntem Adı</th><td>Hatanın hangi yöntemi kapsadığı belirtilir.</td></tr>
+        </table>
+    </p>
+	<p><div type="code">
+    	Encode::super();<br>
+    	<kf>echo</kf> <strong>Errors::getString</strong>(<sf>'Encode'</sf>, <sf>'super'</sf>); <comment>// Encode::super : Geçersiz parametre kullanımı!</comment><br>
+    </div></p>
+    
+    <p class="cstfont" id="getArray">Hata Verisini Dizisel Türde Almak</p>
+    <p><ftype> Errors::getArray( <kf>string</kf> <vf>$sinifAdi</vf>, <kf>string</kf> <vf>$yontemAdi</vf>)</ftype></p>
+    <p>Hata verisini dizisel türde almak için kullanılır. Hata oluşmuşsa dizi oluşmamışsa false değeri döner.</p>
+    
+    <p>
+    	<table class="cfont">
+        	<tr><th>Parametre</th><td>Anlamları</td></tr>
+            <tr><th>1. Parametre = Sınıf Adı</th><td>Hatanın hangi sınıf içinde oluşturulacağı belirtilir.</td></tr>
+            <tr><th>2. Parametre = Yöntem Adı</th><td>Hatanın hangi yöntemi kapsadığı belirtilir.</td></tr>
+        </table>
+    </p>
+	<p><div type="code">
+    	Encode::super();<br>
+    	output(<strong>Errors::getArray</strong>(<sf>'Encode'</sf>, <sf>'super'</sf>)); <comment>// Array</comment><br>
+    </div></p>
+    
+    <p class="cstfont" id="getTable">Hata Verisini Tablo ile Almak</p>
+    <p><ftype> Errors::getTable( <kf>string</kf> <vf>$sinifAdi</vf>, <kf>string</kf> <vf>$yontemAdi</vf>)</ftype></p>
+    <p>Hata verisini tablo şeklinde almak için kullanılır. Hata oluşsada oluşmasada bir tablo çıktısı döner.</p>
+    
+    <p>
+    	<table class="cfont">
+        	<tr><th>Parametre</th><td>Anlamları</td></tr>
+            <tr><th>1. Parametre = Sınıf Adı</th><td>Hatanın hangi sınıf içinde oluşturulacağı belirtilir.</td></tr>
+            <tr><th>2. Parametre = Yöntem Adı</th><td>Hatanın hangi yöntemi kapsadığı belirtilir.</td></tr>
+        </table>
+    </p>
+	<p><div type="code">
+    	Encode::super();<br>
+    	<kf>echo</kf> <strong>Errors::getTable</strong>(<sf>'Encode'</sf>, <sf>'super'</sf>); <comment>// Table</comment><br>
+    </div></p>
+    
+    <p class="cstfont" id="message">Tablolu Hata Çıktısı Bastırmak</p>
+    <p><ftype> Errors::message( <kf>string</kf> <vf>$dilDosyasiAdi</vf>, <kf>string</kf> <vf>$anahtar</vf>, <kf>mixed</kf> <vf>$extra</vf>)</ftype></p>
+    <p>lang() ya da getErrorMessage() yönteminin kullanımı ile aynıdır. Dil dosyalarında yer alan mesajları özel bir tablo ile çıktılamak için kullanılır.</p>
+ 
+	<p><div type="code">
+    	<kf>echo</kf> <strong>Errors::message</strong>(<sf>'Error'</sf>, <sf>'arrayParameter'</sf>, <sf>'1.(test)'</sf>); <comment>// "1.(test) parametresi array veri türü içermelidir" mesajını tablolu bir göderim ile ekrana basar.</comment><br>
+    </div></p>
+    
+    <p>Hangi mesajları bastırabileceğinizi görmek için <strong>System/Languages/</strong> dizini içinde yer alan dil dosyalarına bakabilirsiniz. Kendi tanımlacağınız dil dosyaları için <strong>Application/Languages/</strong> dizinide kullanılabilir.
+    
+    
+    <div type="prev-next">
+    	<div type="prev-btn"><a href="errorhandling.html">Önceki</a></div><div type="next-btn"><a href="errorhandling_exceptions.html">Sonraki</a></div>
+    </div>
+ 
+</body>
+</html>              

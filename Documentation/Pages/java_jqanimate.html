@@ -1,0 +1,73 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>ZN KOD ÇATISI</title>
+<link type="text/css" rel="stylesheet" href="../Styles/Structure.css" />
+<script src="../Scripts/Jquery.js"></script>
+<script src="../Scripts/Structure.js"></script>
+</head>
+
+<body>
+    <div id="content-document">Döküman</a> » <a href="java.html">Javascript & Jquery</a> » Animate Kütüphanesi</div> 
+    <p class="ctfont">JQAnimate Kütüphanesi</p>
+    <p>Jquery'nin animasyon komutları kullanılarak oluşturulmuştur. Daha basit bir şekilde hareket işlemlerini gerçekleştirebilmeniz mümkündür.</p>
+    
+     <p>
+    	<table class="cfont" width="100%">
+        	<tr><th colspan="2">Zincirleme Kullanımlı JQAnimate Parametreleri</th></tr>
+            <tr><th width="40%">Seçiçi Belirlemek</th><td><b><cf>Jquery::animate()->selector(<cf><kf>string</kf> <vf>$selector</kf></cf>)</cf></b></td></tr>
+            <tr><th>Özellikler Eklemek</th><td><b><cf>Jquery::animate()->attr(<cf><kf>array</kf> <vf>$properties</kf>, <kf>string</kf> <vf>$code</kf></cf>)</cf></b></td></tr>
+           	<tr><th>Hızı Ayarlamak</th><td><b><cf>Jquery::animate()->duration/speed(<cf><kf>string/numeric</kf> <vf>$speed</kf></cf>)</cf></b></td></tr>
+            <tr><th>Kuyruğu Kontrol Etmek</th><td><b><cf>Jquery::animate()->queue(<cf><kf>string/bool</kf> <vf>$queue</cf>)</td></tr>
+            <tr><th>Easing Efekti Uygulamak</th><td><b><cf>Jquery::animate()->easing(<cf><kf>string</kf> <vf>$type</cf>)</td></tr>
+            <tr><th>Özel Efektler Kullanmak</th><td><b><cf>Jquery::animate()->specialEasing(<cf><kf>array</kf> <vf>$easings</kf></cf>)</cf></b></td></tr>
+            <tr><th>Geri Dönüş Fonksiyonu Kullanmak</th><td><b><cf>Jquery::animate()->callback/func(<cf><kf>string</kf> <vf>$parameter</kf>, <kf>string</kf> <vf>$code</kf></cf>)</cf></b></td></tr>
+            <tr><th>Step Fonksiyonu Kullanmak</th><td><b><cf>Jquery::animate()->step(<cf><kf>string</kf> <vf>$code</kf></cf>)</cf></b></td></tr>
+            <tr><th>Complete Fonksiyonu Kullanmak</th><td><b><cf>Jquery::animate()->comp(<cf><kf>string</kf> <vf>$code</kf></cf>)</cf></b></td></tr>
+            <tr><th>Hareketi Kuyruğa Ekleyecek Şekilde Tamamlamak</th><td><b><cf>Jquery::animate()->complete()</cf></b></td></tr>
+            <tr><th>Hareketi Oluşturmak</th><td><b><cf>Jquery::animate()->create(<cf><kf>arguments</kf> <vf>$complete1</kf>, <vf>$complete2</kf> ... <vf>$completeN</kf></cf>)</cf></b></td></tr>
+         
+        </table>
+    </p>
+    
+
+	<p class="cstfont" id="process">Zincirleme Kullanımlı Jquery Hareket İşlemleri</p>
+    <p><ftype>Jquery::animate([<vf>$scriptOutput</vf> = <kf>false</kf>])->create( [ <cf><kf>arguments</kf> <vf>$complete1</kf>, <vf>$complete2</kf> ... <vf>$completeN</kf></cf> ] )</cf></ftype></p>
+    <p>JQAnimate kütüphanesi ile ilgili animasyonun nasıl yapılacağına ait aşağıda örneklere yer verilmiştir. create() yöntemi gönderimi tamamlamak için kullanılan nihai yöntemdir.</p> 
+  	<p>Aşağıda animasyonun nasıl oluşturulacağına dair bir örneğe yer verilmiştir.</p>
+    <div type="code">
+<pre>
+<kf>echo</kf> Script::open(); <comment>// Script tagı açıyor ve script jquery dosyasını dahil ediyor.</comment>
+
+<kf>echo</kf> Jquery::animate()->selector(<sf>'#button'</sf>)
+              ->attr(<kf>array</kf>(<sf>'width'</sf> => <if>1000</if>, <sf>'height'</sf> => <if>200</if>))
+              ->speed(<if>1000</if>)
+              ->easing(<sf>'linear'</sf>)
+              ->callback(<sf>'e'</sf>, <sf>'alert("Animasyon Tamamlandı.")'</sf>)
+              ->create();
+           
+<kf>echo</kf> Script::close();<comment>// Script tagını kapatıyor.</comment>
+
+<comment>// Kaynak Kod: $("#button").animate({width:1000, height:200},{duration:1000, easing:"linear", complete:function(){alert("Animasyon Tamamlandı.");}});
+</comment>
+</pre>
+    </div>
+    
+    <p>Harekete kuyruk eklemek için complete() yöntemini aşağıdaki gibi düzenlemeniz yeterlidir.</p>
+    
+    <div type="code">->create(JQ::property(<sf>'show'</sf>, <if>1000</if>), JQ::property(<sf>'fadeIn'</sf>, <kf>array</kf>(<sf>'slow'</sf>, <sf>'linear'</sf>)));<br>
+    <pre>
+<comment>// Kaynak Kod: 
+$("#button").animate
+({
+    width:1000, height:200},{duration:1000, easing:"linear", complete:function(){alert(1);}
+}).hide(1000).fadeIn("slow","linear");</comment></pre>
+    </div>
+    
+    <div type="prev-next">
+    	<div type="prev-btn"><a href="java_jqaction.html">Önceki</a></div><div type="next-btn"><a href="java_jqevent.html">Sonraki</a></div>
+    </div>
+ 
+</body>
+</html>              

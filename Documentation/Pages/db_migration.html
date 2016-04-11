@@ -1,0 +1,218 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>ZN KOD ÇATISI</title>
+<link type="text/css" rel="stylesheet" href="../Styles/Structure.css" />
+<script src="../Scripts/Jquery.js"></script>
+<script src="../Scripts/Structure.js"></script>
+</head>
+
+<body>
+    <div id="content-document"><a href="#">Döküman</a> » <a href="db_dynamic.html">Database(Veritabanı) Kütüphanesi Yöntemleri</a> » Migration(Göç) Oluşturmak</div> 
+    <p class="ctfont">Migration(Göç) Oluşturmak</p>
+    <p>Bu bölümde göçlerin(migration) nasıl oluşturulup kullanılacağına yer vermeye çalıştık. Göçler genellikle <strong>DBForge</strong> sınıfının yaptığı tablo oluşturma, sütun ekleme gibi işlemleri yapar ancak tek farkı kodlar bir dosyada saklanır. Göç dosyaları <strong>up</strong> ve <strong>down</strong> olmak üzere iki fonksiyon içerir. Bunlardan <strong>up</strong> oluşturma işlemi <strong>down</strong> ise yapılan işlemi geri almak için kullanılır. Tabi burada bu işlemler yapılırken dosyalar versiyonlanarak oluşturulur ki hangi işlemin önce yapıldığı anlaşılır. Böylece projeniz taşındığında veritabanı dosyasını doğrudan taşımak yerine versiyonlanarak tutulan dosyalar ile yeniden tüm veritabanının inşaası sağlanır. Şimdi bu sınıfın kullanımı ile ilgil örneklere geçelim.</p>
+    
+    <p>
+        <ul content="list">
+        <li><a href="#table">Migration Tablosu Adını Ayarlamak » <b>Config/Migration.php</b></a></li>
+        <li><a href="#create">Migration Oluşturmak » <b>Migration::create()</b></a></li>
+        <li><a href="#use">Oluşturulan Migrasyonu Kullanmak » <b>MigrateName::up/down()</b></a></li>
+        <li><a href="#delete">Migration Silmek » <b>Migration::delete/deleteAll()</b></a></li>
+        <li><a href="#version">Migration Versiyonlarını Kullanmak » <b>Migration::version()</b></a></li>
+        </ul>
+    </p>
+	
+    <p class="cstfont" id="table">Migration Tablosu Adını Ayarlamak</p>
+    <p>Mİgrasyon verilerini tutacak tablo adını ayarlamak için <strong>Config/Database.php</strong> ayar dosyasından <strong>migrationTable</strong> değerini değiştirebilirsiniz. Varsayılan olarak <strong>migrations</strong> ayarlıdır.</p>
+    
+    <p class="cstfont" id="create">Migration Oluşturmak</p>
+    <p><ftype>Migration::create( <kf>string</kf> <vf>$gocAdi</vf>, [ <kf>numeric</kf> <vf>$versiyon</vf> = <if>0</if> ] )</ftype></p>
+    <p>Bu yöntem ile <strong>Models/Migrations/</strong> dizini için migrasyon oluşturmak için kullanılır. Yöntemi çalıştırdıktan sonra bu dizini kontrol ettiğinizde dosyanın oluşturuğunu görebilirsiniz. Dosya önceden tanımlı bir kaç komutla birlikte oluşturulur. Siz sadece <strong>up</strong>() ve <strong>down</strong>() fonksiyonlarının içerisini dolduruyorsunuz.</p>
+    
+    <p>
+    <table class="cfont">
+    	<tr><th>Parametreler</th><th>Kullanımı</th></tr>
+        <tr><th>string Göç Adı</th><td>Oluşturulacak migrasyon dosyasının adı.</td></tr>
+        <tr><th>string Göç Versiyonu</th><td>Oluşturulacak migrasyon dosyasının versiyonu. Hiç bir değer belirtilmez ise versiyon 000 olarak kabul edilir. İlk oluşturulan migration için varsayılan değerin kullanılması tavsiye edilir.</td></tr>
+    </table>
+    </p>
+    
+     <p>
+    <div type="code">
+    Controllers/migration_islemleri.php
+<pre>
+<comment>// Blog adından migrasyon dosyası oluşturuyoruz.</comment>
+<comment>// Models/Migrations/Blog.php dosyası oluşturuldu.</comment>
+Migration::create(<sf>'Blog'</sf>); 
+
+</pre>
+    </div>
+    </p>
+    
+    <p>Şimdi versiyonunu oluşturalım.</p>
+    
+     <p>
+    <div type="code">
+    Controllers/migration_islemleri.php
+<pre>
+<comment>// Blog dosyasının versiyonunu oluşturuyoruz.</comment>
+<comment>// Models/Migrations/BlogVersion/001.php dosyası oluşturuldu.</comment>
+Migration::create(<sf>'Blog'</sf>, <if>1</if>); 
+
+<comment>// Models/Migrations/BlogVersion/002.php dosyası oluşturuldu.</comment>
+Migration::create(<sf>'Blog'</sf>, <if>2</if>); 
+
+</pre>
+    </div>
+    </p>
+    
+     <p class="cstfont" id="use">Oluşturulan Migrasyonu Kullanmak</p>
+    <p><ftype>MigrateName::up/down()</ftype></p>
+    <p>Oluşturulan migration dosyalarını kullanmak için dosyanızın başına <strong>Migrate</strong> ön eki getirmeniz gerekiyor. Örneğin Models/Migrations/Blog.php dosyamızın olduğunu kabul edersek bu sınıfı kullanmak için <strong>Migrate</strong>Blog::up/down() şeklinde kullanmalısınız. Böylece Blog adında bir tablo oluşturmak için MigrateBlog::up() yapmanız yeterlidir. Ancak burada up fonksiyonun içerisini sizin doldurmanız gerekmektedir. Ön tanımlı olarak up() fonkisyonu için dropTable() yöntemi tanımlıdır. Siz isterseniz bu komutu değiştirebilirsiniz. Aşağıdaki örnekte migrasyon dosyasının nasıl kullanılacağı ve içeriği hakkında bilgi verilmiştir.</p>
+
+     <p>
+    <div type="code">
+    Models/Migrations/Blog.php
+<pre>
+<comment>// Yukarıdaki işlemlerle devam ediyoruz.</comment>
+<kf>class</kf> __USE_STATIC_ACCESS__MigrateBlogs <kf>extends</kf> __USE_STATIC_ACCESS__Migration
+{
+	<comment>//----------------------------------------------------------------------------------------------------</comment>
+	<comment>// Call Undefined Method</comment>
+	<comment>//----------------------------------------------------------------------------------------------------</comment>
+	use CallUndefinedMethodTrait;
+
+	<comment>//----------------------------------------------------------------------------------------------------</comment>
+	<comment>// Class/Table Name</comment>
+	<comment>//----------------------------------------------------------------------------------------------------</comment>
+	<kf>protected static</kf> <vf>$table</vf> = <tf>__CLASS__</tf>;
+
+	<comment>//----------------------------------------------------------------------------------------------------</comment>
+	<comment>// Up</comment> 
+	<comment>//----------------------------------------------------------------------------------------------------</comment>
+	<kf>public</kf> <ff>function</ff> up()
+	{
+		<comment>// Queries</comment>
+	}
+
+	<comment>//----------------------------------------------------------------------------------------------------</comment>
+	<comment>// Down</comment>
+	<comment>//----------------------------------------------------------------------------------------------------</comment>
+	<kf>public</kf> <ff>function</ff> down()
+	{
+		<comment>// Queries</comment>
+		<vf>$this</vf>->dropTable(); <comment>// Varsayılan işlem.</comment>
+	}
+}
+</pre>
+    </div>
+    </p>
+ 
+ 	<p>Yukarıdaki içerikte <strong>up</strong> ve <strong>down</strong> fonksiyonlarının içeriği sizin yapmayı planladığınız Database işlemlerine göre şekillenecektir. Up() fonksiyonu içerisinde ne gibi işlemler yapabileceğiniz aşağıdaki tabloda verilmiştir.</p>
+    
+    <p>
+    <table class="cfont">
+    	<tr><th>Up() İçin Kullanılabilecek Yöntemler</th><th>Anlamı</th></tr>
+        <tr><th>$this->createTable()</th><td>Tablo oluşturma işlemi.</td></tr>
+        <tr><th>$this->addColumn()</th><td>Sütun ekleme işlemi.</td></tr>
+        <tr><th>$this->modifyColumn()</th><td>Sütun güncelleme işlemi.</td></tr>
+    </table>
+    </p>
+    
+    <p>
+    <table class="cfont">
+    	<tr><th>Down() İçin Kullanılabilecek Yöntemler</th><th>Anlamı</th></tr>
+        <tr><th>$this->dropTable()</th><td>Tablo silme işlemi.</td></tr>
+        <tr><th>$this->dropColumn()</th><td>Sütun silme işlemi.</td></tr>
+        <tr><th>$this->truncate()</th><td>Tablo temizleme işlemi.</td></tr>
+    </table>
+    </p>
+
+	<p>Yukardaki bilgiler ışığında Models/Migrations/Blog.php dosyamızın içeriğini aşağıdaki gibi yeniden düzenliyorum.</p>
+    
+     <p>
+    <div type="code">
+    Models/Migrations/Blog.php
+<pre>
+<comment>//----------------------------------------------------------------------------------------------------</comment>
+<comment>// Up</comment> 
+<comment>//----------------------------------------------------------------------------------------------------</comment>
+<kf>public</kf> <ff>function</ff> up()
+{
+    <vf>$this</vf>->createTable(<kf>array</kf>
+    (
+        <sf>'id'</sf> => <kf>array</kf>(DB::int(<if>11</if>))
+    ));
+}
+
+<comment>//----------------------------------------------------------------------------------------------------</comment>
+<comment>// Down</comment>
+<comment>//----------------------------------------------------------------------------------------------------</comment>
+<kf>public</kf> <ff>function</ff> down()
+{
+    <vf>$this</vf>->dropTable();
+}
+</pre>
+    </div>
+    </p>
+	
+    <p>Yukaridaki dosyayı kaydedildikten sonra herhangi bir kontrolcü içerisinde kullanılabilir.</p>
+
+ <p>
+    <div type="code">
+    Controllers/migration_islemleri.php
+<pre>
+MigrateBlog::up() <comment>// Blog tablosu oluşturuldu.</comment>
+
+MigrateBlog::down() <comment>// Blog tablosu silindi.</comment>
+</pre>
+    </div>
+    </p>
+    
+    <p>Versiyonu olan migrasyonların kullanımı ile ilgili bir örnek.</p>
+    
+    <p>
+    <div type="code">
+    Controllers/migration_islemleri.php
+<pre>
+MigrateBlog::version(<if>1</if>)->up() <comment>// Blog tablosu oluşturuldu.</comment>
+
+MigrateBlog::version(<if>1</if>)->down() <comment>// Blog tablosu silindi.</comment>
+</pre>
+    </div>
+    </p>
+    
+    <p class="cstfont" id="delete">Migration Silmek</p>
+    <p><ftype>Migration::delete( <kf>string</kf> <vf>$gocAdi</vf>, [ <kf>numeric</kf> <vf>$versiyon</vf> = <if>0</if> ] )</ftype></p>
+    <p>Oluşturulan göçleri silmek için kullanılır.</p>
+    
+    <p>
+    <table class="cfont">
+    	<tr><th>Parametreler</th><th>Kullanımı</th></tr>
+        <tr><th>string Göç Adı</th><td>Silinecek migrasyon dosyasının adı.</td></tr>
+         <tr><th>string Göç Versiyonu</th><td>Silinecek migrasyonun versiyonu.</td></tr>
+    </table>
+    </p>
+    
+     <p>
+    <div type="code">
+    Controllers/migration_islemleri.php
+<pre>
+Migration::delete(<sf>'Blog'</sf>); <comment>// Models/Migrations/Blog.php dosyası silindi.</comment>
+
+Migration::delete(<sf>'Blog'</sf>, <if>1</if>); <comment>// Models/Migrations/BlogVersion/001.php dosyası silindi.</comment>
+
+Migration::delete(<sf>'Blog'</sf>, <if>2</if>); <comment>// Models/Migrations/BlogVersion/002.php dosyası silindi.</comment>
+
+Migration::deleteAll(); <comment>// Tüm göler silindi.</comment>
+</pre>
+    </div>
+    </p>
+
+    <div type="prev-next">
+    	<div type="prev-btn"><a href="db_encoding.html">Önceki</a></div><div type="next-btn"><a href="auth.html">Sonraki</a></div>
+    </div>
+ 
+</body>
+</html>              

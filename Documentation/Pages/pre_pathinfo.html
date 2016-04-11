@@ -1,0 +1,90 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>ZN KOD ÇATISI</title>
+<link type="text/css" rel="stylesheet" href="../Styles/Structure.css" />
+<script src="../Scripts/Jquery.js"></script>
+<script src="../Scripts/Structure.js"></script>
+</head>
+
+<body>
+    <div id="content-document"><a href="#">Döküman</a> » <a href="functions.html">Ön Tanımlı Sabitler ve Fonksiyonlar</a> » Dosya ve Dosya Uzantıları Bilgisi Komutları</div> 
+    <p class="ctfont">Dosya ve Dosya Uzantıları Bilgisi Komutları</p>
+    <p>Bu bölümde dosya ve dosya uzantıları hakkında bilgi elde etmek amacı ile oluşturumuş yöntemler yer almaktadır.</p>
+    <ul><li><a href="#" class="infont">Dosya ve Dosya Uzantıları Bilgisi Komutları</a><br><br>
+        <ul>
+            <li><a href="#path_info">Yol Bilgilerine Ulaşmak  » <b>pathInfos() v1.0</b></a></li>   
+            <li><a href="#extension">Dosya Uzantılarını Öğrenmek » <b>extension() v1.0</b></a></li>
+            <li><a href="#remove_extension">Dosya Uzantılarını Kaldırmak » <b>removeExtension() v1.2</b></a></li>
+        </ul>
+    </li></ul>
+    
+    
+    <p class="cstfont" id='pathInfo'>Yol Bilgilerine Ulaşmak</p>
+    <p><ftype>pathInfos( <kf>string</kf> <vf>$dosya_yolu</vf> , [ <kf>string</kf> <vf>$bilgi</vf> = <sf>'basename'</sf> ] ) v1.0</ftype></p>
+   	<p>Yolu gösterilen dizin veya dosyaya ait çeşitli bilgilere ulaşmak için kullanılır.</p>
+    <p>
+    	<table class="cfont">
+        	<tr><th>No</th><th>Parametreler</th><td>Anlamları</td></tr>
+            <tr><th>1</th><th>string Dosya Yolu</th><td>Dosyanın yolu.</td></tr>
+            <tr><th>2</th><th>[ string Bilgi = "basename" ]</th><td>Yol hakkında istenen bilgi türü.</td></tr>
+            <tr><th colspan="3">2. Parametrenin Alabileceği Değerler</th></tr>
+            <tr><th>basename</th><td colspan="2">Dizin veya dosya yolunun <strong>son segmentini</strong>(bölümünü) verir.</td></tr>
+            <tr><th>dirname</th><td colspan="2">Yol bilgisine ait <strong>dizinin ismini</strong> verir.</td></tr>
+            <tr><th>filename</th><td colspan="2">Yol bilgisine ait <strong>dosyanın ismini</strong> verir.</td></tr>
+            <tr><th>extension</th><td colspan="2">Yol bilgisine ait <strong>dosyanın uzantısını</strong> verir.</td></tr>
+        </table>
+    </p>
+    
+ 
+    <div type="code">
+    <kf>echo</kf> pathInfos(<sf>'ornek/uygulama/deneme.php'</sf>); <comment> // Çıktı: deneme.php </comment><br>
+    <kf>echo</kf> pathInfos(<sf>'ornek/uygulama/deneme.php'</sf> , <sf>'dirname'</sf>); <comment> // Çıktı: ornek/uygulama </comment><br>
+    <kf>echo</kf> pathInfos(<sf>'ornek/uygulama/deneme.php'</sf> , <sf>'filename'</sf>); <comment> // Çıktı: deneme </comment><br>
+    <kf>echo</kf> pathInfos(<sf>'ornek/uygulama/deneme.php'</sf> , <sf>'extension'</sf>); <comment> // Çıktı: php </comment><br>
+    </div>
+   
+   
+    <p class="cstfont" id="extension">Dosya Uzantılarını Öğrenmek</p>
+    <p><ftype>extension( <kf>string</kf> <vf>$dosya_ismi</vf> , [ <kf>boolean</kf> <vf>$nokta</vf> = <kf>false</kf> ] ) v1.0</ftype></p>
+   	<p>Yol bilgisi olarak girilen dosyanın uzantısını verir.</p>
+    <p>
+    	<table class="cfont">
+        	<tr><th>No</th><th>Parametreler</th><td>Anlamları</td></tr>
+            <tr><th>1</th><th>string Dosya İsmi</th><td>Dosyanın adı.</td></tr>
+            <tr><th>2</th><th>[ boolean Nokta = false ]</th><td>Uzantının önünde nokta olsun mu olmasın mı.</td></tr>
+        </table>
+    </p>
+    
+ 
+    <div type="code">
+    <kf>echo</kf> extension(<sf>'ornek/uygulama/deneme.php'</sf>); <comment> // Çıktı: php </comment><br>
+    <kf>echo</kf> extension(<sf>'ornek.html'</sf>); <comment> // Çıktı: html </comment><br>
+    <kf>echo</kf> extension(<sf>'ornek.html'</sf> , <kf>true</kf>); <comment> // Çıktı: .html </comment><br>
+    </div>
+    
+    <p class="cstfont" id="remove_extension">Dosya Uzantılarını Kaldırmak</p>
+    <p><ftype>removeExtension( <kf>string</kf> <vf>$dosya_ismi</vf>) v1.2</ftype></p>
+   	<p>Yol bilgisi olarak girilen dosyanın uzantısını kaldırır.</p>
+    <p>
+    	<table class="cfont">
+        	<tr><th>No</th><th>Parametreler</th><td>Anlamları</td></tr>
+            <tr><th>1</th><th>string Dosya İsmi</th><td>Dosyanın adı.</td></tr>
+        </table>
+    </p>
+    
+ 
+    <div type="code">
+    <kf>echo</kf> removeExtension(<sf>'ornek/uygulama/deneme.php'</sf>); <comment> // Çıktı: ornek/uygulama/deneme </comment><br>
+    <kf>echo</kf> removeExtension(<sf>'ornek.html'</sf>); <comment> // Çıktı: ornek </comment><br>
+    <kf>echo</kf> removeExtension(<sf>'ornek.h'</sf>); <comment> // Çıktı: ornek.h </comment><br>
+    </div>
+    
+    
+    <div type="prev-next">
+    	<div type="prev-btn"><a href="pre_path.html">Önceki</a></div><div type="next-btn"><a href="pre_redirect.html">Sonraki</a></div>
+    </div>
+ 
+</body>
+</html>              

@@ -1,0 +1,153 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>ZN KOD ÇATISI</title>
+<link type="text/css" rel="stylesheet" href="../Styles/Structure.css" />
+<script src="../Scripts/Jquery.js"></script>
+<script src="../Scripts/Structure.js"></script>
+</head>
+
+<body>
+    <div id="content-document"><a href="#">Döküman</a> » <a href="components.html">Bileşenler</a> » CPagination(Sayfalama) Kütüphanesi</div> 
+    <p class="ctfont">Pagination(Sayfalama) Kütüphanesi</p>
+    <p>Sayfalama işlemlerini yapmak için oluşturulmuştur .</p>
+
+     <p>
+    	<table class="cfont" width="100%">
+            <tr><th colspan="2"><a href="#pag_others">Pagination(Sayfalama) Kütüphanesi ve Yöntemleri</a></th></tr>
+            <tr><th colspan="2"><a href="#dbpagination">DB::pagination() Kullanımı ile Daha Pratik Sayfalama Yapmak</a></th></tr>
+            <tr><th colspan="2"><a href="#ajaxpagination">Ajax ile Sayfalama Yapmak</a></th></tr>
+        </table>
+    </p>
+    
+    <p class="cstfont" id="pag_others">Sayfalama Kütüphanesi Yöntemleri</p>
+    <p>Sayfalama kütüphanesine ait yöntemler aşağıdaki tabloda listelenmiştir. Kod üzerinden sayfalama ayarlarını yapılandırabileceğiniz gibi <strong>Config/Components.php</strong> ayar dosyasından da yapılandırmaları gerçekleştirebilirsiniz.</p>
+    
+  	<p>
+    <table class="cfont" width="100%">
+    	<tr><th>Sayfalama Oluşturma Yöntemleri</th><td>Anlamları</td></tr>
+        <tr><td><cf>url( <vf>$url</vf> )</cf></td><td>Sayfalamanın kullanılacağı URL adresi.</td></tr>
+        <tr><td><cf>start( <vf>$baslangic</vf> )</cf></td><td>Kaçıncı kayıttan listelenmeye başlayacağı.</td></tr>
+        <tr><td><cf>limit( <vf>$limit</vf> )</cf></td><td>Tek bir sayfada olması istenilen kayıt sayısı.</td></tr>	
+        <tr><td><cf>totalRows( <vf>$toplam_kayit</vf> )</cf></td><td>Toplam kayıt sayısı.</td></tr>
+        <tr><td><cf>countLinks( <vf>$link_sayisi</vf> )</cf></td><td>Sayfalamada yer alacak link sayısı.</td></tr>
+        <tr><td><cf>type( <vf>$type</vf> = <sf>'ajax'</sf> )</cf></td><td>Ajax işlemleri ile sayfalama yapılabilmesi için kullanılır. Linkler # işaretine dönüştürülür.</td></tr>
+        <tr><td><cf>linkNames( <vf>$prev</vf> = <sf>'[prev]'</sf>, <vf>$next</vf> = <sf>'[next]'</sf>, <vf>$first</vf> = <sf>'[first]'</sf>, <vf>$last</vf> = <sf>'[last]'</sf> )</cf></td><td>Sayfalamada yer alacak linklerin isimleri.</td></tr>
+        <tr><td><cf>attr( <vf>$ozellikler</vf> )</cf></td><td>Limit, totalRows gibi sayfalama özelliklerinin hepsini dizi tipinde bu yöntem ile belirtebilirsiniz.</td></tr>
+        <tr><td><cf>style( <vf>$style</vf> )</cf></td><td>Sayfalama nesnelerine stil eklemek için kullanılır.</td></tr>
+        <tr><td><cf>css( <vf>$css</vf> )</cf></td><td>Sayfalama nesnelerine css sinifi eklemek için kullanılır.</td></tr>
+        <tr><td><cf>create( [ <vf>$start</vf> ], [ <vf>$settings</vf> ] )</cf></td><td>Sayfalama oluşturma yöntemidir. İsteğe bağlı 4 parametresi vardır.</td></tr>
+    </table>
+    </p>
+    
+    <p>Yukarıdaki yöntemlerin kullanımına yönelik örnekler aşağıda verilmiştir.</p>
+    
+    <p>
+    <div type="code">
+    Pagination::url(<sf>'urunler/sayfa'</sf>)->limit(<sf>10</sf>)->totalRows(<sf>200</sf>)->start(<sf>0</sf>)->create();
+    </div>
+    </p>
+    
+    <p>
+    <div type="code">
+<pre>
+Pagination::url(<sf>'urunler/sayfa'</sf>)
+          ->limit(<sf>10</sf>)
+          ->totalRows(<sf>200</sf>)
+          ->start(<sf>0</sf>)
+          ->style(<kf>array</kf>(<sf>'current'</sf> => <sf>'color:blue'</sf>, <sf>'font-size'</sf> => <sf>'11px'</sf>))
+          ->create();
+    </pre>
+    </div>
+    </p>
+    
+    <p><img src="../Images/Result/pagination3.PNG" /> </p>
+    
+    <p>Yukarıda kodların çıktısı olan sayfalama nesnesi görüntüsü yer almaktadır.</p> 
+    
+    <p>
+    	<table class="cfont" width="100%">
+            <tr><th>Sınıf ve Stil Uygulanabilir Anahtar Kelimeler</th><td>Etkilenen Kısımlar</td></tr>
+            <tr><th>current</th><td>Aktif sayfayı görteren linke stil veya sınıf eklenmesi için kullanılır.</td></tr>
+            <tr><th>prev</th><td>Önceki butonunu görteren linke stil veya sınıf eklenmesi için kullanılır.</td></tr>
+            <tr><th>next</th><td>Sonraki butonunu görteren linke stil veya sınıf eklenmesi için kullanılır.</td></tr>
+            <tr><th>first</th><td>İlk butonunu görteren linke stil veya sınıf eklenmesi için kullanılır.</td></tr>
+            <tr><th>last</th><td>Son butonunu görteren linke stil veya sınıf eklenmesi için kullanılır.</td></tr>
+            <tr><th>links</th><td>Sayfalama oluşturulan linklere stil veya sınıf eklenmesi için kullanılır.</td></tr> 
+        </table>
+    </p>
+    
+    <p class="cstfont" id="dbpagination">DB::pagination() Kullanımı ile Daha Pratik Sayfalama Yapmak</p>
+    
+    <p>Sorgulara göre daha pratik bir sayfalama yapmak için DB sınıfına ait sayfalama yöntemi mevcuttur. Bunun için Pagination sınıfının kullanımından yararlanılmıştır. İster Pagination sınıfına ayarları gönderin isterseniz doğrudan pagination yani sayfalama barını oluşturun. Yani veritabanı ile sayfalama sınıflarının entegrasyonu ile oluşturulmuş yöntemdir.</p>
+    
+   <p>
+    	<table class="cfont">
+        	<tr><th>1. Parametre = string Url</th><td>Sayfalama linklerinin bağlantı kuracağı link bilgisi.</td></tr>
+            <tr><th>2. Parametre = array Ayarlar</th><td>Sayfalama için gönderilecek gerekli ayarlar. Bu ayarların neler olduğu Pagination sınıfında zaten belirtilmiştir. Örnek: links, countLinks.</td></tr>
+            <tr><th>3. Parametre = bool Çıktı true</th><td>Bu parametre false ayarlamadığı sürece sayfalama barını çıktılayacaktır. False olma durumunda sayfalama için gerekli ayarları döndürecektir.</td></tr>
+        </table>
+    </p>
+    
+    <p>
+    <div type="code">
+<pre><vf>$pagination</vf> = DB::limit(URI::segment(<sf>-1</sf>), <sf>5</sf>)->get(<sf>'OrnekTablo'</sf>)->pagination();
+     
+<kf>print</kf>(<vf>$pagination</vf>)
+     
+    </div>
+  	</p>
+    
+    <p class="cstfont" id="ajaxpagination">Ajax ile Sayfalama Yapmak</p>
+    
+    <p>Sayfalama kütüphanesini ajaxlarla birlikte de kullanabilirsiniz. Bu işlemi için <strong>Config/Components.php</strong> ayar dosyasını, settings() ya da type(<sf>'ajax'</sf>) fonksiyonunu kullanarak yapabilirsiniz. Bu işlemlerden sonra ajax işlemleri için kullanacağınız iki veri oluşturulur. Bunlar aşağıdaki tabloda verilmiştir.</p>
+    
+   <p>
+    	<table class="cfont">
+        	<tr><th>Özelikler</th><td>İşlevler</td></tr>
+        	<tr><th>prow</th><td>Tip ajax olarak ayarlandıktan sonra sayfalama linklerinde <strong>prow="KayitNo"</strong> şeklinde bir özellik oluşur.</td></tr>
+            <tr><th>ptype</th><td>Tip ajax olarak ayarlandıktan sonra sayfalama linklerinde <strong>ptype="ajax"</strong> şeklinde bir özellik oluşur.</td></tr>
+           
+        </table>
+    </p>
+    
+    <p>Yukarıdaki veriler ajax işlemlerinde data göndermede ve tıklama gibi olayların kullanımında kullanılır.</p>
+    
+     <p>
+    <div type="code">
+    Controllers/ajax/sayfalama.php
+<pre>
+<comment>// ajax ile gönderilen prow(kayıt numarası) verisi.</comment>
+<vf>$prow</vf>  = ( <vf>$prow</vf> = Method::post(<sf>'prow'</sf>)) ? <vf>$prow</vf> : <if>0</if>;
+	
+<comment>// products tablosundan veriler çekiliyor.</comment>
+<vf>$get</vf>   = DB::limit(<vf>$prow</vf>, <vf>$limit</vf>)->orderBy(<sf>'id'</sf>, <sf>'DESC'</sf>)->get(<sf>'products'</sf>);
+
+<vf>$table</vf> = <sf>''</sf>;
+
+<comment>// sizler bu bölümde sorgu sonucu verilerini tablolaştırabilirsiniz.</comment>
+<comment>// ben örnek olması açısından sadece alt alta ve koyu tonda yazdırıyorum.</comment>
+<kf>foreach</kf>( <vf>$get</vf>->result() <kf>as</kf> <vf>$val</vf> )
+{
+	<vf>$table</vf> .= Html::bold(<vf>$val</vf>->id).Html::br();
+}
+
+<comment>// sorgu sonucu ve sayfalama barı diziye aktarılıyor.</comment>
+<vf>$data</vf>[<sf>'table'</sf>]      = <vf>$table</vf>;
+<vf>$data</vf>[<sf>'pagination'</sf>] = <vf>$get</vf>->pagination(<sf>''</sf>, <kf>array</kf>(<sf>'start'</sf> => <vf>$prow</vf>));
+
+<comment>// veri json türünde çıktılanıyor.</comment>
+<kf>echo</kf> Json::encode(<vf>$data</vf>);
+</pre>
+    </div>
+  	</p>
+    
+    <p>Yukarıdaki gibi bir ajax sayfanız olduğunu varsayarsak gelen veriler yukarıdaki gibi kullanılıp geri gönderiliyor. Ajax success fonksiyonunuzda gelen <strong>data.pagination</strong> ve <strong>data.table</strong> şeklinde ilgili html nesnelerinin <strong>.html()</strong> özellikleri kullanılarak verilerin kullanımı sağlanır. </p>
+    
+    <div type="prev-next">
+    	<div type="prev-btn"><a href="component_datagrid.html">Önceki</a></div><div type="next-btn"><a href="component_schedule.html">Sonraki</a></div>
+    </div>
+ 
+</body>
+</html>              

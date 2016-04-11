@@ -1,0 +1,167 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>ZN KOD ÇATISI</title>
+<link type="text/css" rel="stylesheet" href="../Styles/Structure.css" />
+<script src="../Scripts/Jquery.js"></script>
+<script src="../Scripts/Structure.js"></script>
+</head>
+
+<body>
+    <div id="content-document"><a href="#">Döküman</a> » <a href="cryptography.html">Şifreleme</a> » Crypto(Şifreleme) Kütüphanesi</div> 
+    <p class="ctfont">Crypto(Şifreleme) Kütüphanesi</p>
+    <p>Şifreleme işlevlerini yerine getiren sınıftır. Şifrelemelerde kullanılan <strong>vektör</strong> ve <strong>anahtarlar</strong> için varsayılan olarak <strong>Config/Encode.php</strong> dosyasında yer alan <strong>projectKey</strong> parametresindeki değerden yararlınılmıştır. Kendi vektör ve anahtar değerlerinizi belirtmeniz durumunda kişisel ayarlamalarınız geçerli olacaktır.</p>
+    
+     <p>
+    	<table class="cfont" width="100%">
+        	<tr><th colspan="2">Crypto(Şifreleme) Kütüphanesi ve Yöntemleri</th></tr>
+            <tr><th colspan="2"><a href="#drivers">Şifreleme Sürücüleri ve Desteklenen Parametreler</a></th></tr>
+            <tr><th width="40%">Veriyi Şifrelemek</th><td><a href="#encrypt"> <b>Crypto::encrypt()</b></a></td></tr>
+            <tr><th>Şifrelenmi Veriyi Çözmek</th><td><a href="#decrypt"><b>Crypto::decrypt()</b></a></td></tr>
+            <tr><th>İstenilen Uzunlukta Şifre Oluşturmak</th><td><a href="#keygen"><b>Crypto::keygen()</b></a></td></tr>
+        </table>
+    </p>
+    
+    
+    <p class="cstfont" id="drivers">Şifreleme Sürücüleri ve Desteklenen Parametreler</p>
+    <p>Şifreleme işlemlerinde kullanılabilir sürücüler aşağıdaki tabloda verilmiştir. Bu ayarlamalar genel olarak kullanılan verilerdir. Aşağıdaki tabloda yer alan <strong>ciphers</strong> ve <strong>modes</strong> değerleri yöntemlerde kullanabileceğiniz verileri ifade etmektedir.</p>
+    
+    <p>
+    	<table class="cfont" width="100%">
+        	<tr><th colspan="3">Mcrypt Sürücüsü</th></tr>
+            <tr><th>Ciphers(Şifrelemeler)</th><td>Anahtar Uzunluğu(Bayt)</td><td>Modes(Modlar)</td></tr>
+            <tr><th>des</th><td>8</td><td>cbc, ctr, cfb, cfb8, ofb, ofb8, ecb</td></tr>
+            <tr><th>3des</th><td>24</td><td>cbc, ctr, cfb, cfb8, ofb, ofb8, ecb</td></tr>
+            <tr><th>tripledes</th><td>24</td><td>cbc, ctr, cfb, cfb8, ofb, ofb8, ecb</td></tr>
+            <tr><th>cast-128</th><td>16</td><td>cbc, ctr, cfb, cfb8, ofb, ofb8, ecb</td></tr>
+            <tr><th>cast-256</th><td>32</td><td>cbc, ctr, cfb, cfb8, ofb, ofb8, ecb</td></tr>
+            <tr><th>rijndael-128</th><td>16</td><td>cbc, ctr, cfb, cfb8, ofb, ofb8, ecb</td></tr>
+            <tr><th>rijndael-192</th><td>24</td><td>cbc, ctr, cfb, cfb8, ofb, ofb8, ecb</td></tr>
+            <tr><th>rijndael-256</th><td>32</td><td>cbc, ctr, cfb, cfb8, ofb, ofb8, ecb</td></tr>
+            <tr><th>serpent</th><td>16</td><td>cbc, ctr, cfb, cfb8, ofb, ofb8, ecb</td></tr>
+            <tr><th>twofish</th><td>16</td><td>cbc, ctr, cfb, cfb8, ofb, ofb8, ecb</td></tr>
+            <tr><th>xtea</th><td>16</td><td>cbc, ctr, cfb, cfb8, ofb, ofb8, ecb</td></tr>
+            <tr><th>saferplus</th><td>24</td><td>cbc, ctr, cfb, cfb8, ofb, ofb8, ecb</td></tr>  
+            <tr><th>gost</th><td>32</td><td>cbc, ctr, cfb, cfb8, ofb, ofb8, ecb</td></tr>
+            <tr><th>loki97</th><td>32</td><td>cbc, ctr, cfb, cfb8, ofb, ofb8, ecb</td></tr>
+        </table>
+    </p>
+    
+    <p>
+    	<table class="cfont" width="100%">
+        	<tr><th colspan="3">Openssl Sürücüsü</th></tr>
+            <tr><th>Ciphers(Şifrelemeler)</th><td>Anahtar Uzunluğu(Bayt)</td><td>Modes(Modlar)</td></tr>
+            <tr><th>aes-128</th><td>16</td><td>cbc, ctr, cfb, cfb8, ofb, ecb, xts</td></tr>
+            <tr><th>aes-192</th><td>24</td><td>cbc, ctr, cfb, cfb8, ofb, ecb, xts</td></tr>
+            <tr><th>aes-256</th><td>32</td><td>cbc, ctr, cfb, cfb8, ofb, ecb, xts</td></tr>
+            <tr><th>rc2</th><td>1-128</td><td>cbc, cfb, ofb, ecb</td></tr>
+            <tr><th>camellia-128</th><td>16</td><td>cbc, cfb, cfb8, ofb, ecb</td></tr>
+            <tr><th>camellia-192</th><td>24</td><td>cbc, cfb, cfb8, ofb, ecb</td></tr>
+            <tr><th>camellia-256</th><td>32</td><td>cbc, cfb, cfb8, ofb, ecb</td></tr>
+            <tr><th>Seed</th><td>16</td><td>cbc, cfb, ofb, ecb</td></tr>
+        </table>
+    </p>
+    
+    <p>
+    	<table class="cfont" width="100%">
+        	<tr><th colspan="3">Hash Sürücüsü</th></tr>
+            <tr><th>Ciphers(Şifrelemeler)</th><td>Anahtar Uzunluğu(Bayt)</td><td>Modes(Modlar)</td></tr>
+            <tr><th>md5, sha1 ...</th><td>Desteklenmiyor!</td><td>Desteklenmiyor!</td></tr>
+        </table>
+    </p>
+    
+    <p>
+    	<table class="cfont" width="100%">
+        	<tr><th colspan="3">MHash Sürücüsü</th></tr>
+            <tr><th>Ciphers(Şifrelemeler)</th><td>Anahtar Uzunluğu(Bayt)</td><td>Modes(Modlar)</td></tr>
+            <tr><th>md5, sha1 ...</th><td>Desteklenmiyor!</td><td>Desteklenmiyor!</td></tr>
+        </table>
+    </p>
+    
+    <p>
+    	<table class="cfont" width="100%">
+        	<tr><th colspan="3">MHash Sürücüsü</th></tr>
+            <tr><th>Ciphers(Şifrelemeler)</th><td>Anahtar Uzunluğu(Bayt)</td><td>Modes(Modlar)</td></tr>
+            <tr><th>Desteklenmiyor!</th><td>Desteklenmiyor!</td><td>Desteklenmiyor!</td></tr>
+        </table>
+    </p>
+    
+    
+   	<p class="cstfont" id="encrypt">Veriyi Şifrelemek</p>
+    <p><ftype>Crypto::encrypt( <kf>string</kf> <vf>$veri</vf> , <kf>array</kf> <vf>$parametreler</vf> );</ftype></p>
+    <p>Veriyi şifrelemek için kullanılır.</p>
+    
+    <p>
+    	<table class="cfont">
+        	<tr><th>Parametreler</th><td>Anlamları</td></tr>
+            <tr><th>Destekleyen Sürücüler</th><td>mcrypt, openssl, hash, mhash</td></tr>
+            <tr><th>1 - string Şifrelenecek Veri</th><td>Çıkarma işlemin yapılacağı sıkıştırılmış dosya.</td></tr>
+            <tr><th>2 - [array Parametreler]</th><td>Şifrelemede kullanacak diğer ayarlar.</td></tr>
+            <tr><th colspan="2">2. Parametrede Kullanılabilir Anahtarlar</th></tr>
+            <tr><th>cipher</th><td>Şifreleme türü. Varsayılan mcrypt:des, openssl:aes-128, hash:sha256, mhash:sha256.</td></tr>
+            <tr><th>key</th><td>Şifreleme anahtarı. Varsayılan Tüm sürücüler için <strong>Config/Encode.php</strong>'de yer alan <strong>projectKey</strong> değeridir.</td></tr>
+            <tr><th>mode</th><td>Şifreleme modu. Varsayılan mcrypt::cbc, openssl:cbc</td></tr>
+            <tr><th>vector</th><td>Şifrelede kullanılan IV(Vector) vektör parametresi. Varsayılan uzunluklar.</td></tr>
+        </table>
+    </p>
+	
+    <div type="code"><kf>echo</kf> Crypto::encrypt(<sf>'Şifreli Veri'</sf>)</div>
+    
+    <p class="cstfont" id="driver">Farklı Sürücüler Kullanmak</p>
+    <p><ftype>Crypto::driver( <kf>string</kf> <vf>$surucuIsmi</vf> )->...</ftype></p>
+    <p>Farklı bir sürücü kullanmak için bu yönteme parametre olarak geçerli şifreleme sürücülerinden birinin ismi yazılır.</p>
+    
+    <p>
+    	<table class="cfont">
+        	<tr><th>Parametreler</th><td>Anlamları</td></tr>
+            <tr><th>1 - string Sürücü İsmi</th><td>Kullanılabilir sürücüler.</td></tr>
+        </table>
+    </p>
+	
+    <div type="code">
+    <kf>echo</kf> Crypto::driver(<sf>'mcrypt'</sf>)->encrypt(<sf>'Şifre'</sf>);<br>
+    <kf>echo</kf> Crypto::driver(<sf>'openssl'</sf>)->encrypt(<sf>'Şifre'</sf>);
+    </div>
+    
+    <p class="cstfont" id="decrypt">Şifreli Veriyi Çözmek</p>
+    <p><ftype>Crypto::decrypt( <kf>string</kf> <vf>$veri</vf> , <kf>array</kf> <vf>$parametreler</vf> )</ftype></p>
+    <p>Veriyi şifrelemek için kullanılır.</p>
+    
+    <p>
+    	<table class="cfont">
+        	<tr><th>Parametreler</th><td>Anlamları</td></tr>
+            <tr><th>Destekleyen Sürücüler</th><td>mcrypt, openssl</td></tr>
+            <tr><th>1 - string Şifrelenecek Veri</th><td>Çıkarma işlemin yapılacağı sıkıştırılmış dosya.</td></tr>
+            <tr><th>2 - [array Parametreler]</th><td>Şifrelemede kullanacak diğer ayarlar.</td></tr>
+            <tr><th colspan="2">2. Parametrede Kullanılabilir Anahtarlar</th></tr>
+            <tr><th>cipher</th><td>Şifreleme türü. Varsayılan mcrypt:des, openssl:aes-128</td></tr>
+            <tr><th>key</th><td>Şifreleme anahtarı. Varsayılan Tüm sürücüler için <strong>Config/Encode.php</strong>'de yer alan <strong>projectKey</strong> değeridir.</td></tr>
+            <tr><th>mode</th><td>Şifreleme modu. Varsayılan mcrypt::cbc, openssl:cbc</td></tr>
+            <tr><th>vector</th><td>Şifrelede kullanılan IV(Vector) vektör parametresi. Varsayılan uzunluklar.</td></tr>
+        </table>
+    </p>
+	
+    <div type="code"><kf>echo</kf> Crypto::decrypt( Crypto::encrypt(<sf>'Şifreli Veri'</sf>) );</div>
+    
+    <p class="cstfont" id="keygen">İstenilen Uzunlukta Şifre Üretmek</p>
+    <p><ftype>Crypto::keygen( <kf>numeric</kf> <vf>$uzunluk</vf> )</ftype></p>
+    <p>Belirli uzunlukta şifre üretmek için kullanılır.</p>
+    
+    <p>
+    	<table class="cfont">
+        	<tr><th>Parametreler</th><td>Anlamları</td></tr>
+            <tr><th>Destekleyen Sürücüler</th><td>mcrypt, openssl, hash, mhash, phash</td></tr>
+            <tr><th>1 - numeric Uzunluk</th><td>Oluşturulmak istenen ragele şifrenin uzunluğu.</td></tr>
+        </table>
+    </p>
+	
+    <div type="code"><kf>echo</kf> Crypto::keygen(<if>10</if>);</div>
+    
+   
+    <div type="prev-next">
+    	<div type="prev-btn"><a href="cryptography_drivers.html">Önceki</a></div><div type="next-btn"><a href="cryptography_encode.html">Sonraki</a></div>
+    </div>
+ 
+</body>
+</html>              

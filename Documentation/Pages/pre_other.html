@@ -1,0 +1,121 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>ZN KOD ÇATISI</title>
+<link type="text/css" rel="stylesheet" href="../Styles/Structure.css" />
+<script src="../Scripts/Jquery.js"></script>
+<script src="../Scripts/Structure.js"></script>
+</head>
+
+<body>
+    <div id="content-document"><a href="#">Döküman</a> » <a href="functions.html">Ön Tanımlı Sabitler ve Fonksiyonlar</a> » Diğer Ön Tanımlı Komutlar</div> 
+    <p class="ctfont">Diğer Ön Tanımlı Komutlar</p>
+    <p>Diğer ön tanımlı yöntemler yer alır.</p>
+    <ul><li><a href="#" class="infont">Diğer Ön Tanımlı Komutlar</a><br><br>
+        <ul>
+        
+            <li><a href="#charset_list">Encoding Karakter Seti Listesini Öğrenmek » <b>charsetList()</b></a></li>          
+            <li><a href="#ln">Farklı İşletim Sistemlerine Göre Satır Sonu Karakterini Kullanmak » <b>eol()</b></a></li>  
+            <li><a href="#divide">Metinsel İfadeyi Bölmek ve İstenen Parçaya Ulaşmak » <b>divide()</b></a></li> 
+            <li><a href="#error_report">Son Oluşan Hata Bilgisini Öğrenmek » <b>errorReport()</b></a></li>
+            <li><a href="#get_message">Dil Dosyalarından Mesaj Çağrısı Yapmak » <b>getErrorMessage()</b></a></li>
+        </ul>
+    </li></ul>
+    
+   
+   	<p class="cstfont" id="charset_list">Encoding Karakter Seti Listesini Öğrenmek</p>
+    <p><ftype>charsetList() v1.2</ftype></p>
+   	<p>Geçerli karakter setlerinin listesini verir.</p>
+ 
+    <div type="code">
+    <ff>var_dump</ff>(charsetList()); <comment> // Çıktı: Karakter liste dizisi</comment><br>
+    </div>
+
+   
+    <p class="cstfont" id="ln">Farklı İşletim Sistemlerine Göre Satır Sonu Karakterini Kullanmak</p>
+    <p><ftype>eol(<kf>numeric</kf> <vf>$tekrar_sayisi</vf> = <if>1</if> ) v1.3</ftype></p>
+   	<p>İşletim sistemlerindeki farklılıktan kaynaklanan \n, \r karakter kullanımlarından doğan problemleri kaldırmak için oluşturulmuştur.</p>
+    <p>
+    	<table class="cfont">
+        	<tr><th>No</th><th>Parametreler</th><td>Anlamları</td></tr>
+            <tr><th>1</th><th>numeric Tekrar Sayısı</th><td>Karakterlerin kaç kez tekrarlanacağı.</td></tr>
+        </table>
+    </p>
+    
+ 
+    <div type="code">
+    <kf>echo</kf> eol(<if>1</if>); <comment> // Çıktı: WIN \n\r , MAC \r , OTHER \n</comment><br>
+    <kf>echo</kf> eol(<if>3</if>); <comment> // Çıktı: WIN \n\r\n\r\n\r , MAC \r\r\r , OTHER \n\n\n</comment><br>
+    </div>
+    
+    <p class="cstfont" id="divide">Metinsel İfadeyi Bölmek ve İstenen Parçaya Ulaşmak</p>
+    <p><ftype>divide( <kf>string</kf> <vf>$metin</vf> , [ <kf>string</kf> <vf>$bolunen_ifade</vf> = <sf>'|'</sf> ] , [ <kf>string/int</kf> <vf>$parca_numarasi</vf> = <if>0</if> ] )</ftype></p>
+   	<p>Parametre olarak girilen metin bilgisini, belirlenen karaktere göre parçalamak ve istenilen parçayı almak için kullanılır.</p>
+    <p>
+    	<table class="cfont">
+        	<tr><th>No</th><th>Parametreler</th><td>Anlamları</td></tr>
+            <tr><th>1</th><th>string Metin</th><td>Bölmek istenilen metin.</td></tr>
+            <tr><th>2</th><th>[ string Bölünen İfade = "|" ]</th><td>Parçalara hangi karakteri kullanarak ayırsın.</td></tr>
+            <tr><th>3</th><th>[ string/int Parça Numarası = 0 ]</th><td>Parça numarası.</td></tr>
+            <tr><th colspan="3">Parça Numarası Parametresinin Alabileceği Değerler</th></tr>
+            <tr><th>Sıfır veya Pozitif Sayı</th><td colspan="2">Baştan parça numarası.</td></tr>
+            <tr><th>Negatif Sayı</th><td colspan="2">Sondan parça numarası.</td></tr>
+            <tr><th>last</th><td colspan="2">Son parça numarası.</td></tr>
+            <tr><th>first</th><td colspan="2">İlk parça numarası.</td></tr>
+            <tr><th>all</th><td colspan="2">Tüm parçalar dizi olarak döndürür.</td></tr>
+        </table>
+    </p>
+    
+ 
+    <div type="code">
+    <kf>echo</kf> divide(<sf>'bilgi|zntr|framework'</sf>); <comment> // Çıktı: bilgi </comment><br>
+    <kf>echo</kf> divide(<sf>'bilgi-zntr-framework'</sf>, <sf>'-'</sf>, <sf>1</sf>); <comment> // Çıktı: zntr </comment><br>
+    <kf>echo</kf> divide(<sf>'bilgi-zntr-framework'</sf>, <sf>'-'</sf>, <sf>-1</sf>); <comment> // Çıktı: framework </comment><br>
+    <kf>echo</kf> divide(<sf>'bilgi?zntr?framework'</sf>, <sf>'?'</sf>, <sf>'last'</sf>); <comment> // Çıktı: framework </comment><br>
+    <kf>echo</kf> divide(<sf>'bilgi+zntr+framework'</sf>, <sf>'+'</sf>, <sf>'first'</sf>); <comment> // Çıktı: bilgi </comment><br>
+    <kf>echo</kf> divide(<sf>'bilgi+zntr+framework'</sf>, <sf>'+'</sf>, <sf>'all'</sf>); <comment> // Çıktı: array('bilgi', 'zntr', 'framework') </comment><br>
+    </div>
+    
+	<p class="cstfont" id="error_report">Son Oluşan Hata Bilgisini Öğrenmek</p>
+    <p><ftype>errorReport( <kf>string</kf> <vf>$hata_anahtari</vf> ) v1.1</ftype></p>
+   	<p>Son oluşan hata bilgisini bir dizi olarak döndürür. Ancak istenirse parametre olarak girilen dizi anahtarlarından birine ait veriye ulaşılabilir. </p>
+    <p>
+    	<table class="cfont">
+        	<tr><th>No</th><th>Parametreler</th><td>Anlamları</td></tr>
+            <tr><th>1</th><th>string Hata Anatarı</th><td>Hata dizisinden istenilen hata bilgisini almak için kullanılır.</td></tr>
+        </table>
+    </p>
+    
+ 
+    <div type="code">
+    <kf>echo</kf> errorReport(<sf>'message'</sf>); <comment> // Çıktı: Oluşan hata mesajını verecektir. </comment><br />
+    <kf>echo</kf> errorReport(<sf>'line'</sf>); <comment> // Çıktı: Oluşan hata satır numarasını verecektir. </comment><br />
+    <ff>var_dump</ff>(errorReport()); <comment> // Çıktı: Oluşan hata dizisini verecektir. </comment><br />
+    </div>
+    
+    <p class="cstfont" id="get_message">Dil Dosyalarından Mesaj Çağrısı Yapmak</p>
+    <p><ftype>getErrorMessage( <kf>string</kf> <vf>$dil_dosyasi</vf> , <kf>string</kf> <vf>$mesaj_anahtari</vf> , <kf>string/array</kf> <vf>$degisiklik</vf>)</ftype></p>
+   	<p>Herhangi bir dil dosyasından istenilen mesajı çağırmak için kullanılır. </p>
+    <p>
+    	<table class="cfont">
+        	<tr><th>No</th><th>Parametreler</th><td>Anlamları</td></tr>
+            <tr><th>1</th><th>string Dil Dosyasının Adı</th><td>Mesaj alınmak istenen dil dosyasının adı.</td></tr>
+            <tr><th>2</th><th>string Mesah Anahtarı</th><td>Dil dosyasındaki istenilen mesaja ait anahtar.</td></tr>
+            <tr><th>1</th><th>[ string/array Değişiklik ]</th><td>Mesajda ye alan özel karakterler yerine istenilen kelimeleri kullanmak içindir.</td></tr>
+        </table>
+    </p>
+    
+ 
+    <div type="code">
+    <kf>echo</kf> getErrorMessage(<sf>'Upload'</sf>, <sf>'upload_unknown_error'</sf>); <comment> // Çıktı: Bilinmeyen hata veya çok büyük boyutlu dosya! </comment><br />
+    <kf>echo</kf> getErrorMessage(<sf>'Validation'</sf>, <sf>'validation_required'</sf>); <comment> // Çıktı: % alanı boş geçilemez! </comment><br />
+    <kf>echo</kf> getErrorMessage(<sf>'Validation'</sf>, <sf>'validation_required'</sf>, <sf>'Text'</sf>); <comment> // Çıktı: Text alanı boş geçilemez! </comment><br />
+    </div>
+    
+    <div type="prev-next">
+    	<div type="prev-btn"><a href="pre_library.html">Önceki</a></div><div type="next-btn"><a href="funtions.html">Sonraki</a></div>
+    </div>
+ 
+</body>
+</html>              

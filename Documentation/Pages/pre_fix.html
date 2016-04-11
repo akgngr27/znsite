@@ -1,0 +1,101 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>ZN KOD ÇATISI</title>
+<link type="text/css" rel="stylesheet" href="../Styles/Structure.css" />
+<script src="../Scripts/Jquery.js"></script>
+<script src="../Scripts/Structure.js"></script>
+</head>
+
+<body>
+    <div id="content-document"><a href="#">Döküman</a> » <a href="functions.html">Ön Tanımlı Sabitler ve Fonksiyonlar</a> » Ön Ek ve Son Ek Komutları</div> 
+    <p class="ctfont">Ön Ek ve Son Ek Komutları</p>
+    <p>Veriye ön ek ve son ek eklemek için oluşturulmuş yöntemlerdir.</p>
+    <ul><li><a href="#" class="infont">Ön Ek ve Son Ek Komutları</a><br><br>
+        <ul>
+            <li><a href="#prefix">Bir Veriye Önek Eklemek » <b>prefix() v1.0</b></a></li>
+            <li><a href="#suffix">Bir Veriye Sonek Eklemek » <b>suffix() v1.0</b></a></li> 
+            <li><a href="#presuffix">Bir Veriye Önek ve Sonek Eklemek » <b>presuffix() v2.0</b></a></li>
+        </ul>
+    </li></ul>
+    
+    <p class="cstfont" id="prefix">Bir Veriye Önek Eklemek</p>
+    <p><ftype>prefix( <kf>string</kf> <vf>$veri</vf> , [ <kf>string</kf> <vf>$onek</vf> = <sf>'/'</sf> ] )</ftype></p>
+   	<p>Herhangi bir metinsel veriye ön ek eklemek için kullanılır.</p>
+    <p>
+    	<table class="cfont">
+        	<tr><th>No</th><th>Parametreler</th><td>Anlamları</td></tr>
+            <tr><th>1</th><th>string Veri</th><td>Ön ek eklenecek veri.</td></tr>
+            <tr><th>2</th><th>[ string Önek = "/" ]</th><td>Ön ek.</td></tr>
+        </table>
+    </p>
+    
+ 
+    <div type="code">
+    <kf>echo</kf> prefix(<sf>'Veri'</sf>); <comment> // Çıktı: /Veri</comment><br>
+    <kf>echo</kf> prefix(<sf>'Veri'</sf>, <sf>'+++'</sf>); <comment> // Çıktı: +++Veri</comment><br>
+    </div>
+    
+    <p>Eğer eklenecek ön ek, verinin önünde zaten varsa ayrıca ekleme işlemi yapmaz.</p>
+    
+    <div type="code">
+    <kf>echo</kf> prefix(<sf>'/Veri'</sf>); <comment> // Çıktı: /Veri</comment><br>
+    <kf>echo</kf> prefix(<sf>'+++Veri'</sf>, <sf>'+++'</sf>); <comment> // Çıktı: +++Veri</comment><br>
+    </div>
+    
+    <p class="cstfont" id="suffix">Bir Veriye Sonek Eklemek</p>
+    <p><ftype>suffix( <kf>string</kf> <vf>$veri</vf> , [ <kf>string</kf> <vf>$sonek</vf> = <sf>'/'</sf> ] )</ftype></p>
+   	<p>Herhangi bir metinsel veriye son ek eklemek için kullanılır.</p>
+    <p>
+    	<table class="cfont">
+        	<tr><th>No</th><th>Parametreler</th><td>Anlamları</td></tr>
+            <tr><th>1</th><th>string Veri</th><td>Son ek eklenecek veri.</td></tr>
+            <tr><th>2</th><th>[ string Sonek = "/" ]</th><td>Sonek.</td></tr>
+        </table>
+    </p>
+    
+ 
+    <div type="code">
+    <kf>echo</kf> suffix(<sf>'Veri'</sf>); <comment> // Çıktı: Veri/</comment><br>
+    <kf>echo</kf> suffix(<sf>'Veri'</sf>, <sf>'+++'</sf>); <comment> // Çıktı: Veri+++</comment><br>
+    </div>
+    
+    <p>Eğer eklenecek son ek, verinin sonunda zaten varsa ayrıca ekleme işlemi yapmaz.</p>
+    
+    <div type="code">
+    <kf>echo</kf> suffix(<sf>'Veri/'</sf>); <comment> // Çıktı: Veri/</comment><br>
+    <kf>echo</kf> suffix(<sf>'Veri+++'</sf>, <sf>'+++'</sf>); <comment> // Çıktı: Veri+++</comment><br>
+    </div>
+    
+    <p class="cstfont" id="presuffix">Bir Veriye Önek ve Sonek Eklemek</p>
+    <p><ftype>presuffix( <kf>string</kf> <vf>$veri</vf> , [ <kf>string</kf> <vf>$ek</vf> = <sf>'/'</sf> ] )</ftype></p>
+   	<p>Herhangi bir metinsel veriye ön ek ve son ek eklemek için kullanılır.</p>
+    <p>
+    	<table class="cfont">
+        	<tr><th>No</th><th>Parametreler</th><td>Anlamları</td></tr>
+            <tr><th>1</th><th>string Veri</th><td>Son ek eklenecek veri.</td></tr>
+            <tr><th>2</th><th>[ string Ek = "/" ]</th><td>Ek.</td></tr>
+        </table>
+    </p>
+    
+ 
+    <div type="code">
+    <kf>echo</kf> presuffix(<sf>'Veri'</sf>); <comment> // Çıktı: /Veri/</comment><br>
+    <kf>echo</kf> presuffix(<sf>'Veri'</sf>, <sf>'+++'</sf>); <comment> // Çıktı: +++Veri+++</comment><br>
+    </div>
+    
+    <p>Eğer eklenecek son ek, verinin sonunda zaten varsa ayrıca ekleme işlemi yapmaz.</p>
+    
+    <div type="code">
+    <kf>echo</kf> presuffix(<sf>'Veri/'</sf>); <comment> // Çıktı: /Veri/</comment><br>
+    <kf>echo</kf> presuffix(<sf>'Veri+++'</sf>, <sf>'+++'</sf>); <comment> // Çıktı: +++Veri+++</comment><br>
+    </div>
+    
+
+    <div type="prev-next">
+    	<div type="prev-btn"><a href="pre_lang.html">Önceki</a></div><div type="next-btn"><a href="pre_url.html">Sonraki</a></div>
+    </div>
+ 
+</body>
+</html>              

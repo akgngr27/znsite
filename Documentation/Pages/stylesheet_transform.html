@@ -1,0 +1,57 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>ZN KOD ÇATISI</title>
+<link type="text/css" rel="stylesheet" href="../Styles/Structure.css" />
+<script src="../Scripts/Jquery.js"></script>
+<script src="../Scripts/Structure.js"></script>
+</head>
+
+<body>
+    <div id="content-document"><a href="#">Döküman</a> » <a href="stylesheet.html">Style Sheet</a> » Transition Kütüphanesi</div> 
+    <p class="ctfont">Geçiş Kütüphanesi</p>
+    <p>Geliştirilmekte olan bir sınıftır. CSS3 özelliklerinin standart ve daha pratik kullanılabilmesi amaçlanmıştır.</p>
+  
+ 	<p class="cstfont" id="css_transform">Transform Kütüphanesi</p>
+    <p>Transform kütüphanesine ait yöntemler aşağıdaki tabloda listelenmiştir</p>
+    
+
+    <p>
+    <table class="cfont">
+    	<tr><th>Transform Kütüphanesi ve Yöntemleri</th><td>Anlamları</td><td>Kullanımları</td></tr>
+        <tr><td><cf>selector( <vf>$erisim</vf> )</cf></td><td>Nesneye erişim sağlamak için kullanılan adlandırmalar. Örn: .sinif, #id ...</td><td><cf>->selector(<sf>'Erişim Adı'</sf>)</cf></td></tr>
+        <tr><td><cf>matrix( <vf>$parametreler</vf> )</cf></td><td>transform:matrix() parametresinin karşılığıdır.</td><td><cf>->matrix(<sf>1</sf>, <sf>0</sf>, <sf>1</sf>, <sf>1</sf>, <sf>90</sf>, <sf>0</sf>)</cf></td></tr>
+        <tr><td><cf>rotate( <vf>$aci</vf> )</cf></td><td>transform:rotate() parametresinin karşılığıdır.</td><td><cf>->rotate(<if>90</if>)</cf></td></tr>
+        <tr><td><cf>scale( <vf>$x</vf>, <vf>$y</vf> )</cf></td><td>transform:scale() parametresinin karşılığıdır.</td><td><cf>->scale(<if>2</if>, <if>3</if>)</cf></td></tr>
+        <tr><td><cf>scaleX( <vf>$x</vf> )</cf></td><td>transform:scaleX() parametresinin karşılığıdır.</td><td><cf>->scaleX(<if>2</if>)</cf></td></tr>
+        <tr><td><cf>scaleY( <vf>$y</vf> )</cf></td><td>transform:scaleY() parametresinin karşılığıdır.</td><td><cf>->scaleY(<if>2</if>)</cf></td></tr>
+        <tr><td><cf>skew( <vf>$egim</vf> )</cf></td><td>transform:skew() parametresinin karşılığıdır.</td><td><cf>->skew(<if>90</if>)</cf></td></tr>
+        <tr><td><cf>skewX( <vf>$x</vf> )</cf></td><td>transform:skewX() parametresinin karşılığıdır.</td><td><cf>->skewX(<if>20</if>)</cf></td></tr>
+        <tr><td><cf>skewY( <vf>$y</vf> )</cf></td><td>transform:skewY() parametresinin karşılığıdır.</td><td><cf>->skewY(<if>30</if>)</cf></td></tr>
+        <tr><td><cf>translate( <vf>$trans</vf> )</cf></td><td>transform:translate() parametresinin karşılığıdır.</td><td><cf>->translate(<if>10</if>)</cf></td></tr>
+        <tr><td><cf>translateX( <vf>$x</vf> )</cf></td><td>transform:translateX() parametresinin karşılığıdır.</td><td><cf>->translateX(<if>20</if>)</cf></td></tr>
+        <tr><td><cf>translateY( <vf>$y</vf> )</cf></td><td>transform:translateY() parametresinin karşılığıdır.</td><td><cf>->translateY(<if>30</if>)</cf></td></tr>
+        <tr><td><cf>create()</cf></td><td>Animasyonu tamamlama yöntemidir.</td><td><cf>->create();</cf></td></tr>
+    </table>
+    </p>
+    <p>Yukarıdaki yöntemlerin kullanımına yönelik örnekler aşağıda verilmiştir.</p>
+    
+    <p>
+    <div type="code">
+   <pre>
+Sheet::transform()->selector(<sf>'#nesne'</sf>)
+         ->rotate(<sf>90</sf>)
+         ->skewX(<if>20</if>)
+         ->scaleY(<if>3</if>)
+         ->create();
+    </div></pre>
+    </p>
+   
+   
+    <div type="prev-next">
+    	<div type="prev-btn"><a href="stylesheet_transition.html">Önceki</a></div><div type="next-btn"><a href="templating.html">Sonraki</a></div>
+    </div>
+ 
+</body>
+</html>              

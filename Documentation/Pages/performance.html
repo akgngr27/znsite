@@ -1,0 +1,53 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>ZN KOD ÇATISI</title>
+<link type="text/css" rel="stylesheet" href="../Styles/Structure.css" />
+<script src="../Scripts/Jquery.js"></script>
+<script src="../Scripts/Structure.js"></script>
+</head>
+
+<body>
+    <div id="content-document"><a href="#">Döküman</a> » Performans Artırma Önerileri</div> 
+    <p class="ctfont">Performans Artırma Önerileri</p>
+	<p>ZN Framework'te sistemin kullandığı <strong>bellek miktarını</strong> veya <strong>yüklenme zamanını</strong> öğrenebilirsiniz. Bunun için <strong>index.php</strong> dosyasında yer alan <vf>$BENCHMARK_PERFOMANCE_TEST_START</vf> = <kf>false</kf> değerini <kf>true</kf> ayarlayınız.</p>
+   	<p>ZN Framework çalışma performansını artırmak için aşağıdaki işlemlerini yapmanız önerilmektedir.</p>
+    <p>
+    	<table class="cfont">
+        	<tr><th>No</th><th width="30%">Ayarlama Yapılacak Dosyalar</th><td>Nasıl Ayarlanmalıdır?</td></tr>
+          
+            <tr>
+            	<th>1</th>
+                <th>Config/Htaccess.php</th>
+                <td>
+                	Bu dosya içerisinde yer alan <cf><sf>'craeteFile'</sf> = <kf>true</kf>;</cf><br> ayarı, Proje yayınlanmaya hazır olduğu zaman <kf>false</kf> olarak ayarlanmalıdır. Aksi halde htaccess dosyasının içeriği oluşturulmaya devam edecektir.
+                
+                </td>
+            </tr>
+            
+            <tr>
+            	<th>2</th>
+                <th>Index.php Uygulama Ayarını Değiştirin</th>
+                <td>
+                	Bu dosya içerisinde yer alan <cf>System::run(<sf>'development'</sf>);</cf> ayarı, Proje yayınlamaya hazır olduğu zaman <cf>System::run(<sf>'publication'</sf>);</cf> olarak ayarlanmalıdır. Aksi halde kullanıcılar sitede ön görülmeyen hatalar ile karşılaşabilir.
+                </td>
+            </tr>
+            
+            <tr>
+            	<th>3</th>
+                <th>Statik Tanımlı Kütüphaneler</th>
+                <td>
+                	Mümkün mertebe statik tanımlanmış kütüphaneleri, statik olarak çağırmaya özen gösterin. Statik tanımlanmış <cf>Import::page()</cf> gibi bir yöntemi <cf>$this->import->page()</cf> gibi bir kullanım ile <strong>çağırmamaya</strong> özen gösteriniz. 
+                </td>
+            </tr>
+           
+        </table>
+    </p>
+    
+    <div type="prev-next">
+    	<div type="prev-btn"><a href="access_standart.html">Önceki</a></div><div type="next-btn"><a href="pre_constant_and_function.html">Sonraki</a></div>
+    </div>
+ 
+</body>
+</html>              

@@ -1,0 +1,80 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>ZN KOD ÇATISI</title>
+<link type="text/css" rel="stylesheet" href="../Styles/Structure.css" />
+<script src="../Scripts/Jquery.js"></script>
+<script src="../Scripts/Structure.js"></script>
+</head>
+
+<body>
+    <div id="content-document"><a href="#">Döküman</a> » <a href="functions.html">Ön Tanımlı Sabitler ve Fonksiyonlar</a> » Çıktı Oluşturma Komutları</div> 
+    <p class="ctfont">Çıktı Oluşturma Komutları</p>
+    <p>Bu bölümde print, var_dump() gibi yöntemlere alternatif olarak oluşturulmuş çıktılama yöntemleri yer alır.</p>
+    <ul><li><a href="#" class="infont">Çıktı Oluşturma Komutları</a><br><br>
+        <ul>
+            <li><a href="#output">Dizi ve Nesnelerde Düzenli Çıktı Oluşturmak » <b>output() v1.4</b></a></li> 
+            <li><a href="#write">Çıktı Oluşturmak » <b>write() v1.4</b></a></li>  
+            <li><a href="#writeLine">Çıktı Oluşturmak » <b>writeLine() v1.4</b></a></li> 
+        </ul>
+    </li></ul>
+    
+    <p class="cstfont" id="output">Dizilerde ve Nesnelerde Düzenli Çıktı Oluşturmak</p>
+    <p><ftype>output(<kf>array/object</kf> <vf>$var</vf>) v1.4</ftype></p>
+   	<p><ff>var_dump</ff> gibi kullanılan bu yöntem daha düzenli görsel çıktı oluşturur.</p>
+    
+    <p>
+    	<table class="cfont">
+        	<tr><th>No</th><th>Parametreler</th><td>Anlamları</td></tr>
+            <tr><th>1</th><th>array Çıktısı İstenilen Dizi</th><td>Düzenli çıktısı istenilen dizi veya object nesnesi.</td></tr>
+        </table>
+    </p>
+ 
+    <div type="code">
+    output(<kf>array</kf>(<if>1</if>, <if>2</if>)); <comment> // Çıktı: Düzenli dizi içeriği.</comment><br>
+    </div>
+    
+    <p class="cstfont" id="write">Çıktı Oluşturmak</p>
+    <p><ftype>write(<kf>mixed</kf> <vf>$data</vf>, <kf>array</kf> <vf>$vars</vf>) v1.4</ftype></p>
+   	<p>Ekranda çıktı oluşturmak için kullanılır. 2. parametre ile çıktıya veri gönderilebilir.</p>
+    
+    <p>
+    	<table class="cfont">
+        	<tr><th>No</th><th>Parametreler</th><td>Anlamları</td></tr>
+            <tr><th>1</th><th>mixed Veri</th><td>Çıktısı istenilen veri.</td></tr>
+            <tr><th>2</th><th>array Değişkenler</th><td>Çıktısı istenilen veriye değer göndermek için kullanılır.</td></tr>
+        </table>
+    </p>
+ 
+    <div type="code">
+    write(<sf>'Merhaba {0} {1}'</sf>, <kf>array</kf>(<sf>'Dünyaya'</sf>, <sf>'Hoş Geldiniz!'</sf>)); <comment> // Çıktı: Merhaba Dünyaya Hoş Geldiniz.</comment><br>
+    write(<sf>'Merhaba {x} {y}'</sf>, <kf>array</kf>(<sf>'x'</sf> => <sf>'Dünyaya'</sf>, <sf>'y'</sf> => <sf>'Hoş Geldiniz!'</sf>)); <comment> // Çıktı: Merhaba dünyaya hoş geldiniz.</comment><br>
+    </div>
+    
+    <p class="cstfont" id="writeLine">Çıktı Oluşturmak</p>
+    <p><ftype>writeLine(<kf>mixed</kf> <vf>$data</vf>, <kf>array</kf> <vf>$vars</vf>, [ <kf>numeric</kf> <vf>$br_count</vf> = <if>1</if> ]) v1.4</ftype></p>
+   	<p>Ekranda çıktı oluşturmak için kullanılır ancak bu yöntemin <strong>write() yönteminden farkı çıktıdan sonra bir alt satıra</strong> geçilmesidir. 2. parametre ile çıktıya veri gönderilebilir.</p>
+    
+    <p>
+    	<table class="cfont">
+        	<tr><th>No</th><th>Parametreler</th><td>Anlamları</td></tr>
+            <tr><th>1</th><th>mixed Veri</th><td>Çıktısı istenilen veri.</td></tr>
+            <tr><th>2</th><th>array Değişkenler</th><td>Çıktısı istenilen veriye değer göndermek için kullanılır.</td></tr>
+            <tr><th>3</th><th>[ numeric Alt Satır Sayısı = 1 ]</th><td>Çıktıdan sonra kaç satır alta geçileceğini belirtmek için kullanılır. Varsayılan:1</td></tr>
+        </table>
+    </p>
+ 
+    <div type="code">
+    writeLine(<sf>'Merhaba {0} {1}'</sf>, <kf>array</kf>(<sf>'dünyaya'</sf>, <sf>'hoş geldiniz!'</sf>)); <br>
+    writeLine(<sf>'Merhaba {0} {1}'</sf>, <kf>array</kf>(<sf>'Hayat'</sf>, <sf>'çok güzel!'</sf>)); <br>
+    <comment> // Merhaba dünyaya hoş geldiniz.</comment><br>
+    <comment> // Merhaba hayat çok güzel.</comment>
+    </div>
+    
+    <div type="prev-next">
+    	<div type="prev-btn"><a href="pre_is_controls.html">Önceki</a></div><div type="next-btn"><a href="pre_lang.html">Sonraki</a></div>
+    </div>
+ 
+</body>
+</html>              

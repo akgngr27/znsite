@@ -1,0 +1,74 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>ZN KOD ÇATISI</title>
+<link type="text/css" rel="stylesheet" href="../Styles/Structure.css" />
+<script src="../Scripts/Jquery.js"></script>
+<script src="../Scripts/Structure.js"></script>
+</head>
+
+<body>
+    <div id="content-document"><a href="#">Döküman</a> » <a href="stylesheet.html">Style Sheet</a> » Animation Kütüphanesi</div> 
+    <p class="ctfont">Animasyon Kütüphanesi</p>
+    <p>Geliştirilmekte olan bir sınıftır. CSS3 özelliklerinin standart ve daha pratik kullanılabilmesi amaçlanmıştır.</p>
+  
+ 	<p class="cstfont" id="css_animation">Animation Kütüphanesi</p>
+    <p>Animation kütüphanesine ait yöntemler aşağıdaki tabloda listelenmiştir</p>
+    
+    <p>
+    <table class="cfont">
+    	<tr><th width="304">Animasyon Kütüphanesi ve Yöntemleri</th><td width="598">Anlamları</td><td width="418">Kullanımları</td></tr>
+        <tr><td><cf>selector( <vf>$erisim</vf> )</cf></td><td>Nesneye erişim sağlamak için kullanılan adlandırmalar. Örn: .sinif, #id ...</td><td><cf>->selector(<sf>'Erişim Adı'</sf>)</cf></td></tr>
+        <tr><td><cf>attr( <vf>$ozellik_deger_dizisi</vf> )</cf></td><td>Animasyon öğeleri dışında eklenecek özellikler ve değerleri belirtir. Bu yöntem dizi parametresi içerir.</td><td><cf>->attr(<kf>array</kf>(<sf>'border'</sf> => <sf>'solid 1px #000'</sf>))</cf></td></tr>
+        <tr><td><cf>name( <vf>$isim</vf> )</cf></td><td>animation-name: parametresinin karşılığıdır.</td><td><cf>->name(<sf>'animation'</sf>)</cf></td></tr>
+        <tr><td><cf>direction( <vf>$yon</vf> = <sf>'reverse'</sf> )</cf></td><td>animation-direction: parametresinin karşılığıdır.</td><td><cf>->direction(<sf>'reverse'</sf>)</cf></td></tr>
+        <tr><td><cf>status( <vf>$durum</vf> )</cf></td><td>animation-play-state: parametresinin karşılığıdır.</td><td><cf>->status(<sf>'pause'</sf>)</cf></td></tr>
+        <tr><td><cf>fill( <vf>$mod</vf> )</cf></td><td>animation-fill-mode: parametresinin karşılığıdır.</td><td><cf>->fill(<sf>'forwards'</sf>)</cf></td></tr>
+        <tr><td><cf>repeat( <vf>$tekrar</vf> )</cf></td><td>animation-iteration-count: parametresinin karşılığıdır.</td><td><cf>->repeat(<if>3</if>)</cf></td></tr>
+        <tr><td><cf>duration( <vf>$sure</vf> )</cf></td><td>animation-duration: parametresinin karşılığıdır.</td><td><cf>->duration(<if>.5</if>)</cf></td></tr>
+        <tr><td><cf>delay( <vf>$baslama_suresi</vf> )</cf></td><td>animation-delay: parametresinin karşılığıdır.</td><td><cf>->delay(<if>.5</if>)</cf></td></tr>
+        <tr><td><cf>easing( <vf>$etki_turu</vf> )</cf></td><td>animation-timing-function: parametresinin karşılığıdır.</td><td><cf>->easing(<sf>'ease-in-out'</sf>)</cf></td></tr>
+        <tr><td><cf>complete()</cf></td><td>Çoklu animasyon oluşturmak için kullanılan tamamlama yöntemidir.</td><td><cf>->complete();</cf></td></tr>
+        <tr><td><cf>create()</cf></td><td>Animasyonu tamamlama yöntemidir.</td><td><cf>->create();</cf></td></tr>
+    </table>
+    </p>
+    <p>Yukarıdaki yöntemlerin kullanımına yönelik örnekler aşağıda verilmiştir.</p>
+    
+    <p>
+    <div type="code">
+   <pre>
+Sheet::animation()->selector(<sf>'#nesne'</sf>)
+          ->direction(<sf>'reverse'</sf>)
+          ->repeat(<if>3</if>)
+          ->easing(<sf>'ease-in-out'</sf>)
+          ->create();
+    </div></pre>
+    </p>
+    
+    <p><strong>Çoklu animasyon</strong> oluşturmak için aşağıdaki gibi bir kullanım gerekir.</p>
+    
+     <p>
+    <div type="code">
+   <pre>
+<vf>$kuyruk</vf> = Sheet::animation()->direction(<sf>'reverse'</sf>)
+                      ->repeat(<if>1</if>)
+                      ->easing(<sf>'ease-out-bounce'</sf>)
+                      -><strong>complete</strong>();
+      
+Sheet::animation()->name(<sf>'animation'</sf>)
+         ->selector(<sf>'#nesne'</sf>)
+         ->direction(<sf>'reverse'</sf>)
+         ->repeat(<if>3</if>)
+         ->easing(<sf>'ease-in-out'</sf>)
+         ->create(<vf>$kuyruk</vf>);
+    </div></pre>
+    </p>
+   
+   
+    <div type="prev-next">
+    	<div type="prev-btn"><a href="stylesheet_shadow.html">Önceki</a></div><div type="next-btn"><a href="stylesheet_transition.html">Sonraki</a></div>
+    </div>
+ 
+</body>
+</html>              

@@ -1,0 +1,90 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>ZN KOD ÇATISI</title>
+<link type="text/css" rel="stylesheet" href="../Styles/Structure.css" />
+<script src="../Scripts/Jquery.js"></script>
+<script src="../Scripts/Structure.js"></script>
+</head>
+
+<body>
+    <div id="content-document">Döküman</a> » <a href="java.html">Javascript & Jquery</a> » Action Kütüphanesi</div> 
+    <p class="ctfont">JQAction Kütüphanesi</p>
+    <p>Jquery'nin animasyon komutları kullanılarak oluşturulmuştur. Daha basit bir şekilde hareket işlemlerini gerçekleştirebilmeniz mümkündür.</p>
+    
+     <p>
+    	<table class="cfont" width="100%">
+        	<tr><th colspan="2">Zincirleme Kullanımlı JQAction Parametreleri</th></tr>
+            <tr><th width="40%">Seçiçi Belirlemek</th><td><b><cf>Jquery::action()->selector(<cf><kf>string</kf> <vf>$selector</kf></cf>)</cf></b></td></tr>
+           	<tr><th>Hızı Ayarlamak</th><td><b><cf>Jquery::action()->duration/speed(<cf><kf>string/numeric</kf> <vf>$speed</kf></cf>)</cf></b></td></tr>
+            <tr><th>Easing Efekti Uygulamak</th><td><b><cf>Jquery::action()->easing(<cf><kf>string</kf> <vf>$type</cf>)</td></tr>
+            <tr><th>Hareket Efekti Seçmek</th><td><b><cf>Jquery::action()->type(<cf><kf>string</kf> <vf>$type</kf></cf>)</cf></b></td></tr>
+            <tr><th>Geri Dönüş Fonksiyonu Kullanmak</th><td><b><cf>Jquery::action()->callback/func(<cf><kf>string</kf> <vf>$parameter</kf>, <kf>string</kf> <vf>$code</kf></cf>)</cf></b></td></tr>
+            <tr><th>Hareketi Kuyruğa Ekleyecek Şekilde Tamamlamak</th><td><b><cf>Jquery::action()->complete()</cf></b></td></tr>
+            <tr><th>Hareketi Oluşturmak</th><td><b><cf>Jquery::action()->create(<cf><kf>arguments</kf> <vf>$complete1</kf>, <vf>$complete2</kf> ... <vf>$completeN</kf></cf>)</cf></b></td></tr>
+         
+        </table>
+    </p>
+    
+    <p>
+    	<table class="cfont" width="100%">
+        	<tr><th colspan="2">Tekil Kullanımlı JQAction Hareket Yöntemleri</th></tr>
+            <tr><th width="40%">Show Efektini Kullanmak</th><td><b><cf>Jquery::action()->show(<kf>string</kf> <vf>$selector</vf>, <kf>mixed</kf> <vf>$timing</vf>, <kf>string</kf> <vf>$callback</vf>)</cf></b></td></tr>
+            <tr><th width="40%">Hide Efektini Kullanmak</th><td><b><cf>Jquery::action()->hide(<kf>string</kf> <vf>$selector</vf>, <kf>mixed</kf> <vf>$timing</vf>, <kf>string</kf> <vf>$callback</vf>)</cf></b></td></tr>
+            <tr><th width="40%">Fade In Efektini Kullanmak</th><td><b><cf>Jquery::action()->fadeIn(<kf>string</kf> <vf>$selector</vf>, <kf>mixed</kf> <vf>$timing</vf>, <kf>string</kf> <vf>$callback</vf>)</cf></b></td></tr>
+            <tr><th width="40%">Fade Out Efektini Kullanmak</th><td><b><cf>Jquery::action()->fadeOut(<kf>string</kf> <vf>$selector</vf>, <kf>mixed</kf> <vf>$timing</vf>, <kf>string</kf> <vf>$callback</vf>)</cf></b></td></tr>
+            <tr><th width="40%">Fade To Efektini Kullanmak</th><td><b><cf>Jquery::action()->fadeTo(<kf>string</kf> <vf>$selector</vf>, <kf>mixed</kf> <vf>$timing</vf>, <kf>string</kf> <vf>$callback</vf>)</cf></b></td></tr>
+            <tr><th width="40%">Slide Up Efektini Kullanmak</th><td><b><cf>Jquery::action()->slideUp(<kf>string</kf> <vf>$selector</vf>, <kf>mixed</kf> <vf>$timing</vf>, <kf>string</kf> <vf>$callback</vf>)</cf></b></td></tr>
+            <tr><th width="40%">Slide Down Efektini Kullanmak</th><td><b><cf>Jquery::action()->slideDown(<kf>string</kf> <vf>$selector</vf>, <kf>mixed</kf> <vf>$timing</vf>, <kf>string</kf> <vf>$callback</vf>)</cf></b></td></tr>
+            <tr><th width="40%">Slide Toggle Efektini Kullanmak</th><td><b><cf>Jquery::action()->slideToggle(<kf>string</kf> <vf>$selector</vf>, <kf>mixed</kf> <vf>$timing</vf>, <kf>string</kf> <vf>$callback</vf>)</cf></b></td></tr>
+        </table>
+        
+    </p>
+    
+
+	<p class="cstfont" id="process">Zincirleme Kullanımlı Jquery Hareket İşlemleri</p>
+    <p><ftype>Jquery::action([<vf>$scriptOutput</vf> = <kf>false</kf>])->create( [ <cf><kf>arguments</kf> <vf>$complete1</kf>, <vf>$complete2</kf> ... <vf>$completeN</kf></cf> ] )</cf></ftype></p>
+    <p>JQAction kütüphanesi ile ilgili hareketin nasıl yapılacağına ait aşağıda örneklere yer verilmiştir. create() yöntemi gönderimi tamamlamak için kullanılan nihai yöntemdir.</p> 
+  	<p>Aşağıda hareketin nasıl oluşturulacağına dair bir örneğe yer verilmiştir.</p>
+    <div type="code">
+<pre>
+<kf>echo</kf> Script::open(); <comment>// Script tagı açıyor ve script jquery dosyasını dahil ediyor.</comment>
+
+<kf>echo</kf> Jquery::action()->selector(<sf>'#button'</sf>)
+             ->type(<sf>'hide'</sf>)
+             ->speed(<if>1000</if>)
+             ->callback(<sf>'e'</sf>, <sf>'alert(1)'</sf>)
+             ->create();
+           
+<kf>echo</kf> Script::close();<comment>// Script tagını kapatıyor.</comment>
+
+<comment>// Kaynak Kod: $("#button").hide(1000,function(e){alert(1)});</comment>
+</pre>
+    </div>
+    
+    <p>Harekete kuyruk eklemek için complete() yöntemini aşağıdaki gibi düzenlemeniz yeterlidir.</p>
+    
+    <div type="code">->create(JQ::property(<sf>'show'</sf>, <if>1000</if>), JQ::property(<sf>'fadeIn'</sf>, <kf>array</kf>(<sf>'slow'</sf>, <sf>'linear'</sf>)));<br>
+    <comment>// Kaynak Kod: $("#button").hide(1000,function(e){alert(1)}).show(1000).fadeIn("slow");</comment>
+    </div>
+    
+    <p class="cstfont" id="process">Tekil Kullanımlı Hareket Yöntemlerinin Kullanımı</p>
+    
+    <div type="code">
+    Jquery::action()->show(<sf>'#button'</sf>, <if>1000</if>, <sf>'alert(1)'</sf>);<br>
+    <comment>// Kaynak Kod: $("#button").show(1000,function(e){alert(1)});</comment>
+    </div>
+    <p>
+     <div type="code">
+    Jquery::action()->fadeIn(<sf>'#button'</sf>, <if>1000</if>, <sf>'alert(1)'</sf>);<br>
+    <comment>// Kaynak Kod: $("#button").fadeIn(1000,function(e){alert(1)});</comment>
+    </div>
+    
+    
+    <div type="prev-next">
+    	<div type="prev-btn"><a href="java_jqajax.html">Önceki</a></div><div type="next-btn"><a href="java_jqanimate.html">Sonraki</a></div>
+    </div>
+ 
+</body>
+</html>              

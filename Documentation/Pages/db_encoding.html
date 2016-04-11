@@ -1,0 +1,80 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>ZN KOD ÇATISI</title>
+<link type="text/css" rel="stylesheet" href="../Styles/Structure.css" />
+<script src="../Scripts/Jquery.js"></script>
+<script src="../Scripts/Structure.js"></script>
+</head>
+
+<body>
+    <div id="content-document"><a href="#">Döküman</a> » <a href="db_dynamic.html">Database(Veritabanı) Kütüphanesi Yöntemleri</a> » Encoding(Karakter Kodlamaları) Kullanmak</div> 
+    <p class="ctfont">Encoding(Karakter Kodlamaları) Kullanmak</p>
+    <p>Bu bölümde veritabanı kütüphanesinde karakter kodlamaları ile alakalı yöntemlerden bahsedeceğiz.</p>
+    
+    <p>
+    	<table class="cfont" width="100%">
+        	<tr><th colspan="2">Encoding(Karakter Kodlamaları)</th></tr>
+            <tr><th width="40%">Karakter Seti Kullanmak</th><td><a href="#cset"><strong>DB::cset()</strong></a></td></tr>
+          	<tr><th width="40%">Karakter Grubu Kullanmak</th><td><a href="#collate"><strong>DB::collate()</strong></a></td></tr>
+            <tr><th width="40%">Karakter Seti ve Grubu Kullanmak</th><td><a href="#outerJoin"><strong>DB::encoding()</strong></a></td></tr>
+        </table>
+    </p>
+    
+    <p class="cstfont" id="cset">Karakter Seti Kullanmak</p>
+    <p>Oluşturulan tablonun veya sütunların karakter setini ayarlamak için kullanılır.</p>
+    <p>
+    	<table class="cfont">
+        	<tr><th>Parametre</th><td>Anlamları</td></tr>
+            <tr><th>[1. Parametre = string Karakter Seti = utf8]</th><td>Karakter seti adı.</td></tr>
+        </table>
+    </p>
+    <p>
+    <div type="code">
+<pre>
+    DB::addColumn(<sf>'tablo'</sf>, <kf>array</kf>(<sf>'name'</sf> => <kf>array</kf>(DB::varchar(<if>100</if>), <strong>DB::cset</strong>(<sf>'utf8'</sf>))));
+</pre>
+    </div>
+    </p>
+    
+    <p class="cstfont" id="collate">Karakter Grubu Kullanmak</p>
+    <p>Oluşturulan tablonun veya sütunların karakter grubunu ayarlamak için kullanılır.</p>
+    <p>
+    	<table class="cfont">
+        	<tr><th>Parametre</th><td>Anlamları</td></tr>
+            <tr><th>[1. Parametre = string Karakter Seti = utf8_general_ci]</th><td>Karakter grubu adı.</td></tr>
+        </table>
+    </p>
+    <p>
+    <div type="code">
+<pre>
+    DB::addColumn(<sf>'tablo'</sf>, <kf>array</kf>(<sf>'name'</sf> => <kf>array</kf>(DB::varchar(<if>100</if>), DB::cset(<sf>'utf8'</sf>), <strong>DB::collate</strong>(<sf>'utf8_general_ci'</sf>))));
+</pre>
+    </div>
+    </p>
+    
+     <p class="cstfont" id="collate">Karakter Seti ve Grubu Kullanmak</p>
+    <p>Genellikle karakter seti ve grubu aynı anda kullırlar. Bu yöntemler yanyana kullanılacaklarında ikisini tek tek yazmak yerine encoding() yöntemi ile tek fonksiyonlar iki yöntemde kullanılabilir.</p>
+    <p>
+    	<table class="cfont">
+        	<tr><th>Parametre</th><td>Anlamları</td></tr>
+            <tr><th>[1. Parametre = string Karakter Seti = utf8]</th><td>Karakter seti adı.</td></tr>
+            <tr><th>[2. Parametre = string Karakter Seti = utf8_general_ci]</th><td>Karakter grubu adı.</td></tr>
+        </table>
+    </p>
+    <p>
+    <div type="code">
+<pre>
+    DB::addColumn(<sf>'tablo'</sf>, <kf>array</kf>(<sf>'name'</sf> => <kf>array</kf>(DB::varchar(<if>100</if>), <strong>DB::encoding</strong>(<sf>'utf8'</sf>, <sf>'utf8_general_ci'</sf>))));
+</pre>
+    </div>
+    </p>
+    
+    
+    <div type="prev-next">
+    	<div type="prev-btn"><a href="db_different_connect.html">Önceki</a></div><div type="next-btn"><a href="db_migration.html">Sonraki</a></div>
+    </div>
+ 
+</body>
+</html>              

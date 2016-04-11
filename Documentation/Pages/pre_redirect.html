@@ -1,0 +1,79 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>ZN KOD ÇATISI</title>
+<link type="text/css" rel="stylesheet" href="../Styles/Structure.css" />
+<script src="../Scripts/Jquery.js"></script>
+<script src="../Scripts/Structure.js"></script>
+</head>
+
+<body>
+    <div id="content-document"><a href="#">Döküman</a> » <a href="functions.html">Ön Tanımlı Sabitler ve Fonksiyonlar</a> » Yönlendirme Komutları</div> 
+    <p class="ctfont">Yönlendirme Komutları</p>
+    <p>Yönlendirme işlemleri yapabilmek için oluşturulmuş yöntemlerdir.</p>
+    <ul><li><a href="#" class="infont">Yönlendirme Komutları</a><br><br>
+        <ul>
+            <li><a href="#redirect">Yönlendirme Yapmak » <b>redirect() v1.0</b></a></li> 
+            <li><a href="#redirect_data">Yönlendirmeden Gelen Veriyi Kullanmak » <b>redirectData() v1.0</b></a></li>
+            <li><a href="#redirect_delete_data">Yönlendirmeden Gelen Veriyi Silmek » <b>redirectDeleteData() v2.0 Ekim</b></a></li>
+        </ul>
+    </li></ul>
+    
+    
+    <p class="cstfont" id="redirect">Yönlendirme Yapmak</p>
+    <p><ftype>redirect( <kf>string</kf> <vf>$url_yada_uri</vf> , [ <kf>numeric</kf> <vf>$saniye</vf> = <if>0</if> ] , [ <kf>array</kf> <vf>$data</vf> ] , [ <kf>boolean</kf> <vf>$cikis</vf> = <kf>true</kf> ] ) v1.0</ftype></p>
+   	<p>Yönlendirme yapmak için kullanılır.</p>
+    <p>
+    	<table class="cfont">
+        	<tr><th>No</th><th>Parametreler</th><td>Anlamları</td></tr>
+            <tr><th>1</th><th>string URL veya URI</th><td>Yönlendirilmek istenen adres veya yol.</td></tr>
+            <tr><th>2</th><th>[ string Yönlendirme Bekleme Süresi = 0 ]</th><td>Yönlendirmenin kaç saniye sonra yapılacağı.</td></tr>
+            <tr><th>3</th><th>[ array Gönderilecek Veriler = array() ]</th><td>Yönlendirilen sayfa veri taşımak için kullanılır.</td></tr>
+            <tr><th>4</th><th>[ boolean Çıkış = true ]</th><td>Yönlendirme yapılırken sayfa kodları okunsun mu okunmasın mı. Önerilen değer: true.</td></tr>
+        </table>
+    </p>  
+ 
+    <div type="code">
+    <kf>echo</kf> redirect(<sf>'http://www.siteadi.xxx/ornek/uygulama'</sf>);<br />
+    <kf>echo</kf> redirect(<sf>'ornek/uygulama'</sf>);<br>
+    <kf>echo</kf> redirect(<sf>'ornek/uygulama'</sf>, <sf>1</sf>); <comment> // 1 saniye sonra yönlendirme yap. </comment><br>
+    <kf>echo</kf> redirect(<sf>'ornek/uygulama'</sf>, <sf>0</sf>, <kf>array</kf>(<sf>'bilgi'</sf> => <sf>'zntr'</sf>) ); <comment> // Yönlenen adrese bilgi verisi taşı. </comment><br>
+    </div>
+    
+    <p class="cstfont" id="redirect_data">Yönlendirmeden Gelen Veriyi Kullanmak</p>
+    <p><ftype>redirectData( <kf>string</kf> <vf>$veri_adi</vf> ) v1.0</ftype></p>
+   	<p>Yönlendirmeden gelen veriyi kullanmak için oluşturulmuş bir yöntemdir. Yönlendirme foksiyonu ile gönderilen veriler dizi şeklinde gönderilmektedir ve bilgiler oluşturulurken anahtar-değer çifti kullanılır. Bu yöntem, yönlendirme yapılırken gönderilen bilginin <strong>anahtar</strong> kelimesini kullanarak gönderilen bilgiye erişim sağlar.</p>
+    <p>
+    	<table class="cfont">
+        	<tr><th>No</th><th>Parametreler</th><td>Anlamları</td></tr>
+            <tr><th>1</th><th>string Gelen Veri Adı</th><td>Yönlendirme yapılırken gönderilen verinin adı.</td></tr>
+        </table>
+    </p>
+    
+    <div type="code">
+    <kf>echo</kf> redirectData(<sf>'bilgi'</sf>); <comment> // Çıktı: zntr </comment><br />
+    </div>
+    
+    <p class="cstfont" id="redirect_delete_data">Yönlendirmeden Gelen Veriyi Kullanmak</p>
+    <p><ftype>redirectDeleteData( <kf>string/array</kf> <vf>$veri_adi</vf> ) v2.0</ftype></p>
+   	<p>Yönlendirmeden gelen veriyi silmek için oluşturulmuş bir yöntemdir. Tek bir veri silinecekse metinsel aynı anda birden fazla veri silinecek dizisel olarak parametre gönderilebilir.</p>
+    <p>
+    	<table class="cfont">
+        	<tr><th>No</th><th>Parametreler</th><td>Anlamları</td></tr>
+            <tr><th>1</th><th>string/array Gelen Veri Adı</th><td>Yönlendirme yapılırken gönderilen verinin adı.</td></tr>
+        </table>
+    </p>
+    
+    <div type="code">
+    <kf>echo</kf> redirectDeleteData(<sf>'bilgi'</sf>);<br>
+    <kf>echo</kf> redirectDeleteData(<kf>array(<sf>'bilgi'</sf>, <sf>'bilgi2'</sf>));<br>
+    </div>
+ 
+    
+    <div type="prev-next">
+    	<div type="prev-btn"><a href="pre_pathinfo.html">Önceki</a></div><div type="next-btn"><a href="pre_server.html">Sonraki</a></div>
+    </div>
+ 
+</body>
+</html>              

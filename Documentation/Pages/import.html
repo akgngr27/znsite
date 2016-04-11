@@ -1,0 +1,277 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>ZN KOD ÇATISI</title>
+<link type="text/css" rel="stylesheet" href="../Styles/Structure.css" />
+<script src="../Scripts/Jquery.js"></script>
+<script src="../Scripts/Structure.js"></script>
+</head>
+
+<body>
+    <div id="content-document"><a href="#">Döküman</a> » <a href="foundations.html">Foundations</a> » Dahil Etme Yöntemleri</div> 
+    <p class="ctfont">Dahil Etme Yöntemleri</p>
+    <p>Harici kütüphane, araç ve diğer çeşitli dosyaları dahil etmek için kullanılır.</p>
+    <ul>
+        <li><a href="#import_library">Import(Dahil Etme) Yöntemleri</a>
+        <p></p>
+        	<ul>
+            	<li><a href="#import_page">Pages Sayfa Tasarımı Dahil Etmek » <b>Import::view()</b>, <b>Import::page()</b></a></li>
+                <li><a href="#import_template">Şablon Dosyası Dahil Etmek » <b>Import::template()</b></a></li>
+                <li><a href="#import_handload">El ile Başlangıç Dosyası Dahil Etmek » <b>Import::handload()</b></a></li>
+                <li><a href="#import_script">Script Dosyası Dahil Etmek » <b>Import::script()</b></a></li>
+                <li><a href="#import_style">Css Stil Dosyası Dahil Etmek » <b>Import::style()</b></a></li>
+                <li><a href="#import_font">Font Dosyası Dahil Etmek » <b>Import::font()</b></a></li>
+                <li><a href="#import_something">Herhangi Bir Dosya Dahil Etmek » <b>Import::something()</b></a></li>
+                <li><a href="#import_package">Paket Dosyaları Dahil Etmek » <b>Import::package()</b></a></li>
+                <li><a href="#import_theme">Tema Dosyaları Dahil Etmek » <b>Import::theme()</b></a></li>
+                <li><a href="#import_plugin">Eklenti Dosyaları Dahil Etmek » <b>Import::plugin()</b></a></li>
+            </ul>
+        </li>
+    </ul>
+    
+    <p id="import_page" class="cstfont">Views(Pages) Sayfa Tasarımı Dahil Etmek</p>
+   	<p><b>Views/</b> dizini içerisindeki sayfaların dahil edilmesi veya çağrılması için kullanılır. Bu işlemi page() veya view() yöntemlerinden herhangi biri ile yapabilirsiniz.</p>
+    
+    <p>
+    	<table class="cfont">
+        	<tr><th>Parametreler</th><th>Anlamları</th></tr>
+            <tr><th>string Dosya Yolu</td><td>Çağrılacak dosyasının yolu.</td></tr>
+            <tr><th>array Gönderilecek Data</td><td>Gönderilecek data.</td></tr>
+            <tr><th>[boolean Son Parametre = false]</td><td>Çağrılanlar doğrudan çıktılasın mı? Yoksa bir değişkene mi aktarılsın? <strong>True</strong> olması durumunda bir değişkene aktarılarak kullanılabilir. Aksi halde doğrudan çıktı üretir.</strong></td></tr>
+        </table>
+    </p>
+    
+    <div type="code">Import::page(<sf>"anasayfa"</sf>, <vf>$veriler</vf>, <kf>false</kf>);</div>
+    <p>Ya da;</p>
+    <div type="code">Import::view(<sf>"anasayfa"</sf>, <vf>$veriler</vf>, <kf>false</kf>);</div>
+  	<p>Ya da;</p>
+ 	<div type="code">Import::data(<vf>$veriler</vf>)->view(<sf>"anasayfa"</sf>);</div>
+	<p>Yakaridaki kullanımda değişkene aktarılmak istenirse;</p>
+    <div type="code">Import::data(<vf>$veriler</vf>)->usable()->view(<sf>"anasayfa"</sf>);</div>
+    
+    <p id="import_template" class="cstfont">Şablon Dosyası Dahil Etmek</p>
+   	<p><b>Resources/Templates/ ve System/Templates</b> dizinleri içerisindeki dosyaların yüklenmesi için kullanılır. Genellikle bu dizinlerde html içerikli tablolar, şemalar, formlar yer alır.</p>
+    
+    <p>
+    	<table class="cfont">
+        	<tr><th>Parametreler</th><th>Anlamları</th></tr>
+            <tr><th>string Dosya Yolu</td><td>Çağrılacak dosyasının yolu.</td></tr>
+            <tr><th>array Gönderilecek Data</td><td>Gönderilecek data.</td></tr>
+            <tr><th>[boolean Son Parametre = false]</td><td>Çağrılanlar doğrudan çıktılasın mı? Yoksa bir değişkene mi aktarılsın? <strong>True</strong> olması durumunda bir değişkene aktarılarak kullanılabilir. Aksi halde doğrudan çıktı üretir.</strong></td></tr>
+        </table>
+    </p>
+    
+    <div type="code">Import::template(<sf>"EmailTemplate"</sf>, <vf>$veriler</vf>);</div>
+    
+    <p id="import_handload" class="cstfont">Fonksiyon Dosyası Dahil Etmek</p>
+   	<p><b>Application/Functions/Handload</b> dizini içerisinde yer alan fonksiyon içerikli dosyalaları dahil etmek için kullanılır. Uzantı belirtmeye gerek yoktur.</p>
+    
+    <p>
+    	<table class="cfont">
+        	<tr><th>Parametreler</th><th>Anlamları</th></tr>
+            <tr><th>string Dosya Yolu</td><td>Çağrılacak dosyasının yolu.</td></tr>
+        </table>
+    </p>
+    
+    <div type="code">Import::handload(<sf>"funcFile1"</sf>, <sf>"funcFile2"</sf>);</div>
+
+ 	<p id="import_script" class="cstfont">Script Dosyası Dahil Etmek</p>
+    
+    <p><b>Resources/Scripts/</b> dizinindeki kendi oluşturduğumuz script dosyalarını dahil etmek için kullanılır. Parametre olarak dahil edeceğimiz script dosyalarının isimlerini kullanırız. Uzantılarını yazmaya gerek yoktur. Aynı anda birden fazla dosyayı yüklemeniz mümkündür.</p>
+    
+    <p>
+    	<table class="cfont">
+        	<tr><th>Parametreler</th><th>Anlamları</th></tr>
+            <tr><th>string Dosya Yolu</td><td>Çağrılacak script dosyasının yolu.</td></tr>
+            <tr><th>[boolean Son Parametre = false]</td><td>Çağrılanlar doğrudan çıktılasın mı? Yoksa bir değişkene mi aktarılsın? <strong>True</strong> olması durumunda bir değişkene aktarılarak kullanılabilir. Aksi halde doğrudan çıktı üretir.</strong></td></tr>
+        </table>
+    </p>
+    
+    <div type="code">Import::script(<sf>"Validation"</sf>);</div>
+    <p>Birden çok script dosyasını aynı anda dahil etmek istersek aşağıdaki şekilde kullanırız.</p>
+    
+    <div type="code">Import::script(<sf>"Upload"</sf>,<sf>"Validation"</sf>,<sf>"Form"</sf>);</div>
+    <p></p>
+    
+    <p>Eğer import edilen <strong>script dosyasını bir değişkene veri olarak aktarmak istersek</strong> son parametre <kf>true</kf> olarak girilmelidir.</p>
+    
+    <p><div type="code"><vf>$script</vf> = Import::script(<sf>"Upload"</sf>,<sf>"Validation"</sf>,<sf>"Form"</sf>, <kf>true</kf>);</div></p>
+    
+    <p>Ya da;</p>
+    
+     <p><div type="code"><vf>$script</vf> = Import::usable()->script(<sf>"Upload"</sf>,<sf>"Validation"</sf>,<sf>"Form"</sf>);</div></p>
+    
+    <div type="note"><div>NOT</div><div>Config/Links.php dosyasında tanımlı <strong>Jquery ve JequeryUi</strong> sınıflarına ait <strong>URL</strong> bilgileri mevcuttur.</div></div>
+    
+    <p><strong>Jquery</strong> veya <strong>JqueryUi</strong> sınıflarını dahil etmek için aşağıdaki gibi kullanabilirsiniz.</p>
+    <p>
+    <div type="code">Import::script(<sf>"Jquery"</sf>,<sf>"JqueryUi"</sf>);</div>
+    </p>
+    
+    <p id="import_style" class="cstfont">Css Stil Dosyası Dahil Etmek</p>
+    
+    <p><b>Resources/Styles/</b> dizini içerisine oluşturulmuş stil dosyalarını dahil etmek için kullanılır. Aynı anda birden fazla dosyayı dahil edebilmeniz mümkündür.</p>
+    
+    <p>
+    	<table class="cfont">
+        	<tr><th>Parametreler</th><th>Anlamları</th></tr>
+            <tr><th>string Dosya Yolu</td><td>Çağrılacak stil dosyasının yolu.</td></tr>
+            <tr><th>[boolean Son Parametre = false]</td><td>Çağrılanlar doğrudan çıktılasın mı? Yoksa bir değişkene mi aktarılsın? <strong>True</strong> olması durumunda bir değişkene aktarılarak kullanılabilir. Aksi halde doğrudan çıktı üretir.</strong></td></tr>
+        </table>
+    </p>
+    
+    <div type="code">Import::style(<sf>"site"</sf>);</div>
+    <p>Birden çok stil dosyasını aynı anda dahil etmek istersek aşağıdaki şekilde kullanırız.</p>
+    
+    <div type="code">Import::style(<sf>"site"</sf>,<sf>"iletisim"</sf>,<sf>"panel"</sf>);</div>
+    <p></p>
+    
+    <p>Eğer import edilen <strong>stil dosyasını bir değişkene veri olarak aktarmak istersek</strong> son parametre <kf>true</kf> olarak girilmelidir.</p>
+    
+    <div type="code"><vf>$style</vf> = Import::style(<sf>"site"</sf>,<sf>"iletisim"</sf>,<sf>"panel"</sf>, <kf>true</kf>);</div>
+    <p></p>
+    
+    <div type="note"><div>NOT</div><div>Dahil edeceğiniz stil dosyasının .<strong>css</strong> uzantısını yazmanıza gerek yoktur.</div></div>
+    
+    <p id="import_font" class="cstfont">Font Dosyası Dahil Etmek</p>
+    
+    <p><b>Resources/Fonts/</b> dizini içerisine eklenmiş font dosyalarını dahil etmek için kullanılır. Desteklenen fontlar <strong>SVG</strong>, <strong>WOFF</strong>, <strong>OTF</strong>, <strong>TTF</strong>, <strong>EOT</strong> uzantılı fontlardır.</p>
+    
+    <p>
+    	<table class="cfont">
+        	<tr><th>Parametreler</th><th>Anlamları</th></tr>
+            <tr><th>string Dosya Yolu</td><td>Çağrılacak font dosyasının yolu.</td></tr>
+            <tr><th>[boolean Son Parametre = false]</td><td>Çağrılanlar doğrudan çıktılasın mı? Yoksa bir değişkene mi aktarılsın? <strong>True</strong> olması durumunda bir değişkene aktarılarak kullanılabilir. Aksi halde doğrudan çıktı üretir.</strong></td></tr>
+        </table>
+    </p>
+    
+    <div type="code">Import::font(<sf>"Elips"</sf>);</div>
+    <p>Birden çok font dosyasını aynı anda dahil etmek istersek aşağıdaki şekilde kullanırız. Aynı anda birden fazla font dahil edilebilir.</p>
+    
+    <div type="code">Import::font(<sf>"Elips"</sf>,<sf>"Abode"</sf>,<sf>"Secrcode/secrcode"</sf>);</div>
+    <p></p>
+    
+    <p>Eğer import edilen <strong>stil dosyasını bir değişkene veri olarak aktarmak istersek</strong> son parametre <kf>true</kf> olarak girilmelidir.</p>
+    
+    <div type="code"><vf>$font</vf> = Import::font(<sf>"Elips"</sf>,<sf>"Abode"</sf>,<sf>"Secrcode/secrcode"</sf>, <kf>true</kf>);</div>
+    <p></p>
+    
+    <div type="note"><div>NOT</div><div>Fontlar bir dizinin içerisinde ise önce <b>dizinin adı sonra font adı</b> şeklinde yazılmalıdır. Ayrıca font uzantasını yazmanıza gerek yoktur.</div></div>
+    <p></p>
+    <div type="important"><div>ÖNEMLİ</div><div>Desteklenen font uzantıları. <b>SVG, WOFF, EOT, OTF, TTF</b>'dir</div></div>
+    
+    <p id="import_something" class="cstfont">Herhangi Bir Dosya Dahil Etmek</p>
+    <p><b>.php, .css veya .js</b> uzantılı dosyaları dahil etmek için kullanılır.</p>
+    
+    <p>
+    	<table class="cfont">
+        	<tr><th>Parametreler</th><th>Anlamları</th></tr>
+            <tr><th>1. Parametre string Sayfa Yolu</td><td>Çağrılacak sayfanın yolu.</td></tr>
+            <tr><th>2. Parametre array Gönderilecek Veri</td><td>Çağrılan sayfaya veri göndermek için kullanılır. <strong>Sadece PHP uzantılı sayfalar için bu parametre kullanılabilir.</strong></td></tr>
+            <tr><th>[boolean 3. Parametre = false]</td><td>Sayfanın doğrudan çıktılasın mı? Yoksa bir değişkene mi aktarılsın? <strong>True</strong> olması durumunda bir değişkene aktarılarak kullanılabilir. Aksi halde doğrudan çıktı üretir.</strong></td></tr>
+        </table>
+    </p>
+    
+    <p>CSS uzantılı dosyaları dahil etmek</p>
+    <div type="code">Import::something(STYLES_DIR.<sf>'site.css'</sf>);</div>
+    <p>Bir değişkene aktarmak</p>
+    <div type="code"><vf>$css</vf> = Import::something(STYLES_DIR.<sf>'site.css'</sf>, <sf>''</sf>, <kf>true</kf>);</div>
+    
+    <p>PHP uzantılı dosyaları dahil etmek</p>
+    <div type="code">Import::something(CONTROLLERS_DIR.<sf>'iletisim.php'</sf>);</div>
+    <p>PHP uzantılı dosyalara veri göndermek</p>
+    <div type="code">Import::something(CONTROLLERS_DIR.<sf>'iletisim.php'</sf>, <kf>array</kf>(<sf>'data1'</sf> => <if>1</if>, <sf>'data2'</sf> => <if>2</if>));</div>
+    <p>Bir değişkene aktarmak</p>
+    <div type="code"><vf>$page</vf> = Import::something(CONTROLLERS_DIR.<sf>'iletisim.php'</sf>, <kf>array</kf>(<sf>'data1'</sf> => <if>1</if>, <sf>'data2'</sf> => <if>2</if>), <kf>true</kf>);</div>
+    
+    <p>JS uzantılı dosyaları dahil etmek</p>
+    <div type="code">Import::something(SCRIPTS_DIR.<sf>'Jquery.js'</sf>);</div>
+    <p>Bir değişkene aktarmak</p>
+    <div type="code"><vf>$js</vf> = Import::something(SCRIPTS_DIR.<sf>'Jquery.js'</sf>, <sf>''</sf>, <kf>true</kf>);</div>
+    <p></p>
+    <div type="note"><div>NOT</div><div>Böyle bir kullanımda <b>dizin yollarını ve dosya uzantılarını yazmak zorundasınız</b>.</div></div>
+   	
+    <p id="import_package" class="cstfont">Paket Dosyaları Dahil Etmek</p>
+    <p>Bu yöntemin temel işlevi bir dosya veya bir dizine ait tüm dosyaları tek seferde dahil etmek için kullanılır. 1. parametre 2 tür parametre içerir eğer tek bir dosya veya dizin dahil edilmek isteniyorsa dizge türü birden falza dosya veya dizin içi dosyaları dahil etmek isterseniz array türü belirtmeniz gerekmektedir.</p>
+     <p>
+    	<table class="cfont">
+        	<tr><th>Parametreler</th><th>Anlamları</th></tr>
+            <tr><th>1. Parametre string/array Sayfa Yolu</td><td>Çağrılacak sayfanın yolu.</td></tr>    
+            <tr><th>[2. Parametre bool Recursive(İç içelik)]</td><td>Belirtilen dizinin alt dizinlerinde arama. Varsayılan <strong>false</strong>.</td></tr>
+            <tr><th>[3. Parametre boolean Son Parametre = false]</td><td>Çağrılanlar doğrudan çıktılasın mı? Yoksa bir değişkene mi aktarılsın? <strong>True</strong> olması durumunda bir değişkene aktarılarak kullanılabilir. Aksi halde doğrudan çıktı üretir.</strong></td></tr>
+      		<tr><th>[4. Parametre string Dizin]</td><td>Bu parametre ile istenilen dizinin yolu belirtilebilir.</td></tr>
+        </table>
+    </p>
+    
+    <p><strong>Herhangi bir</strong> dizin içindeki <strong>dizinlerin</strong> içerisinde yer alan <b>.php, .css veya .js</b> uzantılı dosyaların aynı anda dahil edilmesini sağlamak için kullanılır. Parametre olarak <bDizin adı</b> yazmanız gerekir.</p>
+    <div type="code">Import::package(<sf>"Slider"</sf>);</div>
+    <p>Yukarıdaki kod Slider dizinindeki .php, .css ve .js uzantılı dosyaları otomatik olarak yükleme işlemi gerçekleştirir.</p>
+
+    <p>Dizin içi dizinler olduğu varsayılan yüklemeler yapmak için 2. parametre <strong>true</strong> olarak ayarlanmalıdır.</p>
+    <div type="code">Import::package(<sf>"Slider"</sf>, <kf>true</kf>);</div>
+    <p></p>
+    
+    <p>Bir değişkene aktarılarak kullanılmak istenirse 3. parametre <strong>true</strong> olarak ayarlanmalıdır.</p>
+    <div type="code">Import::package(<sf>"Slider"</sf>, <kf>false</kf>, <kf>true</kf>);</div>
+    <p></p>
+    
+     <p>İstenirse çok sayıda dosya ve dizinde 1. parametrenin array verü türü içermesi sureti ile dahil edilebilir. Aşağıda bir slider dizini içindeki dosyaların ve x.js dosyasının dahil edilmesi sağlanmıştır.</p>
+    <div type="code">Import::package(<kf>array</kf>(<sf>"Slider"</sf>, <sf>"x.js"</sf>));</div>
+    <p></p>
+    
+    <div type="important"><div>ÖNEMLİ</div><div>Böyle bir kullanımda <b>dizin adı yazmak zorundasınız</b>. O dizin içerisindeki dosyaları otomatik olarak yükleyecektir.</div></div>
+    
+     <p id="import_theme" class="cstfont">Tema Dosyaları Dahil Etmek</p>
+     
+      <p><strong>Resources/Themes/</strong> dizini içindeki dosyaların yer aldığı tema dizininin adı belirtilerek dizin içindeki tema ile alakalı her dosyanın otomatik olarak yüklenmesi sağlanır.
+    <p>Tema dizini içinde hangi uzantılı dosyalar yer alabilir? <strong>js</strong>, <strong>css</strong>, <strong>eot</strong>, <strong>svg</strong>, <strong>ttf</strong>, <strong>woff</strong>, <strong>php</strong> ve <strong>Config/Font.php</strong> dosyasında yer alan diğer font uzantıları.</p>
+    
+     
+     <p>
+    	<table class="cfont">
+        	<tr><th>Parametreler</th><th>Anlamları</th></tr>
+            <tr><th>1. Parametre string/array Tema Adı</td><td>Çağrılacak temanın adı. <strong>Resources/Themes/</strong> dizini için yer alan tema dizini adı. Birden fazla dosya veya dizin içi dosyalar yükletilecekse bu parametre <strong>array</strong> türde belirtilebilir.</td></tr>    
+            <tr><th>[2. Parametre bool Recursive(İç içelik)]</td><td>Belirtilen dizinin alt dizinlerinde arama. Varsayılan <strong>false</strong>.</td></tr>
+             <tr><th>[3. Parametre boolean Son Parametre = false]</td><td>Çağrılanlar doğrudan çıktılasın mı? Yoksa bir değişkene mi aktarılsın? <strong>True</strong> olması durumunda bir değişkene aktarılarak kullanılabilir. Aksi halde doğrudan çıktı üretir.</strong></td></tr>
+ 
+        </table>
+    </p>
+    
+   
+    <div type="code">Import::theme(<sf>'Tema'</sf>);</div>
+    
+    <p><strong>Birden fazla dosya veya dizin</strong>de dahil etme işlemi yapabilmek için <strong>1. parametre array</strong> veri türünde belirtilir.</p>
+    
+    <div type="code">Import::theme(<kf>array</kf>(<sf>'Tema'</sf>, <sf>'Tema2'</sf>, <sf>'style.css'</sf>));</div>
+  	
+     <p id="import_plugin" class="cstfont">Eklenti Dosyaları Dahil Etmek</p>
+     
+       <p><strong>Resources/Themes/</strong> dizini içindeki dosyaların yer aldığı tema dizininin adı belirtilerek dizin içindeki tema ile alakalı her dosyanın otomatik olarak yüklenmesi sağlanır.
+    <p>Tema dizini içinde hangi uzantılı dosyalar yer alabilir? <strong>js</strong>, <strong>css</strong>, <strong>eot</strong>, <strong>svg</strong>, <strong>ttf</strong>, <strong>woff</strong>, <strong>php</strong> ve <strong>Config/Font.php</strong> dosyasında yer alan diğer font uzantıları.</p>
+    
+    
+     <p>
+    	<table class="cfont">
+        	<tr><th>Parametreler</th><th>Anlamları</th></tr>
+            <tr><th>1. Parametre string/array Eklenti Adı</td><td>Çağrılacak eklentinin adı. <strong>Resources/Plugins/</strong> dizini için yer alan eklenti dizini adı. Birden fazla dosya veya dizin içi dosyalar yükletilecekse bu parametre <strong>array</strong> türde belirtilebilir.</td></tr>    
+            <tr><th>[2. Parametre bool Recursive(İç içelik)]</td><td>Belirtilen dizinin alt dizinlerinde arama. Varsayılan <strong>false</strong>.</td></tr>
+             <tr><th>[3. Parametre boolean Son Parametre = false]</td><td>Çağrılanlar doğrudan çıktılasın mı? Yoksa bir değişkene mi aktarılsın? <strong>True</strong> olması durumunda bir değişkene aktarılarak kullanılabilir. Aksi halde doğrudan çıktı üretir.</strong></td></tr>
+       
+        </table>
+    </p>
+    
+    
+    <div type="code">Import::plugin(<sf>'Eklenti'</sf>);</div>
+    
+    <p><strong>Birden fazla dosya veya dizin</strong>de dahil etme işlemi yapabilmek için <strong>1. parametre array</strong> veri türünde belirtilir.</p>
+    
+    <div type="code">Import::plugin(<kf>array</kf>(<sf>'Eklenti'</sf>, <sf>'Eklenti2'</sf>, <sf>'style.css'</sf>));</div>
+    
+    
+    <div type="prev-next">
+    	<div type="prev-btn"><a href="uri_route.html">Önceki</a></div><div type="next-btn"><a href="access_methods.html">Sonraki</a></div>
+    </div>
+ 
+</body>
+</html>              

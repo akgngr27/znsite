@@ -1,0 +1,94 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>ZN KOD ÇATISI</title>
+<link type="text/css" rel="stylesheet" href="../Styles/Structure.css" />
+<script src="../Scripts/Jquery.js"></script>
+<script src="../Scripts/Structure.js"></script>
+</head>
+
+<body>
+    <div id="content-document"><a href="#">Döküman</a> » <a href="helpers.html">Helpers</a> » Symbol(Sembol) Kütüphanesi</div> 
+    <p class="ctfont">Symbol(Sembol) Kütüphanesi</p>
+    <p>Belirli sembolleri kullanabilmek için geliştirilmiş bir yöntemdir.</p>
+    <ul><li><a href="#" class="infont">Symbol(Sembol) Kütüphanesi ve Yöntemleri</a><br><br>
+        <ul>
+            <li><a href="#symbol">Sembol Kullanmak » <b>Symbol::name()</b></a></li>
+        </ul>
+    </li></ul>
+    
+    <p class="cstfont" id="symbol">Sembol Kullanmak</p>
+    <p><ftype>Symbol::name( [ <kf>string</kf> <vf>$sembol_ismi</vf> = <sf>'turkishLira'</sf> ] )</ftype></p>
+    <p>Tüm kullanılabilir semboller <strong>Config/Symbols.php</strong> dosyasında yer almaktadır siz isterseniz bu listeyi genişletebilirsiniz.</p>
+    
+    <p>
+    	<table class="cfont">
+        	<tr><th>No</th><th>Parametreler</th><td>Anlamları</td></tr>
+            <tr><th>1</th><th>string Sembol Adı</th><td><strong>Config/Symbols.php</strong> dosyasında yer alan sembol listesinden herhangi bir isim.</td></tr>
+            <tr><th colspan="3">Sembol İsimleri</th></tr> 
+            <tr><th>copyright</th><td colspan="2">©</td></tr>
+            <tr><th>register</th><td colspan="2">®</td></tr>
+            <tr><th>euro</th><td colspan="2">€</td></tr>
+            <tr><th>rightDoubleArrow</th><td colspan="2">»</td></tr>
+            <tr><th>leftDoubleArrow</th><td colspan="2">«</td></tr>
+            <tr><th>invertQuestion</th><td colspan="2">¿</td></tr>
+            <tr><th>tradeMark</th><td colspan="2">™</td></tr>
+            <tr><th>turkishLira</th><td colspan="2">t</td></tr>
+            <tr><th>cent</th><td colspan="2">¢</td></tr>
+            <tr><th>yen</th><td colspan="2">¥</td></tr>
+            <tr><th>pound</th><td colspan="2">£</td></tr>
+            <tr><th>currency</th><td colspan="2">¤</td></tr>
+            <tr><th>division</th><td colspan="2">÷</td></tr>
+            <tr><th>minus</th><td colspan="2">±</td></tr>
+            <tr><th>micro</th><td colspan="2">µ</td></tr>
+            <tr><th>degree</th><td colspan="2">°</td></tr>
+            <tr><th>section</th><td colspan="2">§</td></tr>
+            <tr><th>bigSlash</th><td colspan="2">Ø</td></tr>
+            <tr><th>smallSlash</th><td colspan="2">ø</td></tr>
+            <tr><th>permil</th><td colspan="2">‰</td></tr>
+            <tr><th>tilde</th><td colspan="2">~</td></tr>
+            <tr><th>spade</th><td colspan="2">♠</td></tr>
+            <tr><th>club</th><td colspan="2">♣</td></tr>
+            <tr><th>heart</th><td colspan="2">♥</td></tr>
+            <tr><th>diam</th><td colspan="2">♦</td></tr>
+            <tr><th>at</th><td colspan="2">@</td></tr>
+            <tr><th>function</th><td colspan="2">ƒ</td></tr>
+            <tr><th>product</th><td colspan="2">∏</td></tr>
+            <tr><th>equivalent</th><td colspan="2">≡</td></tr>
+            <tr><th>partial</th><td colspan="2">∂</td></tr>
+            <tr><th>integral</th><td colspan="2">∫</td></tr>
+            <tr><th>infinity</th><td colspan="2">∞</td></tr>
+            <tr><th>squareRoot</th><td colspan="2">√</td></tr>
+            <tr><th>approximately</th><td colspan="2">≈</td></tr>
+            <tr><th>notEquals</th><td colspan="2">≠</td></tr>
+            <tr><th>triangle</th><td colspan="2">∴</td></tr>
+            <tr><th>greaterEquals</th><td colspan="2">≥</td></tr>
+            <tr><th>lessEquals</th><td colspan="2">≤</td></tr>
+            <tr><th>paragraph</th><td colspan="2">¶</td></tr>
+            <tr><th>bigDote</th><td colspan="2">•</td></tr>
+            <tr><th>midDote</th><td colspan="2">·</td></tr>
+            <tr><th>dagger</th><td colspan="2">†</td></tr>
+            <tr><th>doubleDagger</th><td colspan="2">‡</td></tr>
+            <tr><th>diamond</th><td colspan="2">◊</td></tr>
+            <tr><th>upArrow</th><td colspan="2">↑</td></tr>
+            <tr><th>downArrow</th><td colspan="2">↓</td></tr>
+            <tr><th>leftArrow</th><td colspan="2">←</td></tr>
+            <tr><th>rightArrow</th><td colspan="2">→</td></tr>
+            <tr><th>doubleHeadedArrow</th><td colspan="2">↔</td></tr>
+            <tr><th>notSymbol</th><td colspan="2">¬</td></tr>       
+        </table>
+    </p>
+    
+	<div type="code">
+    <kf>echo</kf> Symbol::name(<sf>'heart'</sf>);  <comment>/* Çıktı: ♥ */</comment><br> 
+    <kf>echo</kf> Symbol::name(<sf>'micro'</sf>);  <comment>/* Çıktı: µ */</comment><br> 
+    <kf>echo</kf> Symbol::name(<sf>'diamond'</sf>);  <comment>/* Çıktı: ◊ */</comment><br> 
+    </div> 
+    
+    <div type="prev-next">
+    	<div type="prev-btn"><a href="helpers_seperator.html">Önceki</a></div><div type="next-btn"><a href="hypertext.html">Sonraki</a></div>
+    </div>
+ 
+</body>
+</html>              

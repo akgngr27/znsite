@@ -1,0 +1,54 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>ZN KOD ÇATISI</title>
+<link type="text/css" rel="stylesheet" href="../Styles/Structure.css" />
+<script src="../Scripts/JSuery.js"></script>
+<script src="../Scripts/Structure.js"></script>
+</head>
+
+<body>
+    <div id="content-document">Döküman</a> » <a href="stylesheet.html">Style Sheet</a> » Style Kütüphanesi</div> 
+    <p class="ctfont">Style Kütüphanesi</p>
+    <p>Stil tagı açmak kapamak veya harici stil yüklemek üzerine geliştirilmiş kütüphanedir.</p>
+    
+   <p class="cstfont" id="css_style">Style Kütüphanesi Yöntemleri</p>
+    <p>Style kütüphanesine ait yöntemler aşağıdaki tabloda listelenmiştir</p>
+    
+
+<p>
+<table class="cfont">
+    	<tr><th width="378">Style Kütüphanesi ve Yöntemleri</th><td width="570">Anlamları</td><td width="370">Kullanımları</td></tr>
+        <tr><td><cf>type( <vf>$tip</vf> = <sf>'text/css'</sf> )</cf></td><td>Varsayılan olarak ayarlıdır. Gerekmedikçe kullanım gerektirmez.</td><td><cf>->type(<sf>'text/css'</sf>)</cf></td></tr>
+        <tr><td><cf>library( <vf>$eklenecekKutuphaneler</vf> )</cf></td><td>Harici css dosyaları dahil edilmesi düşünülüyorsa bu yöntemin içerisine parametre olarak belirtilebilir.</td><td><cf>->library(<sf>'Style'</sf>, 'Anasayfa')</cf></td></tr>
+        <tr><td><cf>open()</cf></td><td>Style tagı açmak işlevini üstlenir.</td><td><cf>->open();</cf></td></tr>
+        <tr><td><cf>close()</cf></td><td>Style tagı kapatma işlevini üstlenir.</td><td><cf>->close();</cf></td></tr>
+    </table>
+    </p>
+    <p>Yukarıdaki yöntemlerin kullanımına yönelik örnekler aşağıda verilmiştir.</p>
+    
+    <p>
+<div type="code">
+   <pre>
+Style::open();
+	<comment>// stil kodları </comment>
+Style::close();
+    </div>
+    </p>
+    
+<p>Style tagı açarken farklı harici css dosyası dahil etmek isterseniz.</p>
+    
+    <p>
+<div type="code">
+   <pre>
+Style::library(<sf>'style1'</sf>, <sf>'style2'</sf>, <sf>'style3'</sf>)->open();
+  <comment>// stil kodları </comment>
+Style::close();
+</div>
+<div type="prev-next">
+  <div type="prev-btn"><a href="stylesheet.html">Önceki</a></div><div type="next-btn"><a href="stylesheet_css.html">Sonraki</a></div>
+  </div>
+ 
+</body>
+</html>              

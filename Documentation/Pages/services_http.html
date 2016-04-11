@@ -1,0 +1,85 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>ZN KOD ÇATISI</title>
+<link type="text/css" rel="stylesheet" href="../Styles/Structure.css" />
+<script src="../Scripts/Jquery.js"></script>
+<script src="../Scripts/Structure.js"></script>
+</head>
+
+<body>
+    <div id="content-document"><a href="#">Döküman</a> » <a href="services.html">Services</a> » Http Kütüphanesi</div> 
+
+    <p class="ctfont">Http Kütüphanesi</p>
+    <p>Method kütüphanesi kullanılarak $_GET, $_POST, $_EVN, $_SERVER, $_REQUEST süper globallerini kullanmak için oluşturulmuştur. Bu kütüphane Method:: kütüphanesini kullandığı gibi Config/Http.php ayar dosyasında yer alan verileride kullanmaktadır. İşlev olarak method kütüphanesi ile aynı işi yapıyor olsada işlevlerin kullanımında ufak tefek farklılıklar vardır.</p>
+    
+     <p>
+    	<table class="cfont" width="100%">
+        	<tr><th colspan="2">Network(Net) Kütüphanesi ve Yöntemleri</th></tr>
+    
+            <tr><td width="35%">Http Yöntemlerini Kullanmak</td><th width="65%"><cf><a href="#input">Http::input/name/value/select/insert/delete()</a></cf></th></tr>
+            <tr><td>Config/Http.php Dosyasında Yer Alan Verileri Kullanmak</td><th><cf><a href="#message">Http::code/message()</a></cf></th></tr>
+            <tr><td>Ajax Verisi Kontrolünü Yapmak</td><th><cf><a href="#isAjax">Http::isAjax()</a></cf></th></tr>
+
+        </table>
+    </p>
+    
+    <p class="cstfont" id="input">Http Yöntemlerini Kullanmak</p>
+    <p><ftype> Http::input( <kf>string</kf> <vf>$type</vf> )</ftype></p>
+    <p>Hangi süper globalin kullanılacağı seçilir.</p>
+    
+    <p>
+    	<table class="cfont">
+        	<tr><th>Parametre</th><td>Anlamları</td></tr>
+            <tr><th>1 - string Girdi Türü</th><td>Hangi globalin kullanılacağı belirtilir. Örnek: get, post, request gibi.</td></tr>
+        </table>
+    </p>
+    
+      <p>
+<div type="code"><pre>
+Http::input(<sf>'get'</sf>)->insert(<sf>'zeroneed'</sf>, <sf>'ZN Framework'</sf>);
+
+<kf>echo</kf> Http::input(<sf>'get'</sf>)->select(<sf>'zeroneed'</sf>); <comment>// Çıktı: ZN Framework</comment>
+
+Http::input(<sf>'get'</sf>)->delete(<sf>'zeroneed'</sf>);
+</pre></div>
+    </p>
+    
+    <p class="cstfont" id="message">Config/Http.php Dosyasında Yer Alan Verileri Kullanmak</p>
+    <p><ftype> Http::code/message( <kf>string</kf> <vf>$type</vf> )</ftype></p>
+    <p><strong>Config/Http.php</strong> dosyasında yer alan verileri kullanmak içindir.</p>
+    
+    <p>
+    	<table class="cfont">
+        	<tr><th>Parametre</th><td>Anlamları</td></tr>
+            <tr><th>1 - string Tür</th><td>Hangi verinin kullanılacağı.</td></tr>
+        </table>
+    </p>
+    
+      <p>
+<div type="code"><pre>
+<kf>echo</kf> Http::code(<if>404</if>); <comment>// Çıktı: 404 Not Found</comment>
+<kf>echo</kf> Http::message(<sf>'notFound'</sf>); <comment>// Çıktı: 404 Not Found</comment>
+</pre></div>
+    </p>
+    
+     <p class="cstfont" id="isAjax">Ajax Verisi Kontrolünü Yapmak</p>
+    <p><ftype> Http::isAjax()</ftype></p>
+    <p>Ajax işlemlerinde bulunulan isteğin ajax verisi olup olmadığını kontrol etmek için kullanılır.</p>
+
+      <p>
+<div type="code"><pre>
+<kf>if</kf>( ! Http::isAjax() )
+{
+	<comment>// redirect()</comment>
+}
+</pre></div>
+    </p>
+ 
+    <div type="prev-next">
+    	<div type="prev-btn"><a href="services_network.html">Önceki</a></div><div type="next-btn"><a href="sessioncookie.html">Sonraki</a></div>
+    </div>
+ 
+</body>
+</html>              

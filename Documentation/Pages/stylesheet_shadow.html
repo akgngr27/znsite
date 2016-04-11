@@ -1,0 +1,71 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>ZN KOD ÇATISI</title>
+<link type="text/css" rel="stylesheet" href="../Styles/Structure.css" />
+<script src="../Scripts/Jquery.js"></script>
+<script src="../Scripts/Structure.js"></script>
+</head>
+
+<body>
+    <div id="content-document"><a href="#">Döküman</a> » <a href="stylesheet.html">Style Sheet</a> » Shadow Kütüphanesi</div> 
+    <p class="ctfont">Shadow Kütüphanesi</p>
+    <p>Geliştirilmekte olan bir sınıftır. CSS3 özelliklerinin standart ve daha pratik kullanılabilmesi amaçlanmıştır.</p>
+  
+ 	<p class="cstfont" id="css_shadow">Shadow Kütüphanesi Yöntemleri</p>
+    <p>Shadow kütüphanesine ait yöntemler aşağıdaki tabloda listelenmiştir</p>
+   
+    <p>
+    <table class="cfont">
+    	<tr><th width="290">Shadow Kütüphanesi ve Yöntemleri</th><td width="636">Anlamları</td><td width="394">Kullanımları</td></tr>
+        <tr><td><cf>selector( <vf>$erisim</vf> )</cf></td><td>Nesneye erişim sağlamak için kullanılan adlandırmalar. Örn: .sinif, #id ...</td><td><cf>->selector(<sf>'Erişim Adı'</sf>)</cf></td></tr>
+         <tr><td><cf>attr( <vf>$ozellik_deger_dizisi</vf> )</cf></td><td>Animasyon öğeleri dışında eklenecek özellikler ve değerleri belirtir. Bu yöntem dizi parametresi içerir.</td><td><cf>->attr(<kf>array</kf>(<sf>'border'</sf> => <sf>'solid 1px #000'</sf>))</cf></td></tr>
+        <tr><td><cf>x( <vf>$x</vf> )</cf></td><td>box-shadow: yönteminin 1. parametresinin karşılığıdır.</td><td><cf>->x(<sf>1</sf>)</cf></td></tr>
+        <tr><td><cf>horizontal( <vf>$x</vf> )</cf></td><td>box-shadow: yönteminin 1. parametresinin karşılığıdır. x() yönteminin alternatifidir.</td><td><cf>->horizontal(<if>20</if>)</cf></td></tr>
+        <tr><td><cf>y( <vf>$y</vf> )</cf></td><td>box-shadow: yönteminin 2. parametresinin karşılığıdır.</td><td><cf>->y(<if>3</if>)</cf></td></tr>
+        <tr><td><cf>vertical( <vf>$y</vf> )</cf></td><td>box-shadow: yönteminin 2. parametresinin karşılığıdır. y() yönteminin alternatifidir.</td><td><cf>->vertical(<if>2</if>)</cf></td></tr>
+        <tr><td><cf>blur( <vf>$gorunurluk</vf> )</cf></td><td>box-shadow: yönteminin 3. parametresinin karşılığıdır.</td><td><cf>->blur(<if>2</if>)</cf></td></tr>
+        <tr><td><cf>diffusion( <vf>$yayilma</vf> )</cf></td><td>box-shadow: yönteminin 4. parametresinin karşılığıdır.</td><td><cf>->diffusion(<if>10</if>)</cf></td></tr>
+        <tr><td><cf>spread( <vf>$yayilma</vf> )</cf></td><td>box-shadow: yönteminin 4. parametresinin karşılığıdır. diffusion() yönteminin alternatifidir.</td><td><cf>->spread(<if>20</if>)</cf></td></tr>
+        <tr><td><cf>color( <vf>$renk</vf> )</cf></td><td>box-shadow: yönteminin 5. parametresinin karşılığıdır. Gölgenin renk bilgisini içerir.</td><td><cf>->color(<sf>'#000'</sf>)</cf></td></tr>
+        <tr><td><cf>type( <vf>$tip</vf> = <sf>'box'</sf>)</cf></td><td>Gölgenin hangi yazıya mı yoksa bir nesneye mi uygulanacağının belirlenmesini sağlar. Varsayılan:box</td><td><cf>->type(<sf>'text'</sf>);</cf></td></tr>
+        <tr><td><cf>create( <vf>$tip</vf> = <sf>'box'</sf>)</cf></td><td>Gölge işlemini tamamlama yöntemidir. İsteğe bağlı type() yönteminin alternatifini üstlenen 1 parametresi vardır.</td><td><cf>->create();</cf></td></tr>
+    </table>
+    </p>
+    <p>Yukarıdaki yöntemlerin kullanımına yönelik örnekler aşağıda verilmiştir.</p>
+    
+    <p>
+    <div type="code">
+   <pre>
+Sheet::shadow()->selector(<sf>'#nesne'</sf>)
+      ->x(<sf>10</sf>) <comment>// ya da horizontal()</comment>
+      ->y(<if>20</if>) <comment>// ya da vertical()</comment>
+      ->blur(<if>3</if>)
+      ->diffusion(<if>3</if>) <comment>// ya da spread()</comment>
+      ->color(<sf>'red'</sf>)
+      ->create();
+    </div></pre>
+    </p>
+    
+    <p>Şimdide bir yazıya gölge efekti uygulayalım.</p>
+    
+    <p>
+    <div type="code">
+   <pre>
+Sheet::shadow()->selector(<sf>'#yazi'</sf>)
+      ->x(<sf>10</sf>) <comment>// ya da horizontal()</comment>
+      ->y(<if>20</if>) <comment>// ya da vertical()</comment>
+      ->blur(<if>3</if>)
+      ->color(<sf>'red'</sf>)
+      ->type(<sf>'text'</sf>)
+      ->create();
+    </div></pre>
+    </p>
+   
+    <div type="prev-next">
+    	<div type="prev-btn"><a href="stylesheet_css.html">Önceki</a></div><div type="next-btn"><a href="stylesheet_animation.html">Sonraki</a></div>
+    </div>
+ 
+</body>
+</html>              

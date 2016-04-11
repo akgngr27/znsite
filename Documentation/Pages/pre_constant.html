@@ -1,0 +1,71 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>ZN KOD ÇATISI</title>
+<link type="text/css" rel="stylesheet" href="../Styles/Structure.css" />
+<script src="../Scripts/Jquery.js"></script>
+<script src="../Scripts/Structure.js"></script>
+</head>
+
+<body>
+    <div id="content-document"><a href="#">Döküman</a> » <a href="general_topic.html">Genel Konular</a> » Tanımlı Sabitler ve Fonksiyonlar</div> 
+    <p class="ctfont">Tanımlı Sabitler ve Fonksiyonlar</p>
+    <p>ZN Kod Çatısının temelini oluşturan bazı sabitler aşağıda listelenmiştir.</p>
+    
+    <p class="cstfont">Sabitler</p>
+    <p>
+    	<table class="cfont">
+        	<tr><th width="300">Sabit</th><th width="300">Değer</th><th width="60%">Kullanım</th></tr>
+            <tr><th>STATIC_ACCESS</th><td>__USE_STATIC_ACCESS__</td><td>Statik kullanım ön ek verisini tutar.</td></tr>
+            <tr><th>APPMODE</th><td>Publication, Restoration, Local veya Development</td><td>Sistem moduna göre bu değerlerinden birini tutar.</td></tr>
+            <tr><th>CRLF</th><td>\r\n</td><td>\r\n karakterlerinin karşılığıdır.</td></tr>
+            <tr><th>EOL</th><td>\r\n|\n|\r</td><td>İşletim sistemine göre satır sonu karaterini verir.</td></tr>
+            <tr><th>CR</th><td>\r</td><td>\r satır sonu karaterini verir.</td></tr>
+			<tr><th>LF</th><td>\n</td><td>\n satır sonu karaterini verir.</td></tr>
+            <tr><th>HT</th><td>\t</td><td>\t tab karaterini verir.</td></tr>
+            <tr><th>FF</th><td>\f</td><td>\f karaterini verir.</td></tr>
+            <tr><th>CURRENT_CFILE</th><td>Application/Controllers/xxx.php</td><td>XXX kontrolcüsünün yol bilgisini verir.</td></tr>
+            <tr><th>CURRENT_CFUNCTION</th><td>site.com/controller/<strong>func</strong>/param...</td><td>URL'de yer alan kontrolcüye ait fonksiyon bilgisini verir.</td></tr>
+            <tr><th>CURRENT_CONTOLLLER</th><td>site.com/<strong>controller</strong>/func/param...</td><td>URL'de yer alan kontrolcü bilgisini verir.</td></tr>
+            <tr><th>CURRENT_CPAGE</th><td>Application/Controllers/<strong>xxx.php</strong></td><td>Aktif çalıştırılan kontrolcü dosyasınını ad bilgisini verir.</td></tr>
+            <tr><th>CURRENT_CFPATH / CURRENT_CFURI</th><td>site.com/<strong>controller/func</strong>/param...</td><td>Aktif çalıştırılan kontrolcü/fonksiyon yol bilgisini verir.</td></tr>
+            <tr><th>CURRENT_CFURL</th><td><strong>site.com/controller/func</strong>/param...</td><td>Aktif çalıştırılan site.com/kontrolcü/fonksiyon yol bilgisini verir.</td></tr>
+            <tr><th>BASE_URL</th><td><strong>baseUrl()</strong></td><td>baseUrl() fonksiyonunun değerini verir.</td></tr>
+       		<tr><th>SITE_URL</th><td><strong>baseUrl()</strong></td><td>siteUrl() fonksiyonunun değerini verir.</td></tr>
+            <tr><th>CURRENT_URL</th><td><strong>currentUrl()</strong></td><td>currentUrl() fonksiyonunun değerini verir.</td></tr>
+            <tr><th>PREV_URL</th><td><strong>prevUrl()</strong></td><td>prevUrl() fonksiyonunun değerini verir.</td></tr>
+            <tr><th>BASE_PATH</th><td><strong>basePath()</strong></td><td>basePath() fonksiyonunun değerini verir.</td></tr>
+            <tr><th>CURRENT_PATH</th><td><strong>currentPath()</strong></td><td>currentPath() fonksiyonunun değerini verir.</td></tr>
+            <tr><th>PREV_PATH</th><td><strong>prevPath()</strong></td><td>prevPath() fonksiyonunun değerini verir.</td></tr>
+            <tr><th>HOST/HOST_NAME</th><td><strong>host()</strong></td><td>host() fonksiyonunun değerini verir.</td></tr>
+            <tr><th>HOST_URL</th><td><strong>hostUrl()</strong></td><td>hostUrl() fonksiyonunun değerini verir.</td></tr>
+            <tr><th>BASE_DIR</th><td>/</td><td>Kod çatısının kurulu olduğu dizinin yol bilgisini verir.</td></tr>
+            <tr><th>SYSTEM_DIR</th><td>System/</td><td>Sistem dizinin yol bilgisini verir.</td></tr>
+            <tr><th>APPDIR</th><td>Application/</td><td>Uygulamanın yer aldığı dizinin yol bilgisini verir.</td></tr> 
+            <tr><th>CONFIG_DIR</th><td>Application/Config/</td><td>Ayar dosyalarının yer aldığı dizinin yol bilgisini verir.</td></tr>
+            <tr><th>CORE_DIR</th><td>System/Core/</td><td>Çekirdek dizininin yol bilgisini verir.</td></tr>
+            <tr><th>SYSTEM_LANGUAGES_DIR</th><td>System/Languages/</td><td>Sistem dilleri dizininin yol bilgisini verir.</td></tr>
+            <tr><th>LANGUAGES_DIR</th><td>Application/Languages/</td><td>Uygulama dilleri dizininin yol bilgisini verir.</td></tr>
+            <tr><th>SYSTEM_LIBRARIES_DIR</th><td>System/Libraries/</td><td>Sistem kütüphaneleri dizininin yol bilgisini verir.</td></tr>
+            <tr><th>LIBRARIES_DIR</th><td>Application/Libraries/</td><td>Uygulama kütüphaneleri dizininin yol bilgisini verir.</td></tr>
+            <tr><th>CONTROLLERS_DIR</th><td>Application/Controllers/</td><td>Kontrolcü dosyaları dizininin yol bilgisini verir.</td></tr>
+            <tr><th>MODELS_DIR</th><td>Application/Models/</td><td>Model dosyaları dizininin yol bilgisini verir.</td></tr>
+            <tr><th>VIEWS_DIR</th><td>Application/Views/</td><td>Görünüm dosyaları dizininin yol bilgisini verir.</td></tr>
+            <tr><th>PAGES_DIR</th><td>Application/Views/</td><td>Görünüm sayfaları dizininin yol bilgisini verir.</td></tr>
+            <tr><th>SCRIPTS_DIR</th><td>Application/Resources/Scripts/</td><td>Script dosyaları dizininin yol bilgisini verir.</td></tr>
+            <tr><th>STYLES_DIR</th><td>Application/Resources/Styles/</td><td>Stil dosyaları dizininin yol bilgisini verir.</td></tr>
+            <tr><th>FONTS_DIR</th><td>Application/Resources/Fonts/</td><td>Font dosyaları dizininin yol bilgisini verir.</td></tr>
+            <tr><th>RESOURCES_DIR</th><td>Application/Resources/</td><td>Diğer kaynak dosyaları dizininin yol bilgisini verir.</td></tr>
+            <tr><th>FILES_DIR</th><td>Application/Resources/Files/</td><td>Dosyalar dizininin yol bilgisini verir.</td></tr>
+            <tr><th>TEMPLATES_DIR</th><td>Application/Resources/Templates/</td><td>Şablon içerikli sayfaların yer alacağı dizinin yol bilgisini verir.</td></tr>
+            <tr><th>UPLOADS_DIR</th><td>Application/Resources/Uploads/</td><td>Yüklenen dosyalar dizininin yol bilgisini verir.</td></tr>
+        </table>
+    </p>
+    
+    <div type="prev-next">
+    	<div type="prev-btn"><a href="pre_constant_and_function.html">Önceki</a></div><div type="next-btn"><a href="pre_vars.html">Sonraki</a></div>
+    </div>
+ 
+</body>
+</html>              

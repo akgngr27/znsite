@@ -1,0 +1,288 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>ZN KOD ÇATISI</title>
+<link type="text/css" rel="stylesheet" href="../Styles/Structure.css" />
+<script src="../Scripts/Jquery.js"></script>
+<script src="../Scripts/Structure.js"></script>
+</head>
+
+<body>
+    <div id="content-document"><a href="#">Döküman</a> » <a href="auth.html">Authencation(Kimlik Doğrulama)</a> » User(Kullanıcı) Kütüphanesi</div> 
+    <p class="ctfont">User(Kullanıcı) Kütüphanesi</p>
+    <p>Kullanıcılar veya üyelerle ilgili bir takım işlemlerin yapıldığı sınıftır. Yeni üyelik, siteye giriş, aktivasyon, üye bilgilerini kullanma gibi işevleri vardır.</p>
+    
+     <p>
+    	<table class="cfont" width="100%">
+        	<tr><th colspan="2">User(Kullanıcı) Kütüphanesi ve Yöntemleri</th></tr>
+            <tr><th width="40%">Siteye Kayıt Olmak</th><td><a href="#user_register"><b>User::register()</b></a></td></tr>
+            <tr><th>Siteye Giriş Yapmak</th><td><a href="#user_login"><b>User::login()</b></a></td></tr>
+            <tr><th>Üyelik Bilgilerini Güncellemek</th><td><a href="#user_update"><b>User::update()</b></a></td></tr>
+            <tr><th>Üyelik Oturumunu Kapatmak</th><td><a href="#user_logout"><b>User::logout()</b></a></td></tr>
+            <tr><th>Üye Girişinin Yapılıp Yapılmadığını Kontrol Etmek</th><td><a href="#user_is_login"><b>User::isLogin()</b></a></td></tr>
+            <tr><th>Oturum Açan Üyenin Bilgilerine Ulaşmak</th><td><a href="#user_data"><b>User::data()</b></a></td></tr>
+            <tr><th>Şifremi Unuttum Sistemi Oluşturmak</th><td><a href="#user_forgot_password"><b>User::forgotPassword()</b></a></td></tr>
+            <tr><th>Aktivasyon İşlemini Tamamlamak</th><td><a href="#user_activation_complete"><b>User::activationComplete()</b></a></td></tr>
+            <tr><th>Üye İşlemleri Esnasında Oluşan Hataları Öğrenmek</th><td><a href="#user_error"><b>User::error()</b></a></td></tr>
+            <tr><th>Üye İşlemlerinin Başarı İle Tamamlandığı Bilgisini Almak</th><td><a href="#user_success"><b>User::success()</b></a></td></tr>
+            <tr><th>Üye Sayısını Öğrenmek</th><td><a href="#user_count"><b>User::count()</b></a></td></tr>
+            <tr><th>Aktif Üye Sayısını Öğrenmek</th><td><a href="#user_activeCount"><b>User::activeCount()</b></a></td></tr>
+            <tr><th>Banlı Üye Sayısını Öğrenmek</th><td><a href="#user_bannedCount"><b>User::bannedCount()</b></a></td></tr>
+        </table>
+    </p>
+  
+    
+    <p class="cstfont" id="user_register">Siteye Kayıt Olmak</p>
+    <p><ftype>User::register( <kf>array</kf> <vf>$kayitBilgileri</vf> , [ <kf>boolean/string</kf> <vf>$otomatikGiris</vf> = <kf>false</kf> ], [ <kf>string</kf> <vf>$aktivasyonDonusUri</vf> ] )</ftype></p>
+    <p>Üyelerin kaydolmalarını sağlamak için kullanılan yöntemdir. 3 adet parametresi vardır.</p> 
+    
+    <p>
+    	<table class="cfont">
+        	<tr><th>Opsiyonel Seçenekler</th><th width="250">Parametre</th><td>Anlamları</td></tr>
+            <tr><th>->column()->column...->column()</th><th>1 - Kayıt Bilgileri</th><td>Veritabanına kayıt yapılacak veriler.</td></tr>
+            <tr><th>->autoLogin()</th><th>2 - Otomatik Giriş</th><td>Bu parametrenin <strong>true</strong> olması durumunda kayıt işleminden sonra otomatik giriş yapılır. Eğer <strong>false</strong> olarak ayarlanırsa herhangi bir işlem yapılmaz. Kayıttan sonra farklı bir sayfaya yönlendirilmek istenirse <strong>string</strong> URI yazılır.</td></tr>
+            <tr><th>->returnLink()</th><th>3 - [ Aktivasyon Dönüş Linki ]</th><td>Aktivasyon işlemi yapılacaksa bu parametre girilir. Örnek: kayit/aktivasyon</td></tr>
+        </table>
+    </p>
+   
+    
+    <p><strong>Active</strong>, <strong>banned</strong> ve <strong>activasyon</strong> sütunlarını  User kütüphanesi kendi kullanmaktadır bu yüzden bizim bu sütunlarla işimiz olmayacak.</p>
+    
+    <div type="code">
+    <pre>
+<comment> // Bu bilgilerin form nesnelerinden geldiğini varsayalım.</comment>
+
+<vf>$bilgiler</vf> = <kf>array</kf>(
+    <sf>'kullanici_adi'</sf> 	=> <sf>'bilgi@zntr.net'</sf>,
+    <sf>'sifre'</sf>		=> <sf>'zntr1234'</sf>,
+    <sf>'eposta'</sf>		=> <sf>'eposta@zntr.net'</sf>,
+    <sf>'isim'</sf>		=> <sf>'Ozan'</sf>,
+    <sf>'soyisim'</sf>		=> <sf>'UYKUN'</sf>
+);
+
+User::register(<vf>$bilgiler</vf>, <sf>'kullanici/giris'</sf>, <sf>'kayit/aktivasyon/kullanici'</sf>);
+
+<ff>output</ff>( User::error() ); <comment> // boolean false</comment>
+<ff>output</ff>( User::success() ); <comment> // string 'Kaydınızı başarı ile tamamlandı.' (length=38)</comment>
+<comment>
+/*
+Aktivasyon e-postası kullanıcıya ulaşmıssa e-posta içinde şöyle bir url ile kaşılacak. 
+http://www.ornek.com/index.php/kayit/aktivasyon/kullanici/bilgi@zntr.net/8fe8456bd262ee215555b1fc2d2f76a08
+*/
+</comment>
+<img src="../Images/Result/user.PNG" />
+    </pre>
+    </div>
+    
+    <p>Görüldüğü gibi konfigürasyon ayarları yapıldıktan sonra bir üyenin kayıt olması işlemi bu kadar basittir. Tabi burada herhangi bir gelen veri kontrolü yapılmamıştır bu kontrolü <strong>Validation</strong> kütüphanesinı anlatırken değineceğiz siz formlardan gelen verileri validasyon kontrolüne tabi tutmalısınız.</p>
+    
+    <div type="important"><div>ÖNEMLİ</div><div>Kullanıcı kaydı yapılırken kullanıcı şifreleri, <strong>Encode</strong> kütüphanesine ait <strong><cf>super()</cf></strong> yöntemi kullanılarak yeniden şifrelenir. Sizin başka bir şifreleme yöntemi kullanmanıza gerek yoktur.</div></div>
+    
+    <p class="cstfont" id="user_login">Siteye Giriş Yapmak</p>
+    <p><ftype>User::login( <kf>string</kf> <vf>$kullaniciAdi</vf> , <kf>string</kf> <vf>$sifre</vf> , [ <kf>boolean</kf> <vf>$beniHatirlasinMi</vf> = <kf>false</kf> ] )</ftype></p>
+    <p>Kayıtları yapılan üyelerin siteye girmesini sağlamak için oluşturulan yöntemdir.</p> 
+    
+    <p>
+    	<table class="cfont">
+        	<tr><th>Opsiyonel Seçenekler</th><th width="250">Parametre</th><td>Anlamları</td></tr>
+            <tr><th>->username()</th><th>1 - Kullanıcı Adı</th><td>Sisteye giriş yapılacak kullanıcı adı.</td></tr>
+            <tr><th>->password()</th><th>2 - Şifre</th><td>Siteye giriş için gerekli olan kullanıcı şifresi.</td></tr>
+            <tr><th>->remember()</th><th>3 - [ Beni Hatırlasın Mı = false ]</th><td>Bir sonraki giriş için kullanıcı adı hatırlansın mı?</td></tr>
+        </table>
+    </p>
+    
+    <div type="code">
+    <pre>
+<comment> // Bu bilgilerin form nesnelerinden geldiğini varsayalım.</comment>
+
+User::login(<sf>'bilgi@zntr.net'</sf>, <sf>'zntr1234'</sf>); <comment> // Az önce oluşturduğumuz kullanıcı adı ve şifre bilgisini burada veri olarak giriyoruz.</comment>
+
+<ff>output</ff>( User::error() ); <comment> // boolean false</comment>
+<ff>output</ff>( User::success() ); <comment> // string 'Başarı ile giriş yaptınız. Yönlendiriliyorsunuz.. Lütfen bekleyin.' (length=73)</comment>
+    </pre>
+    </div>
+    
+    <p class="cstfont" id="user_update">Üyelik Bilgilerini Güncellemek</p>
+    <p><ftype>User::update( <kf>string</kf> <vf>$eskiSifre</vf> , <kf>string</kf> <vf>$yeniSifre</vf> , [ <kf>string</kf> <vf>$yeniSifreTekrar</vf> ] , [ <kf>array</kf> <vf>$digerBilgiler</vf> ] )</ftype></p>
+    <p>Bu yöntemin esas işlevi üyenin şifre bilgilerinin güncellemesidir. Ancak istenirse şifre güncellenirken yanında başka verilerilerin güncellenmesine de olanak sağlar.</p> 
+    
+    <p>
+    	<table class="cfont">
+        	<tr><th>Opsiyonel Seçenekler</th><th>Parametre</th><td>Anlamları</td></tr>
+            <tr><th>->oldPassword()</th><th>1 - Eski Şifre</th><td>Kullanıcının eski şifresi.</td></tr>
+            <tr><th>->newPassword()</th><th>2 - Yeni Şifre</th><td>Kullanıcının yeni şifresi.</td></tr>
+            <tr><th>->passwordAgain()</th><th>3 - [ Yeni Şifre Tekrar ]</th><td>Yeni şifrenin tekrarı girilmezse Yeni Şifre parametresinin değerini alır.</td></tr>
+            <tr><th>->column()->column...->column()</th><th>4 - [ Diğer Bilgiler ]</th><td>Güncellenmek istenen başka veriler varsa bu parametreye dizi olarak girilir.</td></tr>
+        </table>
+    </p>
+    
+    <div type="code">
+    <pre>
+<comment> // Bu bilgilerin form nesnelerinden geldiğini varsayalım.</comment>
+
+<vf>$bilgiler</vf> = <kf>array</kf>(
+    <sf>'isim'</sf> => <sf>'OZAN'</sf>,
+    <sf>'eposta'</sf> => <sf>'ozan@zntr.net'</sf>
+);
+<comment>// param1 = eski şifre, param2 = yeni şifre, param3 = yeni şifre tekrar, param4 = diğer bilgiler.</comment>
+User::update(<sf>'zntr1234'</sf>, <sf>'zntr12'</sf>, <sf>'zntr12'</sf>, <vf>$bilgiler</vf>);
+
+<ff>output</ff>( User::error() ); <comment> // boolean false</comment>
+<ff>output</ff>( User::success() ); <comment> // string 'Güncelleme işlemi başarılı.' (length=32)</comment>
+
+<img src="../Images/Result/user1.PNG" />
+    </pre>
+    </div>
+    
+    
+    <p class="cstfont" id="user_logout">Üyelik Oturumunu Kapatmak</p>
+    <p><ftype>User::logout()</ftype></p>
+    <p>Aktif kullanıcının oturumunu sonlandırmak için kullanılır.</p> 
+    
+    
+    <div type="code">
+    <pre>
+<comment> // Bu bilgilerin form nesnelerinden geldiğini varsayalım.</comment>
+
+User::logout(); <comment> // Bu satır itibari ile oturum sonlandırılmıştır.</comment>
+
+<ff>output</ff>( User::error() ); <comment> // boolean false</comment>
+<ff>output</ff>( User::success() ); <comment> // boolean false</comment>
+    </pre>
+    </div>
+    
+    
+    <p class="cstfont" id="user_is_login">Üye Girişinin Yapılıp Yapılmadığını Kontrol Etmek</p>
+    <p><ftype>User::isLogin()</ftype></p>
+    <p>Kullanıcının siteye giriş yapıp yapmadığı bilgisini verir eğer giriş yapmış ise true değeri döner aksi halde false değeri döner.</p> 
+    
+    
+    <div type="code">
+    <pre>
+<comment> // Bu bilgilerin form nesnelerinden geldiğini varsayalım.</comment>
+
+<kf>if</kf>( User::isLogin() ) 
+	<kf>echo</kf> <sf>"Kullanıcı sitede aktif"</sf>;
+<kf>else</kf> 
+	<kf>echo</kf> <sf>"Kullanıcı aktif değil"</sf>;
+    
+<comment> // Az önce User::logout() ile çıkış yapıldığından Çıktı: Kullanıcı aktif değil olacaktır.</comment>
+    </pre>
+    </div>
+    
+    
+    <p class="cstfont" id="user_data">Oturum Açan Üyenin Bilgilerine Ulaşmak</p>
+    <p><ftype>User::data( [ <kf>string</kf> <vf>$tabloAdi</vf> ] )</ftype></p>
+    <p>Giriş yapan kullanıcıların üyelik bilgilerine ulaşmak için kullanılır. Bilgiler object veri tipinde dönmektedir.</p> 
+    
+    <p>
+    	<table class="cfont">
+        	<tr><th>Parametre</th><td>Anlamları</td></tr>
+            <tr><th>1 - [ Tablo Adı ]</th><td>Şayet üyeler bilgisini tutan birden fazla tablo var ve bu tablolar arasıda birleştirme yapılmışsa hangi tabloya ait verilerin alınacağı belirtilmelidir. Aksi halde birleştirilmiş sütunlara ait tüm tabloların verilerine ulaşılır.</td></tr>
+        </table>
+    </p>
+    
+    <div type="code">
+    <pre>
+<comment> // Bu bilgilerin form nesnelerinden geldiğini varsayalım.</comment>
+
+User::login(<sf>'bilgi@zntr.net'</sf>, <sf>'zntr12'</sf>);
+
+<ff>output</ff>( User::data() );
+<comment>
+/*
+object(stdClass)[2]
+  public 'id' => string '1' (length=1)
+  public 'kullanici_adi' => string 'bilgi@zntr.net' (length=14)
+  public 'sifre' => string 'd21167868a1f8578a3a76667cc81a533' (length=32)
+  public 'eposta' => string 'ozan@zntr.net' (length=13)
+  public 'isim' => string 'OZAN' (length=4)
+  public 'soyisim' => string 'UYKUN' (length=5)
+  public 'aktif' => string '1' (length=1)
+  public 'banli' => string '0' (length=1)
+  public 'kayit_tarihi' => string '' (length=0)
+  public 'aktivasyon' => string '0' (length=1)
+  
+bilgi@zntr.net
+*/
+</comment>
+
+<kf>echo</kf> User::data()->kullanici_adi;
+  
+<comment>Birleştirilmiş tablolardan yararlınılmışsa verinin seçileceği tablo adı belirtilmelidir.</comment>
+
+<kf>echo</kf> User::data(<sf>'kullanici'</sf>)->kullanici_adi;
+    </pre>
+    </div>
+    
+    
+    <p class="cstfont" id="user_forgot_password">Şifremi Unuttum Sistemi Oluşturmak</p>
+    <p><ftype>User::forgotPassword( <kf>string</kf> <vf>$epostaAdresi</vf> , [ <kf>string</kf> <vf>$geriDonusUrlAdresi</vf> ] )</ftype></p>
+    <p>Kullanıcıların şifrelerini unutmaları durumunda kullanıcıların e-posta adreslerine yeni şifrelerinin gönderimini sağlar.</p> 
+    
+    <p>
+    	<table class="cfont">
+        	<tr><th>Opsiyonel Seçenekler</th><th>Parametre</th><td>Anlamları</td></tr>
+            <tr><th>->email()</th><th width="400">1 - E-posta Adresi</th><td>Yeni şifrenin gönderileceği e-posta adresi girilir.</td></tr>
+            <tr><th>->returnLink()</th><th>2 - [ Geri Dönüş URL Adresi ]</th><td>Gelen şifremi unuttum e-postası açıldığında içerisinde dönüş için bir link olacak onun belirlenmesini sağlar. Örnek kullanici/giris</td></tr>
+        </table>
+    </p>
+    
+    <div type="code">
+    <pre>
+<comment> // Bu bilgilerin form nesnelerinden geldiğini varsayalım.</comment>
+
+<comment> // param1 = e-posta adresi, param2 = http://www.ornek.com/index.php/kullanici/giris.</comment>
+User::forgotPassword(<sf>'bilgi@zntr.net'</sf>, <sf><strong>'kullanici/giris'</strong></sf>); 
+<comment> // 1. Parametre  e-posta.</comment>
+<comment> // 2. Parametre'nin esas değeri = http://www.ornek.com/index.php/<strong>kullanici/giris</strong> şeklinde e-posta içeriğine siteye dönüş linki olarak yansıyacaktır.</comment>
+<ff>output</ff>( User::success() ); <comment> // string 'E-posta başarı ile gönderildi.' (length=22)</comment>
+<ff>output</ff>( User::error() ); <comment> // boolean false</comment>
+    </pre>
+    
+    </div>
+    
+    <p>Yeni şifreyi gönderebilmek için önce e-posta sütununa bakılır böyle bir sütun yok ise kullanıcı adı sütununa bakılır kullanıcı adı sütunuda e-posta bilgisi içermiyorsa yeni şifre gönderim işlemi tamamlanamaz ve <strong>"sistemde kayıtlı değilsiniz hatası"</strong> alırsınız.</p>
+    
+    <p class="cstfont" id="user_count">Üye Sayısını Öğrenmek</p>
+    <p><ftype>User::count()</ftype></p>
+    <p>Kayıtlı üye sayısını verir.</p> 
+    
+    <div type="code">
+   	User::count();
+    </div>
+    
+    <p class="cstfont" id="user_activeCount">Aktüf Üye Sayısını Öğrenmek</p>
+    <p><ftype>User::activeCount()</ftype></p>
+    <p>Aktif üye sayısını verir.</p> 
+    
+    <div type="code">
+   	User::activeCount();
+    </div>
+    
+    <p class="cstfont" id="user_bannedCount">Banlı Üye Sayısını Öğrenmek</p>
+    <p><ftype>User::bannedCount()</ftype></p>
+    <p>Banlı üye sayısını verir.</p> 
+    
+    <div type="code">
+   	User::bannedCount();
+    </div>
+	
+    <p class="cstfont" id="user_activation_complete">Aktivasyon İşlemini Tamamlamak</p>
+    <p><ftype>User::activationComplete()</ftype></p>
+    <p>Eğer aktivasyon işlemi kullanılmışsa User::register() yönteminin ikinci parametresinde dönüş yolu verilir işte bu dönüş yolu aktivasyon işleminin tamamlanacağı sayfanın ta kendisidir. E-posta adresine gönderilen aktivasyon linkine tıklayan kullanıcı sizin belirlediğiniz sayfaya yönlenir bu sayfaya gelen kullanıcının aktivasyon işleminin tamamlanmış olması için bu sayfada <strong>User::activationComplete(</strong>) fonksiyonun kullanılmış olması gerekir. Aktivasyon işlemi başarılı olursa yöntemin döndüreceği değerler başarılı olursa <cf class="keyfont">true</cf>  aksi halde <cf class="keyfont">false</cf> değerleridir. Yani bu yöntemi dönüş sayfasında uygun bir yerde kullanmanız gerekmektedir herhangi bir parametre gerekmez gerekli işlemi yöntemin kendisi yapar.</p> 
+    
+
+    
+    <div type="code">
+   	User::activationComplete();
+    </div>
+    
+   
+    <div type="prev-next">
+    	<div type="prev-btn"><a href="auth_config.html">Önceki</a></div><div type="next-btn"><a href="auth_example.html">Sonraki</a></div>
+    </div>
+ 
+</body>
+</html>              

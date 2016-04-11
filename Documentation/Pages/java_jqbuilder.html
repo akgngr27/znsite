@@ -1,0 +1,87 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>ZN KOD ÇATISI</title>
+<link type="text/css" rel="stylesheet" href="../Styles/Structure.css" />
+<script src="../Scripts/Jquery.js"></script>
+<script src="../Scripts/Structure.js"></script>
+</head>
+
+<body>
+    <div id="content-document">Döküman</a> » <a href="java.html">Javascript & Jquery</a> » Builder Kütüphanesi</div> 
+    <p class="ctfont">JQBuilder Kütüphanesi</p>
+    <p>Jquery'nin animasyon komutları kullanılarak oluşturulmuştur. Daha basit bir şekilde hareket işlemlerini gerçekleştirebilmeniz mümkündür.</p>
+    
+     <p>
+    	<table class="cfont" width="100%">
+        	<tr><th colspan="2">Zincirleme Kullanımlı JQBuilder Parametreleri</th></tr>
+            <tr><th width="40%">Seçiçi Belirlemek</th><td><b><cf>Jqueryr::selector(<cf><kf>string</kf> <vf>$selector</kf></cf>)</cf></b></td></tr>
+           	<tr><th>Özelliği Belirlemek</th><td><b><cf>Jqueryr::property(<cf><kf>string</kf> <vf>$property</kf>, [ <kf>string/array</kf> <vf>$params</kf> ] </cf>)</cf></b></td></tr>
+            <tr><th>Hareketi Kuyruğa Ekleyecek Şekilde Tamamlamak</th><td><b><cf>Jqueryr::complete()</cf></b></td></tr>
+            <tr><th>Hareketi Oluşturmak</th><td><b><cf>Jqueryr::create(<cf><kf>arguments</kf> <vf>$complete1</kf>, <vf>$complete2</kf> ... <vf>$completeN</kf></cf>)</cf></b></td></tr>
+         
+        </table>
+    </p>
+   
+	<p class="cstfont" id="process">Zincirleme Kullanımlı Jquery İşlemleri</p>
+    <p><ftype>Jquery::create( [ <cf><kf>arguments</kf> <vf>$complete1</kf>, <vf>$complete2</kf> ... <vf>$completeN</kf></cf> ] )</cf></ftype></p>
+    <p>JQBuilder kütüphanesi ile ilgili kodun nasıl yapılacağına ait aşağıda örneklere yer verilmiştir. create() yöntemi gönderimi tamamlamak için kullanılan nihai yöntemdir.</p> 
+  	<p>Aşağıda olayın nasıl oluşturulacağına dair bir örneğe yer verilmiştir.</p>
+    <div type="code">
+<pre>
+<kf>echo</kf> Script::open(); <comment>// Script tagı açıyor ve script jquery dosyasını dahil ediyor.</comment>
+
+<kf>echo</kf> Jquery::selector(<sf>'#button'</sf>)
+              ->property(<sf>'click'</sf>, JQ::callback(<sf>'e'</sf>, <sf>'alert(1)'</sf>))
+              ->create();
+           
+<kf>echo</kf> Script::close();<comment>// Script tagını kapatıyor.</comment>
+
+<comment>// Kaynak Kod: $("#button").click(function(e){alert(1)});</comment>
+</pre>
+    </div>
+    
+    <pre>
+<kf>echo</kf> Jquery::selector(<sf>'#button'</sf>)      
+             ->property(<sf>'bind'</sf>, <kf>array</kf>(<sf>'click'</sf>, JQ::callback(<sf>'e'</sf>, <sf>'alert(1)'</sf>)))
+             ->create();
+<comment>// Kaynak Kod: $("#button").bind("click", function(e){alert(1)});</comment>
+</pre>
+    </div>
+    
+    <p>Aşağıdaki gibi bir kullanım da mümkündür. property() işlevinin 2. parametresi ile geri çağrım işlevi oluşturabilirsiniz.
+     <pre>
+<kf>echo</kf> Jquery::selector(<sf>'#button'</sf>)
+              ->property(<sf>'bind'</sf>, <kf>array</kf>(<sf>'mouseover'</sf>, JQ::func(<sf>'e'</sf>, <sf>'alert(1)'</sf>))
+              ->create();
+<comment>// Kaynak Kod: $("#button").bind("mouseover", function(e){alert(1)});</comment>
+</pre>
+    </div>
+	
+    <p><strong>Birden fazla özellik eklemek</strong> için aşağıdaki yöntemler tercih edilebilir.</p>
+    
+    <div type="code">
+    <pre>
+<kf>echo</kf> Jquery::selector(<sf>'#button'</sf>)      
+              ->property(<sf>'bind'</sf>, <kf>array</kf>(<sf>'click'</sf>, JQ::callback(<sf>'e'</sf>, <sf>'alert(1)'</sf>)))
+              ->property(<sf>'hide'</sf>, <if>1000</if>)
+              ->create();
+<comment>// Kaynak Kod: $("#button").bind("click", function(e){alert(1)}).hide(1000);</comment>
+</pre>
+    </div>
+    
+	<p>Ya da
+ 
+    <div type="code">->create(JQ::property(<sf>'show'</sf>, <if>1000</if>), JQ::property(<sf>'fadeIn'</sf>, <kf>array</kf>(<sf>'slow'</sf>, <sf>'linear'</sf>)));<br>
+    <comment>// Kaynak Kod: $("#button").click(function(e){alert(1)}).show(1000).fadeIn("slow");</comment>
+    </div>
+
+    
+    
+    <div type="prev-next">
+    	<div type="prev-btn"><a href="java_jqevent.html">Önceki</a></div><div type="next-btn"><a href="java_jq.html">Sonraki</a></div>
+    </div>
+ 
+</body>
+</html>              

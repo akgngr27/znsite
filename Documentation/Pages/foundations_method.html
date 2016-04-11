@@ -1,0 +1,187 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>ZN KOD ÇATISI</title>
+<link type="text/css" rel="stylesheet" href="../Styles/Structure.css" />
+<script src="../Scripts/Jquery.js"></script>
+<script src="../Scripts/Structure.js"></script>
+</head>
+
+<body>
+    <div id="content-document"><a href="#">Döküman</a> » <a href="foundations.html">Foundations</a> » Method Kütüphanesi</div> 
+    <p class="ctfont">Method Kütüphanesi</p>
+    <p>Post, get, request veya files verileri kullanmak için oluşturulmuş sınıftır.</p>
+    <ul><li><a href="#" class="infont">Method Kütüphanesi ve Yöntemleri</a><br><br>
+        <ul>    
+            <li><a href="#method_post">POST Verilerini Verileri Kullanmak » <b>Method::post()</b></a></li>
+            <li><a href="#method_get">GET Verilerini Kullanmak » <b>Method::files()</b></a></li>
+            <li><a href="#method_request">REQUEST Verilerini Kullanmak » <b>Method::request()</b></a></li>
+            <li><a href="#method_env">ENV Verilerini Kullanmak » <b>Method::env()</b></a></li>
+            <li><a href="#method_server">SERVER Verilerini Kullanmak » <b>Method::server()</b></a></li>
+            <li><a href="#method_files">FILES Verilerini Kullanmak » <b>Method::files()</b></a></li>
+        </ul>
+    </li></ul>
+
+    
+   	<p class="cstfont" id="method_post">POST Verilerini Kullanmak</p>
+    <p><ftype>Method::post( <kf>string</kf> <vf>$veri</vf> , [ <kf>string</kf> <vf>$deger</vf> ] )</ftype></p>
+    <p>POST Yöntemiyle gelen verileri almak için kullanılır. 2 parametresi vardır. Veri, Değer.</p>
+ 
+    <p>
+    	<table class="cfont">
+        	<tr><th>Parametre</th><td>Anlamları</td></tr>
+            <tr><th>1. Parametre = Veri</th><td>Gelen verinin adı.</td></tr>
+            <tr><th>2. Parametre = [Değer]</th><td>Veriye değer atamak için kullanılır.</td></tr>
+        </table>
+    </p>
+	<p>
+ 
+    	<div type="code">
+<pre>
+<x><</x>?php
+<kf>class</kf> MethodUygulamasi
+{
+<ff>function</ff> index()
+    {
+       <strong> Method::post</strong>(<sf>'nesne'</sf>, <sf>'Nesnenin Değeri'</sf>);
+	<kf>echo</kf> Method::post(<sf>'nesne'</sf>);
+        <comment>/* 
+        $_POST['nesne'] = 'Nesnenin Değeri'; => Çıktı: Nesnenin Değeri
+        */</comment>
+    }
+}
+</pre>
+    	</div>
+    </p>
+
+    
+    <p class="cstfont" id="method_get">GET Verilerini Kullanmak</p>
+    <p><ftype>Method::get( <kf>string</kf> <vf>$veri</vf> , [ <kf>string</kf> <vf>$deger</vf> ] )</ftype></p>
+    <p>GET Yöntemiyle gelen verileri almak için kullanılır. 2 parametresi vardır. Veri, Değer.</p>
+ 
+    <p>
+    	<table class="cfont">
+        	<tr><th>Parametre</th><td>Anlamları</td></tr>
+            <tr><th>1. Parametre = Veri</th><td>Gelen verinin adı.</td></tr>
+            <tr><th>2. Parametre = [Değer]</th><td>Veriye değer atamak için kullanılır.</td></tr>
+        </table>
+    </p>
+	<p>
+ 
+    	<div type="code">
+<pre>
+Method::get(<sf>'nesne'</sf>, <sf>'Nesnenin Değeri'</sf>);
+<kf>echo</kf> <strong>Method::get</strong>(<sf>'nesne'</sf>);
+<comment>/* 
+$_GET['nesne'] = 'Nesnenin Değeri'; => Çıktı: Nesnenin Değeri
+*/</comment>
+</pre>
+    	</div>
+    </p>
+    
+    
+    <p class="cstfont" id="method_request">REQUEST Verilerini Kullanmak</p>
+    <p><ftype>Method::request( <kf>string</kf> <vf>$veri</vf> , [ <kf>string</kf> <vf>$deger</vf> ] )</ftype></p>
+    <p>REQUEST Yöntemiyle gelen verileri almak için kullanılır. 2 parametresi vardır. Veri, Değer.</p>
+ 
+    <p>
+    	<table class="cfont">
+        	<tr><th>Parametre</th><td>Anlamları</td></tr>
+            <tr><th>1. Parametre = Veri</th><td>Gelen verinin adı.</td></tr>
+            <tr><th>2. Parametre = [Değer]</th><td>Veriye değer atamak için kullanılır.</td></tr>
+        </table>
+    </p>
+	<p>
+ 
+    	<div type="code">
+<pre>
+Method::request(<sf>'nesne'</sf>, <sf>'Nesnenin Değeri'</sf>);
+<kf>echo</kf> <strong>Method::request</strong>(<sf>'nesne'</sf>);
+<comment>/* 
+$_REQUEST['nesne'] = 'Nesnenin Değeri'; => Çıktı: Nesnenin Değeri
+*/</comment>
+</pre>
+    	</div>
+    </p>
+    
+     <p class="cstfont" id="method_env">ENV Verilerini Kullanmak</p>
+    <p><ftype>Method::env( <kf>string</kf> <vf>$veri</vf> , [ <kf>string</kf> <vf>$deger</vf> ] )</ftype></p>
+    <p>ENV Yöntemiyle gelen verileri almak için kullanılır. 2 parametresi vardır. Veri, Değer.</p>
+ 
+    <p>
+    	<table class="cfont">
+        	<tr><th>Parametre</th><td>Anlamları</td></tr>
+            <tr><th>1. Parametre = Veri</th><td>Gelen verinin adı.</td></tr>
+            <tr><th>2. Parametre = [Değer]</th><td>Veriye değer atamak için kullanılır.</td></tr>
+        </table>
+    </p>
+	<p>
+ 
+    	<div type="code">
+<pre>
+Method::env(<sf>'nesne'</sf>, <sf>'Nesnenin Değeri'</sf>);
+<kf>echo</kf> <strong>Method::env</strong>(<sf>'nesne'</sf>);
+<comment>/* 
+$_ENV['nesne'] = 'Nesnenin Değeri'; => Çıktı: Nesnenin Değeri
+*/</comment>
+</pre>
+    	</div>
+    </p>
+    
+    <p class="cstfont" id="method_server">SERVER Verilerini Kullanmak</p>
+    <p><ftype>Method::server( <kf>string</kf> <vf>$veri</vf> , [ <kf>string</kf> <vf>$deger</vf> ] )</ftype></p>
+    <p>SERVER Yöntemiyle gelen verileri almak için kullanılır. 2 parametresi vardır. Veri, Değer.</p>
+ 
+    <p>
+    	<table class="cfont">
+        	<tr><th>Parametre</th><td>Anlamları</td></tr>
+            <tr><th>1. Parametre = Veri</th><td>Gelen verinin adı.</td></tr>
+            <tr><th>2. Parametre = [Değer]</th><td>Veriye değer atamak için kullanılır.</td></tr>
+        </table>
+    </p>
+	<p>
+ 
+    	<div type="code">
+<pre>
+Method::server(<sf>'nesne'</sf>, <sf>'Nesnenin Değeri'</sf>);
+<kf>echo</kf> <strong>Method::server</strong>(<sf>'nesne'</sf>);
+<comment>/* 
+$_SERVER['nesne'] = 'Nesnenin Değeri'; => Çıktı: Nesnenin Değeri
+*/</comment>
+</pre>
+    	</div>
+    </p>
+    
+    
+    <p class="cstfont" id="method_files">FILES Verilerini Kullanmak</p>
+    <p><ftype>Method::files( <kf>string</kf> <vf>$input_file_nesne_ismi</vf> , [ <kf>string</kf> <vf>$tur</vf> = <sf>'name'</sf> ] )</ftype></p>
+    <p>REQUEST Yöntemiyle gelen verileri almak için kullanılır. 2 parametresi vardır. Veri, Değer.</p>
+ 
+    <p>
+    	<table class="cfont">
+        	<tr><th>Parametre</th><td>Anlamları</td></tr>
+            <tr><th>1. Parametre = Input File Nesnesinin Adı</th><td>File nesnesinin adı.</td></tr>
+            <tr><th>2. Parametre = [Tür = name]</th><td>Verinin hangi türde bilgisinin alınacağı.</td></tr>
+        </table>
+    </p>
+	<p>
+ 
+    	<div type="code">
+<pre>
+<kf>echo</kf> <strong>Method::files</strong>(<sf>'file_name'</sf>);
+<comment>/* 
+$_FILES['file_name']['name']; => Çıktı: ornek.jpg
+*/</comment>
+</pre>
+    	</div>
+    </p>
+
+    
+   
+    <div type="prev-next">
+    	<div type="prev-btn"><a href="foundations_uri.html">Önceki</a></div><div type="next-btn"><a href="foundations_controller.html">Sonraki</a></div>
+    </div>
+ 
+</body>
+</html>              

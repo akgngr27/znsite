@@ -1,0 +1,143 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>ZN KOD ÇATISI</title>
+<link type="text/css" rel="stylesheet" href="../Styles/Structure.css" />
+<script src="../Scripts/Jquery.js"></script>
+<script src="../Scripts/Structure.js"></script>
+</head>
+
+<body>
+    <div id="content-document"><a href="#">Döküman</a> » <a href="libraries.html">Kütüphaneler</a> » Buffer(Tamponlama) Kütüphanesi</div> 
+    <p class="ctfont">Buffer(Tamponlama) Kütüphanesi</p>
+    <p>Tampon kullanımı için oluşturulmuş sınıftır.</p>
+    
+    <p>
+    	<table class="cfont" width="100%">
+        	<tr><th colspan="2">Buffer(Tamponlama) Kütüphanesi ve Yöntemleri</th></tr>
+            <tr><th width="40%">Dosya İçeriğini Tamponlamak</th><td><a href="#takeFileBuffer"><b>Buffer::file()</b></a></td></tr>
+            <tr><th>Yöntem Çıktılarını Tamponlamak</th><td><a href="#takeFuncBuffer"><b>Buffer::func()</b></a></td></tr>
+            <tr><th>Tampona Veri Eklemek</th><td><a href="#insert"><b>Buffer::insert()</b></a></td></tr>
+            <tr><th>Tampondan Veri Seçmek</th><td><a href="#select"><b>Buffer::select()</b></a></td></tr>
+            <tr><th>Tampondan Veri Silmek</th><td><a href="#delete"><b>Buffer::delete()</b></a></td></tr>
+        </table>
+    </p>
+
+    
+    <p class="cstfont" id="takeFileBuffer">Dosya İçeriğini Tamponlamak</p>
+    <p><ftype>Buffer::file( <kf>string</kf> <vf>$dosyaAdi</vf> )</ftype></p>
+    <p>Dosyaları tampona almak için kullanılır.</p>
+    
+    <p>
+    	<table class="cfont">
+        	<tr><th>No</th><th>Parametreler</th><td>Anlamları</td></tr>
+            <tr><th>1</th><th>string Dosya Yolu</th><td>Tampona alınacak dosya yolu.</td></tr>
+        </table>
+    </p>
+    
+	<div type="code">
+    <vf>$data</vf> = Buffer::file(<sf>'Dosya/test.php'</sf>);<br>   
+    <kf>echo</kf> <vf>$data</vf>;
+    </div> 
+    
+    <p class="cstfont" id="takeFuncBuffer">Yöntem Çıktılarını Tamponlamak</p>
+    <p><ftype>Buffer::func( <kf>string</kf> <vf>$yontemAdi</vf> , [ <kf>array</kf> <vf>$parametreler</vf> ] )</ftype></p>
+    <p>Yöntemlerin çıktılarını tampona almak için kullanılır.</p>
+    
+    <p>
+    	<table class="cfont">
+        	<tr><th>No</th><th>Parametreler</th><td>Anlamları</td></tr>
+            <tr><th>1</th><th>string Yöntem Adı</th><td>Tampona alınacak yöntemin adı.</td></tr>
+            <tr><th>2</th><th>[array Yöntem Parametreleri]</th><td>Varsa yöntemin parametreleri.</td></tr>
+        </table>
+    </p>
+    
+	<div type="code">
+    <vf>$data</vf> = Buffer::func(<ff>function</ff>(){ <kf>return</kf> <if>1</if>; });<br>   
+    <kf>echo</kf> <vf>$data</vf>; <comment> // Çıktı: 1</comment>
+    </div> 
+    <p></p>
+    <div type="code">
+    <vf>$data</vf> = Buffer::func(<sf>'get_defined_constants'</sf>, <kf>array</kf>(<kf>true</kf>));<br>   
+    <kf>output</kf>(<vf>$data</vf>);
+    </div> 
+    <p></p>
+    <div type="code">
+    <vf>$data</vf> = Buffer::func(<sf>'get_defined_functions'</sf>);<br>   
+    <kf>output</kf>(<vf>$data</vf>);
+    </div> 
+    
+    <p class="cstfont" id="insert">Tampona Veri Eklemek</p>
+    <p><ftype>Buffer::insert( <kf>string</kf> <vf>$veriAdi</vf> , <kf>mixed</kf> <vf>$deger</vf> , [ <kf>array</kf> <vf>$params</vf> ] )</ftype></p>
+    <p>Tampona veri eklemek için kullanılır.</p> 
+    <p>
+    	<table class="cfont">
+        	<tr><th>Parametre</th><td>Anlamları</td></tr>
+            <tr><th>1. Parametre = string Veri Adı</th><td>Oluşturulacak verinin adı.</td></tr>
+			<tr><th>2. Parametre = mixed Değer</th><td>Oluşturulacak verinin değeri.</td></tr>
+            <tr><th>[3. Parametre = array Parametreler]</th><td>Tampona alınacak veri fonkisyon ise o fonksiyona ait parametreler.</td></tr>      
+        </table>
+    </p>
+    
+    <p>
+    	<div type="code">
+Buffer::insert(<sf>'veri1'</sf>, <sf>'Değer'</sf>);
+        </div>
+    </p>
+    
+    <p>
+    	<div type="code">
+Buffer::insert(<sf>'veri2'</sf>, <ff>function</ff>(){ <kf>return</kf> <if>1</if>; });
+        </div>
+    </p>
+    
+    <p>
+    	<div type="code">
+Buffer::insert(<sf>'veri3'</sf>, <sf>'get_defined_constants'</sf>, <kf>array</kf>(<kf>true</kf>));
+        </div>
+    </p>
+    
+     <p>
+    	<div type="code">
+Buffer::insert(<sf>'veri4'</sf>, <sf>'Dosya/index.html'</sf>);
+        </div>
+    </p>
+    
+    <p class="cstfont" id="select">Tampondan Veri Seçmek</p>
+    <p><ftype>Buffer::select( <kf>string</kf> <vf>$veriAdi</vf> )</ftype></p>
+    <p>Seçilecek verinin adı.</p>
+    
+    <p>
+    	<table class="cfont">
+        	<tr><th>No</th><th>Parametreler</th><td>Anlamları</td></tr>
+            <tr><th>1</th><th>string Veri Adı</th><td>Tampona alınacak verinin adı.</td></tr>
+        </table>
+    </p>
+    
+	<div type="code">
+    <kf>echo</kf> Buffer::select(<sf>'veri1'</sf>);<br>   
+    </div> 
+    
+    <p class="cstfont" id="delete">Tampondan Veri Silmek</p>
+    <p><ftype>Buffer::delete( <kf>string</kf> <vf>$veriAdi</vf> )</ftype></p>
+    <p>Silinecek verinin adı.</p>
+    
+    <p>
+    	<table class="cfont">
+        	<tr><th>No</th><th>Parametreler</th><td>Anlamları</td></tr>
+            <tr><th>1</th><th>string Veri Adı</th><td>Tampondan silinecek verinin adı.</td></tr>
+        </table>
+    </p>
+    
+	<div type="code">
+    <kf>echo</kf> Buffer::delete(<sf>'veri1'</sf>);<br>   
+    </div> 
+    
+    
+    <div type="prev-next">
+    	<div type="prev-btn"><a href="bench.html">Önceki</a></div><div type="next-btn"><a href="caching.html">Sonraki</a></div>
+    </div>
+ 
+</body>
+</html>              

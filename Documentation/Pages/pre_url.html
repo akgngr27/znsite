@@ -1,0 +1,132 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>ZN KOD ÇATISI</title>
+<link type="text/css" rel="stylesheet" href="../Styles/Structure.css" />
+<script src="../Scripts/Jquery.js"></script>
+<script src="../Scripts/Structure.js"></script>
+</head>
+
+<body>
+    <div id="content-document"><a href="#">Döküman</a> » <a href="functions.html">Ön Tanımlı Sabitler ve Fonksiyonlar</a> » URL Bilgisi Komutları</div> 
+    <p class="ctfont">URL Bilgisi Komutları</p>
+    <p>Bu bölümde URL adresine ilişkin verileri elde etmek için kullanılan yöntemler yer almaktadır.</p>
+    <ul><li><a href="#" class="infont">URL Bilgisi Komutları</a><br><br>
+        <ul>
+            <li><a href="#current_url">Sayfanın Aktif URL Adresini Öğrenmek » <b>currentUrl() v1.0</b></a></li> 
+            <li><a href="#site_url">Sitenin URL Adresini Öğrenmek » <b>siteUrl() v1.0</b></a></li>   
+            <li><a href="#base_url">Sitenin Kök URL Adresini Öğrenmek » <b>baseUrl() v1.0</b></a></li> 
+            <li><a href="#prev_url">Gelinen Bir Önceki URL Adresini Öğrenmek » <b>prevUrl() v1.0</b></a></li>
+            <li><a href="#hostname">Host URL Adresini Öğrenmek » <b>hostUrl() v1.0</b></a></li>
+            <li><a href="#host">Host Bilgisini Öğrenmek » <b>host() v1.2</b></a></li>
+        </ul>
+    </li></ul>
+     
+    
+    <p class="cstfont" id="current_url">Sayfanın Aktif URL'sini Öğrenmek</p>
+    <p><ftype>currentUrl()</ftype></p>
+   	<p>Herhangi bir web sayfasının o an aktif olan URL adresini öğrenmek için kullanılır.</p>
+   
+ 
+    <div type="code">
+    <kf>echo</kf> currentUrl(); <comment> // Çıktı: http://www.siteadi.xxx/ornek/uygulama </comment><br>
+    </div>
+    
+    
+    <p class="cstfont" id="site_url">Sitenin URL Adresini Öğrenmek</p>
+    <p><ftype>siteUrl( [ <kf>string</kf> <vf>$url_eki</vf> ] , [ <kf>numeric</kf> <vf>$dizin_indeksi</vf> = <if>0</if> ] ) v1.0</ftype></p>
+   	<p>Sitenin URL adresini öğrenmek için kullanılır. <strong>Config/Uri.php</strong> dosyasından ayarlar yapılırsa bu değişikliklerde dikkate alınarak sitenin ayarlanmış URL adresini verir.</p>
+    <p>
+    	<table class="cfont">
+        	<tr><th>No</th><th>Parametreler</th><td>Anlamları</td></tr>
+            <tr><th>1</th><th>string URL Eki</th><td>Site URL adresine ek olarak yazılacak URI ifadeleri.</td></tr>
+            <tr><th>2</th><th>[ string Dizin Indeksi ]</th><td>URL'nin üst dizinlerine ulaşabilmek için kullanılır.</td></tr>
+        </table>
+    </p>
+    
+ 
+    <div type="code">
+    <kf>echo</kf> siteUrl(); <comment> // Çıktı: http://www.siteadi.xxx/zntr/index.php/ </comment><br>
+    <kf>echo</kf> siteUrl(<sf>'ornek/uygulama'</sf>); <comment> // Çıktı: http://www.siteadi.xxx/zntr/index.php/ornek/uygulama/ </comment><br>
+    <kf>echo</kf> siteUrl(<sf>'ornek/uygulama'</sf>, <sf>-1</sf>); <comment> // Çıktı:http://www.siteadi.xxx/index.php/ornek/ </comment><br>
+    </div>
+    
+    <p>Eğer <strong>Config/Uri.php</strong> dosyasından <strong>ssl</strong>, <strong>dil</strong> ve <strong>index.php</strong> ayarlarıda yapılmış olursa bu değişikliklerde dikkate alınır.</p>
+    
+    <div type="code">
+    <kf>echo</kf> siteUrl(); <comment> // Çıktı: https://www.siteadi.xxx/tr/zntr/  </comment><br>
+    <kf>echo</kf> siteUrl(<sf>'ornek/uygulama'</sf>); <comment> // Çıktı: Çıktı: https://www.siteadi.xxx/tr/zntr/ornek/uygulama </comment><br>
+    </div>
+    
+    
+    <p class="cstfont" id="base_url">Sitenin Kök URL Adresini Öğrenmek</p>
+    <p><ftype>baseUrl( [ <kf>string</kf> <vf>$url_eki</vf> ] , [ <kf>numeric</kf> <vf>$dizin_indeksi</vf> = <if>0</if> ] ) v1.0</ftype></p>
+   	<p>Sitenin Kök URL adresini öğrenmek için kullanılır. <strong>Config/Uri.php</strong> dosyasındaki ayarlardan <strong>etkilenmez</strong>. Genellikle bu yöntem gerçek dosyaları kaynak olarak göstermek için kullanılır. Özellikle resim, ses veya vidyo dosyalarının yolu belirtilmek istendiğinde tercih edilir.</p>
+    <p>
+    	<table class="cfont">
+        	<tr><th>No</th><th>Parametreler</th><td>Anlamları</td></tr>
+            <tr><th>1</th><th>string URL Eki</th><td>Site URL adresine ek olarak yazılacak URI ifadeleri.</td></tr>
+            <tr><th>2</th><th>[ string Dizin Indeksi ]</th><td>URL'nin üst dizinlerine ulaşabilmek için kullanılır.</td></tr>
+        </table>
+    </p>
+    
+ 
+    <div type="code">
+    <kf>echo</kf> baseUrl(); <comment> // Çıktı: http://www.siteadi.xxx/zntr/ </comment><br>
+    <kf>echo</kf> baseUrl(<sf>'ornek/uygulama/resim.jpg'</sf>); <comment> // Çıktı: Çıktı: http://www.siteadi.xxx/zntr/ornek/uygulama/resim.jpg </comment><br>
+    <kf>echo</kf> baseUrl(<sf>'ornek/uygulama/resim.jpg'</sf>, <sf>-1</sf>); <comment> // Çıktı: Çıktı: http://www.siteadi.xxx/ornek/uygulama/resim.jpg </comment><br>
+    </div>
+    
+    <p><strong>Config/Uri.php</strong> dosyasında yer alan <strong>dil</strong> ve <strong>index.php</strong> ayarlarındaki değişiklik <cf>baseUrl()</cf> yönteminde herhangi bir <strong>değişikliğe neden olmaz</strong>.</p>
+    
+    <div type="code">
+    <kf>echo</kf> baseUrl(); <comment> // Çıktı: https://www.siteadi.xxx/zntr/ </comment><br>
+    <kf>echo</kf> baseUrl(<sf>'ornek/uygulama/resim.jpg'</sf>); <comment> // Çıktı: Çıktı: https://www.siteadi.xxx/zntr/ornek/uygulama/resim.jpg </comment><br>
+    </div>
+    
+    
+    <p class="cstfont" id="prev_url">Gelinen Bir Önceki URL Adresini Öğrenmek</p>
+    <p><ftype>prevUrl() v1.0</ftype></p>
+   	<p>Ziyaret edilen sayfadan bir önceki sayfanın URL adresini öğrenmek için kullanılır.</p>
+    
+ 
+    <div type="code">
+    <kf>echo</kf> prevUrl(); <comment> // Çıktı: http://www.siteadi.xxx/zntr/urunler/ </comment><br>
+    </div>
+    
+    
+    <p class="cstfont" id="hostname">Host URL Adresini Öğrenmek</p>
+    <p><ftype>hostUrl( [ <kf>string</kf> <vf>$url_ekli</vf> ] ) v1.0</ftype></p>
+   	<p>Sistemin kurulu olduğu hostun URL adresini verir.</p>
+    <p>
+    	<table class="cfont">
+        	<tr><th>No</th><th>Parametreler</th><td>Anlamları</td></tr>
+            <tr><th>2</th><th>[ string URL Eki = "" ]</th><td>Host URL adresinin sonuna eklenecek ifadeler.</td></tr>
+        </table>
+    </p>
+    
+ 
+    <div type="code">
+    <kf>echo</kf> hostUrl(); <comment> // Çıktı: http://www.hostadi.xxx/ </comment><br>
+    <kf>echo</kf> hostUrl(<sf>'ornek/uygulama'</sf>); <comment> // Çıktı: http://www.hostadi.xxx/ornek/uygulama </comment><br>
+    </div>
+    
+    <p class="cstfont" id="host">Host Bilgisini Öğrenmek</p>
+    <p><ftype>host() v1.2</ftype></p>
+   	<p>Sistemin host bilgisini öğrenmek için kullanılır.</p>
+ 
+ 
+    <div type="code">
+    <kf>echo</kf> host(); <comment> // Çıktı: localhost </comment><br>
+    <kf>echo</kf> host(); <comment> // Çıktı: localhost:8080 </comment><br>
+    <kf>echo</kf> host(); <comment> // Çıktı: www.ornek.xxx </comment><br>
+    </div>
+    
+   
+    <div type="prev-next">
+    	<div type="prev-btn"><a href="pre_fix.html">Önceki</a></div><div type="next-btn"><a href="pre_path.html">Sonraki</a></div>
+    </div>
+ 
+</body>
+</html>              

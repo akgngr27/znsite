@@ -1,0 +1,108 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>ZN KOD ÇATISI</title>
+<link type="text/css" rel="stylesheet" href="../Styles/Structure.css" />
+<script src="../Scripts/Jquery.js"></script>
+<script src="../Scripts/Structure.js"></script>
+</head>
+
+<body>
+    <div id="content-document"><a href="#">Döküman</a> » <a href="db_dynamic.html">Database(Veritabanı) Kütüphanesi Yöntemleri</a> » Database Tool Kütüphanesi ve Kullanımı</div> 
+    <p class="ctfont">Database Tool Kütüphanesi ve Kullanımı</p>
+    <p>Bu bölümde veritabanı için yararlı bir kaç aracın anlatımına yer verdik.</p>
+    
+    <p>
+    	<table class="cfont" width="100%">
+        	<tr><th colspan="2">DBTool Kütüphanesi ve Yöntemleri</th></tr>     
+            <tr><th width="40%">Oluşturulan Veritabanlarının Listesini Almak</th><td><a href="#db_list_databases"><strong>DBTool::listDatabases()</strong></a></td></tr>
+            <tr><th>Veritabanında Oluşturalan Tabloların Listesini Almak</th><td><a href="#db_list_tables"><strong>DBTool::listTables()</strong></a></td></tr>
+            <tr><th>Veritabanının Yedeğini Almak</th><td><a href="#db_backup"><strong>DBTool::backup()</strong></a></td></tr>
+            <tr><th>Tabloları Uygun Hale Getirmek</th><td><a href="#db_optimize_tables"><strong>DBTool::optimizeTables()</strong></a></td></tr>
+            <tr><th>Tabloları Onarmak</th><td><a href="#db_repair_tables"><strong>DBTool::repairTables()</strong></a></td></tr>
+        </table>
+    </p>
+    
+    <p class="cstfont" id="db_list_databases">Oluşturulan Veritabanlarının Listesini Almak</p>
+    <p><ftype>DBTool::listDatabases()</ftype></p>
+    <p>Oluşturulan veritabanlarının listesini verir.</p>
+    
+    <p>
+    <div type="code">
+  	<ff>output</ff>( DBTool::listDatabases() );<br>
+    </div>
+    </p>
+    
+    <p class="cstfont" id="db_list_tables">Veritabanında Oluşturalan Tabloların Listesini Almak</p>
+    <p><ftype>DBTool::listTables()</ftype></p>
+    <p>Veritabanında oluşturulan tabloların listesini verir.</p>
+  
+    
+    <div type="code">
+  	<ff>output</ff>( DBTool::listTables() );<br>
+    </div>
+    
+    
+    <p class="cstfont" id="db_backup">Veritabanının Yedeğini Almak</p>
+    <p><ftype>DBTool::backup( [ <kf>string/array</kf> <vf>$tablo_isimleri</vf> = <sf>'*'</sf> ] , [ <kf>string</kf> <vf>$dosya_adi</vf> = <sf>'db-backup-time-tablolar.sql'</sf> ] , [ <kf>string</kf> <vf>$kaydedilece_yol</vf> = <sf>'Resources/Files'</sf> ] )</ftype></p>
+    <p>Veritabanının yedeğini almak için kullanılır.</p>
+    
+      <p>
+    	<table class="cfont">
+        	<tr><th colspan="2">DBTool::backup()</th></tr>
+            <tr><th colspan="2">Parametreler</th></tr>
+            <tr><th>[string/array Tablo İsimleri = '*']</th><td>Varsayılan <strong>*</strong>(Tüm tablolar) ayarlıdır. Farklı bir parametre girilecekse dizi bilgisi veya virgüllerle ayrılmış string içerikli tablo isimleri bilgisi girilir.</td></tr>
+    		<tr><th>[string Dosyanın Adı = 'db-backup-time-tablolar.sql']</th><td>Dosyanın hangi isimle kaydedileceği.</td></tr>
+            <tr><th>[string Dosyanın Kaydedileceği Yol = 'Storage']</th><td>Dosyanın nereye kaydedileceği.</td></tr>
+        </table>
+    </p>
+    
+    <div type="code"><pre>
+DBTool::backup(<sf>'tbl1, tbl2, tbl3'</sf>, <sf>'a.sql'</sf>, <sf>'Resources/Uploads'</sf>);
+DBTool::backup(<kf>array</kf>(<sf>'tbl1'</sf>, <sf>'tbl2'</sf>, <sf>'tbl3'</sf>));
+DBTool::backup(<sf>'*'</sf>);
+    </pre></div>
+    
+    
+     <p class="cstfont" id="db_optimize_tables">Tabloları Uygun Hale Getirmek</p>
+     <p><ftype> DBTool::optimizeTables( [ <kf>string/array</kf> <vf>$tablo_adlari</vf> = <sf>'*'</sf> ] )</ftype></p>
+     <p>Tabloları optimize etmek için kullanılır.</p>
+    
+      <p>
+    	<table class="cfont">
+        	<tr><th>Parametreler</th><th>Kullanımı</th></tr>
+            <tr><th>[string/array Tablo Adı = '*']</th><td>Optimize edilmek istenen tabloların ismi. Tüm tablolar optimize edilecekse <strong>*</strong> parametresi kullanılır. Hali hazırda varsayılan olarakta <strong>*</strong> ayarlarıdır. </td></tr>
+        </table>
+    </p>
+    
+    <div type="code">
+    <strong>DBTool::optimizeTables</strong>(<sf>'*'</sf>);<br>
+    <strong>DBTool::optimizeTables</strong>(<sf>'tbl1, tbl2, tbl3'</sf>);<br>
+    <strong>DBTool::optimizeTables</strong>(<kf>array</kf>(<sf>'tbl1'</sf>, <sf>'tbl2'</sf>, <sf>'tbl3'</sf>));<br>
+    </div>
+    
+    
+    <p class="cstfont" id="db_repair_tables">Tabloları Onarmak</p>
+     <p><ftype> DBTool::repairTables( [ <kf>string/array</kf> <vf>$tablo_adlari</vf> = <sf>'*'</sf> ] )</ftype></p>
+     <p>Tabloları onarmak için kullanılır.</p>
+    
+      <p>
+    	<table class="cfont">
+        	<tr><th>Parametreler</th><th>Kullanımı</th></tr>
+            <tr><th>[string/array Tablo Adı = '*']</th><td>Onarılmak istenen tabloların ismi. Tüm tablolar onarılacaksa <strong>*</strong> parametresi kullanılır. Hali hazırda varsayılan olarakta <strong>*</strong> ayarlarıdır. </td></tr>
+        </table>
+    </p>
+    
+    <div type="code">
+    <strong>DBTool::repairTables</strong>(<sf>'*'</sf>);<br>
+    <strong>DBTool::repairTables</strong>(<sf>'tbl1, tbl2, tbl3'</sf>);<br>
+    <strong>DBTool::repairTables</strong>(<kf>array</kf>(<sf>'tbl1'</sf>, <sf>'tbl2'</sf>, <sf>'tbl3'</sf>));<br>
+    </div>
+     
+    <div type="prev-next">
+    	<div type="prev-btn"><a href="db_property.html">Önceki</a></div><div type="next-btn"><a href="db_forge.html">Sonraki</a></div>
+    </div>
+ 
+</body>
+</html>              

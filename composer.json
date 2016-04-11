@@ -1,0 +1,19 @@
+{
+    "name": "znframework/znframework",
+    "type": "project",
+    "description": "zeroneed",
+    "keywords": ["zn","zeroneed"],
+    "homepage": "https://github.com/znframework/znframework",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Ozan UYKUN",
+            "email": "ozanbote@windowslive.com",
+            "homepage": "http://zntr.net",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": ">=5.5.0"
+    }
+}

@@ -1,0 +1,158 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>ZN KOD ÇATISI</title>
+<link type="text/css" rel="stylesheet" href="../Styles/Structure.css" />
+<script src="../Scripts/Jquery.js"></script>
+<script src="../Scripts/Structure.js"></script>
+</head>
+
+<body>
+    <div id="content-document"><a href="#">Döküman</a> » <a href="db_dynamic.html">Database(Veritabanı) Kütüphanesi Yöntemleri</a> » Fonksiyonların Kullanımı</div> 
+    <p class="ctfont">Fonksiyonların Kullanımı</p>
+    <p>Bu bölümde veritabanı fonksiyonlarının kullanımına yer verdik.</p>
+    
+    <p>
+    	<table class="cfont" width="100%">
+        	<tr><th colspan="2">Fonksiyonların Kullanımı</th></tr>
+            <tr><th width="40%">Fonksiyonların Kullanımı</th><td><a href="#property"><strong>DB::func()</strong></a></td></tr>
+        </table>
+    </p>
+  
+    
+    <p class="ctfont" id="func">Fonksiyonların Kullanımı</p>
+    <p><ftype>DB::func( <kf>string</kf> <vf>$name</vf> , $column1, $column2, ... $columnN , [ $output = <kf>false</kf> ] )</ftype></p>
+    <p><strong>DB::func()</strong> yöntemi aşağıda tabloda yer alan fonskiyonların işini yapmak için kullanılır. Ancak aşağıdaki fonksiyonlarında direk kullanımı mümkündür. Yani <strong>func()</strong> yöntemi alternatif olarak kullanılabilir.</p>
+    
+    <p>
+        <table class="cfont">
+        	<tr><th>Matematiksel Fonksiyonlar</th><th>Karşılıkları</th></tr>	
+            <tr><th>DB::avg()</th><td>AVG</td></tr>
+            <tr><th>DB::min()</th><td>MIN</td></tr>
+            <tr><th>DB::max()</th><td>MAX</td></tr>
+            <tr><th>DB::count()</th><td>COUNT</td></tr>
+            <tr><th>DB::sum()</th><td>SUM</td></tr>
+            <tr><th>DB::variance()</th><td>VARIANCE</td></tr>
+            <tr><th>DB::abs()</th><td>ABS</td></tr>
+			<tr><th>DB::mod()</th><td>MOD</td></tr>
+            <tr><th>DB::acos()</th><td>ACOS</td></tr>
+            <tr><th>DB::asin()</th><td>ASIN</td></tr>
+            <tr><th>DB::atan()</th><td>ATAN</td></tr>
+            <tr><th>DB::atan2()</th><td>ATAN2</td></tr>
+            <tr><th>DB::ceil()</th><td>CEIL</td></tr>
+            <tr><th>DB::ceiling()</th><td>CEILING</td></tr>
+            <tr><th>DB::cos()</th><td>COS</td></tr>
+            <tr><th>DB::cot()</th><td>COT</td></tr>
+            <tr><th>DB::crc32()</th><td>CRC32</td></tr>
+            <tr><th>DB::degrees()</th><td>DEGREES</td></tr>
+            <tr><th>DB::exp()</th><td>EXP</td></tr>
+            <tr><th>DB::floor()</th><td>FLOOR</td></tr>
+            <tr><th>DB::ln()</th><td>LN</td></tr>
+            <tr><th>DB::log10()</th><td>LOG10</td></tr>
+            <tr><th>DB::log2()</th><td>LOG2</td></tr>
+            <tr><th>DB::log()</th><td>LOG</td></tr>
+            <tr><th>DB::pi()</th><td>PI</td></tr>
+            <tr><th>DB::pow()</th><td>POW</td></tr>
+            <tr><th>DB::power()</th><td>POWER</td></tr>
+            <tr><th>DB::radians()</th><td>RADIANS</td></tr>
+            <tr><th>DB::rand()</th><td>RAND</td></tr>
+            <tr><th>DB::raund()</th><td>RAUND</td></tr>
+            <tr><th>DB::sign()</th><td>SIGN</td></tr>
+            <tr><th>DB::sin()</th><td>SIN</td></tr>
+            <tr><th>DB::sqrt()</th><td>SQRT</td></tr>
+            <tr><th>DB::tan()</th><td>TAN</td></tr>
+       	    <tr><th>String Fonksiyonlar</th><th>Karşılıkları</th></tr>
+            <tr><th>DB::ascii()</th><td>ASCII</td></tr>
+            <tr><th>DB::charLength()</th><td>CHAR LENGTH</td></tr>
+            <tr><th>DB::field()</th><td>FIELD</td></tr>
+            <tr><th>DB::format()</th><td>FORMAT</td></tr>
+            <tr><th>DB::lower()</th><td>LOWER</td></tr>
+            <tr><th>DB::upper()</th><td>UPPER</td></tr>
+            <tr><th>DB::length()</th><td>LENGTH</td></tr>
+            <tr><th>DB::ltrim()</th><td>LTRIM</td></tr>
+            <tr><th>DB::substring()</th><td>SUBSTRING</td></tr>
+            <tr><th>DB::ord()</th><td>ORD</td></tr>
+            <tr><th>DB::position()</th><td>POSITION</td></tr>
+            <tr><th>DB::quote()</th><td>QUOTE</td></tr>
+            <tr><th>DB::repeat()</th><td>REPEAT</td></tr>
+            <tr><th>DB::rtrim()</th><td>RTRIM</td></tr>
+            <tr><th>DB::soundex()</th><td>SOUNDINDEX</td></tr>
+            <tr><th>DB::space()</th><td>SPACE</td></tr>
+            <tr><th>DB::substr()</th><td>SUBSTR</td></tr>
+            <tr><th>DB::substringIndex()</th><td>SUBSTRING INDEX</td></tr>
+            <tr><th>DB::trim()</th><td>TRIM</td></tr>
+            <tr><th>DB::ucase()</th><td>USCASE</td></tr>
+            <tr><th>DB::lcase()</th><td>LCASE</td></tr>
+       	    <tr><th>Bilgi Fonksiyonları</th><th>Karşılıkları</th></tr>
+            <tr><th>DB::benchmark()</th><td>BENCHMARK</td></tr>
+            <tr><th>DB::charset()</th><td>CHARSET</td></tr>
+            <tr><th>DB::coercibility()</th><td>COERCIBILITY</td></tr>
+            <tr><th>DB::user()</th><td>USER</td></tr>
+            <tr><th>DB::collation()</th><td>COLLATION</td></tr>
+            <tr><th>DB::connectionId()</th><td>CONNECTION ID</td></tr>
+            <tr><th>DB::currentUser()</th><td>CURRENT USER</td></tr>
+            <tr><th>DB::database()</th><td>DATABASE</td></tr>
+            <tr><th>DB::schema()</th><td>SCHEMA</td></tr>
+            <tr><th>DB::lastInsertId()</th><td>LAST INSERT ID</td></tr>
+            <tr><th>DB::systemUser()</th><td>SYSTEM USER</td></tr>
+            <tr><th>DB::sessionUser()</th><td>SESSION USER</td></tr>
+            <tr><th>DB::rowCount()</th><td>ROW COUNT</td></tr>
+            <tr><th>DB::versionInfo()</th><td>VERSION INFO</td></tr>
+        	<tr><th>Karar Yapıları</th><th>Karşılıkları</th></tr>     
+            <tr><th>DB::switchCase($anahtar, array($case1 => $value1, ...))</th><td>CASE ELSE END</td></tr>
+            <tr><th>DB::ifElse($kosul, $dogru, $yanlis)</th><td>IF ELSE</td></tr>
+            <tr><th>DB::ifNull($value1, $value2)</th><td>IF NULL</td></tr>
+            <tr><th>DB::nullIf($value1, $value2)</th><td>IF NULL</td></tr>
+        </table>
+    </p>
+    
+      <p>
+        <table class="cfont">
+        	<tr><th>Parametreler</th><th>Kullanımları</th></tr>	
+            <tr><th>1. Parametre Sütun adı</th><td>Hangi sütuna fonksiyon uygulanacaksa o sütunun adı belirtilir. Birden fazla sütunu yan yana yazmak sureti ile kullanabilirsiniz. Örnek: id, name</td></tr>
+            <tr><th>2. Parametre Değiştirilmiş sütun adı</th><td>Bu parametreye as ile başyan bir isim yazarsanız fonksiyonun uygulandığı sütunun değerini o isimle kullanabilirsiniz. Örnek: id, as userId. Eğer as kullanmaz iseniz sütun ismi olarak değerlendirilecektir.</td></tr>
+            <tr><th>[Son Parametre Çıktı:false]</th><td>Bu parametre true olursa foksiyon string değer üretecektir.</td></tr>
+        </table>
+    </P>
+        
+     <p>
+    <div type="code">
+  	<pre>
+    <vf>$row</vf> = DB::sum(<sf>'id'</sf>, <sf>'as countId'</sf>)->get(<sf>'user'</sf>)->row();
+    <kf>echo</kf> <vf>$row</vf>->countId;
+    </pre>
+    </div>
+  	</p>
+    
+     <p>
+    <div type="code">
+  	<pre>
+    <vf>$row</vf> = DB::sum(<sf>'id'</sf>, <sf>'as countId'</sf>)->max(<sf>'total'</sf>, <sf>'as total'</sf>)->get(<sf>'user'</sf>)->row();
+    <kf>echo</kf> <vf>$row</vf>->countId;
+    <kf>echo</kf> <vf>$row</vf>->total;
+    </pre>
+    </div>
+  	</p>
+    
+    <p>String veri çıktılatarak kullanımda mümkündür. Bunun için son parametrenin true olarak ayarlanması gerekmektedir.</p>
+    
+     <p>
+    <div type="code">
+  	<pre>
+    <vf>$row</vf> = DB::select(<sf>'name'</sf>, DB::sum(<sf>'id'</sf>, <sf>'as countId'</sf>, <kf>true</kf>), DB::max(<sf>'total'</sf>, <sf>'as total'</sf>, <kf>true</kf>))->get(<sf>'user'</sf>)->row();
+    <kf>echo</kf> <vf>$row</vf>->countId;
+    <kf>echo</kf> <vf>$row</vf>->total;
+    <kf>echo</kf> <vf>$row</vf>->name;
+    </pre>
+    </div>
+  	</p>
+    
+    <p>Yukarıdaki yöntemlerin hepsini <strong>func()</strong> yöntemi ilede gerçekleştirebilirsiniz.</p>        
+    
+    <div type="prev-next">
+    	<div type="prev-btn"><a href="db_property.html">Önceki</a></div><div type="next-btn"><a href="db_tool.html">Sonraki</a></div>
+    </div>
+ 
+</body>
+</html>              

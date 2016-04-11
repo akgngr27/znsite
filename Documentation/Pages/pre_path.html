@@ -1,0 +1,102 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>ZN KOD ÇATISI</title>
+<link type="text/css" rel="stylesheet" href="../Styles/Structure.css" />
+<script src="../Scripts/Jquery.js"></script>
+<script src="../Scripts/Structure.js"></script>
+</head>
+
+<body>
+    <div id="content-document"><a href="#">Döküman</a> » <a href="functions.html">Ön Tanımlı Sabitler ve Fonksiyonlar</a> » Yol Bilgisi Komutları</div> 
+    <p class="ctfont">Yol Bilgisi Komutları</p>
+    <p>Bu bölümde URI yol bilgilerine yönelik bilgi elde etmek için oluşturulmuş yöntemler yer almaktadır.</p>
+    <ul><li><a href="#" class="infont">Yol Bilgisi Komutları</a><br><br>
+        <ul>
+            <li><a href="#current_path">Sitenin Aktif Yolunu Öğrenmek » <b>currentPath() v1.0</b></a></li>
+            <li><a href="#base_path">Sitenin Kök Yolunu Öğrenmek » <b>basePath() v1.0</b></a></li>
+            <li><a href="#prev_path">Gelinen Bir Önceki Yolu Öğrenmek » <b>prevPath() v1.0</b></a></li>
+            <li><a href="#file_path">URL Ekli Yolu Ham Yola Çevirmek  » <b>filePath() v1.0</b></a></li>   
+        </ul>
+    </li></ul>
+    
+
+    
+    <p class="cstfont" id='currentPath'>Sitenin Aktif Yolunu Öğrenmek</p>
+    <p><ftype>currentPath( [ <kf>boolean</kf> <vf>$tam_yol</vf> = <kf>true</kf> ] ) v1.0</ftype></p>
+   	<p>Sitenin aktif yolunu öğrenmek için kullanılır.</p>
+    <p>
+    	<table class="cfont">
+        	<tr><th>No</th><th>Parametreler</th><td>Anlamları</td></tr>
+            <tr><th>1</th><th>[ boolean Tam Yol = true ]</th><td>Aktif yolun tamamını mı yoksa son bölümünü mü versin.</td></tr>
+        </table>
+    </p>
+    
+ 
+    <div type="code">
+    <kf>echo</kf> currentPath(); <comment> // Çıktı: anasayfa/ornek/uygulama </comment><br>
+    <kf>echo</kf> currentPath(<kf>false</kf>); <comment> // Çıktı: uygulama </comment><br>
+    </div>
+    
+    
+    <p class="cstfont" id="base_path">Sitenin Kök Yolunu Öğrenmek</p>
+    <p><ftype>basePath( [ <kf>string</kf> <vf>$yol_eki</vf> ] , [ <kf>numeric</kf> <vf>$dizin_indeksi</vf> = <if>0</if> ] ) v1.0</ftype></p>
+   	<p>Sitenin kök yolunu öğrenmek için kullanılır.</p>
+    <p>
+    	<table class="cfont">
+        	<tr><th>No</th><th>Parametreler</th><td>Anlamları</td></tr>
+            <tr><th>1</th><th>string Yol Eki</th><td>Site yoluna eklenecek ifadeler.</td></tr>
+            <tr><th>2</th><th>[ string Dizin Indeksi ]</th><td>Yolun üst dizinlerine ulaşabilmek için kullanılır.</td></tr>
+        </table>
+    </p>
+    
+ 
+    <div type="code">
+    <kf>echo</kf> basePath(); <comment> // Çıktı: zntr/ </comment><br>
+    <kf>echo</kf> basePath(<sf>'ornek/uygulama'</sf>); <comment> // Çıktı: zntr/ornek/uygulama </comment><br>
+    <kf>echo</kf> basePath(<sf>'ornek/uygulama'</sf> , <sf>-1</sf>); <comment> // Çıktı: ornek/uygulama </comment><br>
+    </div>
+    
+    
+    <p class="cstfont" id="prev_path">Gelinen Bir Önceki Yolu Öğrenmek</p>
+    <p><ftype>prevPath( [ <kf>boolean</kf> <vf>$tam_yol</vf> = <kf>true</kf> ] ) v1.0</ftype></p>
+   	<p>Ziyaret edilen sayfadan bir önceki sayfanın yolunu öğrenmek için kullanılır.</p>
+    <p>
+    	<table class="cfont">
+        	<tr><th>No</th><th>Parametreler</th><td>Anlamları</td></tr>
+            <tr><th>1</th><th>[ boolean Tam Yol = true ]</th><td>Bir önceki yolun tamamını mı yoksa son bölümünü mü versin.</td></tr>
+        </table>
+    </p>
+    
+ 
+    <div type="code">
+    <kf>echo</kf> prevPath(); <comment> // Çıktı: zntr/ornek/uygulama </comment><br>
+    <kf>echo</kf> prevPath(<kf>false</kf>); <comment> // Çıktı: uygulama </comment><br>
+    </div>
+    
+    
+    <p class="cstfont" id="file_path">URL Ekli Yolu Ham Yola Çevirmek</p>
+    <p><ftype>filePath( <kf>string</kf> <vf>$dosya_yolu</vf> , [ <kf>string</kf> <vf>$url_fakli_ise</vf> ] ) v1.0</ftype></p>
+   	<p>Dosya yolu URL adresi içeriyorsa bu URL adresi temizleyerek ham yolu verir.</p>
+    <p>
+    	<table class="cfont">
+        	<tr><th>No</th><th>Parametreler</th><td>Anlamları</td></tr>
+            <tr><th>1</th><th>string Dosya Yolu</th><td>Dosyanın yolu.</td></tr>
+            <tr><th>2</th><th>[ string Farklı URL = "" ]</th><td>Eğer dosya sitenin kök URL adresi dışında farklı bir URL bilgisi içeriyorsa kullanılır.</td></tr>
+        </table>
+    </p>
+    
+ 
+    <div type="code">
+    <kf>echo</kf> filePath( baseUrl(<sf>'ornek/uygulama'</sf>) ); <comment> // Çıktı: ornek/uygulama </comment><br>
+    <kf>echo</kf> filePath(<sf>'http://www.siteadi.xxx/ornek/uygulama'</sf> , <sf>'http://www.siteadi.xxx/'</sf>); <comment> // Çıktı: ornek/uygulama </comment><br>
+    </div>
+    
+        
+    <div type="prev-next">
+    	<div type="prev-btn"><a href="pre_url.html">Önceki</a></div><div type="next-btn"><a href="pre_pathinfo.html">Sonraki</a></div>
+    </div>
+ 
+</body>
+</html>              

@@ -1,0 +1,73 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>ZN KOD ÇATISI</title>
+<link type="text/css" rel="stylesheet" href="../Styles/Structure.css" />
+<script src="../Scripts/Jquery.js"></script>
+<script src="../Scripts/Structure.js"></script>
+</head>
+
+<body>
+    <div id="content-document"><a href="#">Döküman</a> » <a href="stylesheet.html">Style Sheet</a> » Transition Kütüphanesi</div> 
+    <p class="ctfont">Geçiş Kütüphanesi</p>
+    <p>Geliştirilmekte olan bir sınıftır. CSS3 özelliklerinin standart ve daha pratik kullanılabilmesi amaçlanmıştır.</p>
+  
+ 	<p class="cstfont" id="css_transition">Transition Kütüphanesi</p>
+    <p>Transition kütüphanesine ait yöntemler aşağıdaki tabloda listelenmiştir</p>
+    
+  	
+    <p>
+    <table class="cfont">
+    	<tr><th width="323">Transition Kütüphanesi ve Yöntemleri</th><td width="579">Anlamları</td><td width="418">Kullanımları</td></tr>
+        <tr><td><cf>selector( <vf>$erisim</vf> )</cf></td><td>Nesneye erişim sağlamak için kullanılan adlandırmalar. Örn: .sinif, #id ...</td><td><cf>->transition(<sf>'Erişim Adı'</sf>)</cf></td></tr>
+        <tr><td><cf>attr( <vf>$ozellik_deger_dizisi</vf> )</cf></td><td>Animasyon öğeleri dışında eklenecek özellikler ve değerleri belirtir. Bu yöntem dizi parametresi içerir.</td><td><cf>->attr(<kf>array</kf>(<sf>'border'</sf> => <sf>'solid 1px #000'</sf>))</cf></td></tr>
+        <tr><td><cf>property( <vf>$ozellik</vf> )</cf></td><td>transition-property: parametresinin karşılığıdır.</td><td><cf>->property(<sf>'color'</sf>)</cf></td></tr>
+        <tr><td><cf>duration( <vf>$sure</vf> )</cf></td><td>transition-duration: parametresinin karşılığıdır.</td><td><cf>->duration(<if>.5</if>)</cf></td></tr>
+        <tr><td><cf>delay( <vf>$baslama_suresi</vf> )</cf></td><td>transition-delay: parametresinin karşılığıdır.</td><td><cf>->delay(<if>.5</if>)</cf></td></tr>
+        <tr><td><cf>easing( <vf>$etki_turu</vf> )</cf></td><td>transition-timing-function: parametresinin karşılığıdır.</td><td><cf>->easing(<sf>'ease-in-out'</sf>)</cf></td></tr>
+        <tr><td><cf>complete()</cf></td><td>Çoklu animasyon oluşturmak için kullanılan tamamlama yöntemidir.</td><td><cf>->complete();</cf></td></tr>
+        <tr><td><cf>create()</cf></td><td>Animasyonu tamamlama yöntemidir.</td><td><cf>->create();</cf></td></tr>
+    </table>
+    </p>
+    <p>Yukarıdaki yöntemlerin kullanımına yönelik örnekler aşağıda verilmiştir.</p>
+    
+    <p>
+    <div type="code">
+   <pre>
+Sheet::transition()->selector(<sf>'#nesne'</sf>)
+          ->property(<sf>'color'</sf>)
+          ->delay(<if>3</if>)
+          ->duration(<if>3</if>)
+          ->easing(<sf>'ease-in-out'</sf>)
+          ->create();
+    </div></pre>
+    </p>
+    
+    <p><strong>Çoklu geçiş</strong> oluşturmak için aşağıdaki gibi bir kullanım gerekir.</p>
+    
+     <p>
+    <div type="code">
+   <pre>
+<vf>$kuyruk</vf> = Sheet::transition()->property(<sf>'background'</sf>)
+                          ->delay(<if>1</if>)
+                          ->duration(<if>3</if>
+                          ->easing(<sf>'ease-out-bounce'</sf>)
+                          -><strong>complete</strong>();
+      
+Sheet::transition()->selector(<sf>'#nesne'</sf>)
+          ->property(<sf>'color'</sf>)
+          ->delay(<if>3</if>)
+          ->duration(<if>3</if>)
+          ->easing(<sf>'ease-in-out'</sf>)
+          ->create(<vf>$kuyruk</vf>);
+    </div></pre>
+    </p>
+   
+   
+    <div type="prev-next">
+    	<div type="prev-btn"><a href="stylesheet_animation.html">Önceki</a></div><div type="next-btn"><a href="stylesheet_transform.html">Sonraki</a></div>
+    </div>
+ 
+</body>
+</html>              

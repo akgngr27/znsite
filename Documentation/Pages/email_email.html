@@ -1,0 +1,610 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>ZN KOD ÇATISI</title>
+<link type="text/css" rel="stylesheet" href="../Styles/Structure.css" />
+<script src="../Scripts/Jquery.js"></script>
+<script src="../Scripts/Structure.js"></script>
+</head>
+
+<body>
+    <div id="content-document"><a href="#">Döküman</a> » <a href="email.html">Email Service</a> » Email(E-posta) Kütüphanesi</div> 
+    <p class="ctfont">Email(E-posta) Kütüphanesi</p>
+    <p>E-posta gönderme işlevini yerine getiren sınıftır.</p>
+   
+  	<ul><li><a href="#" class="infont">Email(E-posta) Kütüphanesi ve Yöntemleri</a><br><br>
+        <ul>
+        	<li><a href="#settings">E-posta Ayarlarını Yapılandırmak » <b>Config/Email.php</b></a></li> 
+            <li><a href="#sendmail">E-posta Göndermek</a></li>
+            <li><a href="#sets">E-posta Ayarlarını Yapılandırmak » <b>settings()</b></a></li>
+            <li><a href="#sender">Gönderici Bilgisi Oluşturmak » <b>from() , sender()</b></a></li>
+            <li><a href="#receiver">Alıcı Bilgisi Oluşturmak » <b>to() , receiver()</b></a></li>
+            <li><a href="#replyto">Cevaplayıcı Bilgisini Oluşturmak » <b>replyTo()</b></a></li>
+            <li><a href="#cc">CC Alıcıları Bilgisi Oluşturmak » <b>cc()</b></a></li>
+            <li><a href="#bcc">BCC Alıcıları Bilgisi Oluşturmak » <b>bcc()</b></a></li>
+            <li><a href="#subject">Konu Bilgisi Oluşturmak » <b>subject()</b></a></li>
+            <li><a href="#message">Mesaj/İçerik Bilgisi Oluşturmak » <b>message() , content()</b></a></li>
+            <li><a href="#setHeader">Başlık Bilgisi Oluşturmak » <b>setHeader()</b></a></li>
+            <li><a href="#send">E-posta Gönderimini Tamamlamak » <b>send()</b></a></li>
+            <li><a href="#attachment">E-posta İçerisiden Dosya Göndermek » <b>attachment()</b></a></li>
+            <li><a href="#attachmentContentId">E-posta Dosyasının İçeriği Hakkında Bilgi Almak » <b>attachmentContentId()</b></a></li>
+            <li><a href="#other">Diğer E-posta Yöntemleri</a></li>
+        </ul>
+    </li></ul>
+    
+    <p class="cstfont" id="settings">E-posta Ayarlarını Yapılandırmak</p>
+    
+    <p class="cfont">
+    <strong>Config/Email.php</strong> dosyasın yer alan varsayılan ayarlar aşağıdaki gibidir.
+    <table border="1" class="cfont">
+<colgroup>
+<col width="14%">
+<col width="16%">
+<col width="20%">
+<col width="51%">
+</colgroup>
+<tr class="row-odd"><th class="head">Ayarlar</th>
+<th class="head">Varsayılan</th>
+<th class="head">Seçenekler</th>
+<th class="head">Açıklamalar</th>
+</tr>
+<tr class="row-odd"><td><strong>driver</strong></td>
+<td>mail</td>
+<td>mail, smtp, pipe, imap, send</td>
+<td>E-posta gönderim türü.</td>
+</tr>
+<tr class="row-even"><td><strong>mailPath</strong></td>
+<td>/usr/sbin/sendmail</td>
+<td>-</td>
+<td>E-posta sunucu yolu</td>
+</tr>
+<tr class="row-odd"><td><strong>smtpHost</strong></td>
+<td>-</td>
+<td>-</td>
+<td>SMTP sunucu adresi.</td>
+</tr>
+<tr class="row-even"><td><strong>smtpUser</strong></td>
+<td>-</td>
+<td>-</td>
+<td>SMTP kullanıcı e-posta adresi.</td>
+<tr class="row-odd"><td><strong>smtpPassword</strong></td>
+<td>-</td>
+<td>-</td>
+<td>SMTP kullanıcı şifresi.</td>
+</tr>
+<tr class="row-even"><td><strong>smtpPort</strong></td>
+<td>587</td>
+<td>-</td>
+<td>SMTP port numarası.</td>
+</tr>
+<tr class="row-odd"><td><strong>smtpTimeout</strong></td>
+<td>10</td>
+<td>-</td>
+<td>SMTP zaman aşımı süresi (saniye).</td>
+</tr>
+<tr class="row-even"><td><strong>smtpKeepAlive</strong></td>
+<td>false</td>
+<td>true, false</td>
+<td>Kalıcı SMTP bağlantılarını etkinleştirin.</td>
+</tr>
+<tr class="row-odd"><td><strong>smtpEncode</strong></td>
+<td>tls</td>
+<td>tls, ssl</td>
+<td>SMTP şifreleme yöntemi</td>
+</tr>
+</tr>
+<tr class="row-even"><td><strong>senderMail</strong></td>
+<td>-</td>
+<td>-</td>
+<td>From işlevi için ön tanımlı gönderen e-posta adresi.</td>
+</tr>
+<tr class="row-even"><td><strong>senderName</strong></td>
+<td>-</td>
+<td>-</td>
+<td>From işlevi için ön tanımlı gönderen ismi.</td>
+</tr>
+<tr class="row-even"><td><strong>contentType</strong></td>
+<td>text</td>
+<td>text, html</td>
+<td>E-posta içeriğinin html mi yoksa text içeriklik olup olmayacağının belirlenmesi içindir.</td>
+</tr>
+
+<tr class="row-odd"><td><strong>charset</strong></td>
+<td>utf-8</td>
+<td>-</td>
+<td>Karakter seti (utf-8, iso-8859-1, etc.).</td>
+</tr>
+
+<tr class="row-odd"><td><strong>priority</strong></td>
+<td>3</td>
+<td>1, 2, 3, 4, 5</td>
+<td>Email Priority. 1 = En yüksek. 5 = En düşük. 3 = normal.</td>
+</tr>
+
+<tr class="row-even"><td><strong>dsn</strong></td>
+<td>false</td>
+<td>true, false</td>
+<td>Sunucudan iletiyi bildirmeyi etkinleştirme.</td>
+</tr>
+
+<tr><td><strong>xMailer</strong></td>
+<td>ZN</td>
+<td>-</td>
+<td>X-Mailer ve User-Agent başlıkları için kullanılan ayar.</td>
+</tr>
+</table>
+    </p>
+    
+    <p class="cstfont" id="sendmail">E-posta Göndermek</p>
+    <p>Basit e-posta gönderimi için aşağıda örnekler verilmiştir.</p>
+    <p>
+    <div type="code">
+<pre>Email::from(<sf>'bilgi@zntr.net'</sf>, <sf>'ZNTR'</sf>) <comment> // veya sender()</comment>
+     ->to(<sf>'ornek@ornek.com'</sf>) <comment> // veya receiver()</comment>
+     ->cc(<sf>'ornek2@ornek.com'</sf>)
+     ->bcc(<sf>'ornek3@ornek.com'</sf>)
+     ->subject(<sf>'Konu'</sf>)
+     ->message(<sf>'Mesaj'</sf>) <comment> // veya content()</comment>
+     ->send();
+     
+output(Email::error());</pre>
+    </div>
+    </p>
+    
+    <p class="cstfont" id="sets">E-posta Ayarlarını Yapılandırmak</p>
+    <p>Ayarlar <strong>Config/Email.php</strong> dosyasından yapılabileceği gibi gönderim yapılırken <strong>settings()</strong> yöntemi ilede yapılabilir.</p>
+    
+   <p>
+    <div type="code">
+<pre>Email::settings(<kf>array</kf>(<sf>'senderName'</sf> => <sf>'ZNTR'</sf>, <sf>'senderMail'</sf> => <sf>'bilgi@zntr.net'</sf>))
+     <comment> // ->sender('bilgi@zntr.net', 'ZNTR')</comment>
+     ->receiver(<sf>'ornek@ornek.com'</sf>)
+     ->subject(<sf>'Konu'</sf>)
+     ->message(<sf>'Mesaj'</sf>)
+     ->send();
+     
+output(Email::error());</pre>
+    </div>
+    </p>
+    
+    <p class="cstfont" id="sender">Gönderici Bilgisi Oluşturmak</p>
+    <p><ftype> ->from( <kf>string</kf> <vf>$eposta</vf> , <kf>string</kf> <vf>$isim</vf> , [ <kf>string</kf> <vf>$donusEposta</vf> ] )</ftype></p>
+    <p><ftype> ->sender( <kf>string</kf> <vf>$eposta</vf> , <kf>string</kf> <vf>$isim</vf> , [ <kf>string</kf> <vf>$donusEposta</vf> ] )</ftype></p>
+    <p>E-posta gönderiminde göndericinin e-posta ve isim bilgisini oluşturmak için kullanılır.</p>
+    <p>
+    	<table class="cfont">
+        	<tr><th>No</th><th>Parametreler</th><td>Anlamları</td></tr>
+            <tr><th>1</th><th>string E-posta Adresi</th><td>Gönderici e-posta adresi.</td></tr>
+            <tr><th>2</th><th>string İsim</th><td>İndirilecek dosyanın yol bilgisi.</td></tr>
+            <tr><th>3</th><th>[string Dönüş E-posta Adresi]</th><td>İsteğe bağlı e-posta adresi ile teslim edilmemiş e-posta yönlendirmek için kullanılır.</td></tr>
+        </table>
+    </p>
+    
+    <p>
+    <div type="code">
+	Email::sender(<sf>'bilgi@zntr.net'</sf>, <sf>'ZNTR'</sf>);
+    </div>
+    </p>
+    
+    <p>
+    <div type="code">
+	Email::from(<sf>'bilgi@zntr.net'</sf>, <sf>'ZNTR'</sf>, <sf>'donus@epostaadresi.com'</sf>);
+    </div>
+    </p>
+    
+    <p class="cstfont" id="receiver">Alıcı Bilgisi Oluşturmak</p>
+    <p><ftype> ->to( <kf>string</kf> <vf>$eposta</vf> )</ftype></p>
+    <p><ftype> ->receiver( <kf>string</kf> <vf>$eposta</vf> )</ftype></p>
+    <p>E-posta gönderiminde alıcının e-posta bilgisini oluşturmak için kullanılır.</p>
+    <p>
+    	<table class="cfont">
+        	<tr><th>No</th><th>Parametreler</th><td>Anlamları</td></tr>
+            <tr><th>1</th><th>string E-posta Adresi</th><td>Alıcı e-posta adresi.</td></tr>
+        </table>
+    </p>
+    
+    <p>
+    <div type="code">
+	Email::to(<sf>'bilgi@zntr.net'</sf>);
+    </div>
+    </p>
+    
+    <p>
+    <div type="code">
+	Email::receiver(<sf>'bilgi@zntr.net'</sf>);
+    </div>
+    </p>
+    
+    <p class="cstfont" id="replyto">Cevaplayıcı Bilgisini Oluşturmak</p>
+    <p><ftype> ->replyTo( <kf>string/array</kf> <vf>$eposta</vf> , <kf>string</kf> <vf>$isim</vf> )</ftype></p>
+    <p>E-posta gönderiminde cevaplayıcı e-posta bilgisini oluşturmak için kullanılır.</p>
+    <p>
+    	<table class="cfont">
+        	<tr><th>No</th><th>Parametreler</th><td>Anlamları</td></tr>
+            <tr><th>1</th><th>string/array E-posta Adresi</th><td>Cevaplayıcı e-posta adresi.</td></tr>
+            <tr><th>2</th><th>string İsim</th><td>Cevaplayıcı isim bilgisi.</td></tr>
+        </table>
+    </p>
+    
+    <p>
+    <div type="code">
+	Email::replyTo(<sf>'bilgi@zntr.net'</sf>, <sf>'ZNTR'</sf>);
+    </div>
+    </p>
+    
+    <p>Çoklu kullanım için 1. parametre dizi olarak kullanılabilir.</p>
+    
+    <p>
+    <div type="code">
+	Email::replyTo(array(<sf>'bilgi@zntr.net'</sf> => <sf>'ZNTR'</sf>, <sf>'admin@zntr.net'</sf> => <sf>'Admin'</sf>));
+    </div>
+    </p>
+    
+    <p class="cstfont" id="cc">CC Alıcıları Bilgisi Oluşturmak</p>
+    <p><ftype> ->cc( <kf>string/array</kf> <vf>$eposta</vf>, <kf>string</kf> <vf>$isim</vf> )</ftype></p>
+    <p>E-posta gönderiminde cc alıcı e-posta adresleri oluşturmak için kullanılır.</p>
+    <p>
+    	<table class="cfont">
+        	<tr><th>No</th><th>Parametreler</th><td>Anlamları</td></tr>
+            <tr><th>1</th><th>string Alıcı E-posta Adresi</th><td>Alıcı e-posta adresi.</td></tr>
+            <tr><th>2</th><th>string Alıcı Adı</th><td>Alıcı adı.</td></tr>
+        </table>
+    </p>
+    
+    <p>
+    <div type="code">
+	Email::cc(<sf>'admin@zntr.net'</sf>, <sf>'ZN Framework'</sf>);
+    </div>
+    </p>
+    
+    <p>Çoklu kullanım için 1. parametre dizi olarak kullanılabilir.</p>
+    
+    <p>
+    <div type="code">
+	Email::cc(array(<sf>'bilgi@zntr.net'</sf> => <sf>'ZNTR'</sf>, <sf>'admin@zntr.net'</sf> => <sf>'Admin'</sf>));
+    </div>
+    </p>
+    
+    <p class="cstfont" id="bcc">BCC Alıcıları Bilgisi Oluşturmak</p>
+    <p><ftype> ->bcc( <kf>string/array</kf> <vf>$eposta</vf> , <kf>string</kf> <vf>$isim</vf> )</ftype></p>
+    <p>E-posta gönderiminde bcc alıcı e-posta adresleri oluşturmak için kullanılır.</p>
+    <p>
+    	<table class="cfont">
+        	<tr><th>No</th><th>Parametreler</th><td>Anlamları</td></tr>
+            <tr><th>1</th><th>string/array Alıcı E-posta Adresi</th><td>Alıcı e-posta adresi.</td></tr>
+            <tr><th>2</th><th>string Alıcı Adı</th><td>Alıcı adı.</td></tr>
+        </table>
+    </p>
+    
+   <p>
+    <div type="code">
+	Email::bcc(<sf>'admin@zntr.net'</sf>, <sf>'ZN Framework'</sf>);
+    </div>
+    </p>
+    
+    <p>Çoklu kullanım için 1. parametre dizi olarak kullanılabilir.</p>
+    
+    <p>
+    <div type="code">
+	Email::bcc(array(<sf>'bilgi@zntr.net'</sf> => <sf>'ZNTR'</sf>, <sf>'admin@zntr.net'</sf> => <sf>'Admin'</sf>));
+    </div>
+    </p>
+    
+    <p class="cstfont" id="subject">Konu Bilgisi Oluşturmak</p>
+    <p><ftype> ->subject( <kf>string</kf> <vf>$konu</vf> )</ftype></p>
+    <p>E-posta gönderiminde konu bilgisini oluşturmak için kullanılır.</p>
+    <p>
+    	<table class="cfont">
+        	<tr><th>No</th><th>Parametreler</th><td>Anlamları</td></tr>
+            <tr><th>1</th><th>string Konu</th><td>E-posta gönderiminde konu bilgisi.</td></tr>
+        </table>
+    </p>
+    
+    <p>
+    <div type="code">
+	Email::subject(<sf>'Konu'</sf>);
+    </div>
+    </p>
+    
+    <p class="cstfont" id="message">Mesaj / İçerik Bilgisi Oluşturmak</p>
+    <p><ftype> ->message( <kf>string</kf> <vf>$mesaj</vf> )</ftype></p>
+    <p><ftype> ->content( <kf>string</kf> <vf>$mesaj</vf> )</ftype></p>
+    <p>E-posta gönderiminde mesaj(içerik) bilgisini oluşturmak için kullanılır.</p>
+    <p>
+    	<table class="cfont">
+        	<tr><th>No</th><th>Parametreler</th><td>Anlamları</td></tr>
+            <tr><th>1</th><th>string Mesaj</th><td>E-posta gönderiminde mesaj bilgisi.</td></tr>
+        </table>
+    </p>
+    
+    <p>
+    <div type="code">
+	Email::content(<sf>'Mesaj'</sf>);
+    </div>
+    </p>
+    
+     <p>
+    <div type="code">
+	Email::message(<sf>'Mesaj'</sf>);
+    </div>
+    </p>
+    
+    
+    <p class="cstfont" id="setHeader">Başlık Bilgisi Oluşturmak</p>
+    <p><ftype> ->addHeader( <kf>string</kf> <vf>$baslik</vf> , <kf>string</kf> <vf>$deger</vf> )</ftype></p>
+    <p>E-posta gönderiminde başlık bilgilerini oluşturmak için kullanılır.</p>
+    <p>
+    	<table class="cfont">
+        	<tr><th>No</th><th>Parametreler</th><td>Anlamları</td></tr>
+            <tr><th>1</th><th>string Başlık</th><td>Başlık bilgisi.</td></tr>
+            <tr><th>2</th><th>string Değer</th><td>Başlık bilgisine ait değer.</td></tr>
+        </table>
+    </p>
+    
+    <p>
+    <div type="code">
+	Email::addHeader(<sf>'baslik1'</sf>, <sf>'Değer1'</sf>);<br>
+    Email::addHeader(<sf>'baslik2'</sf>, <sf>'Değer2'</sf>);
+    </div>
+    </p>
+    
+    <p class="cstfont" id="send">E-posta Gönderimini Tamamlamak</p>
+    <p><ftype> ->send()</ftype></p>
+    <p>E-posta gönderimini tamamlamak için kullanılır.</p>
+   
+    <p>
+    <div type="code">
+    Email::send();
+    </div>
+    </p>
+    
+    <p class="cstfont" id="attachment">E-posta İçerisiden Dosya Göndermek</p>
+    <p><ftype> ->attachment( <kf>string</kf> <vf>$dosyaAdi</vf> , <kf>string</kf> <vf>$egilim</vf> , <kf>string</kf> <vf>$yeniIsim</vf> , <kf>string</kf> <vf>$mimeTipi</vf>)</ftype></p>
+    <p>E-posta metninin yanında dosyada göndermek için kullanılır.</p>
+    <p>
+    	<table class="cfont">
+        	<tr><th>No</th><th>Parametreler</th><td>Anlamları</td></tr>
+            <tr><th>1</th><th>string Dosya Adı</th><td>Gönderilecek olan dosyanın adı yani yolu.</td></tr>
+            <tr><th>2</th><th>string Eğilim</th><td>Varsaylan eğilim belirtilir. Geçerli bir eğilim belirtilemiyorsa boş bırakılmalıdır.</td></tr>
+            <tr><th colspan="2">Geçerli Eğilim İsimlendirmeleri</th><th>Anlamları</th></tr>
+            <tr><td colspan="2">inline</td><td>Otomatik olarak görüntülenir.</td></tr>
+            <tr><td colspan="2">attachment</td><td>Kullanıcı kontrollü gösterilir.</td></tr>
+            <tr><td colspan="2">form-data</td><td>Form cevap olarak işlem görülür.</td></tr>
+            <tr><td colspan="2">signal</td><td>Tünelli içerik sessizce işlenir.</td></tr>
+            <tr><td colspan="2">alert</td><td>Mesaj kullanıcıyı uyarmak için özel bir uyarı kullanır.</td></tr>
+            <tr><td colspan="2">icon</td><td>Mesaj kullanıcıya bir simge olarak görüntülenir.</td></tr>
+            <tr><td colspan="2">render</td><td>Mesaj kullanıcıya görüntülenmesi gereken gibi görüntülenir.</td></tr>
+            <tr><td colspan="2">recipient-list-history</td><td>Mesaj isteği, alıcılarını gösteren URI listesini içerir.</td></tr>
+            <tr><td colspan="2">session</td><td>Mesaj RFC2327 SDP formatın bir oturum tarif edilir.</td></tr>
+            <tr><td colspan="2">aib</td><td>Doğrulanmış kimlik.</td></tr>
+            <tr><td colspan="2">early-session</td><td>Mesaj RFC2327 SDP formatın bir oturum tarif edilir.</td></tr>
+            <tr><td colspan="2">recipient-list</td><td>Mesaj URI listesi hizmetleri uygulayacak herhangi bir URI listesini içerir.</td></tr>
+            <tr><td colspan="2">notification</td><td>Mesaj anlık ileti Bırakma bildirimi olarak görüntülenir.</td></tr>
+            <tr><td colspan="2">by-reference</td><td>Mesaj aynı SIP mesajında yer alan içeriğe göre ele alınmasını gerektirir.</td></tr>
+            <tr><td colspan="2">info-package</td><td>Vücudun bir bilgi paketi ile ilgili bilgileri içerir.</td></tr>
+            <tr><th>3</th><th>string Yeni İsim</th><td>Dosyanın görüntülenecek yeni ismi.</td></tr>
+            <tr><th>4</th><th>string Mime Tipi</th><td>Geçerli mime tiplerinden biri kullanılır. <strong>Config/MimeTypes.php </strong> dosyasında kullanılabilir mimi tipleri yer almaktadır.</td></tr>
+        </table>
+    </p>
+    
+    <p>
+    <div type="code">
+	Email::attachment(<sf>'dosya/resim1.jpg'</sf>);<br>
+    Email::attachment(<sf>'dosya/resim2.jpg'</sf>, <sf>'inline'</sf>, <sf>'yeniResim.jpg'</sf>);<br>
+    </div>
+    </p>
+    
+    <p>
+    <div type="code">
+    Email::attachment(<sf>'dosya/resim2.jpg'</sf>, <sf>''</sf>, <sf>'yeniResim.jpg'</sf>, <sf>'image/jpeg'</sf>);<br>
+    </div>
+    </p>
+    
+    <p class="cstfont" id="attachmentContentId">E-posta Dosyasının İçeriği Hakkında Bilgi Almak</p>
+    <p><ftype> ->attachmentContentId( <kf>string</kf> <vf>$dosyaAdi</vf> )</ftype></p>
+    <p>E-posta gönderiminde gönderilecek dosya hakkında içerik bilgisi almak için kullanılır.</p>
+    <p>
+    	<table class="cfont">
+        	<tr><th>No</th><th>Parametreler</th><td>Anlamları</td></tr>
+            <tr><th>1</th><th>string Dosya Adı</th><td>İçerik bilgisi alınacak dosyanın adı.</td></tr>
+        </table>
+    </p>
+    
+    <p>
+    <div type="code">
+<pre><vf>$dosyaAdi</vf> = <sf>'dosya/resim1.jpg'</sf>;
+Email::attachment(<vf>$dosyaAdi</vf>);
+
+<kf>foreach</kf>(<vf>$epostaListesi</vf> as <vf>$eposta</vf>)
+{
+        Email::to(<vf>$eposta</vf>);
+        <vf>$icerikId</vf> = Email::attachmentContentId(<vf>$dosyaAdi</vf>);
+        Email::message(<sf>'<x><</x>img src='contentId:"</sf>. <vf>$icerikId</vf> .<sf>"' alt="resim1" />'</sf>);
+        Email::send();
+}</pre>
+    </div>
+    </p>
+    
+    <p class="cstfont" id="error">E-posta Gönderiminde Hata Bilgisi Almak </p>
+    <p><ftype>Email::error()</ftype></p>
+    <p>E-posta gönderiminde hata bilgisi almak için <strong>Error</strong> kütüphanesinden yararlınılır.</p>
+    
+    <p>
+    <div type="code">
+	output(Email::error());
+    </div>
+    </p>
+    
+    <p class="ctfont" id="other">Diğer E-posta Yöntemleri</p>
+    <p>Bu bölümde <strong>e-posta</strong> kütüphanesinın diğer yöntemlerinin nasıl kullanıldığı ile ilgili anlatıma yer verdik.</p>
+    <p>
+        <table class="cfont">
+            <tr><th colspan="3">Diğer Yöntemler</th></tr>
+            <tr><th>Yöntem</th><th>İşlev</th><th>Kullanım</th></tr>
+            <tr>
+            	<th>smtpHost()</th>
+                <td>SMTP sunusunu ayarlamak için kullanılır.</td>
+                <td>
+                	<comment> 
+                    	// @sunucuAdi string => Sunucu ismi belirtmek içindir.<br>                   
+                    </comment>
+                	<cf>Email::smtpHost(<sf>'mail.sunucuadi.com'</sf>);</cf><br>
+                    <comment> // ... empty ...</comment>
+                </td>
+            </tr>
+            
+            <tr>
+            	<th>smtpUser()</th>
+                <td>SMTP kullanıcı adını ayarlamak için kullanılır.</td>
+                <td>
+                	<comment> 
+                    	// @kullaniciAdi string => SMTP kullanici ismi.<br>                   
+                    </comment>
+                	<cf>Email::smtpUser(<sf>'test@test.com'</sf>);</cf><br>
+                    <comment> // ... empty ...</comment>
+                </td>
+            </tr>
+            
+            <tr>
+            	<th>smtpPassword()</th>
+                <td>SMTP kullanıcı şifresini ayarlamak için kullanılır.</td>
+                <td>
+                	<comment> 
+                    	// @kullaniciSifresi string => SMTP kullanici sifresini.<br>                   
+                    </comment>
+                	<cf>Email::smtpPassword(<sf>'test1234'</sf>);</cf><br>
+                    <comment> // ... empty ...</comment>
+                </td>
+            </tr>
+            
+            <tr>
+            	<th>smtpPort()</th>
+                <td>SMTP bağlantı portunu ayarlamak için kullanılır.</td>
+                <td>
+                	<comment> 
+                    	// @port string => SMTP port bilgisi.<br>                   
+                    </comment>
+                	<cf>Email::smtpPassword(<sf>'test1234'</sf>);</cf><br>
+                    <comment> // ... empty ...</comment>
+                </td>
+            </tr>
+            
+            <tr>
+            	<th>smtpTimetout()</th>
+                <td>SMTP bağlantı zaman aşımı süresini ayarlamak için kullanılır.</td>
+                <td>
+                	<comment> 
+                    	// @zamanAsimi numeric => SMTP zaman aşımı bilgisi.<br>                   
+                    </comment>
+                	<cf>Email::smtpTimetout(<if>10</if>);</cf><br>
+                    <comment> // ... 10 ...</comment>
+                </td>
+            </tr>
+            
+            <tr>
+            	<th>smtpKeepAlive()</th>
+                <td>SMTP bağlantısı açık tutulsun mu?.</td>
+                <td>
+                	<comment> 
+                    	// @baglanti boolean => True veya false.<br>                   
+                    </comment>
+                	<cf>Email::smtpKeepAlive(<kf>true</kf>);</cf><br>
+                    <comment> // ... true ...</comment>
+                </td>
+            </tr>
+            
+            <tr>
+            	<th>smtpEncode()</th>
+                <td>SMTP şifreleme yöntemi belirtilir. Tls veya ssl</td>
+                <td>
+                	<comment> 
+                    	// @tur string => tls.<br>                   
+                    </comment>
+                	<cf>Email::smtpEncode(<sf>'ssl'</sf>);</cf><br>
+                    <comment> // ... tls ...</comment>
+                </td>
+            </tr>
+            
+            <tr>
+            	<th>mailPath()</th>
+                <td>Sunucu e-posta dizini yolunu belirtmek için kullanılır</td>
+                <td>
+                	<comment> 
+                    	// @tur string => 'usr/sbin/sendmail'.<br>                   
+                    </comment>
+                	<cf>Email::mailPath(<sf>'usr/sbin/sendmail'</sf>);</cf><br>
+                    <comment> // ... 'usr/sbin/sendmail' ...</comment>
+                </td>
+            </tr>
+
+            
+            <tr>
+            	<th>dsn()</th>
+                <td>E-posta teslim durum bilgisi kullanılsın mı?.</td>
+                <td>
+                	<comment> 
+                    	// @status boolean => false.<br>                   
+                    </comment>
+                	<cf>Email::dsn(<kf>true</kf>);</cf><br>
+                    <comment> // ... false ...</comment>
+                </td>
+            </tr>
+            
+            <tr>
+            	<th>charset()</th>
+                <td>E-posta karakter setini ayarlamak içindir.</td>
+                <td>
+                	<comment> 
+                    	// @status string => 'utf-8'<br>                   
+                    </comment>
+                	<cf>Email::charset(<sf>'utf-8'</sf>);</cf><br>
+                    <comment> // ... utf-8 ...</comment>
+                </td>
+            </tr>
+            
+            <tr>
+            	<th>multiPart()</th>
+                <td>E-posta çoklu bölüm kullanımı içindir.</td>
+                <td>
+                	<comment> 
+                    	// @multi string => 'mixed'<br>                   
+                    </comment>
+                	<cf>Email::multiPart(<sf>'related'</sf>);</cf><br>
+                    <comment> // ... mixed ...</comment>
+                </td>
+            </tr>
+   
+            <tr>
+            	<th>contentType()</th>
+                <td>E-posta içerik türünü belirlemek için kullanılır. text veya html.</td>
+                <td>
+                	<comment> 
+                    	// @tur string => text<br>                
+                    </comment>
+                	<cf>Email::contentType(<sf>'html'</sf>);</cf><br>
+                    <comment> // ... text ...</comment>
+                </td>
+            </tr>
+
+            <tr>
+            	<th>priority()</th>
+                <td>E-posta gönderim önceliğini belirlemek için kullanılır. 1, 2, 3, 4, 5.</td>
+                <td>
+                	<comment> 
+                    	// @tur numeric => 3<br>                
+                    </comment>
+                	<cf>Email::priority(<if>3</if>);</cf><br>
+                    <comment> // ... 3 ...</comment>
+                </td>
+            </tr>
+
+        </table>
+    </p>
+    
+    <div type="prev-next">
+    	<div type="prev-btn"><a href="lib_download.html">Önceki</a></div><div type="next-btn"><a href="encoding.html">Sonraki</a></div>
+    </div>
+ 
+</body>
+</html>              

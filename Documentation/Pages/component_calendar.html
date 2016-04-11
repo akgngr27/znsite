@@ -1,0 +1,70 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>ZN KOD ÇATISI</title>
+<link type="text/css" rel="stylesheet" href="../Styles/Structure.css" />
+<script src="../Scripts/Jquery.js"></script>
+<script src="../Scripts/Structure.js"></script>
+</head>
+
+<body>
+     <div id="content-document"><a href="#">Döküman</a> » <a href="components.html">Bileşenler</a> » Calendar(Takvim) Kütüphanesi</div> 
+    <p class="ctfont">Calendar(Takvim) Kütüphanesi</p>
+    <p>Takvim oluşturmak ve üzerinde değişiklik yapabilmek için oluşturulmuştur. Kod üzerinden takvim ayarlarını yapılandırabileceğiniz gibi <strong>Config/Components.php</strong> ayar dosyasından da yapılandırmaları gerçekleştirebilirsiniz.</p>
+    
+     <p>
+    	<table class="cfont" width="100%">
+        	<tr><th colspan="2">Calendar(Takvim) Kütüphanesi ve Yöntemleri</th></tr>
+            <tr><th width="40%">URI Bağlantısı Sağlamak</th><td><a href="#"><b>Calendar::url()</b></a></td></tr>
+            <tr><th>İsimlerin Kısalığını ve Uzunluğunu Belirlemek</th><td><a href="#"><b>Calendar::nameType()</b></a></td></tr>
+            <tr><th>İleri Geri Linklerini İsimlendirmek</th><td><a href="#"><b>Calendar::linkNames()</b></a></td></tr>
+            <tr><th>Takvim Nesnesini Oluşturmak</th><td><a href="#"><b>Calendar::create()</b></a></td></tr>
+            <tr><th>Takvim Nesnesine Stil Uygulamak</th><td><a href="#"><b>Calendar::style()</b></a></td></tr>
+            <tr><th>Takvim Nesnesine Css Sınıflarını Uygulamak</th><td><a href="#"><b>Calendar::css()</b></a></td></tr>
+        </table>
+    </p>
+    
+    <p>
+    <div type="code">
+<pre>
+<comment>// http://www.ornek.xxx/anasayfa/index/takvim/<strong>2015/01</strong> </comment>
+<kf>echo</kf> Calendar::url(<sf>'anasayfa/index/takvim'</sf>)
+             <comment>// Gün ve ay isimleri kısaltılmış halleri ile kullanılsın.</comment>
+             <comment>// Kullanımı zorunlu değildir. Varsayılan: 1.p(gün)sort, 2.p(ay)long</comment>
+             ->nameType(<sf>'short'</sf>, <sf>'short'</sf>) 
+             <comment>// Tablo geneline ve şimdiki gün hücrelerine stil uygulanıyor.</comment>
+             <comment>// Kullanımı zorunlu değildir</comment>
+             ->style(<kf>array</kf>(<sf>'current'</sf> => <sf>'background:red; color:white;'</sf>, <sf>'table'</sf> => <sf>'background:white; color:red'</sf>)) 
+             <comment>// İleri geri linklerine isim veriliyor.</comment>
+             <comment>// Kullanımı zorunlu değildir. Varsayılan: 1.p(önceki)<x><</x><x><</x>, 2.p(sonraki))<x>></x><x>></x></comment>
+             ->linkNames(<sf>'Önceki'</sf>, <sf>'Sonraki'</sf>) 
+             <comment>// Takvimi oluşturmak için kullanılan niahi yöntemdir.</comment>
+             ->create();</pre>
+    </div>
+    </p>
+   	
+    <p><img src="../Images/Result/calendar.PNG" /> </p>
+    
+    <p>
+    	<table class="cfont" width="100%">
+            <tr><th>Sınıf ve Stil Uygulanabilir Anahtar Kelimeler</th><td>Etkilenen Kısımlar</td></tr>
+            <tr><th>current</th><td>Takvimde yer alan atif güne yani şuanki zaman hücredir.</td></tr>
+            <tr><th>days</th><td>Takvimde yer alan gün(sayı) hücrelerdir.</td></tr>
+            <tr><th>dayName</th><td>Gün isimlerinin yer aldığı hücrelerdir.</td></tr>
+            <tr><th>monthName</th><td>Ayın ve Tarihin yer aldığı hücrelerdir.</td></tr>
+            <tr><th>links</th><td>İleri ve geri linklerine uygulanacak stil ve sınıflar için kullanılan anahtardır.</td></tr>
+            <tr><th>table</th><td>Tablonun genelin ifade eder. Bu anahtarla uygulayacağınız stil veya sınıflardan takvim nesnesinin tüm elemanaları etkilenir.</td></tr>
+        </table>
+    </p>
+    
+    <p>Yukarıda kodların çıktısı olan takvim görüntüsü yer almaktadır. Gerekli css veya stil kodları kullanılarak çok daha güzel takvimler oluşturabilirsiniz.</p>
+    
+    
+    
+    <div type="prev-next">
+    	<div type="prev-btn"><a href="components.html">Önceki</a></div><div type="next-btn"><a href="component_captcha.html">Sonraki</a></div>
+    </div>
+ 
+</body>
+</html>              

@@ -1,0 +1,135 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>ZN KOD ÇATISI</title>
+<link type="text/css" rel="stylesheet" href="../Styles/Structure.css" />
+<script src="../Scripts/Jquery.js"></script>
+<script src="../Scripts/Structure.js"></script>
+</head>
+
+<body>
+    <div id="content-document">Döküman</a> » <a href="java.html">Javascript & Jquery</a> » Ajax Kütüphanesi</div> 
+    <p class="ctfont">JQAjax Kütüphanesi</p>
+    <p>Jquery'nin ajax komutları kullanılarak oluşturulmuştur. Daha basit bir şekilde ajax işlemlerini gerçekleştirebilmeniz mümkündür.</p>
+    
+     <p>
+    	<table class="cfont" width="100%">
+        	<tr><th colspan="2">JQAjax Parametreleri</th></tr>
+            <tr><th width="40%">URL Parametresini Ayarlamak</th><td><b><cf>Jquery::ajax()->url(<cf><kf>string</kf> <vf>$url</kf></cf>)</cf></b></td></tr>
+            <tr><th>Data Parametresini Ayarlamak</th><td><b><cf>Jquery::ajax()->data(<cf><kf>string</kf> <vf>$data</kf></cf>)</cf></b></td></tr>
+           	<tr><th>Data Type Parametresini Ayarlamak</th><td><b><cf>Jquery::ajax()->dataType(<cf><kf>string</kf> <vf>$dataType</kf></cf>)</cf></b></td></tr>
+            <tr><th>Type/Method Parametresini Ayarlamak</th><td><b><cf>Jquery::ajax()->type/method<cf><kf>string</kf> <vf>$type</cf></td></tr>
+            <tr><th>Headers Parametresini Ayarlamak</th><td><b><cf>Jquery::ajax()->headers(<cf><kf>string</kf> <vf>$headers</kf></cf>)</cf></b></td></tr>
+            <tr><th>IF Modified Parametresini Ayarlamak</th><td><b><cf>Jquery::ajax()->ifModified(<cf><kf>bool</kf> <vf>$if</kf></cf>)</cf></b></td></tr>
+            <tr><th>Is Local Parametresini Ayarlamak</th><td><b><cf>Jquery::ajax()->isLocal(<cf><kf>bool</kf> <vf>$isLocal</kf></cf>)</cf></b></td></tr>
+            <tr><th>MIME Type Parametresini Ayarlamak</th><td><b><cf>Jquery::ajax()->mimeType(<cf><kf>bool</kf> <vf>$mimeType</kf></cf>)</cf></b></td></tr>
+            <tr><th>Jsonp Parametresini Ayarlamak</th><td><b><cf>Jquery::ajax()->jsonp(<cf><kf>string/bool</kf> <vf>$code</kf></cf>)</cf></b></td></tr>
+            <tr><th>Jsonp Callback Parametresini Ayarlamak</th><td><b><cf>Jquery::ajax()->jsonpCallback(<cf><kf>string</kf> <vf>$code</kf></cf>)</cf></b></td></tr> 
+            <tr><th>Password Parametresini Ayarlamak</th><td><b><cf>Jquery::ajax()->password(<cf><kf>string</kf> <vf>$data</kf></cf>)</cf></b></td></tr>
+            <tr><th>Username Parametresini Ayarlamak</th><td><b><cf>Jquery::ajax()->username(<cf><kf>string</kf> <vf>$data</kf></cf>)</cf></b></td></tr>
+            <tr><th>Script Charset Parametresini Ayarlamak</th><td><b><cf>Jquery::ajax()->scriptCharset(<cf><kf>string</kf> <vf>$charset</kf></cf>)</cf></b></td></tr>
+            <tr><th>Traditional Parametresini Ayarlamak</th><td><b><cf>Jquery::ajax()->traditional(<cf><kf>bool</kf> <vf>$trad</kf></cf>)</cf></b></td></tr>
+            <tr><th>Process Data Parametresini Ayarlamak</th><td><b><cf>Jquery::ajax()->processData(<cf><kf>bool</kf> <vf>$data</kf></cf>)</cf></b></td></tr>
+            <tr><th>Cache Parametresini Ayarlamak</th><td><b><cf>Jquery::ajax()->cache(<cf><kf>string</kf> <vf>$cache</kf></cf>)</cf></b></td></tr>
+            <tr><th>XHR Fields Parametresini Ayarlamak</th><td><b><cf>Jquery::ajax()->xhrFields(<cf><kf>string</kf> <vf>$xhr</kf></cf>)</cf></b></td></tr>
+            <tr><th>Context Parametresini Ayarlamak</th><td><b><cf>Jquery::ajax()->context(<cf><kf>string</kf> <vf>$context</kf></cf>)</cf></b></td></tr>
+            <tr><th>Accepts Parametresini Ayarlamak</th><td><b><cf>Jquery::ajax()->accepts(<cf><kf>string</kf> <vf>$accepts</kf></cf>)</cf></b></td></tr>
+            <tr><th>Contents Parametresini Ayarlamak</th><td><b><cf>Jquery::ajax()->contents(<cf><kf>string</kf> <vf>$contents</kf></cf>)</cf></b></td></tr>
+            <tr><th>Async Parametresini Ayarlamak</th><td><b><cf>Jquery::ajax()->async(<cf><kf>bool</kf> <vf>$async</kf></cf>)</cf></b></td></tr>
+            <tr><th>Cross Domain Parametresini Ayarlamak</th><td><b><cf>Jquery::ajax()->crossDomain(<cf><kf>bool</kf> <vf>$domain</kf></cf>)</cf></b></td></tr>
+            <tr><th>Timeout Parametresini Ayarlamak</th><td><b><cf>Jquery::ajax()->timeout(<cf>numeric $timeout</kf></cf>)</cf></b></td></tr>
+            <tr><th>Globals Parametresini Ayarlamak</th><td><b><cf>Jquery::ajax()->globals(<cf><kf>bool</kf> <vf>$globals</kf></cf>)</cf></b></td></tr>
+            <tr><th>Content Type Parametresini Ayarlamak</th><td><b><cf>Jquery::ajax()->contentType(<cf>mixed $contentType</kf></cf>)</cf></b></td></tr>
+        </table>
+    </p>
+    
+    <p>
+    	<table class="cfont" width="100%">
+        	<tr><th colspan="2">JQAjax Nesneleri</th></tr>
+            <tr><th width="40%">Status Code Nesnesini Ayarlamak</th><td><b><cf>Jquery::ajax()->statusCode(<cf><kf>array</kf> <vf>$codes</vf></kf></cf>)</cf></b></td></tr>
+            <tr><th>Converters Nesnesini Ayarlamak</th><td><b><cf>Jquery::ajax()->converters(<cf><kf>array</kf> <vf>$converters</vf></kf></cf>)</cf></b></td></tr>
+        </table>
+    </p>
+    
+    <p>
+    	<table class="cfont" width="100%">
+        	<tr><th colspan="2">JQAjax Fonksiyonları</th></tr>
+            <tr><th width="40%">Success Fonksiyonunu Ayarlamak</th><td><b><cf>Jquery::ajax()->success(<cf><kf>string</kf> <vf>$paramers, <kf>string</kf> <vf>$callback</vf></kf></cf>)</cf></b></td></tr>
+            <tr><th>Error Fonksiyonunu Ayarlamak</th><td><b><cf>Jquery::ajax()->error(<cf><kf>string</kf> <vf>$paramers, <kf>string</kf> <vf>$callback</vf></kf></cf>)</cf></b></td></tr>
+            <tr><th>Complete Fonksiyonunu Ayarlamak</th><td><b><cf>Jquery::ajax()->complete(<cf><kf>string</kf> <vf>$paramers, <kf>string</kf> <vf>$callback</vf></kf></cf>)</cf></b></td></tr>
+            <tr><th>Before Send Fonksiyonunu Ayarlamak</th><td><b><cf>Jquery::ajax()->beforeSend(<cf><kf>string</kf> <vf>$paramers, <kf>string</kf> <vf>$callback</vf></kf></cf>)</cf></b></td></tr>
+            <tr><th>Data Filter Fonksiyonunu Ayarlamak</th><td><b><cf>Jquery::ajax()->dataFilter(<cf><kf>string</kf> <vf>$paramers, <kf>string</kf> <vf>$callback</vf></kf></cf>)</cf></b></td></tr>
+        </table>
+    </p>
+    
+    <p>
+    	<table class="cfont" width="100%">
+        	<tr><th colspan="2">JQAjax Geri Dönüş Fonkisyonları</th></tr>
+            <tr><th width="40%">Done Geri Dönüş Fonksiyonunu Ayarlamak</th><td><b><cf>Jquery::ajax()->done(<cf><kf>string</kf> <vf>$paramers, <kf>string</kf> <vf>$callback</vf></kf></cf>)</cf></b></td></tr>
+            <tr><th>Fail Geri Dönüş Fonksiyonunu Ayarlamak</th><td><b><cf>Jquery::ajax()->fail(<cf><kf>string</kf> <vf>$paramers, <kf>string</kf> <vf>$callback</vf></kf></cf>)</cf></b></td></tr>
+            <tr><th>Always Geri Dönüş Fonksiyonunu Ayarlamak</th><td><b><cf>Jquery::ajax()->always(<cf><kf>string</kf> <vf>$paramers, <kf>string</kf> <vf>$callback</vf></kf></cf>)</cf></b></td></tr>
+            <tr><th>Then Geri Dönüş Fonksiyonunu Ayarlamak</th><td><b><cf>Jquery::ajax()->then(<cf><kf>string</kf> <vf>$paramers, <kf>string</kf> <vf>$callback</vf></kf></cf>)</cf></b></td></tr>
+        </table>
+    </p>
+    
+    <p>
+    	<table class="cfont" width="100%">
+        	<tr><th colspan="2">JQAjax İşlemini Tamamlama Fonksiyonu</th></tr>
+            <tr><th width="40%">Send JQAjax İşlemini Tamamlamak</th><td><b><cf>Jquery::ajax()->send()</cf></b></td></tr>
+        </table>
+    </p>
+    
+	<p class="cstfont" id="process">Jquery Ajax İşlemleri</p>
+    <p><ftype>Jquery::ajax([<vf>$scriptOutput</vf> = <kf>false</kf>])->send( [ <kf>string</kf> <vf>$url</vf> ], [ <kf>string</kf> <vf>$data</vf> ] )</cf></ftype></p>
+    <p>JQAjax kütüphanesi ile ilgili ajax veri gönderimine ait aşağıda örneklere yer verilmiştir. send() yöntemi gönderimi tamamlamak için kullanılan nihai yöntemdir.</p> 
+  
+   
+    <div type="code">
+<pre>
+<kf>echo</kf> Script::open(); <comment>// Script tagı açıyor ve script jquery dosyasını dahil ediyor.</comment>
+
+<kf>echo</kf> Jquery::ajax()->url(<sf>'test/ajax_islemleri'</sf>) <comment>// Verinin gönderileceği URL belirtiliyor.</comment>
+           ->data(JQ::serialize(<sf>'#form'</sf>) . <sf>' + "data1=10&data2=20"'</sf>) <comment>// Gönderilecek veriler ayarlanıyor.</comment>
+           ->type(<sf>'post'</sf>) <comment>// Verilerin hangi yöntemle gönderileceği seçiliyor.</comment>
+           ->dataType(<sf>'json'</sf>) <comment>// Veri türü ayarlanıyor.</comment>
+           ->success(<sf>'data'</sf>, <sf>'alert("Başarı ile gönderildi.");'</sf>) <comment>// Verinin başarı ile gönderilip gönderilmediği kontrol ediliyor.</comment>
+           ->error(<sf>'data'</sf>, <sf>'alert("Hata oluştu!");'</sf>) <comment>// Veri gönderiminde hata olup olmadığı kontrol ediliyor.</comment>
+           ->send(); <comment>// Gönderim gerçekleştiriliyor.</comment>
+           
+<kf>echo</kf> Script::close() ;<comment>// Script tagını kapatıyor.</comment>
+</pre>
+    </div>
+    
+    <p>Eğer script taglarını fonksiyonun kendi içinde otomatik olarak yazmasını isterseniz ajax(<strong>true</strong>) olarak ayarlanmalıdır.</p>
+    
+     <div type="code">
+<pre>
+<kf>echo</kf> Jquery::ajax(<kf>true</kf>)->url(<sf>'test/ajax_islemleri'</sf>) <comment>// Verinin gönderileceği URL belirtiliyor.</comment>
+           ->data(JQ::serialize(<sf>'#form'</sf>) . <sf>' + "data1=10&data2=20"'</sf>) <comment>// Gönderilecek veriler ayarlanıyor.</comment>
+           ->type(<sf>'post'</sf>) <comment>// Verilerin hangi yöntemle gönderileceği seçiliyor.</comment>
+           ->dataType(<sf>'json'</sf>) <comment>// Veri türü ayarlanıyor.</comment>
+           ->success(<sf>'data'</sf>, <sf>'alert("Başarı ile gönderildi.");'</sf>) <comment>// Verinin başarı ile gönderilip gönderilmediği kontrol ediliyor.</comment>
+           ->error(<sf>'data'</sf>, <sf>'alert("Hata oluştu!");'</sf>) <comment>// Veri gönderiminde hata olup olmadığı kontrol ediliyor.</comment>
+           ->send(); <comment>// Gönderim gerçekleştiriliyor.</comment>
+</pre>
+    </div>
+    
+    <p>Çok kapsamlı bir gönderim yapmıyorsanız aşağıda gibi basit bir kullanım daha mevcuttur.
+    
+     <div type="code">
+<pre>
+<kf>echo</kf> Script::open(); <comment>// Script tagı açıyor ve script jquery dosyasını dahil ediyor.</comment>
+
+<kf>echo</kf> Jquery::ajax()->send(<sf>'test/ajax_islemleri'</sf>, JQ::serialize(<sf>'#form'</sf>)); <comment>// 1. Parametre URL, 2. Parametre Data.</comment>
+           
+<kf>echo</kf> Script::close() ;<comment>// Script tagını kapatıyor.</comment>
+</pre>
+    </div>
+    
+    <div type="prev-next">
+    	<div type="prev-btn"><a href="java.html">Önceki</a></div><div type="next-btn"><a href="java_jqaction.html">Sonraki</a></div>
+    </div>
+ 
+</body>
+</html>              

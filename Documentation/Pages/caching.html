@@ -1,0 +1,143 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>ZN KOD ÇATISI</title>
+<link type="text/css" rel="stylesheet" href="../Styles/Structure.css" />
+<script src="../Scripts/Jquery.js"></script>
+<script src="../Scripts/Structure.js"></script>
+</head>
+
+<body>
+    <div id="content-document"><a href="#">Döküman</a> » <a href="libraries.html">Kütüphaneler</a> » Cache Kütüphanesi</div> 
+    <p class="ctfont">Cache(Ön Bellekleme) Kütüphanesi</p>
+    <p>Ön bellekleme oluşturma, kullanma ve silme gibi işlemeri gerçekleştiren sınıftır.</p>
+    
+     <p>
+    	<table class="cfont" width="100%">
+        	<tr><th colspan="2">Cache(Ön Bellekleme) Kütüphanesi ve Yöntemleri</th></tr>
+            <tr><th colspan="2"><a href="#cache_drivers">Ön Bellekleme Sürücüleri</a></th></tr>
+            <tr><th width="40%">Ön Bellekleme Oluşturmak</th><td><a href="#cache_insert"> <b>Cache::insert()</b></a></td></tr>
+            <tr><th>Farklı Sürücüler Kullanmak</th><td><a href="#cache_driver"><b>Cache::driver()</b></a></td></tr>
+            <tr><th>Oluşturulan Ön Bellek Nesnesini Seçmek</th><td><a href="#cache_select"><b>Cache::select()</b></a></td></tr>
+            <tr><th>Ön Bellekteki Nesneyi Silmek</th><td><a href="#cache_delete"><b>Cache::delete()</b></a></td></tr>
+            <tr><th>Tüm Ön Belleği Boşaltmak</th><td><a href="#cache_clean"><b>Cache::clean()</b></a></td></tr>
+            <tr><th>Ön Bellekleme Hakkında Bilgi Almak</th><td><a href="#cache_info"><b>Cache::info()</b></a></td></tr>
+            <tr><th>Ön Bellekleme Yapılan Nesne Hakkında Meta Bilgileri Almak</th><td><a href="#cache_get_metadata"><b>Cache::getMetaData()</b></a></td></tr>
+            <tr><th>Kullanılan Ön Bellekleme Sürücüsünün Destlenme Durumu Öğrenmek</th><td><a href="#cache_is_supported"><b>Cache::isSupported()</b></a></td></tr>
+        </table>
+    </p>
+    
+    
+    <p class="cstfont" id="cache_drivers">Ön Bellekleme Sürücüleri</p>
+    <p>Ön belleklemede kullanılabilir sürücüler aşağıdaki tabloda verilmiştir.</p>
+    
+    <p>
+    	<table class="cfont">
+        	<tr><th>No</th><th>Sürücüler</th><td>Anlamları</td></tr>
+            <tr><th>1</th><th>Memcache</th><td>Kullanım için <a target="_blank" href="http://php.net/manual/tr/book.memcache.php">Memcache Kılavuz</a> inceleyiniz.</td></tr>
+            <tr><th>2</th><th>Wincache</th><td>Kullanım için <a target="_blank" href="http://php.net/manual/tr/book.wincache.php">Wincache Kılavuz</a> inceleyiniz.</td></tr>
+            <tr><th>3</th><th>Apc</th><td>Kullanım için <a target="_blank" href="http://php.net/manual/tr/book.apc.php">Apc Kılavuz</a> inceleyiniz.</td></tr>
+            <tr><th>4</th><th>Redis</th><td>Kullanım için <a href="http://redis.io/">Redis Kılavuz</a> inceleyiniz.</td></tr>
+            <tr><th>5</th><th>File</th><td>Dosya ön bellekleme için oluşturulumuştur.</td></tr>
+        </table>
+    </p>
+        
+   	<p class="cstfont" id="cache_insert">Ön Bellekleme Oluşturmak</p>
+    <p><ftype>Cache::insert( <kf>string</kf> <vf>$nesne_ismi</vf> , <kf>variable</kf> <vf>$degisken</vf> , [ <kf>numeric</kf> <vf>$zaman</vf> = <if>1</if> ] , [ <kf>boolean</kf> <vf>$sikistirma</vf> = <kf>false</kf> ] )</ftype></p>
+    <p>Ön belleğe nesne almak için kullanılır. 4 parametreden oluşur bunlar;</p>
+    
+    <p>
+    	<table class="cfont">
+        	<tr><th>No</th><th>Parametreler</th><td>Anlamları</td></tr>
+            <tr><th>1</th><th>string Nesne İsmi</th><td>Ön belleğe alınacak nesnenin anahtar bilgisi.</td></tr>
+            <tr><th>2</th><th>string Ön Belleğe Alınacak Veri</th><td>Ön belleğe alınması istenilen veri bilgisi.</td></tr>
+            <tr><th>3</th><th>[numeric Ön Bellekleme Süresi = 1]</th><td>Ön belleğe alınma süresi.</td></tr>
+            <tr><th>4</th><th>[boolean Sıkıştırma yapılsınmı = false]</th><td>Sıkıştırma yapılıp yapılmayacağı bilgisi.</td></tr>
+        </table>
+    </p>
+	
+    <div type="code">Cache::insert</strong>(<sf>'nesne'</sf>, <vf>$veri</vf>)</div>
+    
+    <p class="cstfont" id="cache_insert">Farklı Sürücüler Kullanmak</p>
+    <p><ftype>Cache::driver( <kf>string</kf> <vf>$surucu_ismi</vf> )->...</ftype></p>
+    <p>Farklı bir sürücü kullanmak için bu yönteme parametre olarak geçerli ön bellekleme sürücülerinden birinin ismi yazılır.</p>
+    
+    <p>
+    	<table class="cfont">
+        	<tr><th>No</th><th>Parametreler</th><td>Anlamları</td></tr>
+            <tr><th>1</th><th>string Sürücü İsmi</th><td>Kullanılabilir Sürücü İsimleri: <strong>memcache, wincache, apc ve file</strong> parametreleridir.</td></tr>
+        </table>
+    </p>
+	
+    <div type="code">
+    Cache::driver</strong>(<sf>'apc'</sf>)->insert(<sf>'nesne'</sf>, <vf>$veri</vf>);<br>
+    Cache::driver(<sf>'memcache'</sf>)->insert(<sf>'nesne'</sf>, <vf>$veri</vf>);
+    </div>
+    
+    <p class="cstfont" id="cache_select">Oluşturulan Ön Bellek Nesnesini Seçmek</p>
+    <p><ftype>Cache::select( <kf>string</kf> <vf>$nesne_ismi</vf> )</ftype></p>
+    <p>Ön belleğe nesne almak için kullanılır.</p>
+    
+    <p>
+    	<table class="cfont">
+        	<tr><th>No</th><th>Parametreler</th><td>Anlamları</td></tr>
+            <tr><th>1</th><th>string Nesne İsmi</th><td>Ön bellekten çağrılacak nesnenin anahtar bilgisi.</td></tr>
+        </table>
+    </p>
+	
+    <div type="code">Cache::<strong>select</strong>(<sf>'nesne'</sf>)</div>
+    
+    <p class="cstfont" id="cache_delete">Ön Bellekteki Nesneyi Silmek</p>
+    <p><ftype>Cache::delete( <kf>string</kf> <vf>$nesne_ismi</vf> )</ftype></p>
+    <p>Ön bellekten nesne silmek için kullanılır.</p>
+    
+    <p>
+    	<table class="cfont">
+        	<tr><th>No</th><th>Parametreler</th><td>Anlamları</td></tr>
+            <tr><th>1</th><th>string Nesne İsmi</th><td>Ön bellekten silinecek nesnenin anahtar bilgisi.</td></tr>
+        </table>
+    </p>
+	
+    <div type="code">Cache::<strong>select</strong>(<sf>'nesne'</sf>)</div>
+    
+    
+    <p class="cstfont" id="cache_clean">Tüm Ön Belleği Boşaltmak</p>
+    <p><ftype>Cache::clean()</ftype></p>
+    <p>Tüm ön bellekteki verileri temizlemek için kullanılır.</p>
+  
+    <div type="code">Cache::<strong>clean</strong>()</div>
+    
+    
+    <p class="cstfont" id="cache_info">Ön Bellekleme Hakkında Bilgi Almak</p>
+    <p><ftype>Cache::info()</ftype></p>
+    <p>Tüm ön bellekteki veriler hakkında bilgi almak için kullanılır.</p>
+    
+    <div type="code">Cache::<strong>info</strong>()</div>
+    
+    
+    <p class="cstfont" id="cache_get_metadata">Ön Bellekleme Yapılan Nesne Hakkında Meta Bilgileri Almak</p>
+    <p><ftype>Cache::getMetaData( <kf>string</kf> <vf>$nesne_ismi</vf> )</ftype></p>
+    <p>Nesne hakkında bilgi almak için.</p>
+    
+    <p>
+    	<table class="cfont">
+        	<tr><th>No</th><th>Parametreler</th><td>Anlamları</td></tr>
+            <tr><th>1</th><th>string Nesne İsmi</th><td>Ön bellekten silinecek nesnenin anahtar bilgisi.</td></tr>
+        </table>
+    </p>
+	
+    <div type="code">Cache::<strong>getMetaData</strong>(<sf>'nesne'</sf>)</div>
+ 
+ 	<p class="cstfont" id="cache_is_supported">Kullanılan Ön Bellekleme Sürücüsünün Destlenme Durumu Öğrenmek</p>
+    <p><ftype>Cache::isSupported()</ftype></p>
+    <p>Sürücünün serverde desteklenip desklenmediği hakkında bilgi vermesi için oluşturulmuştur.</p>
+    
+    <div type="code">Cache::<strong>isSupported</strong>()</div>
+ 
+    <div type="prev-next">
+    	<div type="prev-btn"><a href="buffer.html">Önceki</a></div><div type="next-btn"><a href="components.html">Sonraki</a></div>
+    </div>
+ 
+</body>
+</html>              

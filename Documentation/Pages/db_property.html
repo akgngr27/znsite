@@ -1,0 +1,62 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>ZN KOD ÇATISI</title>
+<link type="text/css" rel="stylesheet" href="../Styles/Structure.css" />
+<script src="../Scripts/Jquery.js"></script>
+<script src="../Scripts/Structure.js"></script>
+</head>
+
+<body>
+    <div id="content-document"><a href="#">Döküman</a> » <a href="db_dynamic.html">Database(Veritabanı) Kütüphanesi Yöntemleri</a> » Nitelik Türleri ve Kullanımı</div> 
+    <p class="ctfont">Nitelik Türleri ve Kullanımı</p>
+    <p>Bu bölümde veritabanı sürücülerine göre farklılık gösteren veri türlerinin nasıl hepsinde ortak kullanılacağını göstereceğiz.</p>
+    
+    <p>
+    	<table class="cfont" width="100%">
+        	<tr><th colspan="2">Nitelik Türleri ve Kullanımı</th></tr>
+            <tr><th width="40%">Nitelik Türleri Kullanmak</th><td><a href="#property"><strong>DB::property()</strong></a></td></tr>
+        </table>
+    </p>
+  
+    
+    <p class="ctfont" id="vartypes">Veritabanında Kullanılabilir Yöntemsel Nitelik Türleri</p>
+    <p>Veritabanı sorgularınızda kullanabileceğiniz nitelik türlerinin yöntemsel hale getirilerek farklı platformlar tarafından desteklenesini sağlanmıştır. Kullanılabilir nitelik türleri aşağıdakiler gibidir. <strong>Genellikle DBForge::createTable() yöntemi ile kullanılırlar</strong>.</p>
+    
+    <P>Aşağıda bazı sürücülere göre nitelik türlerindeki farklıklar gösterilmiştir.</P>
+    <p>
+        <table class="cfont">
+        	
+            <tr><th>Nitelik Türleri</th><td>CUBRID</td><td>FBSQL</td><td>IBASE</td><td>MYSQL</td><td>OCI8</td><td>POSTGRE</td></tr>
+            <tr><th>DB::autoIncrement()</th><td>AUTO_INCREMENT</td><td>AUTO_INCREMENT</td><td>AUTO_INCREMENT</td><td>AUTO_INCREMENT</td><td>INCREMENT BY</td><td>BIGSERIAL</td></tr>
+			<tr><th>DB::primaryKey([$sutunAdi])</th><td>PRIMARY KEY</td><td>PRIMARY KEY</td><td>PRIMARY KEY</td><td>PRIMARY KEY</td><td>PRIMARY KEY</td><td>PRIMARY KEY</td></tr>
+            <tr><th>DB::foreignKey([$sutunAdi])</th><td>FOREIGN KEY</td><td>FOREIGN KEY</td><td>FOREIGN KEY</td><td>FOREIGN KEY</td><td>FOREIGN KEY</td><td>FOREIGN KEY</td></tr>
+            <tr><th>DB::unique([$sutunAdi])</th><td>UNIQUE</td><td>UNIQUE</td><td>UNIQUE</td><td>UNIQUE</td><td>UNIQUE</td><td>UNIQUE</td></tr>
+            <tr><th>DB::null([$isNull = true])</th><td>NULL</td><td>NULL</td><td>NULL</td><td>NULL</td><td>NULL</td><td>NULL</td></tr>
+            <tr><th>DB::notNull()</th><td>DOUBLE</td><td>NOT NULL</td><td>NOT NULL</td><td>NOT NULL</td><td>NOT NULL</td><td>NOT NULL</td></tr>
+            <tr><th>DB::like($deger, $arama = 'starting')</th><td>%</td><td>%</td><td>%</td><td>%</td><td>%</td><td>%</td></tr>
+            <tr><th>DB::constraint($constraint, $type = false)</th><td>CONSTRAINT</td><td>CONSTRAINT</td><td>CONSTRAINT</td><td>CONSTRAINT</td><td>CONSTRAINT</td><td>CONSTRAINT</td></tr>
+            <tr><th>DB::defaultValue($default, $type = false)</th><td>DEFAULT</td><td>DEFAULT</td><td>DEFAULT</td><td>DEFAULT</td><td>DEFAULT</td><td>DEFAULT</td></tr>
+        </table>
+    </p>
+    
+    <p>Yukarıdaki farklılıkları gidermek için bu nitelik türlerine göre yöntemler oluşturulmuştur. Bu yöntemlerin nasıl kullanılacağı ile ilgili bir örnek aşağıda verilmiştir.</p>
+    
+     <p>
+    <div type="code">
+  	<pre>DBForge::table(<sf>'ornektablo'</sf>)
+       ->column(<sf>'id'</sf>, <kf>array</kf>(DB::int(<if>11</if>), <strong>DB::autoIncrement</strong>()))
+       ->column(<sf>'isim'</sf>, <kf>array</kf>(DB::varchar(<if>50</if>), <strong>DB::notNull</strong>(), DB::collate(<sf>'utf8_unicode_ci'</sf>)))
+       ->createTable();</pre>
+    </div>
+  	</p>
+    
+    <p>Yukarıdaki yöntemlerin hepsini <strong>property()</strong> yöntemi ilede gerçekleştirebilirsiniz.</p>        
+    
+    <div type="prev-next">
+    	<div type="prev-btn"><a href="db_vartypes.html">Önceki</a></div><div type="next-btn"><a href="db_functions.html">Sonraki</a></div>
+    </div>
+ 
+</body>
+</html>              

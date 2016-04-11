@@ -1,0 +1,204 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>ZN KOD ÇATISI</title>
+<link type="text/css" rel="stylesheet" href="../Styles/Structure.css" />
+<script src="../Scripts/Jquery.js"></script>
+<script src="../Scripts/Structure.js"></script>
+</head>
+
+<body>
+    <div id="content-document"><a href="#">Döküman</a> » <a href="compression.html">Sıkıştırma</a> » Compress(Sıkıştırma) Kütüphanesi</div> 
+    <p class="ctfont">Compress(Sıkıştırma) Kütüphanesi</p>
+    <p>Sıkıştırma işlevlerini yerine getiren sınıftır.</p>
+    
+     <p>
+    	<table class="cfont" width="100%">
+        	<tr><th colspan="2">Compress(Sıkıştırma) Kütüphanesi ve Yöntemleri</th></tr>
+            <tr><th colspan="2"><a href="#drivers">Sıkıştırma Sürücüleri</a></th></tr>
+            <tr><th width="40%">Sıkıştırılmış Dosyayı Çıkarmak</th><td><a href="#extract"> <b>Compress::extract()</b></a></td></tr>
+            <tr><th>Dosyaya Sıkıştırılmış Veri Yazmak</th><td><a href="#write"><b>Compress::write()</b></a></td></tr>
+            <tr><th>Dosyadan Sıkıştırılmış Veri Okumak</th><td><a href="#read"><b>Compress::read()</b></a></td></tr>
+            <tr><th>Dizgeyi Sıkıştırmak</th><td><a href="#force"><b>Compress::compress()</b></a></td></tr>
+            <tr><th>Sıkıştırılmış Dizgeyi Açmak</th><td><a href="#unforce"><b>Compress::uncompress()</b></a></td></tr>
+            <tr><th>Dizgeyi Şifrelemek</th><td><a href="#encode"><b>Compress::encode()</b></a></td></tr>
+            <tr><th>Şifreli Dizgeyi Çözmek</th><td><a href="#decode"><b>Compress::decode()</b></a></td></tr>
+            <tr><th>Dizgeyi Deflate ile Şifrelemek</th><td><a href="#deflate"><b>Compress::deflate()</b></a></td></tr>
+            <tr><th>Deflate ile Şifrelenmiş Dizgeyi Çözmek</th><td><a href="#inflate"><b>Compress::inflate()</b></a></td></tr>
+        </table>
+    </p>
+    
+    
+    <p class="cstfont" id="drivers">Sıkıştırma Sürücüleri</p>
+    <p>Sıkıştırma işlemlerinde kullanılabilir sürücüler aşağıdaki tabloda verilmiştir.</p>
+    
+    <p>
+    	<table class="cfont">
+        	<tr><th>No</th><th>Sürücüler</th></tr>
+            <tr><th>1</th><th>BZ</th></tr>
+            <tr><th>2</th><th>GZ</th></tr>
+            <tr><th>3</th><th>LZF</th></tr>
+            <tr><th>4</th><th>RAR</th></tr>
+            <tr><th>5</th><th>ZIP</th></tr>
+            <tr><th>6</th><th>ZLIB</th></tr>
+        </table>
+    </p>
+        
+   	<p class="cstfont" id="extract">Sıkıştırılmış Dosyayı Çıkarmak</p>
+    <p><ftype>Compress::extract( <kf>string</kf> <vf>$kaynak</vf> , <kf>string</kf> <vf>$hedef</vf> )</ftype></p>
+    <p>Sıkıştırılmış dosyayı çıkarmak için kullanılır.</p>
+    
+    <p>
+    	<table class="cfont">
+        	<tr><th>Parametreler</th><td>Anlamları</td></tr>
+            <tr><th>Destekleyen Sürücüler</th><td>rar, zip</td></tr>
+            <tr><th>1 - string Kaynak</th><td>Çıkarma işlemin yapılacağı sıkıştırılmış dosya.</td></tr>
+            <tr><th>2 - string Hedef</th><td>Dosyaların hangi yola çıkarılacağı.</td></tr>
+        </table>
+    </p>
+	
+    <div type="code">Compress::extract</strong>(<sf>'test.zip'</sf>, <sf>'abc/'</sf>)</div>
+    
+    <p class="cstfont" id="extract">Farklı Sürücüler Kullanmak</p>
+    <p><ftype>Compress::driver( <kf>string</kf> <vf>$surucu_ismi</vf> )->...</ftype></p>
+    <p>Farklı bir sürücü kullanmak için bu yönteme parametre olarak geçerli sıkıştırma sürücülerinden birinin ismi yazılır.</p>
+    
+    <p>
+    	<table class="cfont">
+        	<tr><th>Parametreler</th><td>Anlamları</td></tr>
+            <tr><th>1 - string Sürücü İsmi</th><td>Kullanılabilir sürücüler.</td></tr>
+        </table>
+    </p>
+	
+    <div type="code">
+    <kf>echo</kf> Compress::driver(<sf>'gz'</sf>)->encode(<sf>'nesne'</sf>);<br>
+    <kf>echo</kf> Compress::driver(<sf>'bz'</sf>)->encode(<sf>'nesne'</sf>);
+    </div>
+    
+    <p class="cstfont" id="write">Dosyaya Sıkıştırılmış Veri Yazmak</p>
+    <p><ftype>Compress::write( <kf>string</kf> <vf>$dosyaAdi</vf>, <kf>string</kf> <vf>$veri</vf> )</ftype></p>
+    <p>Dosyaya sıkıştırılmış veri yazmak için kullanılır.</p>
+    
+    <p>
+    	<table class="cfont">
+        	<tr><th>Parametreler</th><td>Anlamları</td></tr>
+            <tr><th>Destekleyen Sürücüler</th><td>bz, gz</td></tr>
+            <tr><th>1 - string Dosya Adı</th><td>Verinin yazılacağı dosya. Şayet dosya yoksa oluşturularak yazılır.</td></tr>
+            <tr><th>2 - string Veri</th><td>Dosyaya yazılacak veri.</td></tr>
+        </table>
+    </p>
+	
+    <div type="code">Compress::<strong>write</strong>(<sf>'test.txt'</sf>, <sf>'Deneme'</sf>)</div>
+    
+    <p class="cstfont" id="read">Dosyadan Sıkıştırılmış Veriyi Okumak</p>
+    <p><ftype>Compress::read( <kf>string</kf> <vf>$dosyaAdi</vf> )</ftype></p>
+    <p>Sıkıştırılmış dosyayı okumak için kullanılır.</p>
+    
+    <p>
+    	<table class="cfont">
+        	<tr><th>Parametreler</th><td>Anlamları</td></tr>
+            <tr><th>Destekleyen Sürücüler</th><td>bz, gz</td></tr>
+            <tr><th>1 - string Dosya Adı</th><td>Okunacak dosya adı.</td></tr>
+        </table>
+    </p>
+	
+    <div type="code"><kf>echo</kf> Compress::<strong>read</strong>(<sf>'test.txt'</sf>)</div>
+    
+    <p class="cstfont" id="force">Dizgeyi Sıkıştırmak</p>
+    <p><ftype>Compress::compress( <kf>string</kf> <vf>$veri</vf>, [ <kf>numeric</kf> <vf>$seviye</vf> = <if>-1</if> ] <kf>numeric</kf> <vf>$tur = <tf>ZLIB_ENCODING_DEFLATE</tf> )</ftype></p>
+    <p>Metinsel ifadeyi sıkıştırmak için kullanılır.</p>
+    
+    <p>
+    	<table class="cfont">
+        	<tr><th>Parametreler</th><td>Anlamları</td></tr>
+            <tr><th>Destekleyen Sürücüler</th><td>bz, gz, lzf</td></tr>
+            <tr><th>1 - string Veri</th><td>Verinin yazılacağı dosya. Şayet dosya yoksa oluşturularak yazılır.</td></tr>
+            <tr><th>2 - [ numeric Seviye = -1 ]</th><td>Sıkıştırma seviyesi.</td></tr>
+            <tr><th>3 - [ numeric Kodlama Türü = ZLIB_ENCODING_DEFLATE ]</th><td> Şifreleme türü.</td></tr>
+        </table>
+    </p>
+	
+    <div type="code"><kf>echo</kf> Compress::compress(<sf>'Sıkıştırılacak veri.'</sf>)</div>
+    
+    <p class="cstfont" id="unforce">Sıkıştırılmış Dizgeyi Açmak</p>
+    <p><ftype>Compress::uncompress( <kf>string</kf> <vf>$veri</vf>, [ <kf>numeric</kf> <vf>$uzunluk</vf> = <if>0</if> ] )</ftype></p>
+    <p>Sıkıştırılmış metni açar.</p>
+    
+    <p>
+    	<table class="cfont">
+        	<tr><th>Parametreler</th><td>Anlamları</td></tr>
+            <tr><th>Destekleyen Sürücüler</th><td>bz, gz, lzf</td></tr>
+            <tr><th>1 - string Veri</th><td>Verinin yazılacağı dosya. Şayet dosya yoksa oluşturularak yazılır.</td></tr>
+            <tr><th>2 - [ numeric Uzunluk = 0 ]</th><td>Kodu çözülecek verinin azami uzunluğu.</td></tr>
+        </table>
+    </p>
+	
+    <div type="code"><kf>echo</kf> Compress::uncompress( Compress::compress(<sf>'Sıkıştırılmış Veri'</sf>) ) <comment>// Return: Sıkıştırılmış Veri</comment></div>
+    
+    <p class="cstfont" id="encode">Dizgeyi Şifrelemek</p>
+    <p><ftype>Compress::encode( <kf>string</kf> <vf>$veri</vf>, [ <kf>numeric</kf> <vf>$seviye</vf> = <if>-1</if> ] <kf>numeric</kf> <vf>$tur = <tf>FORCE_GZIP</tf> )</ftype></p>
+    <p>Metinsel ifadeyi sıkıştırmak için kullanılır.</p>
+    
+    <p>
+    	<table class="cfont">
+        	<tr><th>Parametreler</th><td>Anlamları</td></tr>
+            <tr><th>Destekleyen Sürücüler</th><td>gz, zlib</td></tr>
+            <tr><th>1 - string Veri</th><td>Verinin yazılacağı dosya. Şayet dosya yoksa oluşturularak yazılır.</td></tr>
+            <tr><th>2 - [ numeric Seviye = -1 ]</th><td>Sıkıştırma seviyesi.</td></tr>
+            <tr><th>3 - [ numeric Kodlama Türü = FORCE_GZIP ]</th><td> Şifreleme türü.</td></tr>
+        </table>
+    </p>
+	
+    <div type="code"><kf>echo</kf> Compress::encode(<sf>'Sıkıştırılacak veri.'</sf>)</div>
+    
+    <p class="cstfont" id="decode">Sıkıştırılmış Dizgeyi Açmak</p>
+    <p><ftype>Compress::decode( <kf>string</kf> <vf>$veri</vf>, [ <kf>numeric</kf> <vf>$uzunluk</vf> = <if>0</if> ] )</ftype></p>
+    <p>Sıkıştırılmış metni açar.</p>
+    
+    <p>
+    	<table class="cfont">
+        	<tr><th>Parametreler</th><td>Anlamları</td></tr>
+            <tr><th>Destekleyen Sürücüler</th><td>gz, zlib</td></tr>
+            <tr><th>1 - string Veri</th><td>Verinin yazılacağı dosya. Şayet dosya yoksa oluşturularak yazılır.</td></tr>
+            <tr><th>2 - [ numeric Uzunluk = 0 ]</th><td>Kodu çözülecek verinin azami uzunluğu.</td></tr>
+        </table>
+    </p>
+    
+    <p class="cstfont" id="deflate">Dizgeyi Deflate ile Şifrelemek</p>
+    <p><ftype>Compress::deflate( <kf>string</kf> <vf>$veri</vf>, [ <kf>numeric</kf> <vf>$seviye</vf> = <if>-1</if> ] <kf>numeric</kf> <vf>$tur = <tf>ZLIB_ENCODING_RAW</tf> )</ftype></p>
+    <p>Metinsel ifadeyi sıkıştırmak için kullanılır.</p>
+    
+    <p>
+    	<table class="cfont">
+        	<tr><th>Parametreler</th><td>Anlamları</td></tr>
+            <tr><th>Destekleyen Sürücüler</th><td>gz, zlib</td></tr>
+            <tr><th>1 - string Veri</th><td>Verinin yazılacağı dosya. Şayet dosya yoksa oluşturularak yazılır.</td></tr>
+            <tr><th>2 - [ numeric Seviye = -1 ]</th><td>Sıkıştırma seviyesi.</td></tr>
+            <tr><th>3 - [ numeric Kodlama Türü = ZLIB_ENCODING_RAW ]</th><td> Şifreleme türü.</td></tr>
+        </table>
+    </p>
+	
+    <div type="code"><kf>echo</kf> Compress::deflate(<sf>'Sıkıştırılacak veri.'</sf>)</div>
+    
+    <p class="cstfont" id="inflate">Defalte ile Sıkıştırılmış Dizgeyi Açmak</p>
+    <p><ftype>Compress::inflate( <kf>string</kf> <vf>$veri</vf>, [ <kf>numeric</kf> <vf>$uzunluk</vf> = <if>0</if> ] )</ftype></p>
+    <p>Sıkıştırılmış metni açar.</p>
+    
+    <p>
+    	<table class="cfont">
+        	<tr><th>Parametreler</th><td>Anlamları</td></tr>
+            <tr><th>Destekleyen Sürücüler</th><td>gz, zlib</td></tr>
+            <tr><th>1 - string Veri</th><td>Verinin yazılacağı dosya. Şayet dosya yoksa oluşturularak yazılır.</td></tr>
+            <tr><th>2 - [ numeric Uzunluk = 0 ]</th><td>Kodu çözülecek verinin azami uzunluğu.</td></tr>
+        </table>
+    </p>
+	
+    <div type="code"><kf>echo</kf> Compress::inflate( Compress::deflate(<sf>'Sıkıştırılmış Veri'</sf>) ) <comment>// Return: Sıkıştırılmış Veri</comment></div>
+ 
+    <div type="prev-next">
+    	<div type="prev-btn"><a href="component_drivers.html">Önceki</a></div><div type="next-btn"><a href="Cryptography.html">Sonraki</a></div>
+    </div>
+ 
+</body>
+</html>              

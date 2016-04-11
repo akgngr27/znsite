@@ -1,0 +1,68 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>ZN KOD ÇATISI</title>
+<link type="text/css" rel="stylesheet" href="../Styles/Structure.css" />
+<script src="../Scripts/Jquery.js"></script>
+<script src="../Scripts/Structure.js"></script>
+</head>
+
+<body>
+    <div id="content-document"><a href="#">Döküman</a> » <a href="encoding.html">Encoding Support</a> » Iconv(IV) Kütüphanesi</div> 
+    <p class="ctfont">Iconv(IV) Kütüphanesi</p>
+    <p>Bu kütüphane PHP'nin <strong>iconv</strong> yöntemlerini kullanarak <strong>sınıf</strong> biçimine dönüştürülerek oluşturulmuştur. <u>Yöntemlerin kullanımında parametre olarak farklılıklar vardır</u>. İsimlendirmeleri akılda kalacak şekilde düzenlemeye özen gösterilmiştir.</p>
+    <p>Iconv(IV) işlevleri farklı dillerdeki karakter farklıklıklarından kaynaklı kodlama problemlerini çözmek için kullanılır.</p>
+    
+    <p><i>Yöntemler arasında parametre kullanımında farklıklık olanlar tabloda belirtilmiştir</i>.</p>
+    
+     <p>
+    	<table class="cfont" width="100%">
+        	<tr><th colspan="3">Iconv(IV) Kütüphanesi ve Yöntemleri</th></tr>
+            <tr><th width="30%">Nesne Yönelimli Kullanım</th><td>Fonksiyonel Kullanım</td><td>İşlev</td></tr>
+            <tr><th>IV::convert(<cf>$str, $to, $from</cf>)</th><td><a href="#extract"> <b>iconv(<cf>$to, $from, $str</cf>)</b></a></td><td>Dizgenin karakter kodlamasını dönüştürür.</td></tr>
+            <tr><th>IV::encodings()</th><td><a href="#extract"><b>iconv_get_encoding()</b></a></td><td>Iconv için kullanılabilir kodlama setlerinin listesini döndürür.</td></tr>
+            <tr><th>IV::getEncoding()</th><td><a href="#extract"><b>iconv_get_encoding()</b></a></td><td>iconv eklentisinin dahili yapılandırma değişkenlerini döndürür.</td></tr>
+            <tr><th>IV::setEncoding()</th><td><a href="#extract"><b>iconv_set_encoding()</b></a></td><td>Karakter kodlaması dönüşümü için geçerli karakter kümesini tanımlar.</td></tr>
+            <tr><th>IV::mimesDecode()</th><td><a href="#extract"><b>iconv_mime_decode_headers()</b></a></td><td>Bir defada birden fazla MIME başlık alanını çözümler.</td></tr>
+            <tr><th>IV::mimeDecode()</th><td><a href="#extract"><b>iconv_mime_decode()</b></a></td><td>Bir MIME başlık alanının kodunu çözer.</td></tr>
+            <tr><th>IV::mimeEncode()</th><td><a href="#extract"><b>iconv_mime_encode()</b></a></td><td>Bir MIME başlık alanı düzenler.</td></tr>
+        </table>
+    </p>
+    
+  
+   	<p class="cstfont" id="example">Kullanım Farklılığı Olan Yöntemler</p>
+	<p>Kullanım farklı olan tek yöntem iconv() yöntemidir. Bu yöntemde dizge parametresi sonda yer almakta iken IV::convert() yönteminde 1. parametre olarak düzenlenmiştir.
+    
+    <div type="code">
+<pre>
+<comment>// Dizge sonra belirtiliyor.</comment>
+iconv(<sf>'UTF-8'</sf>, <sf>'ISO-8859-1//TRANSLIT'</sf>, <sf>'ZN FRAMEWORK'</sf>);
+
+<comment>// Önce dizge belirtiliyor.</comment>
+IV::convert(<sf>'ZN FRAMEWORK'</sf>, <sf>'UTF-8'</sf>, <sf>'ISO-8859-1//TRANSLIT'</sf>);
+</pre>
+    </div>
+    
+    <p>iconv_get_encoding() ve iconv_set_encoding() yöntemlerinde input_encoding kullanımında <strong>_encoding</strong> eki IV:: yöntemlerinde kullanılmaz.
+    
+    <div type="code">
+<pre>
+<comment>// _encoding eki kullanılıyor.</comment>
+iconv_get_encoding(<sf>'input_encoding'</sf>);
+
+<comment>// _encoding eki kullanılmıyor.</comment>
+IV::getEncoding(<sf>'input'</sf>);
+</pre>
+    </div>
+    
+    <p>Diğer yöntemlerin kullanımlarında hiç bir farklılık yoktur.</p>
+    
+    <p>Data detaylı kullanım için <a href="http://php.net/manual/tr/ref.iconv.php" target="_blank">iconv</a> php.net kaynaklarını inceleyiniz.</p>
+    
+    <div type="prev-next">
+    	<div type="prev-btn"><a href="encoding_gettext.html">Önceki</a></div><div type="next-btn"><a href="encoding_mb.html">Sonraki</a></div>
+    </div>
+ 
+</body>
+</html>              

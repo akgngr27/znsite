@@ -1,0 +1,257 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>ZN KOD ÇATISI</title>
+<link type="text/css" rel="stylesheet" href="../Styles/Structure.css" />
+<script src="../Scripts/Jquery.js"></script>
+<script src="../Scripts/Structure.js"></script>
+</head>
+
+<body>
+    <div id="content-document"><a href="#">Döküman</a> » <a href="helpers.html">Helpers</a> » Convert(Dönüştürme) Kütüphanesi</div> 
+    <p class="ctfont">Convert(Dönüştürme) Kütüphanesi</p>
+    <p>Metinsel ifadelerde bir takım dönüştürmeler yapan sınıftır.</p>
+    <ul><li><a href="#" class="infont">Convert(Dönüştürme) Kütüphanesi ve Yöntemleri</a><br><br>
+        <ul>
+            <li><a href="#char_converter">Karakter Dönüştürmek » <b>Convert::char()</b></a></li>
+            <li><a href="#accent_converter">Aksan Karakterleri Dönüştürmek » <b>Convert::accent()</b></a></li>
+            <li><a href="#url_word_converter">URL'ye Uygun Dizgeye Dönüştürmek » <b>Convert::urlWord()</b></a></li>
+            <li><a href="#stringCase">Metinlerde Büyük Küçük Harf Dönüştürmek » <b>Convert::stringCase()</b></a></li>
+            <li><a href="#arrayCase">Dizilerde Büyük Küçük Harf Dönüştürmek » <b>Convert::arrayCase()</b></a></li>
+            <li><a href="#charset_converter">Karakter Seti Dönüştürmek » <b>Convert::charset()</b></a></li>
+            <li><a href="#highlight">Metinsel Kodu Renklendirici » <b>Convert::highLight()</b></a></li>
+            <li><a href="#convert_type">Veri Türünü Değiştirme » <b>Convert::varType()</b></a></li>
+            <li><a href="#toConstant">Metni Sabit Olarak Kullanmak » <b>Convert::toConstant()</b></a></li>
+            <li><a href="#convert_vartypes">Veri Türünü Değiştirme » <b>Convert::toXXX()</b></a></li>
+        </ul>
+    </li></ul>
+    
+    <p class="cstfont" id="char_converter">Karakter Dönüştürmek</p>
+    <p><ftype>Convert::char( <kf>string</kf> <vf>$metin</vf> , [ <kf>string</kf> <vf>$metnin_karakter_tipi</vf> = <sf>'char'</sf> ] , [ <kf>string</kf> <vf>$metnin_donusecegi_karakter_tipi</vf> = <sf>'html'</sf> ] )</ftype></p>
+    <p>Karakterleri html, decimal veya hexdecimal karakter formatına dönüştürmek için kullanılır.</p>
+    
+    <p>
+    	<table class="cfont">
+        	<tr><th>No</th><th>Parametreler</th><td>Anlamları</td></tr>
+            <tr><th>1</th><th>string Metin</th><td>Değişiklik yapılacak metin.</td></tr>
+            <tr><th>2</th><th>[ string Metnin Karakter Tipi = "char" ]</th><td>Metnin karakter tipi. Varsayılan: char</td></tr>
+            <tr><th>3</th><th>[ string Metnin Dönüşeceği Karakter Tipi = "html" ]</th><td>Metnin dönüştürüleceği karakter tipi. Varsayılan: html</td></tr>
+            <tr><th>No</th><th colspan="2">Dönüşüm Yapılacak Karakter Tipleri</th></tr>
+            <tr><th>1</th><td colspan="2">char</td></tr>
+            <tr><th>2</th><td colspan="2">html</td></tr>
+            <tr><th>3</th><td colspan="2">dec</td></tr>
+            <tr><th>4</th><td colspan="2">hex</td></tr>
+        </table>
+    </p>
+    
+	<div type="code">
+    <comment>/* --- Char'dan Diğer Tiplere Dönüştürme --- */</comment><br>
+    <kf>echo</kf> Convert::char(<sf>'Metin'</sf>); <comment>/* Kaynak Kod Çıktı: <x>&</x>#77;<x>&</x>#101;<x>&</x>#116;<x>&</x>#105;<x>&</x>#110; */</comment><br>
+    <kf>echo</kf> Convert::char(<sf>'Metin'</sf>, <sf>'char'</sf>, <sf>'dec'</sf>); <comment>/* Çıktı: 77 101 116 105 110 */</comment><br>
+    <kf>echo</kf> Convert::char(<sf>'Metin'</sf>, <sf>'char'</sf>, <sf>'hex'</sf>); <comment>/* Çıktı: 4D 65 74 69 6E */</comment><br><br>
+    <comment>/* --- Kendi Aralarında Dönüştürme --- */</comment><br>
+    <vf>$html</vf> = Convert::char(<sf>'Metin'</sf>);<br>
+    <vf>$dec</vf>  = Convert::char(<sf>'Metin'</sf>, <sf>'char'</sf>, <sf>'dec'</sf>);<br>
+    <vf>$hex</vf>  = Convert::char(<sf>'Metin'</sf>, <sf>'char'</sf>, <sf>'hex'</sf>);<br>  <br>  
+    <kf>echo</kf> Convert::char(<vf>$hex</vf>, <sf>'hex'</sf>, <sf>'char'</sf>); <comment>/* Çıktı: Metin */</comment><br>
+    <kf>echo</kf> Convert::char(<vf>$dec</vf>, <sf>'dec'</sf>, <sf>'hex'</sf>); <comment>/* Çıktı: 4D 65 74 69 6E */</comment><br>
+    <kf>echo</kf> Convert::char(<vf>$html</vf>, <sf>'html'</sf>, <sf>'dec'</sf>); <comment>/* Çıktı: 77 101 116 105 110 */</comment>  
+    </div>
+    
+    <p class="cstfont" id="accent_converter">Aksan Dönüştürmek</p>
+    <p><ftype>Convert::accent( <kf>string</kf> <kf>$metin</kf> )</ftype></p>
+    <p>Farklı dillerdeki aksan farklılıklarından oluşan akrakterleri standart karakter formatına çevirir.</p>
+    
+    <p>
+    	<table class="cfont">
+        	<tr><th>No</th><th>Parametreler</th><td>Anlamları</td></tr>
+            <tr><th>1</th><th>string Metin</th><td>Değişiklik yapılacak metin.</td></tr>
+        </table>
+    </p>
+    
+	<div type="code">
+    <kf>echo</kf> Convert::accent(<sf>'Åķŝǻň'</sf>); <comment>/* Çıktı: Aksan */</comment>  
+    </div>
+    
+    <p class="cstfont" id="url_word_converter">URL Yapısına Uygun Kelime Dönüştürmek</p>
+    <p><ftype>Convert::urlWord( <kf>string</kf> <vf>$metin</vf> , <kf>string</kf> [ <vf>$ayrac</vf> = <sf>'-'</sf> ] </pf>)</ftype></p>
+    <p>Cümle yapılarını URL yapısına uygun cümle yapısına çevirir.</p>
+    
+    <p>
+    	<table class="cfont">
+        	<tr><th>No</th><th>Parametreler</th><td>Anlamları</td></tr>
+            <tr><th>1</th><th>string Metin</th><td>Değişiklik yapılacak metin.</td></tr>
+            <tr><th>2</th><th>[ string Ayraç = "-" ]</th><td>Kelimeler arasına konulacak ayraç. Varsayılan: "-"</td></tr>
+        </table>
+    </p>
+    
+	<div type="code">
+    <kf>echo</kf> Convert::urlWord(<sf>'Zn Kod Çatısına Hoş Geldiniz'</sf>); <comment>/* Çıktı: zn-kod-catisina-hos-geldiniz */</comment><br>
+    <kf>echo</kf> Convert::urlWord(<sf>'Zn Kod Çatısına Hoş Geldiniz'</sf>, <sf>'/'</sf>); <comment>/* Çıktı: zn/kod/catisina/hos/geldiniz */</comment><br>
+    </div>
+    
+    
+    <p class="cstfont" id="stringCase">Metinlerde Büyük Küçük Harf Dönüştürmek</p>
+    <p><ftype>Convert::stringCase( <kf>string</kf> <vf>$metin</vf> , [ <kf>string</kf> <vf>$tip</vf> = <sf>'lower'</sf> ] , [ <kf>string</kf> <vf>$karakter_kodlamasi</vf> = <sf>'utf-8'</sf> ]</pf>)</ftype></p>
+    <p>Büyük metinsel ifadeleri küçük, büyük veya sadece ilk harfini büyük harfe dönüştürmek için kullanılır.</p>
+    
+    <p>
+    	<table class="cfont">
+        	<tr><th>No</th><th>Parametreler</th><td>Anlamları</td></tr>
+            <tr><th>1</th><th>string Metin</th><td>Değişiklik yapılacak metin.</td></tr>
+            <tr><th>2</th><th>[ string Tip = "lower" ]</th><td>Dönüştürme işleminin türü varsayılan: lower(küçük harf)'dir. </td></tr>
+            <tr><th colspan="2">Tip Parametresinin Alabileceği Değerler</th><th>Anlamları</th></tr>
+            <tr><th colspan="2">lower</td><td>Küçük harfe çevirir.</td></tr>
+            <tr><th colspan="2">upper</td><td>Büyük harfe çevirir.</td></tr>
+            <tr><th colspan="2">title</td><td>Sadece ilk harfleri büyük harfe diğerlerini küçük harfe çevirir.</td></tr>
+        </table>
+    </p>
+    
+	<div type="code">
+    <kf>echo</kf> Convert::stringCase(<sf>'Zn Kod Çatısına Hoş Geldiniz'</sf>); <comment>/* Çıktı: zn kod çatısına hoş geldiniz */</comment><br>
+    <kf>echo</kf> Convert::stringCase(<sf>'Zn Kod Çatısına Hoş Geldiniz'</sf>, <sf>'upper'</sf>); <comment>/* Çıktı: ZN KOD ÇATISINA HOŞ GELDİNİZ */</comment><br>
+    <kf>echo</kf> Convert::stringCase(<sf>'Zn Kod Çatısına Hoş Geldiniz'</sf>, <sf>'title'</sf>); <comment>/* Çıktı: Zn Kod Çatısına Hoş Geldiniz */</comment><br><br>   
+    </div>
+    
+    <p class="cstfont" id="arrayCase">Dizilerde Büyük Küçük Harf Dönüştürmek</p>
+    <p><ftype>Convert::arrayCase( <kf>array</kf> <vf>$array</vf> , [ <kf>string</kf> <vf>$tip</vf> = <sf>'lower'</sf> ] , [ <kf>string</kf> <vf>$anahtarDeger</vf> = <sf>'all'</sf> ]</pf>)</ftype></p>
+    <p>Dizilerin anahtar ve değerlerinde büyük-küçük harf dönüşümü yapmak için kullanılır.</p>
+    
+    <p>
+    	<table class="cfont">
+        	<tr><th>Parametreler</th><td>Anlamları</td></tr>
+            <tr><th>1 - string Metin</th><td>Değişiklik yapılacak metin.</td></tr>
+            <tr><th>2 - [ string Tip = "lower" ]</th><td>Dönüştürme işleminin türü varsayılan: lower(küçük harf)'dir. </td></tr>
+            <tr><th>Tip Parametresinin Alabileceği Değerler</th><th>Anlamları</th></tr>
+            <tr><th>lower</td><td>Küçük harfe çevirir.</td></tr>
+            <tr><th>upper</td><td>Büyük harfe çevirir.</td></tr>
+            <tr><th>title</td><td>Sadece ilk harfleri büyük harfe diğerlerini küçük harfe çevirir.</td></tr>
+            <tr><th>3 - [ string Tip = "all" ]</th><td>Dönüştürme işleminin anahtara mı, değere mi yoksa her ikisine mi uygulanacak bu belirtilir. Varsayılan:all</td></tr>
+            <tr><th>all</td><td>Hem anahtara hem değere uygula.</td></tr>
+            <tr><th>key</td><td>Sadece anahtara uygula.</td></tr>
+            <tr><th>val/value</td><td>Sadece değere uygula.</td></tr>
+        </table>
+    </p>
+    
+	<div type="code">
+    <kf>echo</kf> Convert::arrayCase(<kf>array</kf>(<sf>'Merhaba'</sf> => <sf>'ZN'</sf>), <sf>'lower'</sf>); <comment>/* Çıktı: array('merhaba' => 'zn') */</comment><br />   
+    </div>
+    
+    <p class="cstfont" id="charset_converter">Karakter Seti Dönüştürmek</p>
+    <p><ftype>Convert::charset( <kf>string</kf> <vf>$metin</vf> , [ <kf>string</kf> <vf>$bundan</vf> = <sf>'utf-8'</sf> ] , [ <kf>string</kf> <vf>$buna</vf> = <sf>'utf-8'</sf> ]</pf>)</ftype></p>
+    <p>Parametre olarak girilen metnin karakter setini dönüştürmek için kullanılır.</p>
+    
+    <p>
+    	<table class="cfont">
+        	<tr><th>No</th><th>Parametreler</th><td>Anlamları</td></tr>
+            <tr><th>1</th><th>string Metin</th><td>Değişiklik yapılacak metin.</td></tr>
+            <tr><th>2</th><th>[ string Bundan = "utf-8" ]</th><td>Bu karakter setinden. </td></tr>
+            <tr><th>3</th><th>[ string Buna = "utf-8" ]</th><td>Bu karakter setine dönüştür. </td></tr>
+        </table>
+    </p>
+    
+	<div type="code">
+    <kf>echo</kf> Convert::charset(<sf>'Zn Kod Çatısına Hoş Geldiniz'</sf>, <sf>'latin5'</sf>, <sf>'utf-8'</sf>);<br>
+    </div>
+    
+    <p class="cstfont" id="highlight">Metinsel Kodu Renklendirici</p>
+    <p><ftype>Convert::highLight( <kf>string</kf> <vf>$metin</vf> , [ <kf>settings</kf> <vf>$ayarlar</vf> ] </pf>)</ftype></p>
+    <p>Metin olarak girilen kodu renkli çıktı haline getirir.</p>
+    
+    <p>
+    	<table class="cfont">
+        	<tr><th>No</th><th>Parametreler</th><td>Anlamları</td></tr>
+            <tr><th>1</th><th>string Metin</th><td>Değişiklik yapılacak metin.</td></tr>
+            <tr><th>2</th><th>[ array Ayarlar ]</th><td>Yazı ve renklerle ilgili ayarları içerir.</td></tr>
+            <tr><th colspan="2">Ayarlar Parametresinin Alabileceği Değerler</th><th>Anlamları</th></tr>
+            <tr><th colspan="2">textSize</td><td>Metnin boyutu.</td></tr>
+            <tr><th colspan="2">color</td><td>Genel kod rengi.</td></tr>
+            <tr><th colspan="2">keywordColor</td><td>Anahtar ifadelerin rengi. case, if, print gibi.</td></tr>
+            <tr><th colspan="2">variableColor</td><td>Değişkenlerin rengi.</td></tr>
+            <tr><th colspan="2">commentColor</td><td>Açıklama satırlarının rengi.</td></tr>
+            <tr><th colspan="2">constantColor</td><td>Ön tanımlı sabitlerin rengi.</td></tr>
+            <tr><th colspan="2">functionColor</td><td>Ön tanımlı fonksiyonların rengi.</td></tr>
+            <tr><th colspan="2">tagColor</td><td>PHP taglarının rengi. <x><</x>?php ?> gibi.</td></tr>
+        </table>
+    </p>
+    
+	<div type="code">
+    <kf>echo</kf> Convert::highLight(<sf>'<x><</x>?php echo 1; ?>'</sf>, <kf>array</kf>(<sf>'keywordColor'</sf> => <sf>'blue'</sf>));<br>
+    </div>
+    
+    <p class="cstfont" id="convert_type">Veri Türünü Değiştirme</p>
+    <p><ftype>Convert::varType( <kf>var</kf> <vf>$degisken</vf> , [ <kf>string</kf> <vf>$degistirilecek_tur</vf> = <sf>'int'</sf> ]</pf> )</ftype></p>
+    <p>Parametre olarak girilen değişkenin türünü değiştirmek için kullanılır.</p>
+    
+    <p>
+    	<table class="cfont">
+        	<tr><th>No</th><th>Parametreler</th><td>Anlamları</td></tr>
+            <tr><th>1</th><th>var Değişken</th><td>Değişiklik değişken.</td></tr>
+            <tr><th>2</th><th>[ string Tür = "int" ]</th><td>Yeni veri türü. </td></tr>
+  		</table>
+    </p>
+    
+	<div type="code">
+    <vf>$var</vf> = <sf>'Deneme'</sf>;<br>
+    <kf>echo</kf> Convert::varType(<vf>$var</vf>, <sf>'boolean'</sf>); <comment> // true </comment><br>
+    </div>
+    
+     <p class="cstfont" id="toConstant">Metni Sabit Olarak Kullanmak</p>
+    <p><ftype>Convert::toConstant( <kf>string</kf> <vf>$sabit</vf>, [ <kf>string</kf> <vf>$onek</vf> ], [ <kf>string</kf> <vf>$sonek</vf> ]</pf> )</ftype></p>
+    <p>Bu yöntemin temel amacı string veriyi bir sabitmiş gibi kullanabilmektir. Bir çok sabit konusuna göre ön ek içerir mesela MB_CASE_ veya CURL_INFO_ gibi. Bu şekilde uzun kullanımlar yerine sabitin metinsel isminin bir bölümü kullanılarak aynı değere ulaşmak mümkündür. Şimdi aşağıdaki örnekle bu yöntemin işlevi daha net anlaşılacaktır.</p>
+    
+    <p>
+    	<table class="cfont">
+        	<tr><th>Parametreler</th><td>Anlamları</td></tr>
+            <tr><th>1 - string Metin</th><td>Sabitin strin adı veya bir bölümü.</td></tr>
+            <tr><th>2 - [ string Metin ]</th><td>Ön ek.</td></tr>
+            <tr><th>3 - [ string Metin ]</th><td>Son ek.</td></tr>
+  		</table>
+    </p>
+    
+    <div type="code">
+    
+    Convert::toConstant(<sf>'upper'</sf>, <sf>'MB_CASE_'</sf>); <comment> // Return MB_CASE_UPPER </comment><br>
+    Convert::toConstant(<sf>'autoreferer'</sf>, <sf>'CURLOPT_'</sf>); <comment> // Return CURLOPT_AUTOREFERER </comment><br>
+    
+    </div>
+    
+    <p>Bu yöntem sayesinde sabiti string türde kullanmanız gerektiği zaman yararlanabilirsiniz. ZN Framework'te genellikle tanımlanan yöntemlerde sabit değer içermesi gereken parametreler de bu yöntemden yararlanılmıştır. Böylece sabitin tam adını yazmak yerine öne ekini atıp daha kısa bir şekilde kullanımı sağlanmıştır.
+	
+     <p class="cstfont" id="convert_vartypes">Veri Türünü Değiştirme</p>
+    <p><ftype>Convert::toXXX( <kf>var</kf> <vf>$degisken</vf> )</ftype></p>
+    <p>Parametre olarak girilen değişkenin türünü değiştirmek için kullanılır.</p>
+    
+    <p>
+    	<table class="cfont">
+        	<tr><th>No</th><th>Parametreler</th><td>Anlamları</td></tr>
+            <tr><th>1</th><th>var Değişken</th><td>Değişiklik değişken.</td></tr>
+            <tr><th colspan="3">Dönüştürülebilir Türler</th></tr>
+            <tr><th colspan="2">toint</th><td>Integer.</td></tr>
+            <tr><th colspan="2">tointeger</th><td>Integer.</td></tr>
+            <tr><th colspan="2">tostring</th><td>String.</td></tr>
+            <tr><th colspan="2">toobject</th><td>Object.</td></tr>
+            <tr><th colspan="2">toarray</th><td>Array.</td></tr>
+            <tr><th colspan="2">tofloat</th><td>Float.</td></tr>
+            <tr><th colspan="2">todouble</th><td>Double.</td></tr>
+            <tr><th colspan="2">tobool</th><td>Boolean.</td></tr>
+            <tr><th colspan="2">toboolean</th><td>Boolean.</td></tr>
+            <tr><th colspan="2">tounset</th><td>Unset.</td></tr>
+            <tr><th colspan="2">toreal</th><td>Real.</td></tr>
+  		</table>
+    </p>
+    
+	<div type="code">
+    <vf>$var</vf> = <sf>'Deneme'</sf>;<br>
+    <kf>echo</kf> Convert::toInt(<vf>$var</vf>); <comment> // 0 </comment><br>
+    <kf>echo</kf> Convert::toBoolean(<vf>$var</vf>); <comment> // true </comment><br>
+    <kf>echo</kf> Convert::toFloat(<vf>$var</vf>); <comment> // 0 </comment><br>
+    </div>
+    
+    <div type="prev-next">
+    	<div type="prev-btn"><a href="helpers_clean.html">Önceki</a></div><div type="next-btn"><a href="helpers_filter.html">Sonraki</a></div>
+    </div>
+ 
+</body>
+</html>              

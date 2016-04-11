@@ -1,0 +1,52 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>ZN KOD ÇATISI</title>
+<link type="text/css" rel="stylesheet" href="../Styles/Structure.css" />
+<script src="../Scripts/Jquery.js"></script>
+<script src="../Scripts/Structure.js"></script>
+</head>
+
+<body>
+    <div id="content-document"><a href="#">Döküman</a> » <a href="access_methods.html">Nesne Erişim Yöntemleri</a> » Dinamik Erişim</div> 
+    <p class="ctfont">Dinamik Erişim</p>
+ 	<p>Bu yöntem, <vf><b>$this</b></vf> anahtar ifadesi ile nesnelere doğrudan erişimi sağlamak içindir. Bununla ilgili aşağıda kullanım örnekleri yer almaktadır.</p>
+   
+  	<p>Dinamik çağrı, <strong>performans açısından statik çağrıdan biraz daha yavaştır.</strong></p>
+    
+    <div type="code">
+Controllers/Anasayfa.php
+<pre><x><</x>?php
+<kf>class</kf> Anasayfa <kf>extends</kf> Controller
+{
+	<kf>public</kf> <ff>function</ff> index()
+        {
+            <vf>$this</vf>->import->page(<sf>'Anasayfa'</sf>);
+        }
+}</pre>   
+    </div>
+ 
+   	<p>
+   <div type="code">
+Controllers/Anasayfa.php
+<pre><x><</x>?php
+<kf>class</kf> Anasayfa <kf>extends</kf> <strong>Controller</strong>
+{
+	<ff>function</ff> __construct()
+        {
+            <kf>parent</kf>::__construct();
+            <vf>$this</vf>->encode->super(<sf>'Veriyi Şifrele'</sf>);
+        }
+}</pre>   
+    </div>
+    </p>
+   
+    
+    <div type="prev-next">
+    	<div type="prev-btn"><a href="access_methods.html">Önceki</a></div><div type="next-btn"><a href="access_static.html">Sonraki</a></div>
+    </div>
+ 	
+ 
+</body>
+</html>              

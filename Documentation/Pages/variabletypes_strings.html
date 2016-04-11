@@ -1,0 +1,434 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>ZN KOD ÇATISI</title>
+<link type="text/css" rel="stylesheet" href="../Styles/Structure.css" />
+<script src="../Scripts/Jquery.js"></script>
+<script src="../Scripts/Structure.js"></script>
+</head>
+
+<body>
+    <div id="content-document"><a href="#">Döküman</a> » <a href="libraries.html">Kütüphaneler</a> » Strings(Metinler) Kütüphanesi</div> 
+    <p class="ctfont">Strings(Metinler) Yöntemi</p>
+    <p>Metinsel ifadeler üzerinde bir takım işlemleri yerine getirmek üzere geliştirilmiş bir sınıftır.</p>
+    <ul><li><a href="#" class="infont">Strings(Metinler) Yöntemi ve Yöntemleri</a><br><br>
+        <ul>
+            <li><a href="#mtrim">Metindeki Tüm Boşlukları(Baştaki, Sondaki ve Ortadaki) Temizlemek » <b>Strings::mtrim()</b></a></li>
+            <li><a href="#trim_slashes">Taksim (/) İşaretini Temizlemek » <b>Strings::trimSlashes()</b></a></li>
+            <li><a href="#uppercase">Büyük Harfe Çevirmek » <b>Strings::upperCase()</b></a></li>
+            <li><a href="#lowercase">Küçük Harfe Çevirmek » <b>Strings::lowerCase()</b></a></li>
+            <li><a href="#titlecase">Sadece İlk Harfi Büyük Harfe Çevirmek » <b>Strings::titleCase()</b></a></li>
+            <li><a href="#camelcase">Camel Case Notasyonuna Çevirmek » <b>Strings::camelCase()</b></a></li>
+            <li><a href="#pascalcase">Pascal Case Notasyonuna Çevirmek » <b>Strings::pascalCase()</b></a></li>
+            <li><a href="#string_search">Metinsel İfadelerde Aramak » <b>Strings::search()</b></a></li>
+            <li><a href="#string_reshuffle">Metinsel İfadelerde Karakterler Arası Yer Değiştirmek » <b>Strings::reshuffle()</b></a></li>
+            <li><a href="#string_recurrent_count">Metinsel İfadelerde Tekrarlanayan Metin Sayısını Hesaplamak » <b>Strings::recurrentCount()</b></a></li>
+            <li><a href="#string_placement">Metinsel İfadelerde Karakter Yerleştirmek » <b>Strings::placement()</b></a></li>
+            <li><a href="#section">Dizgenin Bir Bölümünü Almak » <b>Strings::section()</b></a></li>
+            <li><a href="#recurrentCount">Dizgedeki Tekrarlayan Karakter Sayısını Öğrenmek » <b>Strings::recurrentCount()</b></a></li>
+            <li><a href="#replace">Dizgenin Seçilen Yerlerini Değiştirmek » <b>Strings::replace()</b></a></li>
+            <li><a href="#toArray">Dizgeyi Diziye Çevirmek » <b>Strings::toArray()</b></a></li>
+            <li><a href="#toChar">Ascii Karakter Numarasını Karaktere Çevirmek » <b>Strings::toChar()</b></a></li>
+            <li><a href="#toAscii">Karakteri Ascii Karakter Numarasına Çevirmek » <b>Strings::toAscii()</b></a></li>
+            <li><a href="#addSlashes">Özel Karakterlerin Önüne Ters Bölü(\) Koymak » <b>Strings::addSlashes()</b></a></li>
+            <li><a href="#removeSlashes">Ters Bölü(\) İşaretini Kaldırmak » <b>Strings::removeSlashes()</b></a></li>
+            <li><a href="#length">Dizgenin Karakter Sayısını Öğrenmek » <b>Strings::length()</b></a></li>
+            <li><a href="#encode">Dizgeyi Tek Yönlü Şifrelemek » <b>Strings::encode()</b></a></li>
+            <li><a href="#repeat">Dizgeyi Yinelemek » <b>Strings::repeat()</b></a></li>
+            <li><a href="#translationTable">Dönüşüm Tablosunu Görmek » <b>Strings::translationTable()</b></a></li>
+        </ul>
+    </li></ul>
+    
+
+    <p class="cstfont" id="mtrim">Metindeki Tüm Boşlukları Temizlemek</p>
+    <p><ftype>Strings::mtrim( <kf>string</kf> <vf>$metin</vf> )</ftype></p>
+    <p>Metinsel ifadelerdeki boşlukları temizlemek için kullanılır.</p>
+    
+    <p>
+    	<table class="cfont">
+        	<tr><th>No</th><th>Parametreler</th><td>Anlamları</td></tr>
+            <tr><th>1</th><th>string Metin</th><td>Boşlukların temizleneceği metin.</td></tr>
+        </table>
+    </p>
+    
+	<div type="code">
+    <kf>echo</kf> Strings::mtrim(<sf>' Zn framework '</sf>);  <comment>/* Çıktı: Znframework */</comment><br> 
+    </div> 
+    
+    <p class="cstfont" id="trim_slashes">Taksim (/) İşaretini Temizlemek</p>
+    <p><ftype>Strings::trimSlashes( <kf>string</kf> <vf>$metin</vf> )</ftype></p>
+    <p>Metinsel ifadelerde baştaki ve sonraki taksim işaretlerini temizlemek için kullanılır.</p>
+    
+    <p>
+    	<table class="cfont">
+        	<tr><th>No</th><th>Parametreler</th><td>Anlamları</td></tr>
+            <tr><th>1</th><th>string Metin</th><td>Taksim işaretlerinin temizleneceği metin.</td></tr>
+        </table>
+    </p>
+    
+	<div type="code">
+    <kf>echo</kf> Strings::trimSlashes(<sf>'/urunler/bilgisayar/12/'</sf>);  <comment>/* Çıktı: urunler/bilgisayar/12 */</comment><br> 
+    </div>
+    
+    <p class="cstfont" id="uppercase">Büyük Harfe Çevirmek</p>
+    <p><ftype>Strings::upperCase( <kf>string</kf> <vf>$metin</vf> , [ <kf>string</kf> <vf>$karakter_kodlamasi</vf> = <sf>'utf-8'</sf> ] )</ftype></p>
+    <p>Metinsel ifadeleri büyük harfe çevirmek için kullanılır.</p>
+    
+    <p>
+    	<table class="cfont">
+        	<tr><th>No</th><th>Parametreler</th><td>Anlamları</td></tr>
+            <tr><th>1</th><th>string Metin</th><td>Büyük harfe çevrilecek metin.</td></tr>
+            <tr><th>2</th><th>[string Kodlama Türü = 'utf-8']</th><td>Varsayılan olarak karakter kodlaması utf-8 ayarlıdır.</td></tr>
+        </table>
+    </p>
+    
+	<div type="code">
+    <kf>echo</kf> Strings::upperCase(<sf>'ZN kod çatısına hoş geldiniz.'</sf>);  <comment>/* Çıktı: ZN KOD ÇATISINA HOŞ GELDİNİZ. */</comment><br> 
+    </div>
+    
+    
+    <p class="cstfont" id="lowercase">Küçük Harfe Çevirmek</p>
+    <p><ftype>Strings::lowerCase( <kf>string</kf> <vf>$metin</vf> , [ <kf>string</kf> <vf>$karakter_kodlamasi</vf> = <sf>'utf-8'</sf> ] )</ftype></p>
+    <p>Metinsel ifadeleri küçük harfe çevirmek için kullanılır.</p>
+    
+    <p>
+    	<table class="cfont">
+        	<tr><th>No</th><th>Parametreler</th><td>Anlamları</td></tr>
+            <tr><th>1</th><th>string Metin</th><td>Küçük harfe çevrilecek metin.</td></tr>
+            <tr><th>2</th><th>[string Kodlama Türü = 'utf-8']</th><td>Varsayılan olarak karakter kodlaması utf-8 ayarlıdır.</td></tr>
+        </table>
+    </p>
+    
+	<div type="code">
+    <kf>echo</kf> Strings::lowerCase(<sf>'ZN KOD ÇATISINA HOŞ GELDİNİZ.'</sf>);  <comment>/* Çıktı: zn kod çatısına hoş geldiniz. */</comment><br> 
+    </div>
+    
+    <p class="cstfont" id="titlecase">Sadece İlk Harfi Büyük Harfe Çevirmek</p>
+    <p><ftype>Strings::titleCase( <kf>string</kf> <vf>$metin</vf> , [ <kf>string</kf> <vf>$karakter_kodlamasi</vf> = <sf>'utf-8'</sf> ] )</ftype></p>
+    <p>Metinsel ifadelerin sadece ilk harfini büyük harfe çevirmek için kullanılır.</p>
+    
+    <p>
+    	<table class="cfont">
+        	<tr><th>No</th><th>Parametreler</th><td>Anlamları</td></tr>
+            <tr><th>1</th><th>string Metin</th><td>Çevrilecek metin.</td></tr>
+            <tr><th>2</th><th>[string Kodlama Türü = 'utf-8']</th><td>Varsayılan olarak karakter kodlaması utf-8 ayarlıdır.</td></tr>
+        </table>
+    </p>
+    
+	<div type="code">
+    <kf>echo</kf> Strings::titleCase(<sf>'ZN kod ÇATISINA hoş geldiniz.'</sf>);  <comment>/* Çıktı: Zn Kod Çatısına Hoş Geldiniz. */</comment><br> 
+    </div>
+    
+    <p class="cstfont" id="camelcase">Camel Case Notasyonuna Çevirmek</p>
+    <p><ftype>Strings::camelCase( <kf>string</kf> <vf>$metin</vf> )</ftype></p>
+    <p>camelCase kodlama notasyonuna çevirir.</p>
+    
+    <p>
+    	<table class="cfont">
+        	<tr><th>No</th><th>Parametreler</th><td>Anlamları</td></tr>
+            <tr><th>1</th><th>string Metin</th><td>Çevrilecek metin.</td></tr>
+        </table>
+    </p>
+    
+	<div type="code">
+    <kf>echo</kf> Strings::camelCase(<sf>'ZN kod ÇATISINA hoş geldiniz.'</sf>);  <comment>/* Çıktı: znKodÇatısınaHosGeldiniz. */</comment><br> 
+    </div>
+    
+     <p class="cstfont" id="pascalcase">Pascal Case Notasyonuna Çevirmek</p>
+    <p><ftype>Strings::pascalCase( <kf>string</kf> <vf>$metin</vf> )</ftype></p>
+    <p>pascalCase kodlama notasyonuna çevirir.</p>
+    
+    <p>
+    	<table class="cfont">
+        	<tr><th>No</th><th>Parametreler</th><td>Anlamları</td></tr>
+            <tr><th>1</th><th>string Metin</th><td>Çevrilecek metin.</td></tr>
+        </table>
+    </p>
+    
+	<div type="code">
+    <kf>echo</kf> Strings::pascalCase(<sf>'ZN kod ÇATISINA hoş geldiniz.'</sf>);  <comment>/* Çıktı: ZNKodÇatısınaHoşGeldiniz. */</comment><br> 
+    </div>
+    
+    
+    <p class="cstfont" id="string_search">Metinsel İfadelerde Aramak</p>
+    <p><ftype>Strings::search( <kf>string</kf> <vf>$metin</vf> , <kf>string</kf> <vf>$aranacak_kelime</vf> = <if>0</if>  , [ <kf>string</kf> <vf>$tip</vf> = <if>'str'</if> ] )</ftype></p>
+    <p>Metinsel ifadelerde kırpma işlemi yapmak için kullanılır.</p>
+    
+    <p>
+    	<table class="cfont">
+        	<tr><th>No</th><th>Parametreler</th><td>Anlamları</td></tr>
+            <tr><th>1</th><th>string Metin</th><td>Arama işleminin yapılacağı metin.</td></tr>
+            <tr><th>2</th><th>string Arancak Kelime</th><td>Aranacak ifade.</td></tr>
+            <tr><th>3</th><th>[ string Çıktı Türü ]</th><td>Çıktının türü. Varsayılan aranan metin.</td></tr>
+            <tr><th colspan="3">3 Parametrenin Alabileceği Değerler</th></tr>
+            <tr><th>str veya string</th><td colspan="2">Arama sonucunda veri bulunmuşsa aranan veri döner.</td></tr>
+            <tr><th>pos veya position</th><td colspan="2">Arama sonucunda veri bulunmuşsa aranan verinin başlangıç indeks numarası döner.</td></tr>
+        </table>
+    </p>
+    
+	<div type="code">
+    <kf>echo</kf> Strings::search(<sf>'Zntr kod çatısına hoş geldiniz.'</sf>, <sf>'tr'</sf>);  <comment>/* Çıktı: tr */</comment><br>
+    <kf>echo</kf> Strings::search(<sf>'Zntr kod çatısına hoş geldiniz.'</sf>, <sf>'tr'</sf>, <sf>'pos'</sf>);  <comment>/* Çıktı: 2 */</comment><br>
+    </div>
+    
+    
+    <p class="cstfont" id="string_reshuffle">Metinsel İfadelerde Karakterler Arası Yer Değiştirmek</p>
+    <p><ftype>Strings::reshuffle( <kf>string</kf> <vf>$metin</vf> , <kf>string</kf> <vf>$degisecek_ilk_karakter</vf> , <kf>string</kf> <vf>$degisecek_ikinci_karakter</vf> )</ftype></p>
+    <p>Metinsel ifadelerde istenilen karakter veya kelimeler arasında yer değiştirmek için kullanılır.</p>
+    
+    <p>
+    	<table class="cfont">
+        	<tr><th>No</th><th>Parametreler</th><td>Anlamları</td></tr>
+            <tr><th>1</th><th>string Metin</th><td>Değişiklik işleminin yapılacağı metin.</td></tr>
+            <tr><th>2</th><th>string Değişecek İlk Karakter</th><td>Yer değiştirmesi istenilen karakter.</td></tr>
+            <tr><th>3</th><th>string Değişecek İkinci Karakter</th><td>İlk karakterle yer değiştirmesi istenilen ikinci karakter.</td></tr>
+        </table>
+    </p>
+    
+	<div type="code">
+    <kf>echo</kf> Strings::reshuffle(<sf>'a-b-c+d+e'</sf>, <sf>'-'</sf>, <sf>'+'</sf>);  <comment>/* Çıktı: a+b+c-d-e */</comment><br>
+    <kf>echo</kf> Strings::reshuffle(<sf>'Zntr kod çatısına hoş geldiniz.'</sf>, <sf>'kod'</sf>, <sf>'hoş'</sf>);  <comment>/* Çıktı: Zntr hoş çatısına kod geldiniz. */</comment><br>
+    </div>
+    
+    
+    <p class="cstfont" id="string_recurrent_count">Metinsel İfadelerde Tekrarlanayan Metin Sayısını Hesaplamak</p>
+    <p><ftype>string_recurrentCount( <kf>string</kf> <vf>$metin</vf> , <kf>string</kf> <vf>$tekrarlanan_metin</vf> )</ftype></p>
+    <p>Metinsel ifadelerde tekrar eden metin sayısını öğrenmek için kullanılır.</p>
+    
+    <p>
+    	<table class="cfont">
+        	<tr><th>No</th><th>Parametreler</th><td>Anlamları</td></tr>
+            <tr><th>1</th><th>string Metin</th><td>İşleminin yapılacağı metin.</td></tr>
+            <tr><th>2</th><th>string Tekrarlanan Metin</th><td>Tekrar sayısı öğrenilmek istenen metin.</td></tr>
+        </table>
+    </p>
+    
+	<div type="code">
+    <kf>echo</kf> Strings::recurrentCount(<sf>'Merhaba kullanıcı'</sf>, <sf>'a'</sf>);  <comment>/* Çıktı: 3 */</comment><br>
+    <kf>echo</kf> Strings::recurrentCount(<sf>'Zntr kod çatısına hoş geldiniz.'</sf>, <sf>'kod'</sf>);  <comment>/* Çıktı: 1 */</comment><br>
+    </div>
+    
+    <p class="cstfont" id="string_placement">Metinsel İfadelerde Karakter Yerleştirmek</p>
+    <p><ftype>Strings::placement( <kf>string</kf> <vf>$metin</vf> , <kf>string</kf> <vf>$degistirilecek_metin</vf> , <kf>array</kf> <vf>$yeni_karakterler</vf> )</ftype></p>
+    <p>Bu yöntem <ff>str_replace()</ff> yönteminden farklı olarak değiştirilmek istenen karakter yerine sırası ile hangi karakterlerin geleceğini belirtir. Bununla ilgili aşağıda örnek kod yer almaktadır.</p>
+    
+    <p>
+    	<table class="cfont">
+        	<tr><th>No</th><th>Parametreler</th><td>Anlamları</td></tr>
+            <tr><th>1</th><th>string Metin</th><td>İşleminin yapılacağı metin.</td></tr>
+            <tr><th>2</th><th>string Değiştirilecek Karakter</th><td>Metin içinde hangi karakterin değiştirileceği.</td></tr>
+            <tr><th>3</th><th>array Yeni Karakterler</th><td>Değiştirilecek karakter yerine sırası ile hangi karakterleri yerleştirileceği.</td></tr>
+        </table>
+    </p>
+    
+	<div type="code">
+    <kf>echo</kf> Strings::placement(<sf>'Merhaba kullanıcı'</sf>, <sf>'a'</sf>, <kf>array</kf>(<sf>'1'</sf>, <sf>'2'</sf>, <sf>'3'</sf>));  <comment>/* Çıktı: Merh1b2 kull3nıcı */</comment><br>
+    <kf>echo</kf> Strings::placement(<sf>'Zntr kod çatısına hoş geldiniz.'</sf>, <sf>'kod'</sf>, <kf>array</kf>(<sf>'KOD'</sf>));  <comment>/* Çıktı: Zntr KOD çatısına hoş geldiniz.*/</comment><br>
+    </div>
+ 
+    <p class="cstfont" id="section">Dizgenin Bir Bölümünü Almak</p>
+    <p><ftype>Strings::section( <kf>string</kf> <vf>$metin</vf> , <kf>numeric</kf> <vf>$baslangic</vf> , <kf>numeric</kf> <vf>$karakterUzunlugu</vf> , <kf>string</kf> <vf>$kodlamaTuru</vf> = <sf>'utf-8'</sf>)</ftype></p>
+    <p>Bu yöntem <ff>mb_substr()</ff> yönteminin kullanımı ile aynıdır.</p>
+    
+    <p>
+    	<table class="cfont">
+        	<tr><th>No</th><th>Parametreler</th><td>Anlamları</td></tr>
+            <tr><th>1</th><th>string Metin</th><td>İşleminin yapılacağı metin.</td></tr>
+            <tr><th>2</th><th>numeric Başlangıç</th><td>Metnin kaçıncı indisten itibaren bölünmeye başlayacağı.</td></tr>
+            <tr><th>3</th><th>numeric Karakter Uzunluğu</th><td>Kaç karakter alınacağı. Herhangi bir uzunluk belirtilmezse dizgenin son karakterine kadar olan bölüm alınır.</td></tr>
+            <tr><th>4</th><th>string Kodlama Türü = UTF-8</th><td>Kodlama türünü ayarlamak için kullanılır. Varsayılan:utf-8</td></tr>
+        </table>
+    </p>
+    
+	<div type="code">
+    <kf>echo</kf> Strings::section(<sf>'Merhaba kullanıcı'</sf>, <if>8</if>, <if>9</if>);  <comment>/* Çıktı: kullanıcı */</comment><br>
+    </div>
+    
+    <p class="cstfont" id="recurrentCount">Dizgedeki Tekrarlayan Karakter Sayısını Öğrenmek</p>
+    <p><ftype>Strings::recurrentCount( <kf>string</kf> <vf>$metin</vf> , <kf>string</kf> <vf>$hangiKarakter</vf> )</ftype></p>
+    <p>Biz dizgedeki istenilen karakterin kaç kez tekrar ettiği yani kaç adet bulunduğu bilgisini almak için kullanılır.</p>
+    
+    <p>
+    	<table class="cfont">
+        	<tr><th>No</th><th>Parametreler</th><td>Anlamları</td></tr>
+            <tr><th>1</th><th>string Metin</th><td>İşleminin yapılacağı metin.</td></tr>
+            <tr><th>2</th><th>string Karakter/Karakterler</th><td>Kaç kez geçtiği bilinmek istenen alt dizge.</td></tr>
+        </table>
+    </p>
+    
+	<div type="code">
+    <kf>echo</kf> Strings::recurrentCount(<sf>'Merhaba kullanıcı'</sf>, <sf>'a'</sf>);  <comment>/* Çıktı: 3 */</comment><br>
+    <kf>echo</kf> Strings::recurrentCount(<sf>'Merhaba kullanıcı'</sf>, <sf>'ll'</sf>);  <comment>/* Çıktı: 1 */</comment><br>
+    </div>
+    
+ 	<p class="cstfont" id="replace">Dizgenin Seçilen Yerlerini Değiştirmek</p>
+    <p><ftype>Strings::replace( <kf>string</kf> <vf>$metin</vf> , <kf>string</kf> <vf>$eskiKarakterler</vf> , <kf>string</kf> <vf>$yeniKarakterler</vf> , <kf>boolean</kf> <vf>$harfDuyarliligi</vf> = <kf>true</kf> )</ftype></p>
+    <p>Bu yöntem <ff>str_replace ve str_ireplace()</ff> yönteminin kullanımı ile aynıdır. Tek farklılık parametredeki dizilimdir. Bu yöntemde 1. parametre değişliğin uygulanacağı dizge bilgisidir.</p>
+    
+    <p>
+    	<table class="cfont">
+        	<tr><th>No</th><th>Parametreler</th><td>Anlamları</td></tr>
+            <tr><th>1</th><th>string Metin</th><td>İşleminin yapılacağı metin.</td></tr>
+            <tr><th>2</th><th>string Eski Karakterler<td>Değiştirlemek istenen karakterler.</td></tr>
+            <tr><th>3</th><th>string Yeni Karakterler<td>Eski karakterlerin yerine gelecek yeni karakterler.</td></tr>
+            <tr><th>4</th><th>bool Harf Duyarlılığı = true<td>Büyük - küçük harf duyarlılığının olup olmayacağı. Varsayılan: true</td></tr>
+        </table>
+    </p>
+    
+	<div type="code">
+    <kf>echo</kf> Strings::replace(<sf>'Merhaba kullanıcı'</sf>, <sf>'kullanıcı'</sf>, <sf>'dünya'</sf>);  <comment>/* Çıktı: Merhaba dünya */</comment><br>
+    <kf>echo</kf> Strings::replace(<sf>'Merhaba kullanıcı'</sf>, <sf>'KULLANICI'</sf>, <sf>'dünya'</sf>, <kf>false</kf>);  <comment>/* Çıktı: Merhaba dünya */</comment><br>
+    </div>
+    
+    
+    <p class="cstfont" id="toArray">Dizgeyi Diziye Çevirmek</p>
+    <p><ftype>Strings::toArray( <kf>string</kf> <vf>$metin</vf> , <kf>string</kf> <vf>$ayrac</vf> )</ftype></p>
+    <p>Bu yöntem dizgeyi 2. parametre belirtilmezse boşluk karakterlerine göre diziye çevirir.</p>
+    
+    <p>
+    	<table class="cfont">
+        	<tr><th>No</th><th>Parametreler</th><td>Anlamları</td></tr>
+            <tr><th>1</th><th>string Metin</th><td>İşleminin yapılacağı metin.</td></tr>
+            <tr><th>2</th><th>string Ayraç<td>Dizgenin hangi karakterden itibaren diziye çevireleceği. Varsayılan: boşluk karakteridir.</td></tr>
+        </table>
+    </p>
+    
+	<div type="code">
+    <kf>output</kf>( Strings::toArray(<sf>'Merhaba kullanıcı'</sf>) );  <comment>/* Çıktı: array('Merhaba', 'kullanıcı') */</comment><br>
+    <kf>output</kf>( Strings::toArray(<sf>'Merhaba-kullanıcı'</sf>, <sf>'-'</sf>) );  <comment>/* Çıktı: array('Merhaba', 'kullanıcı') */</comment><br>
+    </div>
+    
+    <p class="cstfont" id="toChar">Ascii Karakter Numarasını Karaktere Çevirmek</p>
+    <p><ftype>Strings::toChar( <kf>numeric</kf> <vf>$metin</vf>)</ftype></p>
+    <p>Bu yöntem <ff>chr()</ff> yönteminin kullanımı ile aynıdır.</p>
+    
+    <p>
+    	<table class="cfont">
+        	<tr><th>No</th><th>Parametreler</th><td>Anlamları</td></tr>
+            <tr><th>1</th><th>numeric Ascii Kodu</th><td>Karaktere çevrilecek ascii kodu.</td></tr>
+        </table>
+    </p>
+    
+	<div type="code">
+    <kf>echo</kf> Strings::toChar(<if>67</if>);  <comment>/* Çıktı: C */</comment><br>
+    </div>
+    
+    <p class="cstfont" id="toAscii">Karakteri Ascii Karakter Numarasına Çevirmek</p>
+    <p><ftype>Strings::toAscii( <kf>string</kf> <vf>$karakter</vf>)</ftype></p>
+    <p>Bu yöntem <ff>ord()</ff> yönteminin kullanımı ile aynıdır.</p>
+    
+    <p>
+    	<table class="cfont">
+        	<tr><th>No</th><th>Parametreler</th><td>Anlamları</td></tr>
+            <tr><th>1</th><th>string Karakter</th><td>Parametre olarak girilen karakteri ascii koduna çevirir.</td></tr>
+        </table>
+    </p>
+    
+	<div type="code">
+    <kf>echo</kf> Strings::toAscii(<sf>'C'</sf>);  <comment>/* Çıktı: 67 */</comment><br>
+    </div>
+    
+    <p class="cstfont" id="addSlashes">Özel Karakterlerin Önüne Ters Bölü(\) Koymak</p>
+    <p><ftype>Strings::addSlashes( <kf>string</kf> <vf>$metin</vf> , <kf>string</kf> <vf>$ozelKarakterler</vf> )</ftype></p>
+    <p>Bu yöntem <ff>addslashes(), addcslashes()</ff> yöntemlerini bileşkesi olarak oluşturulmuştur.</p>
+    
+    <p>
+    	<table class="cfont">
+        	<tr><th>No</th><th>Parametreler</th><td>Anlamları</td></tr>
+            <tr><th>1</th><th>string Metin</th><td>İşleminin yapılacağı metin.</td></tr>
+            <tr><th>2</th><th>string ozelKarakterler<td>Farklı hangi karakterlerin önüne ters bölü işareti konulması isteniyorsa onlar belirtilir.</td></tr>
+        </table>
+    </p>
+    
+	<div type="code">
+    <kf>echo</kf> Strings::addSlashes(<sf>"Merhaba 'kullanıcı'"</sf>);  <comment>/* Çıktı: Merhaba \'kullanıcı\' */</comment><br>
+    </div>
+    
+    
+    <p class="cstfont" id="removeSlashes">Ters Bölü(\) İşaretini Kaldırmak/p>
+    <p><ftype>Strings::removeSlashes( <kf>string</kf> <vf>$metin</vf> )</ftype></p>
+    <p>Bu yöntem <ff>stripslashes(), stripcslashes()</ff> yöntemlerini bileşkesi olarak oluşturulmuştur.</p>
+    
+    <p>
+    	<table class="cfont">
+        	<tr><th>No</th><th>Parametreler</th><td>Anlamları</td></tr>
+            <tr><th>1</th><th>string Metin</th><td>İşleminin yapılacağı metin.</td></tr>
+        </table>
+    </p>
+    
+	<div type="code">
+    <kf>echo</kf> Strings::removeSlashes(<sf>"Merhaba \'kullanıcı\'"</sf>);  <comment>/* Çıktı: Merhaba 'kullanıcı' */</comment><br>
+    </div>
+    
+    <p class="cstfont" id="length">Dizgenin Karakter Sayısını Öğrenmek</p>
+    <p><ftype>Strings::length( <kf>string</kf> <vf>$metin</vf> )</ftype></p>
+    <p>Bu yöntem <ff>mb_strlen()</ff> yönteminin kullanımı ile aynıdır.</p>
+    
+    <p>
+    	<table class="cfont">
+        	<tr><th>No</th><th>Parametreler</th><td>Anlamları</td></tr>
+            <tr><th>1</th><th>string Metin</th><td>İşleminin yapılacağı metin.</td></tr>
+        </table>
+    </p>
+    
+	<div type="code">
+    <kf>echo</kf> Strings::length(<sf>'Merhaba kullanıcı'</sf>);  <comment>/* Çıktı: 17 */</comment><br>
+    </div>
+    
+    
+    <p class="cstfont" id="encode">Dizgeyi Tek Yönlü Şifrelemek</p>
+    <p><ftype>Strings::encode( <kf>string</kf> <vf>$metin</vf> , <kf>numeric</kf> <vf>$tekrarSayisi</vf> = <if>1</if> )</ftype></p>
+    <p>Bu yöntem <ff>crypt()</ff> yönteminin kullanımı ile aynıdır.</p>
+    
+    <p>
+    	<table class="cfont">
+        	<tr><th>No</th><th>Parametreler</th><td>Anlamları</td></tr>
+            <tr><th>1</th><th>string Metin</th><td>İşleminin yapılacağı metin.</td></tr>
+        </table>
+    </p>
+    
+	<div type="code">
+    <kf>echo</kf> Strings::encode(<sf>'Merhaba kullanıcı'</sf>);  <comment>/* Çıktı: seyq6SBFtUqPI */</comment><br>
+    </div>
+    
+    
+    <p class="cstfont" id="repeat">Dizgeyi Yinelemek</p>
+    <p><ftype>Strings::repeat( <kf>string</kf> <vf>$metin</vf> , <kf>numeric</kf> <vf>$tekrarSayisi</vf> = <if>1</if> )</ftype></p>
+    <p>Bu yöntem <ff>str_repeat()</ff> yönteminin kullanımı ile aynıdır.</p>
+    
+    <p>
+    	<table class="cfont">
+        	<tr><th>No</th><th>Parametreler</th><td>Anlamları</td></tr>
+            <tr><th>1</th><th>string Metin</th><td>İşleminin yapılacağı metin.</td></tr>
+            <tr><th>2</th><th>numeric Tekrar Sayısı = 1</th><td>Belirtilen dizgenin kaç kez tekrar edeceği.</td></tr>
+        </table>
+    </p>
+    
+	<div type="code">
+    <kf>echo</kf> Strings::repeat(<sf>'a'</sf>, <if>2</if>);  <comment>/* Çıktı: aa */</comment><br>
+    </div>
+    
+    <p class="cstfont" id="translationTable">Dönüşüm Tablosunu Görmek</p>
+    <p><ftype>Strings::translationTable( <kf>string</kf> <vf>$tablo</vf> = <sf>'specialchars'</sf> , <kf>string</kf> <vf>$tirnakTuru</vf> = <sf>'combat'</sf>  )</ftype></p>
+    <p>Bu yöntem <ff>get_html_translation_table()</ff> yönteminin kullanımı ile aynıdır.</p>
+    
+    <p>
+    	<table class="cfont">
+        	<tr><th>No</th><th>Parametreler</th><td>Anlamları</td></tr>
+            <tr><th>1</th><th>string Tablo</th><td>Hangi html türünün çıktılanacağı.</td></tr>
+            <tr><th>2</th><th>numeric Tırnak Türü</th><td>Hangi tırnak türünün dönüştürüleceği.</td></tr>
+        </table>
+    </p>
+    
+	<div type="code">
+    <kf>output</kf>( Strings::translationTable() );  <comment>/* Çıktı: array() */</comment><br>
+    </div>
+   
+	    
+    <div type="prev-next">
+    	<div type="prev-btn"><a href="variabletypes_filters.html">Önceki</a></div><div type="next-btn"><a href="variabletypes_stack.html">Sonraki</a></div>
+    </div>
+ 
+</body>
+</html>              

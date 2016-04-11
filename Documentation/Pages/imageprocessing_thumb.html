@@ -1,0 +1,126 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>ZN KOD ÇATISI</title>
+<link type="text/css" rel="stylesheet" href="../Styles/Structure.css" />
+<script src="../Scripts/Jquery.js"></script>
+<script src="../Scripts/Structure.js"></script>
+</head>
+
+<body>
+    <div id="content-document"><a href="#">Döküman</a> » <a href="imageprocessing.html">Image Processing</a> » Thumb(Resim Düzenleme) Kütüphanesi</div> 
+    <p class="ctfont">Thumb(Resim Düzenleme) Kütüphanesi</p>
+    <p>Resimler üzerinde kesme, kırpma, küçültme gibi işlemler yapabilmek için oluşturulmuştur. <strong>Image</strong> kütüphanesinin kullanımı ile yaptığı işlem aynıdır. Sadece yöntemsel açıdan farklılıklar vardır.</p>
+    <ul><li><a href="#" class="infont">Thumb Kütüphanesi ve Yöntemleri</a><br><br>
+        <ul>
+            <li><a href="#others">Thumb Kütüphanesi Yöntemleri</b></a></li> 
+            <li><a href="#get_prosize">Resmin Orantılı Ölçüsünü Almak</b></a></li>         
+        </ul>
+    </li></ul>
+
+    <p class="cstfont" id="others">Thumb Kütüphanesi Yöntemleri</p>
+    <p>Thumb kütüphanesine ait yöntemler aşağıdaki tabloda listelenmiştir.</p>
+    
+  	<p>
+    <table class="cfont">
+    	<tr><th width="30%">Thumb Oluşturma Yöntemleri</th><td>Anlamları</td></tr>
+        
+        <tr>
+        	<td><cf>path( <vf>$path</vf> )</cf></td>
+            <td>
+            Hangi resim üzerinde düzenleme yapılacaksa onun yolu belirtilir. Örnek: ->path('Application/Resources/Uploads/resim.jpg')
+            </td>
+        </tr>
+        
+        <tr>
+        	<td><cf>quality( <vf>$quality</vf> )</cf></td>
+            <td>
+            Düzenleme yapılan resmin kalitesidir. Örnek: ->quality(80)
+            </td>
+        </tr>
+        
+        <tr>
+        	<td><cf>crop( <vf>$x</vf>, <vf>$y</vf> )</cf></td>
+            <td>
+            Resmin hangi koordinatlar kırpılmaya başlayacağı bilgisidir. X yatayda, Y ise dikeyde kaçıncı pikselden itibaren kırpılmaya başlanacağını belirtir.  Örnek: ->crop(100, 100)
+            </td>
+        </tr>
+        
+        <tr>
+        	<td><cf>size( <vf>$width</vf>, <vf>$height</vf> )</cf></td>
+            <td>
+            Resmin boyutunu küçültmek için kullanılır.  Örnek: ->size(400, 200)
+            </td>
+        </tr>
+      
+      	 <tr>
+        	<td><cf>resize( <vf>$width</vf>, <vf>$height</vf> )</cf></td>
+            <td>
+            Resmi <strong>yeniden boyutlandırmak</strong> için kullanılır. Bu yöntemin <strong>size()</strong> yönteminden farkı boyutlarında da küçülme olmasıdır. Örnek: ->resize(400, 200)
+            </td>
+        </tr>
+        
+         <tr>
+        	<td><cf>prosize( <vf>$width</vf>, <vf>$height</vf> )</cf></td>
+            <td>
+            Resimde <strong>ortantılı boyutlandırma</strong> yapmak için kullanılır. Bu yöntemde genelde tek parametre kullanılır. Diğer parametre bu parametrenin oranına göre kendini ayarlar. Örnek: ->prosize(400)
+            </td>
+        </tr>
+        
+    </table>
+    </p>
+    
+    <p>Yukarıdaki yöntemlerin kullanımına yönelik örnekler aşağıda verilmiştir.</p>
+    
+    <p>
+    <div type="code">
+<pre>Thumb::path(<sf>'resim.jpg'</sf>) <comment> // İşlem görecek resmin yolu belirtiliyor.</comment>
+     ->crop(<if>100</if>, <if>200</if>) <comment> // Kaçıncı pikselden kırpılmaya başlanacağı belirtiliyor.</comment>
+     ->resize(<if>300</if>, <if>200</if>) <comment> // Genişliği 300, yüksekliği 200 olarak yeniden boyutlandırılıyor.</comment>
+     ->create();</pre>
+    </div>
+    </p>
+    
+    <p class="cstfont" id="get_prosize">Resmin Orantılı Ölçüsünü Almak</p>
+    <p>Bu yöntem sayesinde yolu belirtilen bir resmin uzunluk değerlerinden birine göre diğerinin orantılı ölçüsü alınabilir.</p>
+   
+   <p>
+    <table class="cfont">
+    	<tr><th width="30%">Thumb Oluşturma Yöntemleri</th><td>Anlamları</td></tr>
+        
+        <tr>
+        	<td><cf>path( <vf>$path</vf> )</cf></td>
+            <td>
+            Resmin yolunu belirtmek için kullanılır. Örnek: ->path('Application/Resources/Uploads/resim.jpg')
+            </td>
+        </tr>
+        
+        <tr>
+        	<td><cf>getProsize( <vf>$width</vf>, <vf>$height</vf> )</cf></td>
+            <td>
+            Resmin genişlik veya yükseklik değerlerinden biri kullanılarak diğer uzunluğu orjinal resimdeki uzunluk oranlarına göre orantısı alınır. Örnek: ->getProsize(80) // Genişliği 80 piksel olarak belirnen nesnenin <strong>yükseklik</strong> ölçüşü öğrenilmek isteniyor. Çıktısı bir <strong>object</strong> veri türünde değer döndürür.
+            </td>
+        </tr>
+ 
+        
+    </table>
+    </p>
+    
+    <p>
+    <div type="code">
+<pre><comment> // Resmin boyutları 1000 x 500 olsun.</comment>
+<vf>$resim</vf> = Thumb::path(<sf>'resim.jpg'</sf>) <comment> // Ölçüsü alınacak resmin yolu belirtiliyor.</comment>
+              ->getProsize(<if>100</if>); <comment> // Resmin orantılı boyutları alınıyor.</comment>
+                    
+<kf>echo</kf> <vf>$resim</vf>->height;  <comment> // 50 Genişlik değerine göre orantılanmış yükseklik ölçüsüdür.</comment>
+    </div>
+    </p>
+
+    
+    <div type="prev-next">
+    	<div type="prev-btn"><a href="imageprocessing_image.html">Önceki</a></div><div type="next-btn"><a href="imageprocessing_gd.html">Sonraki</a></div>
+    </div>
+ 
+</body>
+</html>              

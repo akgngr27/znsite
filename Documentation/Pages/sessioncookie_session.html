@@ -1,0 +1,213 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>ZN KOD ÇATISI</title>
+<link type="text/css" rel="stylesheet" href="../Styles/Structure.css" />
+<script src="../Scripts/Jquery.js"></script>
+<script src="../Scripts/Structure.js"></script>
+</head>
+
+<body>
+    <div id="content-document"><a href="#">Döküman</a> » <a href="sessioncookie.html">Session Cookie</a> » Session(Oturum) Kütüphanesi</div> 
+    <p class="ctfont">Session(Oturum) Kütüphanesi</p>
+    <p>PHP session işlemlerini daha pratik, kullanışlı ve güvenli halete getiren sınıftır.</p>
+    <ul><li><a href="#" class="infont">Session(Oturum) Kütüphanesi ve Yöntemleri</a><br><br>
+        <ul>  
+        	<li><a href="#sess_insert">Oturum Verisi Oluşturmak » <b>Session::insert()</b></a></li>
+            <li><a href="#sess_select">Oluşturulan Oturumları Seçmek » <b>Session::select()</b></a></li>
+            <li><a href="#sess_select_all">Tüm Oturumları Seçmek » <b>Session::selectAll()</b></a></li>
+            <li><a href="#sess_delete">Oluşturulan Oturumu Silmek » <b>Session::delete()</b></a></li>
+            <li><a href="#sess_delete_all">Tüm Oturumları Silmek » <b>Session::deleteAll()</b></a></li>
+            <li><a href="#sess_encode">Oturum Verilerini Şifrelemek » <b>->encode() ve ->decode()</b></a></li>
+            <li><a href="#sess_error">Oturumların Kullanımı Esnasında Hata Tespiti Yapmak » <b>Session::error()</b></a></li>
+        </ul>
+    </li></ul>
+    
+    
+   	<p class="cstfont" id="sess_insert">Oturum Verisi Oluşturmak</p>
+    <p><ftype>Session::insert( <kf>string</kf> <vf>$oturum_adi</vf> , <kf>string</kf> <vf>$oturum_degeri</vf> )</ftype></p>
+    <p>Oturum oluşturmak için kullanılan bu yöntemin 2 adet parametresi vardır. Oturum Adı, Oturum Değeri</p> 
+    <p>
+    	<table class="cfont">
+        	<tr><th>Opsiyonel Kullanım</th><th>Parametre</th><td>Anlamları</td></tr>
+            <tr><td>->name()</td><th>1. Parametre = Oturum Adı</th><td>Oluşturulacak oturumun adı.</td></tr>
+			<tr><td>->value()</td><th>2. Parametre = Oturum Değeri</th><td>Oluşturulacak oturumun değeri.</td></tr>      
+        </table>
+    </p>
+    
+    <p>
+    	<div type="code">
+<pre>
+<strong>Session::insert</strong>(<sf>'yeni_oturum'</sf>, <sf>'YENİ OTURUM'</sf>); <comment> // yeni_oturum adında oturum oluşturmuş olduk değerinide YENİ OTURUM olarak belirledik.</comment>
+</pre>
+        </div>
+    </p>
+    
+    	
+    
+    
+    
+    
+    <p class="cstfont" id="sess_select">Oluşturulan Oturumları Seçmek</p>
+    <p><ftype>Session::select( <kf>string</kf> <vf>$oturum_adi</vf> )</ftype></p>
+    <p>Oluşturulan oturumları seçmek için kullanılan bu yöntemin tek adet parametresi vardır. Oturum Adı</p> 
+    <p>
+    	<table class="cfont">
+        	<tr><th>Opsiyonel Kullanım</th><th>Parametre</th><td>Anlamları</td></tr>
+            <tr><td>->name()</td><th>1. Parametre = Oturum Adı</th><td>Seçilecek oturumun adı.</td></tr>     
+        </table>
+    </p>
+    
+    <p>
+    	<div type="code"><kf>echo</kf> <strong>Session::select</strong>(<sf>'yeni_oturum'</sf>); <comment> // Çıktı: YENİ OTURUM</comment></div>
+    </p>
+
+    
+    <p class="cstfont" id="sess_select_all">Tüm Oturumları Seçmek</p>
+    <p><ftype>Session::selectAll()</ftype></p>
+    <p>Oluşturulan tüm oturumları seçmek için kullanılan bu yöntemin tek parametresi yoktur.</p> 
+    
+    <p>
+    	<div type="code">
+<pre>
+Session::insert(<sf>'kullanici_adi'</sf>, <sf>'zntr'</sf>);
+Session::insert(<sf>'sifre'</sf>, <sf>'xxxx'</sf>);
+
+<ff>var_dump</ff>(<strong>Session::selectAll</strong>());
+<comment>
+/*
+array (size=3)
+  '8bc655a0e589572028e29de06f84faa0' => string 'YENİ OTURUM' (length=12)
+  'f239b86cb72a2320c2fb321935924dc5' => string 'zntr' (length=4)
+  '190731a685edd4b09c27bd25664ce34e' => string 'xxxx' (length=4)
+*/
+</comment>
+</pre>
+        </div>
+    </p>
+    
+    <p>Yukarıdaki kodda dikkat ederseniz oturumların anahtar ifadeler şifrelenmiştir bu güvenlik için yapılmış bir uygulamadır siz isterseniz şifrelemeyi iptal edebilirsiniz. Bu ayarı değiştirmek için <strong>Config/Session.php</strong> dosyasından <cf><vf>$config</vf>[<sf>'Session'</sf>][<sf>'encode'</sf>] = <kf>true</kf></cf> ibaresindeki <b>true</b> değerini <strong>false</strong> yapabilirsiniz. </p>
+    
+    <p>Şifrelemeyi false olarak ayarladıktan sonra oluşturulan oturum bilgileri aşağıdaki gibi görünecektir.</p>
+    <p>
+    	<div type="code">
+<pre>
+Session::insert(<sf>'kullanici_adi'</sf>, <sf>'zntr'</sf>);
+Session::insert(<sf>'sifre'</sf>, <sf>'xxxx'</sf>);
+
+<ff>var_dump</ff>(<strong>Session::select_all</strong>());
+<comment>
+/*
+array (size=3)
+  'yeni_oturum' => string 'YENİ OTURUM' (length=12)
+  'kullanici_adi' => string 'zntr' (length=4)
+  'sifre' => string 'xxxx' (length=4)
+*/
+</comment>
+</pre>
+        </div>
+    </p>
+    
+    
+    <p class="cstfont" id="sess_delete">Oluşturulan Oturumu Silmek</p>
+    <p><ftype>Session::delete( <kf>string</kf> <vf>$oturum_adi</vf> )</ftype></p>
+    <p>Olutuşturulan oturumları silmek için kullanılan bu yöntemin 1 adet parametresi vardır. Oturum Adı.</p> 
+    <p>
+    	<table class="cfont">
+        	<tr><th>Opsiyonel Kullanım</th><th>Parametre</th><td>Anlamları</td></tr>
+            <tr><td>->name()</td><th>1. Parametre = Oturum Adı</th><td>Silinecek oturumun adı.</td></tr>  
+        </table>
+    </p>
+
+    <p>
+    	<div type="code">
+<pre>
+<strong>Session::delete</strong>(<sf>'yeni_oturum'</sf>);
+<kf>echo</kf> Session::select(<sf>'yeni_oturum'</sf>); <comment> // Çıktı: Boş</comment>
+</pre>
+		</div>
+    </p>
+    
+    
+    <p class="cstfont" id="sess_delete_all">Tüm Oturumları Silmek</p>
+    <p><ftype>Session::deleteAll()</ftype></p>
+    <p>Olutuşturulan tüm oturumları silmek için kullanılan bu yöntemin parametresi yoktur.</p> 
+  
+    <p>
+    	<div type="code">
+<pre>
+<strong>Session::deleteAll</strong>();
+<ff>var_dump</ff>(Session::selectAll()); 
+<comment>
+/*
+array (size=0)
+  empty
+*/
+</comment>
+</pre>
+		</div>
+    </p>
+    
+    <p class="cstfont" id="sess_encode">Oturum Verilerini Şifrelemek</p>
+    <p><ftype>->encode( <kf>string</kf> <vf>$anahtarIcinHashAlgoritmasi</vf> , <kf>string</kf> <vf>$degerIcinHashAlgoritmasi</vf> )</ftype></p>
+    <p><ftype>->decode( <kf>string</kf> <vf>$anahtarIcinHashAlgoritmasi</vf> )</ftype></p>
+    <p>Oturum oluştururken hem değeri tutacak anahtarı hemde değerin kendsini şifrelemek için kullanabilirsiniz. Burada dikkat edilmesi gereken nokta anahtar şifrelenirse çözümlenmesi sağlanabilirken değerin çözümü sağlanamamktadır. Ön tanımlı olarak <strong>Config/Services.php</strong> dosyasında yer alan session ayarları içinde ön tanımlı olarak <strong>anahtarın şifrelenmesi için kullanılan encode</strong> ayarı <strong>md5</strong> olarak ayarlıdır.</p> 
+    <p>
+    	<table class="cfont">
+        	<tr><th colspan="2">Encode</th></tr>
+        	<tr><th>Parametre</th><td>Anlamları</td></tr>
+            <tr><th>1. Parametre = Anahtar Hash Algoritması</th><td>Oturum değerini tutacak anahtarın şifrelenmesi için kullanılır. <strong>Boş bırakılması halinde</strong> hiç bir şifreleme yapmaz.</td></tr>
+			<tr><th>2. Parametre = Değer Hash Algoritması</th><td>Oturum değerini şifrelemek için kullanılır. <strong>Boş bırakılması halinde</strong> hiç bir şifreleme yapmaz.</td></tr>      
+        </table>
+    </p>
+    
+     <p>
+    	<table class="cfont">
+        	<tr><th colspan="2">Decode</th></tr>
+        	<tr><th>Parametre</th><td>Anlamları</td></tr>
+            <tr><th>1. Parametre = Anahtar Hash Algoritması</th><td>Şfrelenen anahtarın kullanılabilmesi için kullanılır.</td></tr>
+        </table>
+    </p>
+    
+    <p>
+    	<div type="code">
+<pre>
+<strong>Session::encode(<sf>'md5'</sf>)->insert</strong>(<sf>'yeni_oturum'</sf>, <sf>'YENİ OTURUM'</sf>); <comment> // Şu anda sadece yeni_oturum anahtarı md5 ile şifrelenmiştir.</comment>
+<strong>Session::encode(<sf>'sha1'</sf>)->insert</strong>(<sf>'yeni_oturum'</sf>, <sf>'YENİ OTURUM'</sf>); <comment> // Şu anda sadece yeni_oturum anahtarı sha1 ile şifrelenmiştir.</comment>
+
+<kf>echo</kf> Session::decode(<sf>'md5'</sf>)->select(<sf>'yeni_oturum'</sf>);
+<kf>echo</kf> Session::decode(<sf>'sha1'</sf>)->select(<sf>'yeni_oturum'</sf>);
+</pre>
+        </div>
+    </p>
+    
+    
+    <p>İstenirse oturumun değeride şifrelenebilir. Ancak bu kullanımda verinin çözümlenmesi mümkün değildir.</p>
+     <p>
+    	<div type="code">
+<pre>
+<strong>Session::encode(<sf>'md5'</sf>, <sf>'sha1'</sf>)->insert</strong>(<sf>'yeni_oturum'</sf>, <sf>'YENİ OTURUM'</sf>); <comment> // Anahtar md5 ile değer sha1 ile şifrelenmiştir.</comment>
+
+<kf>echo</kf> Session::decode(<sf>'md5'</sf>)->select(<sf>'yeni_oturum'</sf>);
+</pre>
+        </div>
+    </p>
+    
+    <p class="cstfont" id="sess_error">Oturumların Kullanımı Esnasında Hata Tespiti Yapmak</p>
+    <p><ftype>Session::error()</ftype></p></ftype></p>
+    <p>Outurum kullanımı esnasında oluşan hataları tespit etmek için kullanılır. Hata yok ise false var ise hata değeri dönecektir.</p>
+    
+    <div type="code">
+    <pre>
+<kf>echo</kf> Session::error(); <comment>// Hata var ise hata değeri döndürecektir. </comment>
+	</pre>
+    </div>
+    
+  
+    <div type="prev-next">
+    	<div type="prev-btn"><a href="sessioncookie.html">Önceki</a></div><div type="next-btn"><a href="sessioncookie_cookie.html">Sonraki</a></div>
+    </div>
+ 
+</body>
+</html>              

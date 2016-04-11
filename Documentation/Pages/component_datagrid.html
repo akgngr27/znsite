@@ -1,0 +1,165 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>ZN KOD ÇATISI</title>
+<link type="text/css" rel="stylesheet" href="../Styles/Structure.css" />
+<script src="../Scripts/Jquery.js"></script>
+<script src="../Scripts/Structure.js"></script>
+</head>
+
+<body>
+    <div id="content-document"><a href="#">Döküman</a> » <a href="components.html">Bileşenler</a> » DataGrid(Veri Tablosu) Kütüphanesi</div> 
+    <p class="ctfont">DataGrid(Veri Tablosu) Kütüphanesi</p>
+    <p>Veritabanı tablolarına ait verileri listelemek, veriler üzerinde silme, ekleme ve düzenleme işlemleri gerçekleştirmek için oluşturulmuştur. Bu işlemlerden<strong> <strong>güncelleme</strong> ve <strong>ekleme</strong> işlemleri </strong>Tekil yani ilişkisiz tablolar için geçerlidir. <strong>Görüntüleme</strong> ve <strong>silme</strong> işlemi için ilişkisel yöntemler kullanılabilir.</p>
+    <p>
+    	<table class="cfont" width="100%">
+        	<tr><th colspan="2">DataGrid(Veri Tablosu) Kütüphanesi ve Yöntemleri</th></tr>
+            <tr><th colspan="2"><a href="#others">DataGrid(Veri Tablosu) Kütüphanesi ve Yöntemleri</b></a></td></tr>
+        </table>
+    </p>
+
+    <p class="cstfont" id="others">DataGrid Kütüphanesi Yöntemleri</p>
+    <p>Veri tablosunu oluşturmak için bazı yöntemlerden yararlanılır.</p>
+    
+  	<p>
+    <table class="cfont">
+    	<tr><th width="30%">DataGrid Kütüphanesi Yöntemleri</th><td>Anlamları</td></tr>
+        
+        <tr>
+        	<td><cf>table(string <vf>$tabloAdi</vf>)</cf></td>
+            <td>
+           	Hangi tablonun verileri üzerinden çalışılacaksa o tablonun isim bilgisidir.
+            </td>
+        </tr>
+        
+        <tr>
+        	<td><cf>processColumn(string [<vf>$sutun</vf> = <sf>'id'</sf>], boolean [<vf>$duzenlenebilir</vf> = <kf>false</kf>])</cf></td>
+            <td>
+            Ekleme, silme ve güncelleme işlemlerinin hangi sütuna göre yapılacağı belirtilir. Bu değer ayarlanmaz ise varsayılan olarak id değeri kabul edilir. 2. parametre ise bu sütunun da düzenlenebilir düzenlenemeceğin belirlenmesi için kullanılır. Varsayılan olarak düzenlemeye kapalıdır. Bu parametre <strong>true</strong> olarak ayarlanırsa düzenlenebilir hale gelir.
+            </td>
+        </tr>
+        
+        <tr>
+        	<td><cf>limit(numeric [<vf>$limit</vf> = <if>20</if>])</cf></td>
+            <td>
+            Tek bir sayfada listelenmesi istenen kayıt miktarını ayarlamak için kullanılır. Bu değer ayarlanmaz ise varsayılan olarak 20 değeri kabul edilir.
+            </td>
+        </tr>
+
+                
+        <tr>
+        	<td><cf>columns([array <vf>$sutunlar</vf>])</cf></td>
+            <td>
+            Grid'de hangi sütunların görüntüleneceğini belirtmek için kullanılır. Bu yöntem kullanılmaz ise tabloya ait tüm sütunlar Grid'de görüntülenir. Bu yöntemle aynı zamanda gösterilecek sütunlara ilişkin takma ad, Form nesnelerine ait input türleride ayarlanır.
+            <table>
+                <tr><th>Ayarlanabilir Seçenekler</th><th>Anlamları</th></tr>
+                <tr><th>alias</td><td>Takma isim</td></tr>
+                <tr><th>title</td><td>Sütun İsimleri</td></tr>
+                <tr><th>input</th><td>Form input türü</td></tr>
+            </table>
+            
+            </td>
+        </tr>
+        
+        <tr>
+        	<td><cf>where(<kf>array</kf>(<vf>$kosul</vf>, <vf>$deger</vf>, <vf>$baglac</vf>) ... )</cf></td>
+            <td>
+            Where koşulunu oluşturmak için kullanılır. Sıralı dizi parametreleri alır. Birden fazla where yapısı kullanmak için parametre sayısı artırılabilir.
+          	
+            </td>
+        </tr>
+        
+        <tr>
+        	<td><cf>orderBy([string <vf>$sutun</vf>], [string <vf>$tur</vf> = DESC])</cf></td>
+            <td>
+           Ön tanımlı sıralama oluşturmak için kullanılır. Aksi halde zaten grid'de sütun isimlerine tıklandığında a-z, z-a sıralama yapmaktadır.
+          	
+            </td>
+        </tr>
+
+		<tr>
+        	<td><cf>groupBy([string <vf>$sutun</vf>])</cf></td>
+            <td>
+          Gruplama yapmak için kullanılır.
+          	
+            </td>
+        </tr>
+        
+         <tr>
+        	<td><cf>joins(array(<vf>$tabloAdiveSutun</vf>, string <vf>$esasTabloSutun</vf> ... ))</cf></td>
+            <td>
+           	Esas tablo ile birleştirmek yapmak için kullanılır. 1 parametre Birleştirilecek diğer tabloya adit tablo adı ve sütun bilgisi içerir. Örnek: tablo.id = id. Birden fazla tabloyu ilişkilendirmek için diziye birleştirme değerleri eklenerek kullanılabilir. Ancak birleştirme işlemi esas tabloya göre yapılmaktadır. Join yöntemi columns() yönteminin kullanılmasını gerektirir. Aynı isimli sütun isimlerinin çakışmaması için alias yani takma isimlerden yararlanılır.
+            </td>
+        </tr>
+      
+        <tr>
+        	<td><cf>create()</cf></td>
+            <td>
+           	DataGrid kodu oluşturma yöntemidir. En son bu yöntem kullanılarak DataGrid'in oluşturulması sağlanır.
+            </td>
+        </tr>
+   
+    </table>
+    </p>
+    
+    <p>Yukarıdaki yöntemlerin kullanımına yönelik örnekler aşağıda verilmiştir.</p>
+    
+    <p>
+    <div type="code">
+<pre>
+<comment>// Verileri listelenecek tablo seçiliyor.</comment>
+<kf>echo</kf> DataGrid::table(<sf>'tablo'</sf>)
+       <comment>// İşlemin yapılacağı sütun seçiliyor.</comment>
+       <comment>// Kullanımı zorunlu değildir. Varsayılan: id</comment>
+       ->processColumn(<sf>'dataId'</sf>) 
+       <comment>// Tek bir sayfada görüntülenecek kayıt sayısı belirtiliyor.</comment>
+       <comment>// Kullanımı zorunlu değildir. Varsayılan: 20</comment>
+       ->limit(<if>10</if>) 
+       <comment>// Tabloda görüntülenmesi istenilen sütun isimleri belirtiliyor.</comment>
+       <comment>// Kullanımı zorunlu değildir.</comment>
+       ->columns(<kf>array</kf>
+       (
+           <sf>'dataId'</sf>  => <kf>array</kf>(<sf>'alias'</sf> => <sf>'adminDataId'</sf>, <sf>'title'</sf> => <sf>'Admin ID'</sf>) ,
+           <sf>'name'</sf>    => <kf>array</kf>(<sf>'alias'</sf> => <sf>'adminName'</sf>, <sf>'title'</sf> => <sf>'Admin Name'</sf>),
+           <sf>'address'</sf> => <kf>array</kf>(<sf>'alias'</sf> => <sf>'adminAddress'</sf>, <sf>'title'</sf> => <sf>'Admin Address'</sf>, <sf>'input'</sf> => <sf>'textarea'</sf>)
+       )) 
+       ->create();</pre>
+    </div>
+    </p>
+    
+    <p>İlişkisel tablolar kullanılmak isternirse bazı kuralların dikkate alınarak ilişki kurulması gerekmektedir. Join işlemleri soldan birleştirme olacak şekilde yapılmaktadır. Bu nedenle birleştirme yapılırken bu kriterlerin dikkate alınması gerekmektedir. Şimdi aşağıdaki örnek üzerinden nasıl kullanılacağı noktasında bilgi verelim.</p>
+   	
+     <p>
+    <div type="code">
+<pre>
+<comment>// FROM deyiminin karşılığı olan esas tablo ismi.</comment>
+<kf>echo</kf> DataGrid::table(<sf>'uyeler'</sf>)
+  		<comment>// Tek bir sayfada görüntülenecek kayıt sayısı belirtiliyor.</comment>
+       ->limit(<if>10</if>) 
+       <comment>// Dizi içindeki anahtar birleştirilecek tablo ve o tabloya ait sütun bilgisi içerir.</comment>
+       <comment>// Dizi içindeki değer ise birleştirlecek esas tablonun sütun bilgisini içerir.</comment>
+       <comment>// Aşağıdaki kullanımın karşılığı: uyeler_adres.uye_id = uyeler.id.</comment>
+       ->joins(<kf>array</kf>(<sf>'uyeler_adres.uye_id'</sf> => <sf>'id'</sf>))
+       <comment>// Gridde hangi sütunların yer alacağı belirtiliyor.</comment> 
+       ->columns(<kf>array</kf>
+       (
+           <sf>'uyeler.id'</sf>  => <kf>array</kf>(<sf>'alias'</sf> => <sf><strong>'uyelerId'</strong></sf>, <sf>'title'</sf> => <sf>'ID'</sf>) ,
+           <sf>'uyeler.isim'</sf>    => <kf>array</kf>(<sf>'alias'</sf> => <sf>'uyelerIsim'</sf>, <sf>'title'</sf> => <sf>'İSİM'</sf>),
+           <sf>'uyeler_adress.adres'</sf> => <kf>array</kf>(<sf>'alias'</sf> => <sf>'uyelerAdres'</sf>, <sf>'title'</sf> => <sf>'ADRES'</sf>, <sf>'input'</sf> => <sf>'textarea'</sf>)
+       )) 
+       <comment>// Esas tabloya ait işlemlerin yapılacağı sütun bilgisi.</comment>
+       <comment>// Id sütunlarının karışmaması için takma isim kullanılır.</comment>
+       ->processColumn(<sf><strong>'uyelerId'</strong></sf>) 
+       ->create();</pre>
+    </div>
+    </p>
+    
+    <p><div type="note"><div>NOT</div><div>İlişkili tablolarda listeleme ve silme işlemleri yapılabilir. Ekleme ve güncelleme işlemleri yapılamamaktadır.</div></div></p>
+    
+    <div type="prev-next">
+    	<div type="prev-btn"><a href="component_calendar.html">Önceki</a></div><div type="next-btn"><a href="component_pagination.html">Sonraki</a></div>
+    </div>
+ 
+</body>
+</html>              

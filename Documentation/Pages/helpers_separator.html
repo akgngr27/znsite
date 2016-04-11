@@ -1,0 +1,102 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>ZN KOD ÇATISI</title>
+<link type="text/css" rel="stylesheet" href="../Styles/Structure.css" />
+<script src="../Scripts/Jquery.js"></script>
+<script src="../Scripts/Structure.js"></script>
+</head>
+
+<body>
+    <div id="content-document"><a href="#">Döküman</a> » <a href="helpers.html">Helpers</a> » Separator Kütüphanesi</div> 
+    <p class="ctfont">Separator Kütüphanesi</p>
+    <p>Metinsel ifadeyi özel bir içeriğe dönüştüren sınıftır.</p>
+    <ul>
+      <li><a href="#" class="infont">Separator Kütüphanesi ve Yöntemleri</a><br><br>
+        <ul>    
+            <li><a href="#json_encode">Dizi Verilerini Özel Veri Türüne Çevirmek » <b>Separator::encode()</b></a></li>
+            <li><a href="#json_decode">Özel Verileri Object Dizi Verilerine Çevirmek » <b>Separator::decode()</b></a></li>
+        </ul>
+    </li></ul>
+    
+   	<p class="cstfont" id="jquery_encode">Dizi Verilerini Özel Veri Türüne Çevirmek</p>
+    <p><ftype> Separator::encode( <kf>array</kf> <vf>$veriler</vf> , [ <kf>string</kf> <vf>$anahtar_deger_ayraci</vf> = <sf>'+-?||?-+'</sf> ] , [ <kf>string</kf> <vf>$verileri_ayirma_ayraci</vf> = <sf>'|?-++-?|'</sf> ] )</ftype></p>
+    <p>Dizi olarak gelen verileri özel verilere dönüştürür. Özellikle veritabanı sorgularında, tablonun bir sütununa birden fazla farklı türde veri kaydetmek istediğinizde kullanabilirsiniz. 3 parametresi vardır. </p>
+ 
+    <p>
+    	<table class="cfont">
+        	<tr><th>Parametre</th><td>Anlamları</td></tr>
+            <tr><th>1. Parametre = Veriler</th><td>Özel veriye çevrilecek verileri ifade eder.</td></tr>
+            <tr><th>2. Parametre = [ Anahtar Değer Ayracı = "+-?||?-+" ]</th><td>Anahtar ile değer çiftini ayıran ifade.</td></tr>
+            <tr><th>3. Parametre = [ Verileri Ayırma Ayracı = "|?-++-?|" ]</th><td>Verileri ayırma ayracı.</td></tr>
+        </table>
+    </p>
+	<p>
+ 
+    	<div type="code">
+<pre>
+<x><</x>?php
+<kf>class</kf> SeparatorUygulamasi
+{
+	<ff>function</ff> index()
+        { 
+            <vf>$veriler</vf> = <kf>array</kf>(<sf>'sehir'</sf> => <sf>'İstanbul'</sf>, <sf>'plaka'</sf> => 30);
+            <kf>echo</kf> <strong>Separator::encode</strong>(<vf>$veriler</vf>);
+            
+            <comment>/* 
+            sehir+-?||?-+İstanbul|?-++-?|plaka+-?||?-+30
+            */</comment>
+        }
+}
+</pre>
+    	</div>
+    </p>
+    	
+    <p>Veriler yukarıda açıklama satırındaki hali aldılar. Şimdide bunu çözelim.</p>
+    
+    
+    <p class="cstfont" id="json_decode">Özel Verileri Object Dizi Verilerine Çevirmek</p>
+    <p><ftype> Separator::decode( <kf>string</kf> <vf>$json_veriler</vf> , [ <kf>string</kf> <vf>$anahtar_deger_ayraci</vf> = <sf>'+-?||?-+'</sf> ] , [ <kf>string</kf> <vf>$verileri_ayirma_ayraci</vf> = <sf>'|?-++-?|'</sf> ] )</ftype></p>
+    <p>Özel hal almış verileri çözer. 3 parametresi vardır. Özel Veriler</p>
+ 
+    <p>
+    	<table class="cfont">
+        	<tr><th>Parametre</th><td>Anlamları</td></tr>
+            <tr><th>1. Parametre = Özel Veriler</th><td>Özel veriyi çevirir.</td></tr>
+            <tr><th>2. Parametre = [ Anahtar Değer Ayracı = "+-?||?-+" ]</th><td>Anahtar ile değer çiftini ayıran ifade.</td></tr>
+            <tr><th>3. Parametre = [ Verileri Ayırma Ayracı = "|?-++-?|" ]</th><td>Verileri ayırma ayracı.</td></tr>
+        </table>
+    </p>
+	<p>
+ 
+    	<div type="code">
+<pre>
+<x><</x>?php
+<kf>class</kf> SeparatorUygulamasi
+{
+	<ff>function</ff> index()
+        {
+            <vf>$veriler</vf> = <kf>array</kf>(<sf>'sehir'</sf> => <sf>'İstanbul'</sf>, <sf>'plaka'</sf> => 30);
+            <vf>$json</vf> = Separator::encode(<vf>$veriler</vf>);
+            
+            <vf>$decode</vf> = <strong>Separator::decode</strong>(<vf>$json</vf>);
+            
+            <kf>echo</kf> <vf>$decode</vf>->sehir;
+            <kf>echo</kf> <vf>$decode</vf>->plaka;
+            
+            <comment>/* 
+            İstanbul 30
+            */</comment>
+        }
+}
+</pre>
+    	</div>
+    </p>
+    
+    <div type="prev-next">
+    	<div type="prev-btn"><a href="helpers_search.html">Önceki</a></div><div type="next-btn"><a href="helpers_symbol.html">Sonraki</a></div>
+    </div>
+ 
+</body>
+</html>              

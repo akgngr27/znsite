@@ -1,0 +1,366 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>ZN KOD ÇATISI</title>
+<link type="text/css" rel="stylesheet" href="../Styles/Structure.css" />
+<script src="../Scripts/Jquery.js"></script>
+<script src="../Scripts/Structure.js"></script>
+</head>
+
+<body>
+    <div id="content-document"><a href="#">Döküman</a> » <a href="services.html">Services</a> » Network(Net) Kütüphanesi</div> 
+    <p class="ctfont">Network(Net) Kütüphanesi</p>
+    <p>Ağlarla ilgili çeşitli işlevlere sahip yöntemleri bir araya getirmeye çalıştık.</p>
+    
+     <p>
+    	<table class="cfont" width="100%">
+        	<tr><th colspan="2">Network(Net) Kütüphanesi ve Yöntemleri</th></tr>
+    
+            <tr><td width="35%">IP Üzerinden DNS Kontrolü Yapmak</td><th width="65%"><cf><a href="#checkDns">Net::checkDns()</a></cf></th></tr>
+            <tr><td>Bir Hostla İlgili DNS Kayıtlarını Almak</td><th><cf><a href="#dnsRecords">Net::dnsRecords()</a></cf></th></tr>
+            <tr><td>Bir Hostla İlgili MX Kayıtlarını Almak</td><th><cf><a href="#mxRecord">Net::mxRecords()</a></cf></th></tr>
+            <tr><td>Internet Alan Soketi Bağlantısı Açmak</td><th><cf><a href="#socket">Net::socket()</a></cf></th></tr>
+            <tr><td>Kalısı Soket Bağlantısı Açmak</td><th><cf><a href="#socket">Net::psocket()</a></cf></th></tr>
+            <tr><td>IP Adresini Host İsmine Çevirmek</td><th><cf><a href="#ipv4ToHost">Net::ipv4ToHost()</a></cf></th></tr>
+            <tr><td>Host İsmini IP Adresine Çevirmek</td><th><cf><a href="#hostToIpv4">Net::hostToIpv4()</a></cf></th></tr>
+            <tr><td>Host Bilgisi ile IP Listesini Almak</td><th><cf><a href="#hostToIpv4List">Net::hostToIpv4List()</a></cf></th></tr>
+            <tr><td>Protokol İsmine Göre Numarasını Öğrenmek</td><th><cf><a href="#protocolNumber">Net::protocolNumber()</a></cf></th></tr>
+            <tr><td>Protokol Numarasına Göre İsmini Öğrenmek</td><th><cf><a href="#protocolName">Net::protocolName()</a></cf></th></tr>
+            <tr><td>Belirtilen Ağ hizmeti ve Protokolle ilişkili Port Numarasını Almak</td><th><cf><a href="#serviceNumber">Net::servicePort()</a></cf></th></tr>
+            <tr><td>Belirtilen Ağ hizmeti ve Protokolle ilişkili Port İsmini Almak</td><th><cf><a href="#serviceName">Net::serviceName()</a></cf></th></tr>
+            <tr><td>Görülebilir IP Adresine Çevirmek</td><th><cf><a href="#chrToIpv4">Net::chrToIpv4()</a></cf></th></tr>
+            <tr><td>IP Adresini Görülemez Hale Çevirmek</td><th><cf><a href="#ipv4ToChr">Net::ipv4ToChr()</a></cf></th></tr>
+            <tr><td>IP Adresini Sayıya Çevirmek</td><th><cf><a href="#ipv4ToNumber">Net::ipv4ToNumber()</a></cf></th></tr>
+            <tr><td>Sayıyı IP Adresine Çevirmek</td><th><cf><a href="#numberToIpv4">Net::numberToIpv4()</a></cf></th></tr>
+            <tr><td>Yerel Bilgisayar Bilgisini Öğrenmek</td><th><cf><a href="#local">Net::local()</a></cf></th></tr>
+            <tr><td>HTTP Yanıt Kodunu Ayarlamak</td><th><cf><a href="#rcode">Net::rcode()</a></cf></th></tr>
+        </table>
+    </p>
+    
+    <p class="cstfont" id="checkDns">IP Üzerinden DNS Kontrolü Yapmak</p>
+    <p><ftype> Net::checkDns( <kf>string</kf> <vf>$hostAdi/$IP</vf>, <kf>string</kf> <vf>$tur</vf> = <sf>'MX'</sf> )</ftype></p>
+    <p>Belirtilen bir konak adı veya IP adresi için DNS sorgusu yapar. Kayıtlar bulunduğu takdirde <strong>TRUE</strong>, hiç kayıt yoksa veya bir hata oluşmuşsa <strong>FALSE</strong> döner.</p>
+    
+    <p>
+    	<table class="cfont">
+        	<tr><th>Parametre</th><td>Anlamları</td></tr>
+            <tr><th>1 - string Host Adı/IP Adresi</th><td>Kontrol edilecek host ismi.</td></tr>
+            <tr><th>2 - string Tür = MX</th><td>Sorgu türü. Kullanabilir türler:A, MX, NS, SOA, PTR, CNAME, AAAA, A6, SRV, NAPTR, TXT veya ANY. MX öntanımlıdır.</td></tr>
+            <tr><th>Return</th><td>Bool (Mantıksal TRUE, FALSE)</td></tr>
+        </table>
+    </p>
+    
+      <p>
+<div type="code"><pre>
+<kf>echo</kf> Net::checkDns(<sf>'zntr.net'</sf>);
+</pre></div>
+    </p>
+    
+    <p class="cstfont" id="dnsRecords">Bir Hostla İlgili DNS Kayıtlarını Almak</p>
+    <p><ftype> Net::dnsRecords( <kf>string</kf> <vf>$hostAdi/$IP</vf>, <kf>string</kf> <vf>$tur</vf> = <sf>'ANY'</sf> )</ftype></p>
+    <p>Belirtilen host adı ile ilgili DNS Özkaynak Kayıtlarını getirir.</p>
+    
+    <p>
+    	<table class="cfont">
+        	<tr><th>Parametre</th><td>Anlamları</td></tr>
+            <tr><th>1 - string Host Adı/IP Adresi</th><td>Kontrol edilecek host ismi.</td></tr>
+            <tr><th>2 - string Tür = any</th><td>Sorgu türü. Kullanabilir türler:A, MX, NS, SOA, PTR, CNAME, AAAA, A6, SRV, NAPTR, TXT veya ANY. MX öntanımlıdır.</td></tr>
+            <tr><th>Return</th><td>Object (Nesne) -> records, -> authns, -> addtl</td></tr>
+        </table>
+    </p>
+    
+      <p>
+<div type="code"><pre>
+output( Net::dnsRecords(<sf>'zntr.net'</sf>) );
+</pre></div>
+    </p>
+    
+    <p class="cstfont" id="mxRecords">Bir Hostla İlgili MX Kayıtlarını Almak</p>
+    <p><ftype> Net::mxRecords( <kf>string</kf> <vf>$hostAdi</vf> )</ftype></p>
+    <p>Belirtilen host adı ile ilgili MX kayıtlarını döndürür.</p>
+    
+    <p>
+    	<table class="cfont">
+        	<tr><th>Parametre</th><td>Anlamları</td></tr>
+            <tr><th>1 - string Host Adı</th><td>Kontrol edilecek host ismi.</td></tr>
+            <tr><th>2 - string Tür = any</th><td>Sorgu türü. Kullanabilir türler:A, MX, NS, SOA, PTR, CNAME, AAAA, A6, SRV, NAPTR, TXT veya ANY. MX öntanımlıdır.</td></tr>
+            <tr><th>Return</th><td>Object (Nesne) -> records, -> weight</td></tr>
+        </table>
+    </p>
+    
+      <p>
+<div type="code"><pre>
+output( Net::mxRecords(<sf>'zntr.net'</sf>) );
+</pre></div>
+    </p>
+    
+    
+    
+    <p class="cstfont" id="socket">Internet Alan Soketi Bağlantısı Açmak</p>
+    <p><ftype> Net::socket( <kf>string</kf> <vf>$hostAdi</vf>, <kf>numeric</kf> <vf>$port</vf> = <if>-1</if>, <kf>numeric</kf> <vf>$timeout</sf> = <if>60</if>)</ftype></p>
+    <p><ftype> Net::psocket( <kf>string</kf> <vf>$hostAdi</vf>, <kf>numeric</kf> <vf>$port</vf> = <if>-1</if>, <kf>numeric</kf> <vf>$timeout</sf> = <if>60</if>)</ftype></p>
+    <p>Bir internet veya Unix alan soketi bağlantısı açar.</p>
+    
+    <p>
+    	<table class="cfont">
+        	<tr><th>Parametre</th><td>Anlamları</td></tr>
+            <tr><th>1 - string Host Adı</th><td>Bağlantı kurulacak host ismi.</td></tr>
+            <tr><th>2 - numeric Port Numarası</th><td>Bağlantının sağlanacağı port.</td></tr>
+            <tr><th>3 - numeric Zaman Aşımı</th><td>Zaman aşımı süresi.</td></tr>
+            <tr><th>Return</th><td>Resource (Kaynak)</td></tr>
+        </table>
+    </p>
+    
+      <p>
+<div type="code"><pre>
+<vf>$sock</vf> = Net::socket(<sf>'zntr.net'</sf>);
+<comment>// Bağlantı ile ilgili bir hata oluşmuşssa <strong>Error</strong> Kütüphanesininden yararlanabilirsiniz.</comment>
+output( Errors::getTable(<sf>'Net'</sf>, <sf>'socket'</sf>) );
+
+<comment>// Kalıcı soket bağlantısı oluşturmak isterseniz psocket() yöntemi kullanılır.</comment>
+<vf>$sock</vf> = Net::psocket(<sf>'zntr.net'</sf>);
+</pre></div>
+    </p>
+    
+    <p class="cstfont" id="ipv4ToHost">IP Adresini Host İsmine Çevirmek</p>
+    <p><ftype> Net::ipv4ToHost( <kf>string</kf> <vf>$IP</vf> )</ftype></p>
+    <p>Belirtilen IP adresine çözümlenen host ismini döndürür. Sorgu başarısız olursa girilen <strong>IP</strong> değeri döner.</p>
+    
+    <p>
+    	<table class="cfont">
+        	<tr><th>Parametre</th><td>Anlamları</td></tr>
+            <tr><th>1 - string IP Adresi</th><td>Kontrol edilecek host ismi.</td></tr>
+            <tr><th>Return</th><td>String (Dizge)</td></tr>
+        </table>
+    </p>
+    
+      <p>
+<div type="code"><pre>
+output( Net::ipv4ToHost(<sf>'xx.xx.xx.xx'</sf>) ); <comment>// zntr.net</comment>
+</pre></div>
+    </p>
+    
+    <p class="cstfont" id="hostToIpv4">Host İsmini IP Adresine Çevirmek</p>
+    <p><ftype> Net::hostToIpv4( <kf>string</kf> <vf>$host</vf> )</ftype></p>
+    <p>Belirtilen host adına ait IPv4 adresini döndürür. Sorgu başarısız olursa girilen <strong>host</strong> değeri döner.</p>
+    
+    <p>
+    	<table class="cfont">
+        	<tr><th>Parametre</th><td>Anlamları</td></tr>
+            <tr><th>1 - string Host Adı</th><td>Kontrol edilecek host ismi.</td></tr>
+            <tr><th>Return</th><td>String (Dizge)</td></tr>
+        </table>
+    </p>
+    
+      <p>
+<div type="code"><pre>
+output( Net::hostToIpv4(<sf>'zntr.net'</sf>) ); <comment>// xx.xx.xx.xx</comment>
+</pre></div>
+    </p>
+    
+    <p class="cstfont" id="hostToIpv4List">Host Bilgisi ile IP Listesini Almak</p>
+    <p><ftype> Net::hostToIpv4List( <kf>string</kf> <vf>$host</vf> )</ftype></p>
+    <p>Belirtilen host adına ait IPv4 listesini döndürür. Sorgu başarısız olursa girilen <strong>false</strong> değeri döner.</p>
+    
+    <p>
+    	<table class="cfont">
+        	<tr><th>Parametre</th><td>Anlamları</td></tr>
+            <tr><th>1 - string Host Adı</th><td>Kontrol edilecek host ismi.</td></tr>
+            <tr><th>Return</th><td>Array (Dizi)</td></tr>
+        </table>
+    </p>
+    
+      <p>
+<div type="code"><pre>
+output( Net::hostToIpv4List(<sf>'zntr.net'</sf>) ); <comment>// return array</comment>
+</pre></div>
+    </p>
+    
+    <p class="cstfont" id="protocolNumber">Protokol İsmine Göre Numarasını Öğrenmek</p>
+    <p><ftype> Net::protocolNumber( <kf>string</kf> <vf>$isim</vf> )</ftype></p>
+    <p>Protokol ismine karşılık düşen protokol numarasını verir.</p>
+    
+    <p>
+    	<table class="cfont">
+        	<tr><th>Parametre</th><td>Anlamları</td></tr>
+            <tr><th>1 - string İsim</th><td>Protokol ismi.</td></tr>
+            <tr><th>Return</th><td>Int (Sayısal)</td></tr>
+        </table>
+    </p>
+    
+      <p>
+<div type="code"><pre>
+output( Net::protocolNumber(<sf>'tcp'</sf>) ); <comment>// 6</comment>
+</pre></div>
+    </p>
+    
+    <p class="cstfont" id="protocolNumber">Protokol Numarasına Göre İsmini Öğrenmek</p>
+    <p><ftype> Net::protocolName( <kf>string</kf> <vf>$numara</vf> )</ftype></p>
+    <p> Protokol numarasına karşılık düşen protokol ismini verir.</p>
+    
+    <p>
+    	<table class="cfont">
+        	<tr><th>Parametre</th><td>Anlamları</td></tr>
+            <tr><th>1 - string Numara</th><td>Protokol numarası.</td></tr>
+            <tr><th>Return</th><td>String (Dizge)</td></tr>
+        </table>
+    </p>
+    
+      <p>
+<div type="code"><pre>
+output( Net::protocolName(<if>6</if>) ); <comment>// tcp</comment>
+</pre></div>
+    </p>
+    
+    
+    <p class="cstfont" id="servicePort">Belirtilen Ağ hizmeti ve Protokolle ilişkili Port Numarasını Almak</p>
+    <p><ftype> Net::servicePort( <kf>string</kf> <vf>$servis</vf>, <kf>string</kf> <vf>$protokol</vf> )</ftype></p>
+    <p>Belirtilen ağ hizmeti ve protokolle ilişkili port numarası ile döner.</p>
+    
+    <p>
+    	<table class="cfont">
+        	<tr><th>Parametre</th><td>Anlamları</td></tr>
+            <tr><th>1 - string Servis Adı</th><td>Servis adı. http, ftp, pop3, smtp, telnet, imap, www, gopher, finger</td></tr>
+            <tr><th>2 - string Protokol Adı</th><td>Protokol adı. udp, tcp</td></tr>
+            <tr><th>Return</th><td>Int (Sayısal)</td></tr>
+        </table>
+    </p>
+    
+      <p>
+<div type="code"><pre>
+output( Net::servicePort(<sf>'http'</sf>, <sf>'tcp'</sf>) ); <comment>// 80</comment>
+</pre></div>
+    </p>
+    
+    <p class="cstfont" id="serviceName">Belirtilen Ağ hizmeti ve Protokolle ilişkili Port İsmini Almak</p>
+    <p><ftype> Net::serviceName( <kf>numeric</kf> <vf>$port</vf>, <kf>string</kf> <vf>$protokol</vf> )</ftype></p>
+    <p>Belirtilen port ve protokolle ilgili ağ hizmeti döner.</p>
+    
+    <p>
+    	<table class="cfont">
+        	<tr><th>Parametre</th><td>Anlamları</td></tr>
+            <tr><th>1 - string Port Numarası</th><td>Port numarası.</td></tr>
+            <tr><th>2 - string Protokol Adı</th><td>Protokol adı. udp, tcp</td></tr>
+            <tr><th>Return</th><td>String (Dizge)</td></tr>
+        </table>
+    </p>
+    
+      <p>
+<div type="code"><pre>
+output( Net::serviceName(<if>80</if>, <sf>'tcp'</sf>) ); <comment>// http</comment>
+</pre></div>
+    </p>
+    
+    
+    <p class="cstfont" id="chrToIpv4">Görülebilir IP Adresine Çevirmek</p>
+    <p><ftype> Net::chrToIpv4( <kf>string</kf> <vf>$IP</vf> )</ftype></p>
+    <p>Bir IP adresinin gösterimini insan okuyabilir gösterime dönüştürür.</p>
+    
+    <p>
+    	<table class="cfont">
+        	<tr><th>Parametre</th><td>Anlamları</td></tr>
+            <tr><th>1 - string IP Adresi</th><td>IP adresi.</td></tr>
+            <tr><th>Return</th><td>String (Dizge)</td></tr>
+        </table>
+    </p>
+    
+      <p>
+<div type="code"><pre>
+output( Net::chrToIpv4( <ff>chr</ff>(<if>127</if>) . <ff>chr</ff>(<if>0</if>) . <ff>chr</ff>(<if>0</if>) . <ff>chr</ff>(<if>1</if>)) ); <comment>// 127.0.0.1</comment>
+</pre></div>
+    </p>
+    
+    
+    <p class="cstfont" id="ipv4ToChr">IP Adresini Görülemez Hale Çevirmek</p>
+    <p><ftype> Net::ipv4ToChr( <kf>string</kf> <vf>$IP</vf> )</ftype></p>
+    <p>Bir IP adresinin gösterimini insan okuyamaz gösterime dönüştürür.</p>
+    
+    <p>
+    	<table class="cfont">
+        	<tr><th>Parametre</th><td>Anlamları</td></tr>
+            <tr><th>1 - string IP Adresi</th><td>IP adresi.</td></tr>
+            <tr><th>Return</th><td>String (Dizge)</td></tr>
+        </table>
+    </p>
+    
+      <p>
+<div type="code"><pre>
+output( Net::ipv4ToChr(<sf>'127.0.0.1'</sf>) ); <comment>// XXX-Bilgisayar</comment>
+</pre></div>
+    </p>
+    
+    
+    <p class="cstfont" id="ipv4ToNumber">IP Adresini Sayıya Çevirmek</p>
+    <p><ftype> Net::ipv4ToNumber( <kf>string</kf> <vf>$IP</vf> )</ftype></p>
+    <p>IP adresini sayıya çevirir.</p>
+    
+    <p>
+    	<table class="cfont">
+        	<tr><th>Parametre</th><td>Anlamları</td></tr>
+            <tr><th>1 - string IP Adresi</th><td>IP adresi.</td></tr>
+            <tr><th>Return</th><td>Numeric (Sayısal)</td></tr>
+        </table>
+    </p>
+    
+      <p>
+<div type="code"><pre>
+output( Net::ipv4ToNumber(<sf>'127.0.0.1'</sf>) ); <comment>// 2130706433</comment>
+</pre></div>
+    </p>
+    
+    <p class="cstfont" id="numberToIpv4">Sayıyı IP Adresine Çevirmek</p>
+    <p><ftype> Net::numberToIpv4( <kf>int</kf> <vf>$numara</vf> )</ftype></p>
+    <p>işlevi yerel makinenin standard konak ismini döndürür.</p>
+    
+    <p>
+    	<table class="cfont">
+        	<tr><th>Parametre</th><td>Anlamları</td></tr>
+            <tr><th>1 - int Numara</th><td>Numara.</td></tr>
+            <tr><th>Return</th><td>String (Dizge)</td></tr>
+        </table>
+    </p>
+    
+      <p>
+<div type="code"><pre>
+output( Net::numberToIpv4(<if>2130706433</if>) ); <comment>// 127.0.0.1</comment>
+</pre></div>
+    </p>
+    
+    
+    <p class="cstfont" id="local">Yerel Bilgisayar Bilgisini Öğrenmek</p>
+    <p><ftype> Net::local()</ftype></p>
+    <p>işlevi yerel makinenin standard konak ismini döndürür.</p>
+    
+    
+      <p>
+<div type="code"><pre>
+output( Net::local() ); <comment>// XXX-Bilgisayar</comment>
+</pre></div>
+    </p>
+    
+    
+     <p class="cstfont" id="rcode">HTTP Yanıt Kodunu Ayarlamak</p>
+    <p><ftype> Net::rcode( <kf>int</kf> <vf>$code</vf> )</ftype></p>
+    <p>Yanıt kodu ayarlamak için kullanılır.</p>
+    
+    <p>
+    	<table class="cfont">
+        	<tr><th>Parametre</th><td>Anlamları</td></tr>
+            <tr><th>1 - int Numara</th><td>Numara.</td></tr>
+            <tr><th>Return</th><td>Int (Sayısal)</td></tr>
+        </table>
+    </p>
+    
+      <p>
+<div type="code"><pre>
+output( Net::rcode(<if>404</if>) ); <comment>// 200</comment>
+</pre></div>
+    </p>
+     
+    <div type="prev-next">
+    	<div type="prev-btn"><a href="services_ftp.html">Önceki</a></div><div type="next-btn"><a href="sevices_http.html">Sonraki</a></div>
+    </div>
+ 
+</body>
+</html>              

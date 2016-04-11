@@ -1,0 +1,47 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>ZN KOD ÇATISI</title>
+<link type="text/css" rel="stylesheet" href="../Styles/Structure.css" />
+<script src="../Scripts/Jquery.js"></script>
+<script src="../Scripts/Structure.js"></script>
+</head>
+
+<body>
+    <div id="content-document"><a href="#">Döküman</a> » <a href="helpers.html">Helpers</a> » CDN(Dağıtım Ağı) Kütüphanesi</div> 
+    <p class="ctfont">CDN(Dağıtım Ağı) Kütüphanesi</p>
+    <p>Farklı sunucularda yer alan <strong>css, js</strong> gibi dosyaların kullanımı için oluşturulmuştur. Farklı ağlardan kullanmayı plandığınız dosyalara ait yol bilgisini <strong>Config/Cdn.php</strong> dosyasında belirtirek kullanıma hazır hale getirmelisiniz.</p>
+    <ul><li><a href="#" class="infont">CDN(Dağıtım Ağı) Kütüphanesi ve Yöntemleri</a><br><br>
+        <ul>
+            <li><a href="#symbol">Yol Bilgisini Almak » <b>CDN::image/style/script/font/file()</b></a></li>
+        </ul>
+    </li></ul>
+    
+    <p class="cstfont" id="symbol">Yol Bilgisini Almak</p>
+    <p><strong>Config/Cdn.php</strong> dosyasında yer alan dosya yollarınızı daha kısa bir şekilde elde etmek için oluşturulmuş bu yöntemlerin kullanımına yönelik örnek aşağıda verilmiştir.</p>
+    
+    <p>
+    	<table class="cfont">
+        	<tr><th>No</th><th>Parametreler</th><td>Anlamları</td></tr>
+            <tr><th>1</th><th>string Ad</th><td><strong>Config/Cdn.php</strong> dosyasında yer alan anahtar veri.</td></tr>
+        </table>
+    </p>
+    
+	<div type="code">
+    <kf>echo</kf> CDN::image(<sf>'image1'</sf>);  <comment>/* http://www.xxx.xxx/images/image1.jpg */</comment><br> 
+    <kf>echo</kf> CDN::script(<sf>'script1'</sf>);  <comment>/* http://www.xxx.xxx/scripts/script1.js */</comment><br>  
+    </div> 
+    
+    <p><div type="note"><div>NOT</div><div><strong>Scripts</strong>, <strong>Styles</strong> ve <strong>Fonts</strong> ayarlarına belirtilen yollara ait anahtarları doğrudan <strong>Import::</strong> kütüphanesi içinde kullanabilirsiniz.</div></div></p>
+    
+    <div type="code">
+    Import::script(<sf>'script1'</sf>);  <comment>/* Dahil edilen: http://www.xxx.xxx/scripts/script1.jpg */</comment><br> 
+    </div> 
+    
+    <div type="prev-next">
+    	<div type="prev-btn"><a href="helpers.html">Önceki</a></div><div type="next-btn"><a href="hypertext.html">Sonraki</a></div>
+    </div>
+ 
+</body>
+</html>              

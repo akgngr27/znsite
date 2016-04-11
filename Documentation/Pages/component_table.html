@@ -1,0 +1,187 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>ZN KOD ÇATISI</title>
+<link type="text/css" rel="stylesheet" href="../Styles/Structure.css" />
+<script src="../Scripts/Jquery.js"></script>
+<script src="../Scripts/Structure.js"></script>
+</head>
+
+<body>
+    <div id="content-document"><a href="#">Döküman</a> » <a href="components.html">Bileşenler</a> » Table(Tablo) Kütüphanesi</div> 
+    <p class="ctfont">Table(Tablo) Kütüphanesi</p>
+    <p>Table(Tablo) nesnelerini kullanmak üzere geliştirilmiş bileşendir.</p>
+     <p>
+    	<table class="cfont" width="100%">
+            <tr><th colspan="2"><a href="#others">Table(Tablo) Kütüphanesini ve Yöntemleri</a></th></tr>
+        </table>
+    </p>
+ 
+    <p class="cstfont" id="others">Table(Tablo) Kütüphanesi Yöntemleri</p>
+    <p>Table(Tablo) kütüphanesine ait yöntemler aşağıdaki tabloda listelenmiştir</p>
+    
+  	<p>
+    <table class="cfont">
+    	<tr><th width="30%">Table(Tablo) Oluşturma Yöntemleri</th><td>Anlamları</td></tr>
+        
+        <tr>
+        	<td><cf>cell( <vf>$spacing</vf>, <vf>$padding</vf> )</cf></td>
+            <td> 
+            Tablo hücrelerinin bir birine olan konumu ayarlamak için kullanılır. <br> <strong>1. parametre</strong> <strong>cellspacing</strong>, <br> <strong>2. parametre </strong> <strong>cellpadding</strong> değerlerini ayarlamak içindir. 
+            <br>Örnek: ->cell(5, 5)
+            </td>
+        </tr>
+        
+        <tr>
+        	<td><cf>cellSpacing( <vf>$spacing</vf> )</cf></td>
+            <td> 
+            Tablo hücrelerinin sadece <strong>cellspacing</strong> özelliğini ayarlamak için kullanılır. Örnek: ->cellSpacing(5)
+            </td>
+        </tr>
+        
+         <tr>
+        	<td><cf>cellPadding( <vf>$padding</vf> )</cf></td>
+            <td> 
+            Tablo hücrelerinin sadece <strong>cellpadding</strong> özelliğini ayarlamak için kullanılır. Örnek: ->cellPadding(5)
+            </td>
+        </tr>
+        
+         <tr>
+        	<td><cf>border( <vf>$size</vf>, <vf>$color</vf> )</cf></td>
+            <td> 
+            Tablo çerçevesinin <strong>kalınlığını ve rengini</strong> ayarlamak için kullanılır. Örnek: ->border(5, '#000')
+            </td>
+        </tr>
+        
+         <tr>
+        	<td><cf>borderSize( <vf>$size</vf> )</cf></td>
+            <td> 
+            Tablo çerçevesinin <strong>kalınlığını</strong> ayarlamak için kullanılır. Örnek: ->borderSize(5)
+            </td>
+        </tr>
+        
+        <tr>
+        	<td><cf>borderColor( <vf>$size</vf> )</cf></td>
+            <td> 
+            Tablo çerçevesinin <strong>rengini</strong> ayarlamak için kullanılır. Örnek: ->borderColor('red')
+            </td>
+        </tr>
+        
+        <tr>
+        	<td><cf>align( <vf>$align</vf> )</cf></td>
+            <td> 
+            Tablo içeriğini <strong>hizalamak</strong> için kullanılır. Örnek: ->align('center')
+            </td>
+        </tr>
+        
+        <tr>
+        	<td><cf>width( <vf>$width</vf> )</cf></td>
+            <td> 
+            Tablo <strong>genişliğini</strong> ayarlamak için kullanılır. Örnek: ->width(300)
+            </td>
+        </tr>
+        
+        <tr>
+        	<td><cf>height( <vf>$height</vf> )</cf></td>
+            <td> 
+            Tablo <strong>yüksekliğini</strong> ayarlamak için kullanılır. Örnek: ->height(100)
+            </td>
+        </tr>
+        
+        <tr>
+        	<td><cf>size( <vf>$width</vf>, <vf>$height</vf> )</cf></td>
+            <td> 
+            Tablo <strong>genişliğini ve yüksekliğini</strong> ayarlamak için kullanılır. Örnek: ->size(300, 100)
+            </td>
+        </tr>
+        
+        <tr>
+        	<td><cf>background( <vf>$background</vf> )</cf></td>
+            <td> 
+            Tablo <strong>arkplanını</strong> ayarlamak için kullanılır. Örnek: ->background('http://www.ornek.xxx/resim.jpg')
+            </td>
+        </tr>
+        
+        <tr>
+        	<td><cf>bgColor( <vf>$bgcolor</vf> )</cf></td>
+            <td> 
+            Tablo <strong>arkplan rengini</strong> ayarlamak için kullanılır. Örnek: ->bgColor('blue')
+            </td>
+        </tr>
+        
+        <tr>
+        	<td><cf>attr( <vf>$ozellikler</vf> )</cf></td>
+            <td> 
+            <strong>Farklı bir özellik değer eklenmek</strong> istenirse bu yöntem kullanılabilir. Html nesnelerindeki <strong>ozellik="deger"</strong> yapısını oluşturmak içindir. Örnek: ->attr(array('name' => 'resim'))
+            </td>
+        </tr>
+        
+        <tr>
+        	<td><cf>style( <vf>$stiller</vf> )</cf></td>
+            <td> 
+           Tabloya stil eklemek için kullanılır. Örnek: ->style(array('color' => 'red', 'border' => 'solid 1px #000'))
+            </td>
+        </tr>
+        
+        <tr>
+        	<td><cf>css( <vf>$class</vf> )</cf></td>
+            <td> 
+            Tabloya <strong>class="sinif1, sinif2"</strong> tipinde özellik ve değer çifti eklemek için kullanılır. Örnek: ->css('sinif1, sinif2')
+            </td>
+        </tr>
+        
+        <tr>
+        	<td><cf>content( <vf>$args</vf> )</cf></td>
+            <td> 
+            Tablo <strong>içeriğini</strong> oluşturmak için kullanılır. Örnek: ->content(array(1,2,3,4,5), array(a,b,c,d,e))
+            </td>
+        </tr>
+
+       <tr>
+        	<td><cf>create( <vf>$element</vf>, <vf>$closing</vf> = <kf>true</kf> )</cf></td>
+            <td> 
+            Tabloyu oluşturmak için kullanılan <strong>nihai</strong> yöntemdir. Örnek: ->create();
+            </td>
+        </tr> 
+        
+        
+ 
+    </table>
+    </p>
+    
+    <p>Yukarıdaki yöntemlerin kullanımına yönelik örnekler aşağıda verilmiştir.</p>
+    
+    <p>
+    <div type="code">
+<pre>
+<comment>// Tablo genişliği 300, yüksekliği 100 olarak ayarlanıyor.</strong> </comment>
+<kf>echo</kf> Table::size(<if>300</if>, <if>100</if>) 
+          <comment>// Hücreler arası boşluk 0 olarak ayarlanıyor.</comment>
+          ->cell(<if>0</if>, <if>0</if>) 
+          <comment>// Çerçeve kalınlığı 1 ve rengi kırmızı olarak ayarlanıyor.</comment>
+          ->border(<if>1</if>, <sf>'red'</sf>) 
+          ->content
+            (
+                 <comment>// 1. Sütun, 2. Sütun ... N. Sütun</comment>	
+                 <kf>array</kf>(<if>1</if> => <kf>array</kf>(<sf>'colspan'</sf> => <if>2</if>)), <comment> // 1. Satır </comment>
+                 <kf>array</kf>(<sf>'a'</sf>, <sf>'b'</sf>)                    <comment> // 2. Satır </comment>
+                 			            <comment> // ... </comment>
+                                                    <comment> // N. Satır </comment>
+            )
+          ->create();
+</pre>
+    </div>
+    </p>
+    
+    <p><img src="../Images/Result/table1.PNG" /> </p>
+    
+    <p>Yukarıda kodların çıktısı olan tablo görüntüsü yer almaktadır. Gerekli css veya stil kodları kullanılarak çok daha güzel tablolar oluşturabilirsiniz.</p>
+  
+    
+    <div type="prev-next">
+    	<div type="prev-btn"><a href="component_schedule.html">Önceki</a></div><div type="next-btn"><a href="component_terminal.html">Sonraki</a></div>
+    </div>
+ 
+</body>
+</html>              

@@ -1,0 +1,145 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>ZN KOD ÇATISI</title>
+<link type="text/css" rel="stylesheet" href="../Styles/Structure.css" />
+<script src="../Scripts/Jquery.js"></script>
+<script src="../Scripts/Structure.js"></script>
+</head>
+
+<body>
+    <div id="content-document"><a href="#">Döküman</a> » <a href="overview.html">Genel Bakış</a> » Route(Yönlendirme) Yapmak</div> 
+    <p class="ctfont">Route(Yönlendirme) Yapmak</p>
+    <p>ZN Framework'te rota başka bir deyişle yönlendirme yapmak için <strong>Config/Route.php</strong> dosyasından yararlanılır.</p>
+	<p class="cstfont">Route(Yönlendirme) Yapmak</p>
+    <div type="code">
+<pre>Config/Route.php
+
+<vf>$config</vf>[<sf>'Route'</sf>][<sf>'openPage'</sf>]    = <sf>'home'</sf>; <comment>// Varsayılan açılış sayfası.</comment>
+<vf>$config</vf>[<sf>'Route'</sf>][<sf>'show404'</sf>]     = <sf>''</sf>; <comment>// Geçersiz uri girildiğinde görüntülenecek sayfa.</comment>
+<vf>$config</vf>[<sf>'Route'</sf>][<sf>'patternType'</sf>] = <sf>'classic'</sf>; <comment>// Düzenli ifadelerde kullanılacak karakter grubu türü.</comment>
+<vf>$config</vf>[<sf>'Route'</sf>][<sf>'changeUri'</sf>]   = <kf>array</kf>(); <comment>// Yönlendirme yapılacak uri verileri.</comment></pre> 
+    </div>
+    <p>Şimdi bu ayarları tek tek inceleyelim.</p>
+    
+    
+    <p class="cstfont">Open Page(Açılış Sayfası) Ayarı</p>
+    <p>
+    	<cf>http://www.siteadi.xxx/<b class="strfont">index.php</b>/<strong>home</strong>/[coder-fonksiyon adı]/[parametreler]</cf><br>
+     	Sitenizin adresini yazdığınızda ilk açılmasını istediğini anasayfa veya karşılama sayfasını ayarlamak için kullanılır.  
+    </p>
+    <p>Bu ayarda belirtilen bir sınıf adı ve o kütüphanesin çalıştıracağı fonksiyon ismidir.</p>
+    <p>
+    <div type="code">
+Controllers/anasayfa.php
+<pre><x><</x>?php
+<kf>class</kf> Anasayfa <kf>extends</kf> Controller
+{
+	<kf>public</kf> <ff>function</ff> ilksayfa()
+        {
+            <kf>echo</kf> <sf>"ZN Kod Dünyasına Hoş Geldiniz."</sf>;
+        }
+}</pre>
+	</div>
+    </p>
+    <p>Yukarıdaki Anasayfa kütüphanesine ait <strong>ilksayfa()</strong> yöntemini açılışta çalıştırılacak şekilde ayarlamak istersek.</p>
+    <p><div type="code"><vf>$config</vf>[<sf>'Route'</sf>][<sf>'openPage'</sf>]  = <sf>'anasayfa/ilksayfa'</sf>;</div></p>
+    <p>Şeklinde ayarlamamız gerekir. Burada dikkat edilmesi gereken açılış sayfası bir <strong>görünüm sayfasını değil</strong> bir <strong>kontrolcü sayfasını ve o sayfanın çalıştırıacağı fonksiyonu</strong> ifade etmektedir.</p>
+ 
+ 	<p class="cstfont">Show 404(Bulunamayan Sayfa) Ayarı</p>
+    <p>
+     	Adres çubuğuna geçersiz bir url bilgisi girildiğinde tetiklenerek bu ayarda belirtilen sayfaya yönlendirilir. Herhangi bir yönlendirme yapılmamışsa <strong>Hata: URL geçerli fonksiyon veya metot bilgisi içermiyor!</strong> hatası üretir. 
+    </p>
+    <p>Bu ayarda belirtilen bir sınıf adı ve o kütüphanesin çalıştıracağı fonksiyon ismidir.</p>
+    <p>
+    <div type="code">
+Controllers/anasayfa.php
+<pre><x><</x>?php
+<kf>class</kf> Anasayfa <kf>extends</kf> Controller
+{
+    <kf>public</kf> <ff>function</ff> ilksayfa()
+    {
+        <kf>echo</kf> <sf>"ZN Kod Dünyasına Hoş Geldiniz."</sf>;
+    }
+        
+    <kf>public</kf> <ff>function</ff> show404()
+    {
+        <kf>echo</kf> <sf>"Sayfa Bulunamadı!."</sf>;
+    }
+}</pre>
+	</div>
+    </p>
+    <p>Yukarıdaki Anasayfa kütüphanesine ait <strong>show404()</strong> yöntemini bulunamayan sayfa olarak ayarlanmak için;</p>
+    <p><div type="code"><vf>$config</vf>[<sf>'Route'</sf>][<sf>'show404'</sf>]  = <sf>'anasayfa/show404'</sf>;</div></p>
+    <p>Şeklinde ayarlamamız gerekir.</p>
+    
+      <p class="cstfont">Change URI(Uri Değiştirme) İçin Desen Türleri</p>
+    <p>
+     	Düzenli ifadeler ile desenler oluşturulurken standart desenler dışında <strong>Config/Regex.php</strong> dosyasında yer alan özel karakterlerde kullanılabilir. Hangi türün kullanılacağına siz karar verebilirsiniz. 
+    </p>
+    
+     <p>
+    <table class="cfont">
+    	<tr><th colspan="2">2 Tür Vardır</th></tr>
+        <tr>
+        	<th>classic</th>
+        	<td>Düzenli ifadelerde yer alan <strong>\w</strong>, <strong>+</strong>, <strong>.</strong> <strong>[0-9]</strong> gibi klasik karakterlerin kullanımı</td>
+        </tr>
+        
+        <tr>
+        	<th>special</th>
+        	<td>Config/Regex.php de yer alan <strong>{word}</strong>, <strong>{char}</strong>, <strong>{repeat}</strong> gibi karaketerlerin kullanımı</td>
+        </tr>
+        
+    </table>
+    </p>
+    
+    <p class="cstfont">Change URI(Uri Değiştirme) Ayarı ve Rota İşlemleri</p>
+    <p>
+     	Rota işlemleri bu ayar ile gerçekleşir. Veri olarak dizi içerir. Bu diziye rotalar yazılır.<br> 
+        düzenli ifade desenlerinden yararlanılabilir. Ancak düzenli ifadelerde yer alan <strong>/ /</strong> kapsayıcı işaretleri kullanılmaz. Aynı uri verisine birden fazla yeni uri verisi yazılabilir.
+    </p>
+    
+    <p>
+    <table class="cfont">
+    	<tr><th colspan="2">Rota Yazılırken Dikkat Edilecek Husular</th></tr>
+        <tr>
+        	<th>Anahtar ve Değer</th>
+        	<td>Anahtar: Yeni URL bilgisi, Değer: Eski URI bilgisi şeklinde ayarlanır.</td>
+        </tr>
+        
+        <tr>
+        	<th>Düzenli İfadeler</th>
+        	<td>Veri olarak düzenli ifade desenleri kullanılabilir.</td>
+        </tr>
+        
+        <tr>
+        	<th>/ / Kapsayıcısı Kullanılmaz</th>
+        	<td>Düzenli ifade yazılacaksa <strong>/ /</strong> kapsayıcı işaretleri kullanılmaz.</td>
+        </tr>
+        
+    </table>
+    </p>
+
+    <p>
+<pre><div type="code"><vf>$config</vf>[<sf>'Route'</sf>][<sf>'changeUri'</sf>]  = <kf>array</kf>
+(
+    <sf>'anasayfa'</sf>   =>  <sf>'home/index'</sf>, <comment>// home/index yerine anasayfa.</comment>
+    <sf>'urun'</sf>       =>  <sf>'urunler/detay'</sf>, <comment>// urunler/detay yerine urun.</comment>
+    <sf>'^(\b)\/(\b)'</sf> =>  <sf>'$1/index/$2'</sf>, <comment>// Tüm index kullanımlarını kaldırdık.</comment>
+);</div></pre></p>
+
+<p>Son deseni birde <strong>special</strong> pattern type ile yapalım.</p>
+    
+     <p>
+<pre><div type="code"><vf>$config</vf>[<sf>'Route'</sf>][<sf>'changeUri'</sf>]  = <kf>array</kf>
+(
+    <sf>'{starting}({word})/({word})'</sf> =>  <sf>'$1/index/$2'</sf>, <comment>// Tüm index kullanımlarını kaldırdık.</comment>
+);</div></pre></p>
+    
+    <div type="prev-next">
+    	<div type="prev-btn"><a href="uri_route.html">Önceki</a></div><div type="next-btn"><a href="import.html">Sonraki</a></div>
+    </div>
+</body>
+</html>              

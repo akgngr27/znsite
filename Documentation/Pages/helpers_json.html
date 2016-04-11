@@ -1,0 +1,199 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>ZN KOD ÇATISI</title>
+<link type="text/css" rel="stylesheet" href="../Styles/Structure.css" />
+<script src="../Scripts/Jquery.js"></script>
+<script src="../Scripts/Structure.js"></script>
+</head>
+
+<body>
+    <div id="content-document"><a href="#">Döküman</a> » <a href="helpers.html">Helpers</a> » Json Kütüphanesi</div> 
+    <p class="ctfont">Json Kütüphanesi</p>
+    <p>Json kodlarını içeren bir sınıftır.</p>
+    <ul><li><a href="#" class="infont">Json Kütüphanesi ve Yöntemleri</a><br><br>
+        <ul>    
+            <li><a href="#json_encode">Dizi Verilerini Özel Veri Türüne Çevirmek » <b>Json::encode()</b></a></li>
+            <li><a href="#json_decode">Özel Verileri Object Dizi Verilerine Çevirmek » <b>Json::decode()</b></a></li>
+            <li><a href="#json_decodeArray">Özel Verileri Dizi Verilerine Çevirmek » <b>Json::decodeArray()</b></a></li>
+            <li><a href="#json_decodeObject">Özel Verileri Object Verilerine Çevirmek » <b>Json::decodeObject()</b></a></li>
+            <li><a href="#json_errno">Hata Kodu Almak » <b>Json::errno()</b></a></li>
+            <li><a href="#json_error">Hata Mesajı Almak » <b>Json::error()</b></a></li>
+        </ul>
+    </li></ul>
+    
+   	<p class="cstfont" id="jquery_encode">Dizi Verilerini Özel Veri Türüne Çevirmek</p>
+    <p><ftype> Json::encode( <kf>mixed</kf> <vf>$veri</vf> )</ftype></p>
+    <p>Dizi olarak gelen verileri özel verilere dönüştürür. Özellikle veritabanı sorgularında, tablonun bir sütununa birden fazla farklı türde veri kaydetmek istediğinizde kullanabilirsiniz. 3 parametresi vardır. </p>
+ 
+    <p>
+    	<table class="cfont">
+        	<tr><th>Parametre</th><td>Anlamları</td></tr>
+            <tr><th>1. Parametre = Veriler</th><td>Özel veriye çevrilecek verileri ifade eder.</td></tr>
+        </table>
+    </p>
+	<p>
+ 
+    	<div type="code">
+<pre>
+<x><</x>?php
+<kf>class</kf> JsonUygulamasi
+{
+	<ff>function</ff> index()
+        { 
+            <vf>$veriler</vf> = <kf>array</kf>(<sf>'sehir'</sf> => <sf>'İstanbul'</sf>, <sf>'plaka'</sf> => 30);
+            <kf>echo</kf> <strong>Json::encode</strong>(<vf>$veriler</vf>);
+        }
+}
+</pre>
+    	</div>
+    </p>
+    	
+    <p>Veriler yukarıda açıklama satırındaki hali aldılar. Şimdide bunu çözelim.</p>
+    
+    
+    <p class="cstfont" id="json_decode">Özel Verileri Object Dizi Verilerine Çevirmek</p>
+    <p><ftype> Json::decode( <kf>string</kf> <vf>$json_veriler</vf> , [ <kf>boolean</kf> <vf>$array</vf> = <kf>false</kf> ] , [ <kf>numeric</kf> <vf>$maxchar</vf> = <if>512</if> ] )</ftype></p>
+    <p>Özel hal almış verileri çözer. 3 parametresi vardır. Özel Veriler</p>
+ 
+    <p>
+    	<table class="cfont">
+        	<tr><th>Parametre</th><td>Anlamları</td></tr>
+            <tr><th>1. Parametre = Özel Veriler</th><td>Özel veriyi çevirir.</td></tr>
+            <tr><th>2. Parametre = [ Dizi = false ]</th><td>true olması durumunda çıktı dizi formunda elde edilir.</td></tr>
+            <tr><th>3. Parametre = [ Maxchar = 512 ]</th><td>Kaç karaktere kadar uzunluğun dönüştürüleceği ayarlanır.</td></tr>
+        </table>
+    </p>
+	<p>
+ 
+    	<div type="code">
+<pre>
+<x><</x>?php
+<kf>class</kf> JsonUygulamasi
+{
+	<ff>function</ff> index()
+        {
+            <vf>$veriler</vf> = <kf>array</kf>(<sf>'sehir'</sf> => <sf>'İstanbul'</sf>, <sf>'plaka'</sf> => 30);
+            <vf>$json</vf> = Json::encode(<vf>$veriler</vf>);
+            
+            <vf>$decode</vf> = <strong>Json::decode</strong>(<vf>$json</vf>);
+            
+            <kf>echo</kf> <vf>$decode</vf>->sehir;
+            <kf>echo</kf> <vf>$decode</vf>->plaka;
+            
+            <comment>/* 
+            İstanbul 30
+            */</comment>
+        }
+}
+</pre>
+    	</div>
+    </p>
+    
+    <p class="cstfont" id="json_decodeArray">Özel Verileri Dizi Verilerine Çevirmek</p>
+    <p><ftype> Json::decodeArray( <kf>string</kf> <vf>$json_veriler</vf> , [ <kf>numeric</kf> <vf>$maxchar</vf> = <if>512</if> ] )</ftype></p>
+    <p>Özel hal almış verileri çözer. 3 parametresi vardır. Özel Veriler</p>
+ 
+    <p>
+    	<table class="cfont">
+        	<tr><th>Parametre</th><td>Anlamları</td></tr>
+            <tr><th>1. Parametre = Özel Veriler</th><td>Özel veriyi çevirir.</td></tr>
+            <tr><th>2. Parametre = [ Maxchar = 512 ]</th><td>Kaç karaktere kadar uzunluğun dönüştürüleceği ayarlanır.</td></tr>
+        </table>
+    </p>
+	<p>
+ 
+    	<div type="code">
+<pre>
+<x><</x>?php
+<kf>class</kf> JsonUygulamasi
+{
+	<ff>function</ff> index()
+        {
+            <vf>$veriler</vf> = <kf>array</kf>(<sf>'sehir'</sf> => <sf>'İstanbul'</sf>, <sf>'plaka'</sf> => 30);
+            <vf>$json</vf> = Json::encode(<vf>$veriler</vf>);
+            
+            <vf>$decode</vf> = <strong>Json::decodeArray</strong>(<vf>$json</vf>);
+            
+            <kf>echo</kf> <vf>$decode</vf>[<sf>'sehir'</sf>];
+            <kf>echo</kf> <vf>$decode</vf>[<sf>'plaka'</sf>];
+            
+            <comment>/* 
+            İstanbul 30
+            */</comment>
+        }
+}
+</pre>
+    	</div>
+    </p>
+    
+    <p class="cstfont" id="json_decodeObject">Özel Verileri Object Verilerine Çevirmek</p>
+    <p><ftype> Json::decodeObject( <kf>string</kf> <vf>$json_veriler</vf> , [ <kf>numeric</kf> <vf>$maxchar</vf> = <if>512</if> ] )</ftype></p>
+    <p>Özel hal almış verileri çözer. 3 parametresi vardır. Özel Veriler</p>
+ 
+    <p>
+    	<table class="cfont">
+        	<tr><th>Parametre</th><td>Anlamları</td></tr>
+            <tr><th>1. Parametre = Özel Veriler</th><td>Özel veriyi çevirir.</td></tr>
+            <tr><th>2. Parametre = [ Maxchar = 512 ]</th><td>Kaç karaktere kadar uzunluğun dönüştürüleceği ayarlanır.</td></tr>
+        </table>
+    </p>
+	<p>
+ 
+    	<div type="code">
+<pre>
+<x><</x>?php
+<kf>class</kf> JsonUygulamasi
+{
+	<ff>function</ff> index()
+        {
+            <vf>$veriler</vf> = <kf>array</kf>(<sf>'sehir'</sf> => <sf>'İstanbul'</sf>, <sf>'plaka'</sf> => 30);
+            <vf>$json</vf> = Json::encode(<vf>$veriler</vf>);
+            
+            <vf>$decode</vf> = <strong>Json::decodeObject</strong>(<vf>$json</vf>);
+            
+            <kf>echo</kf> <vf>$decode</vf>->sehir;
+            <kf>echo</kf> <vf>$decode</vf>->plaka;
+            
+            <comment>/* 
+            İstanbul 30
+            */</comment>
+        }
+}
+</pre>
+    	</div>
+    </p>
+    
+    <p class="cstfont" id="json_errno">Hata Kodu Almak</p>
+    <p><ftype> Json::errno()</ftype></p>
+    <p>Json işlemlerinde bir hata oluşmuşsa hatanın kodunu döndürür.</p>
+ 
+
+	<p>
+ 
+    	<div type="code">
+		<kf>echo</kf> Json::errno(); <comment> // 0 </comment>
+    	</div>
+    </p>
+    
+    <p class="cstfont" id="json_error">Hata Mesajı Almak</p>
+    <p><ftype> Json::error()</ftype></p>
+    <p>Json işlemlerinde bir hata oluşmuşsa hatanın içeriğini döndürür.</p>
+ 
+
+	<p>
+ 
+    	<div type="code">
+		<kf>echo</kf> Json::error(); <comment> // NoError </comment>
+    	</div>
+    </p>
+	
+    <p>Ajax işlemlerinde veri gönderirken fazlasıyla işinize yaracağınız düşündüğümüz bir sınıf.</p>
+    
+    <div type="prev-next">
+    	<div type="prev-btn"><a href="helpers_format.html">Önceki</a></div><div type="next-btn"><a href="helpers_limit.html">Sonraki</a></div>
+    </div>
+ 
+</body>
+</html>              

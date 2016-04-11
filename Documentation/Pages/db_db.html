@@ -1,0 +1,971 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>ZN KOD ÇATISI</title>
+<link type="text/css" rel="stylesheet" href="../Styles/Structure.css" />
+<script src="../Scripts/Jquery.js"></script>
+<script src="../Scripts/Structure.js"></script>
+</head>
+
+<body>
+    <div id="content-document"><a href="#">Döküman</a> » <a href="db_dynamic.html">Database(Veritabanı) Kütüphanesi Yöntemleri</a> » Database Kütüphanesi ve Kullanımı</div> 
+    <p class="ctfont">Database Kütüphanesi ve Kullanımı</p>
+    <p>Bu bölümde veritabanı kütüphanesinın yöntemlerinin nasıl kullanıldığı ile ilgili anlatıma yer verdik.</p>
+    
+    <p>
+    	<table class="cfont" width="100%">
+        	<tr><th colspan="2">Database(Veritabanı) Kütüphanesi ve Yöntemleri</th></tr>
+            <tr><th colspan="2"><a href="#quick_start">Hızlı Başlangıç ve Kullanım Örnekleri</a></th></tr>
+            <tr><th width="40%">Standart Sorgu Oluşturmak</th><td><a href="#standart_query"><strong>DB::query()</strong></a></td></tr>
+            <tr><th>Tek Seferlik Çalıştırılabilir Sorgu Oluşturmak</th><td><a href="#exec_query"><strong>DB::execQuery()</strong></a></td></tr>
+            <tr><th>Veritabanından Veri Çekmek</th><td><a href="#get"><strong>DB::get()</strong></a></td></tr>
+            <tr><th colspan="2"><a href="#result">Sorgu Sonucu Verilerini Kullanmak</a></th></tr>
+            <tr><th colspan="2"><a href="#select_from">Select, From, Where ve WhereGroup Deyimlerini Kullanmak</a></th></tr>
+            <tr><th>Tablo Durumuyla İlgili Verileri Almak</th><td><a href="#status"><strong>DB::status()</strong></a></td></tr>
+          	<tr><th>Veritabanına Veri Eklemek</th><td><a href="#insert"><strong>DB::insert()</strong></a></td></tr>
+            <tr><th>Veritabanında Veri Güncellemek</th><td><a href="#update"><strong>DB::update()</strong></a></td></tr>
+            <tr><th>Veritabanından Veri Silmek</th><td><a href="#delete"><strong>DB::delete()</strong></a></td></tr>
+            <tr><th>Veri Güvenliğini Sağlamak</th><td><a href="#secure"><strong>DB::secure()</strong></a></td></tr>
+            <tr><th>Sütun Değerini 1 Artırmak</th><td><a href="#increment"><strong>DB::increment()</strong></a></td></tr>
+            <tr><th>Sütun Değerini 1 Azaltmak</th><td><a href="#decrement"><strong>DB::decrement()</strong></a></td></tr>
+            <tr><th>Sayfalama(Pagination) Oluşturmak</th><td><a href="#pagination"><strong>DB::pagination()</strong></a></td></tr>
+            <tr><th colspan="2"><a href="#vartypes">Veritabanında Kullanılabilir Yöntemsel Veri Türleri</a></th></tr>
+            <tr><th colspan="2"><a href="#stataments">Veritabanında Kullanılabilir Nitelik Türleri</a></th></tr>
+            <tr><th colspan="2"><a href="#functions">Veritabanında Kullanılabilir Fonksiyon Türleri</a></th></tr>
+            <tr><th colspan="2"><a href="#other">Diğer Veritabanı Yöntemleri</a></th></tr>        
+        </table>
+    </p>
+  
+    <p class="ctfont" id="quick_start">Hızlı Başlangıç ve Kullanım Örnekleri</p>
+   
+   	<p class="cstfont">Standart Sorgu Oluşturmak</p>
+    <p>Klasik sql sorgularını kullanmak için kullanılan bir yöntemdir.</p>
+    <div type="code">
+  	<vf>$get</vf> = DB::query(<sf>'select * from ornektablo'</sf>);<br>
+    
+    <kf>echo</kf> <vf>$get</vf>->row()->id;<br>
+    
+    <kf>echo</kf> <sf>'Toplam Satır:'</sf>.DB::totalRows();
+    
+    </div>
+    
+    <p class="cstfont">ZN Özel Sorgu Oluşturmak</p>
+    <p>Özel yapılı sorgular oluşturmak için aşağıdaki gibi kullanımlar mümkündür.</p>
+    <p>
+    <div type="code">
+<pre><vf>$get</vf> = DB::get(<sf>'ornektablo'</sf>);
+
+<kf>echo</kf> <vf>$get</vf>->row()->id;</pre>
+    </div>
+    </p>
+    
+     <p>
+    <div type="code">
+     Table() yöntemi ile tablo ismini belirleme;
+<pre><vf>$get</vf> = DB::table(<sf>'ornektablo'</sf>)->get();
+
+<kf>echo</kf> <vf>$get</vf>->row()->id;</pre>
+    </div>
+    </p>
+    
+     <p>
+    <div type="code">
+<pre><vf>$get</vf> = DB::where(<sf>'id = '</sf>, <if>2</if>)->get(<sf>'ornektablo'</sf>);
+    
+<kf>echo</kf> <vf>$get</vf>->row()->id;</pre>
+
+</div>
+    </p>
+    
+     <p>
+    <div type="code">
+<pre><vf>$get</vf> = DB::select(<sf>'id, isim'</sf>)->where(<sf>'id = '</sf>, <if>2</if>)->get(<sf>'ornektablo'</sf>);
+    
+<kf>foreach</kf>(<vf>$get</vf>->result() as <vf>$satir</vf>)
+{
+    <kf>echo</kf> <vf>$satir</vf>->id;
+    <kf>echo</kf> <vf>$satir</vf>->isim;
+}</pre>
+    
+    </div>
+    </p>
+    
+    <p><strong>Sorgu sonucu verileri dizi olarak elde etmek</strong> içinde aşağıdaki gibi bir kullanım yeterlidir.</p>
+      <p>
+    <div type="code">
+<pre><vf>$get</vf> = DB::where(<sf>'id, isim'</sf>)->select(<sf>'id = '</sf>, <if>2</if>)->get(<sf>'ornektablo'</sf>);
+    
+<kf>foreach</kf>(<vf>$get</vf>-><if>resultArray()</if> as <vf>$satir</vf>)
+{
+    <kf>echo</kf> <vf>$satir</vf>[<sf>'id'</sf>]
+    <kf>echo</kf> <vf>$satir</vf>[<sf>'isim'</sf>];
+}</pre>
+    
+    </div>
+    </p>
+    
+    <p class="cstfont">Veri Eklemek</p>
+    <p>Veritabanına basit bir veri ekleme örneği.</p>
+    <div type="code">
+  	DB::insert(<sf>'ornektablo'</sf>, <kf>array</kf>(<sf>'id'</sf> => <if>2</if>, <sf>'isim'</sf> => <sf>'zntr'</sf>));
+    </div>
+    
+    <p>
+    <div type="code">
+  	DB::table(<sf>'ornektablo'</sf>)->insert(<kf>array</kf>(<sf>'id'</sf> => <if>2</if>, <sf>'isim'</sf> => <sf>'zntr'</sf>));
+    </div>
+    </p>
+    
+    <p class="cstfont">Veri Güncellemek</p>
+    <p>Veritabanına basit bir veri güncelleme örneği.</p>
+    <div type="code">
+  	DB::where(<sf>'id'</sf> => <if>1</if>)->update(<sf>'ornektablo'</sf>, <kf>array</kf>(<sf>'id'</sf> => <if>2</if>, <sf>'isim'</sf> => <sf>'zntr'</sf>));
+    </div>
+    <p>
+     <div type="code">
+  	DB::where(<sf>'id'</sf> => <if>1</if>)->table(<sf>'ornektablo'</sf>)->update(<kf>array</kf>(<sf>'id'</sf> => <if>2</if>, <sf>'isim'</sf> => <sf>'zntr'</sf>));
+    </div>
+    </p>
+    
+    
+    
+    <p class="ctfont">Database Kütüphanesi Yöntemleri</p>
+    
+    <p class="cstfont" id="standart_query">Standart Sorgu Oluşturmak</p>
+    <p><ftype>DB::query( <kf>string</kf> <vf>$sorgu</vf> )</ftype></p>
+    <p>Standart sorgu oluşturmak için <cf>query()</cf> yöntemi kullanılır.</p>
+    <p>
+        <table class="cfont">
+            <tr><th colspan="2">query()</th></tr>
+            <tr><th>Parametre</th><th>Kullanımı</th></tr>
+            <tr><th>string Sorgu</th><td>Sorgu ifadesi</td></tr>
+        </table>
+    </p>
+    <p>
+    <div type="code">
+  	<vf>$get</vf> = DB::query(<sf>'select * from ornektablo'</sf>);<br>
+    
+    <kf>echo</kf> <vf>$get</vf>->row()->id;<br>
+    
+    <kf>echo</kf> <sf>'Toplam Satır:'</sf>.<vf>$this</vf>->totalRows();
+    
+    </div>
+  	</p>
+    
+     <p>
+    <div type="code">
+  	DB::query(<sf>'delete from ornektablo where id = 1'</sf>);<br>
+    </div>
+  	</p>
+    
+    <p class="cstfont" id="exec_query">Tek Seferlik Çalıştırılabilir Sorgu Oluşturmak</p>
+    <p><ftype>DB::execQuery( <kf>string</kf> <vf>$sorgu</vf> )</ftype></p>
+    <p>Basit bir sorgu oluşturmak için <cf>execQuery()</cf> yöntemi kullanılır. Genellik bu yöntem <strong>çıktı üretmeyen sorgular</strong> yazılacağı zaman kullanılır.</p>
+    <p>
+        <table class="cfont">
+            <tr><th colspan="2">execQuery()</th></tr>
+            <tr><th>Parametre</th><th>Kullanımı</th></tr>
+            <tr><th>string Sorgu</th><td>Sorgu ifadesi</td></tr>
+        </table>
+    </p>
+    <p>
+    <div type="code">
+  	DB::execQuery(<sf>'create table ornektablo'</sf>);<br>
+    DB::execQuery(<sf>'drop table ornektablo'</sf>);<br>
+    </div>
+  	</p>
+    
+    <p class="cstfont" id="get">Veritabanından Veri Çekmek</p>
+    <p><ftype>DB::get( [ <kf>string</kf> <vf>$tablo_adi</vf> ] )</ftype></p>
+    <p>Veritabanından veri çekmek için kullanılır. Ayrıca oluşturulan özel yapılı sorguları sonlandırmak için kullanılır.</p>
+    <p>
+        <table class="cfont">
+            <tr><th colspan="2">get()</th></tr>
+            <tr><th>Parametre</th><th>Kullanımı</th></tr>
+            <tr><th>[string Tablo Adı]</th><td>from() yöntemi ile tablo ismi belirtilmemişse bu parametre ile tablo ismi belirtilebilir.</td></tr>
+        </table>
+    </p>
+    <p>
+    <div type="code">
+  	<vf>$get</vf> = DB::get(<sf>'ornektablo'</sf>);
+    </div>
+  	</p>
+    
+     <p>
+    <div type="code">
+  	<vf>$get</vf> = DB::table(<sf>'ornektablo'</sf>)->get();
+    </div>
+  	</p>
+    
+    <p class="cstfont" id="result">Sorgu Sonucu Verileri Kullanmak</p>
+    <p><ftype>$get->result([<vf>$tur</vf> = <sf>'object'</sf>]) <comment> // Sorgunun sonucunu object türde döndürür.</comment>
+    <br><br>$get->resultArray() <comment> // Sorgunun sonucunu dizi türünde döndürür.</comment>
+    <br><br>$get->resultJson() <comment> // Sorgunun sonucunu string json veri türünde döndürür.</comment>
+    <br><br>$get->row([<vf>$yazdirilabilir</vf> = <kf>false</kf>]) <comment> // Sorgunun sonucunu tek bir satır kayıtı döndürür.</comment>
+    <br><br>$get->value() <comment> // Sorgunun sonucunu ilk kayıtının ilk sütununa ait veriyi verir.</comment>
+    <br><br>$get->columns() <comment> // Tabloya ait sütunları döndürür.</comment>
+    <br><br>$get->totalRows([<vf>$limitsizKayitSayisi</vf> = <kf>false</kf>]) <comment> // Toplam kayıt sayısını döndürür.</comment>
+    <br><br>$get->totalColumns() <comment> // Toplam sütun sayısını verir.</comment>
+    <br><br>$get->columnData() <comment> // Tabloya ait sütunlar hakkında veriler döndürür.</comment>
+    <br><br>$get->fetch([<vf>$tur</vf> = <sf>'assoc'</sf>]) <comment> // standart fetch kullanımı ile aynıdır.</comment>
+    <br><br>$get->fetchAssoc() <comment> // standart fetch assoc kullanımı ile aynıdır.</comment>
+    <br><br>$get->fetchArray() <comment> // standart fetch array kullanımı ile aynıdır.</comment>
+    <br><br>$get->fetchRow() <comment> // standart fetch row kullanımı ile aynıdır.</comment>
+    <br><br>$get->tableName() <comment> // Tablo ismini döndüdür.</comment>
+    <br><br>$get->affectedRows() <comment> // Etkilenen satır sayısını döndüdür.</comment>
+    <br><br>$get->insertId() <comment> // Son eklenen Id'yi döndürür.</comment>
+    <br><br>$get->pagination() <comment> // Sayfalama barını çıktılar.</comment>
+    <br><br>$get->stringQuery() <comment> // Sorgunun metinsel değerini verir.</comment>
+    </ftype></p>
+    <p>Veritabanından çekilen verileri <strong>object türünde</strong> kullanmak için <cf><strong>result</strong>()</cf> yöntemi kullanılır.</p>
+    <p>
+    <div type="code">
+  	<vf>$get</vf> = DB::get(<sf>'ornektablo'</sf>);<br><br>
+    <ff>var_dump</ff>(<vf>$get</vf>->result());
+    </div>
+  	</p>
+    
+     <p>
+    <div type="code">
+  	<vf>$get</vf> = DB::table(<sf>'ornektablo'</sf>)->get();<br><br>
+    <ff>var_dump</ff>(<vf>$get</vf>->result(<sf>'array'</sf>)); <comment>// resultArray() ile aynı işlevi görür</comment>
+    </div>
+  	</p>
+    
+    <p>Verileri <strong>dizi türünde</strong> kullanmak için <cf><strong>resultArray</strong>()</cf> yöntemi kullanılır.</p>
+    <p>
+    <div type="code">
+  	<vf>$get</vf> = DB::get(<sf>'ornektablo'</sf>);<br><br>
+    <ff>var_dump</ff>(<vf>$get</vf>->resultArray());
+    </div>
+  	</p>
+    
+    <p>Tek <strong>bir satır veriyi</strong> kullanmak için <cf><strong>row</strong>()</cf> yöntemi kullanılır.</p>
+    <p>
+    <div type="code">
+  	<vf>$get</vf> = DB::get(<sf>'ornektablo'</sf>);<br><br>
+    <kf>echo</kf> <vf>$get</vf>->row()->id; <comment>// İlk kayıta ait id bilgisini döndürür.</comment><br><br>
+    <kf>echo</kf> <vf>$get</vf>->row(<if>-1</if>)->id; <comment>// Son kayıta ait id bilgisini döndürür.</comment><br><br>
+    <kf>echo</kf> <vf>$get</vf>->row(<if>1</if>)->id; <comment>// İkinci kayıta ait id bilgisini döndürür.</comment><br><br>
+    <kf>echo</kf> <vf>$get</vf>->row(<if>2</if>)->id; <comment>// Üçüncü kayıta ait id bilgisini döndürür.</comment>
+    </div>
+  	</p>
+    
+    <p><strong>Satır sayısı</strong> almak için <cf><strong>totalRows</strong>()</cf>, imit varsa limit değerine rağmen toplam satır sayısı isteniyorsa <cf><strong>totalRows</strong>(<kf><strong>true</strong></kf>)</cf> kullanılmalıdır.</p>
+    <p>
+    <div type="code">
+  	<vf>$get</vf> = DB::limit(<if>0</if>, <if>2</if>)->get(<sf>'ornektablo'</sf>);<br><br>
+    <kf>echo</kf> <vf>$get</vf>->totalRows(); <comment>// 2</comment><br><br>
+    <kf>echo</kf> <vf>$get</vf>->totalRows(<kf>true</kf>); <comment>// 10 limitten etkilenmeyen toplam satır sayısı.</comment>
+    </div>
+  	</p>
+    
+    <p class="cstfont" id="select_from">Select, From ve Where Deyimlerini Kullanmak</p>
+    <p><ftype>DB::select( [ <kf>string</kf> <vf>$sutun_isimleri</vf> = <sf>'*'</sf> ] )</ftype></p>
+    <p><ftype>DB::from( <kf>string</kf> <vf>$tablo_adi</vf> )</ftype></p>
+    <p><ftype>DB::where( <kf>string</kf> <vf>$sutun_adi_kosul_ifadesi</vf> , <kf>string/numeric</kf> <vf>$deger</vf> , [ <kf>string</kf> <vf>$baglac</vf> ] )</ftype></p>
+    <p><ftype>DB::where( <kf>array</kf>(<vf>$sutun_adi_kosul_ifadesi</vf> , <kf>string/numeric</kf> <vf>$deger</vf> , [ <kf>string</kf> <vf>$baglac</vf> ]) , ... , [ <kf>string</kf> <vf>$baglac</vf> ])</ftype></p>
+    <p>SELECT, FROM ve WHERE deyimlerini kullanmak.</p>
+    <p>
+    <div type="code">
+<pre><vf>$get</vf> = DB::select(<sf>'id'</sf>)
+            ->from(<sf>'ornektablo'</sf>)
+            ->get();
+            
+<kf>echo</kf> <vf>$get</vf>->row()->id;</pre>
+    </div>
+  	</p>
+    
+    <p>
+    <div type="code">
+<pre><vf>$get</vf> = DB::select() <comment> // Varsayılan parametresi *</comment>
+            ->from(<sf>'ornektablo'</sf>)
+            ->where(<sf>'id = '</sf>, <if>2</if>)
+            ->get();
+            
+<kf>echo</kf> <vf>$get</vf>->row()->id;</pre>
+    </div>
+  	</p>
+    
+    <p><strong>Birden fazla where yapısı</strong> kullanmakta mümkündür.</p>
+    
+     <p>
+    <div type="code">
+<pre><vf>$get</vf> = DB::select() <comment> // Varsayılan parametresi *</comment>
+            ->from(<sf>'ornektablo'</sf>)
+            ->where(<sf>'id = '</sf>, <if>2</if>, <sf>'or'</sf>)
+            ->where(<sf>'id = '</sf>, <if>1</if>)
+            ->get();
+            
+<kf>echo</kf> <vf>$get</vf>->row()->id;</pre>
+    </div>
+  	</p>
+    
+    <p>
+    <div type="code">
+<pre><vf>$get</vf> = DB::select() <comment> // Varsayılan parametresi *</comment>
+            ->from(<sf>'ornektablo'</sf>)
+            ->where(<sf>'id = '</sf>, <if>1</if>, <sf>'and'</sf>)
+            ->where(<sf>'isim = '</sf>, <sf>'zntr'</sf>)
+            ->get();
+            
+<kf>echo</kf> <vf>$get</vf>->row()->id;</pre>
+    </div>
+  	</p>
+    
+    <p>Birden fazla where yapısını <strong>sıralı parametre</strong> şeklinde kullanmakta mümkündür.</p>
+    
+    <p>
+    <div type="code">
+<pre><vf>$get</vf> = DB::select() <comment> // Varsayılan parametresi *</comment>
+            ->from(<sf>'ornektablo'</sf>)
+            ->where
+            (
+                array(<sf>'id = '</sf>, <if>2</if>, <sf>'or'</sf>),
+                array(<sf>'id = '</sf>, <if>1</if>)
+            )
+            ->get();
+            
+<kf>echo</kf> <vf>$get</vf>->row()->id;</pre>
+    </div>
+  	</p>
+    
+    <p>Birden fazla where yapısını tek parametrede <strong>dizi</strong> olarak kullanmanızda mümkündür. Bu kullanımın amacı where sorgularının değişkene aktarılabilmesini sağlamaktır.</p>
+    
+      <p>
+    <div type="code">
+<pre>
+<vf>$wheres</vf> = array
+(
+	array(<sf>'id = '</sf>, <if>2</if>, <sf>'or'</sf>),
+    array(<sf>'id = '</sf>, <if>1</if>)
+)
+
+<vf>$get</vf> = DB::select() <comment> // Varsayılan parametresi *</comment>
+            ->from(<sf>'ornektablo'</sf>)
+            ->where(<vf>$wheres</vf>)
+            ->get();
+            
+<kf>echo</kf> <vf>$get</vf>->row()->id;</pre>
+    </div>
+  	</p>
+    
+     
+    
+    <p>Eğer Where yapıları içinde belirtilen şartların parantezler içinde olması gerekirse <strong>whereGroup()</strong> yönteminden yararlanılır.</p>
+    
+     <p>
+    <div type="code">
+<pre><vf>$get</vf> = DB::select() <comment> // Varsayılan parametresi *</comment>
+            ->from(<sf>'ornektablo'</sf>)
+            ->whereGroup(<kf>array</kf>(<sf>'id = '</sf>, <if>1</if>, <sf>'or'</sf>), <kf>array</kf>(<sf>'isim = '</sf>, <sf>'zntr'</sf>), <sf>'and'</sf>)
+            ->where(<sf>'soyisim = '</sf>, <sf>'deneme'</sf>))
+            ->get();
+            
+<kf>echo</kf> <vf>$get</vf>->row()->id;</pre>
+    </div>
+  	</p>
+    
+    <p>Where grubunu bir dizi değişkenine aktararak kullanmakta mümkündür.</p>
+    
+     <p>
+    <div type="code">
+<pre>
+<vf>$wheres</vf> = array
+(
+	<kf>array</kf>(<sf>'id = '</sf>, <if>1</if>, <sf>'or'</sf>),
+    <kf>array</kf>(<sf>'isim = '</sf>, <sf>'zntr'</sf>)
+)
+
+<vf>$get</vf> = DB::select() <comment> // Varsayılan parametresi *</comment>
+            ->from(<sf>'ornektablo'</sf>)
+            ->whereGroup(<vf>$wheres</vf>, <sf>'and'</sf>)
+            ->where(<sf>'soyisim = '</sf>, <sf>'deneme'</sf>))
+            ->get();
+            
+<kf>echo</kf> <vf>$get</vf>->row()->id;</pre>
+    </div>
+  	</p>
+    
+    <p class="cstfont" id="status">Tablo Durumuyla İlgili Verileri Almak</p>
+    <p><ftype>DB::status( <kf>string</kf> <vf>$tabloAdi</vf> )</ftype></p>
+<p>Tabloya ait bazı verileri elde etmek için kullanılır. Bu verilerden bazıları aşağıdaki gibidir.</p>
+	<table class="cfont">
+       		<tr><th colspan="2">Tablo Verileri</th></tr>
+            <tr><th>Anahtar</th><th>Değer</th></tr>
+            <tr><th>Name</th><td>Tablo adı. 'OrnekTablo'</td></tr>
+            <tr><th>Engine</th><td>Tablo motoru. 'InnoDB'</td></tr>
+            <tr><th>Version </th><td>Versiyon bilgisi. '10'</td></tr>
+            <tr><th>collation </th><td>Kodlama grubu. 'utf8_general_ci'</td></tr>
+            <tr><th colspan="2">.</th></tr>
+            <tr><th colspan="2">.</th></tr>
+            <tr><th colspan="2">.</th></tr>
+	</table>
+    </p>
+    
+    <p>
+    <div type="code">
+  	output( DB::status(<sf>'ornektablo'</sf>)->row() );
+    </div>
+  	</p>
+
+    </pre>
+    
+  	</p>
+    <p class="cstfont" id="insert">Veritabanına Veri Eklemek</p>
+<p><ftype>DB::insert( <kf>string</kf> <vf>$tablo_adi</vf> , <kf>array</kf> <vf>$eklenecek_veriler</vf> )</ftype></p>
+    <p>INSERT deyimi kullanmak.</p>
+    <p>
+        <table class="cfont">
+            <tr><th colspan="2">insert()</th></tr>
+            <tr><th>Parametre</th><th>Kullanımı</th></tr>
+            <tr><th>string Tablo Adı</th><td>Verilerin ekleneceği tablo adı.</td></tr>
+            <tr><th>array Eklenecek Veriler</th><td>Tabloya eklenecek veriler.</td></tr>
+        </table>
+    </p>
+    <p>
+    <div type="code">
+  	DB::insert(<sf>'ornektablo'</sf>, <kf>array</kf>(<sf>'id'</sf> => <if>1</if>, <sf>'isim'</sf> => <sf>'zntr'</sf>));
+    </div>
+  	</p>
+    
+    <p>Verilerin daha önce eklenip eklenmediğini kontrol etmek için <strong>duplicateCheck('*')</strong> yönteminden yararlanılabilir. Parametre yıldız ön tanımlıdır. Yıldız olursa tüm ekleme işlemindeki tüm belirtilen sütunlar kontrol edilir. Parametre olarak ekleme işleminde yer alan sütunlardan bir veya birkaçı da seçilebilir. Ancak bu kullanımda argümanlar sıralı olarak belirtilmelidir. Örnek: 's1', 's2' ...</p>
+    
+    <p>
+    <div type="code">
+  	DB::duplicateCheck()->insert(<sf>'ornektablo'</sf>, <kf>array</kf>(<sf>'id'</sf> => <if>1</if>, <sf>'isim'</sf> => <sf>'zntr'</sf>));
+    </div>
+  	</p>
+    
+    <p>Eğer tablo ismi için <strong>table()</strong> yöntemi kullanılırsa yukarıdaki kodu aşağıdaki gibi düzenlemeniz gerekir.</p>
+    
+    <p>
+    <div type="code">
+  	DB::table(<sf>'ornektablo'</sf>)->insert(<kf>array</kf>(<sf>'id'</sf> => <if>1</if>, <sf>'isim'</sf> => <sf>'zntr'</sf>));
+    </div>
+  	</p>
+    
+    <p>Aşağıdaki gibi bir kullanımda mümkündür.</p>
+    
+    <p>
+    <div type="code">
+  	<pre>DB::table(<sf>'ornektablo'</sf>)
+  ->column(<sf>'id'</sf>, <if>1</if>)
+  ->column(<sf>'isim'</sf>, <sf>'zntr'</sf>)
+  ->insert();</pre>
+    </div>
+  	</p>
+    
+    <p class="cstfont" id="update">Veritabanında Veri Güncellemek</p>
+    <p><ftype>DB::update( <kf>string</kf> <vf>$tablo_adi</vf> , <kf>array</kf> <vf>$guncellenecek_veriler</vf> )</ftype></p>
+    <p>UPDATE deyimi kullanmak.</p>
+    <p>
+        <table class="cfont">
+            <tr><th colspan="2">update()</th></tr>
+            <tr><th>Parametre</th><th>Kullanımı</th></tr>
+            <tr><th>string Tablo Adı</th><td>Verilerin güncelleneceği tablo adı.</td></tr>
+            <tr><th>array Güncellenecek Veriler</th><td>Tablodaki güncellenecek veriler.</td></tr>
+        </table>
+    </p>
+    <p>
+    <div type="code">
+  	DB::where(<sf>'id = '</sf>, <if>1</if>)->update(<sf>'ornektablo'</sf>, <kf>array</kf>(<sf>'isim'</sf> => <sf>'zntr'</sf>));
+    </div>
+  	</p>
+    
+    <p>Eğer tablo ismi için <strong>table()</strong> yöntemi kullanılırsa yukarıdaki kodu aşağıdaki gibi düzenlemeniz gerekir.</p>
+    
+    <p>
+    <div type="code">
+  	DB::table(<sf>'ornektablo'</sf>)->where(<sf>'id = '</sf>, <if>1</if>)->update(<kf>array</kf>(<sf>'isim'</sf> => <sf>'zntr'</sf>));
+    </div>
+  	</p>
+    
+    <p>Aşağıdaki gibi bir kullanımda mümkündür.</p>
+    
+    <p>
+    <div type="code">
+  	<pre>DB::table(<sf>'ornektablo'</sf>)
+  ->column(<sf>'id'</sf>, <if>1</if>)
+  ->column(<sf>'isim'</sf>, <sf>'zntr'</sf>)
+  ->update();</pre>
+    </div>
+  	</p>
+    
+    <p class="cstfont" id="delete">Veritabanından Veri Silmek</p>
+    <p><ftype>DB::delete( <kf>string</kf> <vf>$tablo_adi</vf>)</ftype></p>
+    <p>DELETE deyimi kullanmak.</p>
+    <p>
+        <table class="cfont">
+            <tr><th colspan="2">delete()</th></tr>
+            <tr><th>Parametre</th><th>Kullanımı</th></tr>
+            <tr><th>string Tablo Adı</th><td>Verilerin silineceği tablo adı.</td></tr>
+        </table>
+    </p>
+    <p>
+    <div type="code">
+  	DB::where(<sf>'id = '</sf>, <if>1</if>)->delete(<sf>'ornektablo'</sf>);
+    </div>
+  	</p>
+    
+    <p class="cstfont" id="secure">Veri Güvenliğini Sağlamak</p>
+    <p><ftype>DB::secure( <kf>array</kf> <vf>$veriler</vf>)</ftype></p>
+    <p>Veritabanı işlemleri gerçekleştirilirken veri güvenliğini tehdit eden unsurların yok edilmesi amacıyla geliştirilmiştir.</p>
+    <p>
+    <div type="code">
+<pre>DB::secure(<kf>array</kf>(<sf>':x'</sf> => <if>1</if>))
+     ->where(<sf>'id = '</sf>, <sf>':x'</sf>)
+     ->delete(<sf>'ornektablo'</sf>);</pre>
+    </div>
+  	</p>
+    
+     <p>
+    <div type="code">
+<pre>DB::secure(<kf>array</kf>(<if>1</if>, <sf>'zntr'</sf>))
+     ->where(<sf>'id = '</sf>, <sf>'?'</sf>, <sf>'and'</sf>)
+     ->where(<sf>'isim = '</sf>, <sf>'?'</sf>)
+     ->get(<sf>'ornektablo'</sf>);</pre>
+    </div>
+  	</p>
+    
+    <p>
+    <div type="code">
+<pre>DB::secure(<kf>array</kf>(<sf>'secureId'</sf> => <if>1</if>, <sf>'secureName'</sf> => <sf>'zntr'</sf>))
+     ->insert(<sf>'ornektablo'</sf>, <kf>array</kf>(<sf>'id'</sf> => <sf>'secureId'</sf>, <sf>'isim'</sf> => <sf>'secureName'</sf>));</pre>
+    </div>
+  	</p>
+    
+    <p class="cstfont" id="increment">Sütun Değerini İstenilen Miktarda Artırmak</p>
+    <p><ftype>DB::increment( <kf>string</kf> <vf>$tablo_adi</vf>, <kf>string/array</kf> <vf>$sutunlar</vf>, [ <kf>numeric</kf> <vf>$artis_miktari</vf> = <if>1</if>] )</ftype></p>
+    <p>İstenilen sütun veya sütunların değerini istenilen miktarda artırmak için oluşturulmuştur.</p>
+    <p>
+    <div type="code">
+<pre>DB::where(<sf>'id = '</sf>, <sf>'1'</sf>)
+     ->increment(<sf>'OrnekTablo'</sf>, <sf>'OrnekSutun'</sf>);</pre>
+    </div>
+  	</p>
+    
+    <p>table() yöntemi kullanılacak olursa increment() yönteminin sütunlar parametresi 1. parametre olur.</p>
+    
+    <p>
+    <div type="code">
+<pre>DB::where(<sf>'id = '</sf>, <sf>'1'</sf>)
+     ->table(<sf>'OrnekTablo'</sf>)
+     ->increment(<sf>'OrnekSutun'</sf>, <if>5</if>);</pre>
+    </div>
+  	</p>
+    
+    <p>Birden fazla sütunun değerini artırmak için aşağıdaki gibi bir kullanım söz konusu olur.</p>
+    
+     <p>
+    <div type="code">
+<pre>DB::where(<sf>'id = '</sf>, <sf>'1'</sf>)
+     ->increment(<sf>'OrnekTablo'</sf>, <kf>array</kf>(<sf>'OrnekSutun1'</sf>, <sf>'OrnekSutun2'</sf>) );</pre>
+    </div>
+  	</p>
+    
+    <p class="cstfont" id="decrement">Sütun Değerini İstenilen Miktarda Azaltmak</p>
+    <p><ftype>DB::decrement( <kf>string</kf> <vf>$tablo_adi</vf>, <kf>string/array</kf> <vf>$sutunlar</vf>, [ <kf>numeric</kf> <vf>$azalis_miktari</vf> = <if>1</if>] )</ftype></p>
+    <p>İstenilen sütun veya sütunların değerini istenilen miktarda azaltmak için oluşturulmuştur.</p>
+    <p>
+    <div type="code">
+<pre>DB::where(<sf>'id = '</sf>, <sf>'1'</sf>)
+     ->decrement(<sf>'OrnekTablo'</sf>, <sf>'OrnekSutun'</sf>);</pre>
+    </div>
+  	</p>
+    
+    <p>table() yöntemi kullanılacak olursa decrement() yönteminin sütunlar parametresi 1. parametre olur.</p>
+    
+    <p>
+    <div type="code">
+<pre>DB::where(<sf>'id = '</sf>, <sf>'1'</sf>)
+     ->table(<sf>'OrnekTablo'</sf>)
+     ->decrement(<sf>'OrnekSutun'</sf>, <if>5</if>);</pre>
+    </div>
+  	</p>
+    
+    <p>Birden fazla sütunun değerini artırmak için aşağıdaki gibi bir kullanım söz konusu olur.</p>
+    
+     <p>
+    <div type="code">
+<pre>DB::where(<sf>'id = '</sf>, <sf>'1'</sf>)
+     ->decrement(<sf>'OrnekTablo'</sf>, <kf>array</kf>(<sf>'OrnekSutun1'</sf>, <sf>'OrnekSutun2'</sf>) );</pre>
+    </div>
+  	</p>
+    
+     <p class="cstfont" id="pagination">Sayfalama(Pagination) Oluşturmak</p>
+    <p><ftype>DB::pagination( <kf>array</kf> <vf>$ayarlar</vf>, [ <kf>bool</kf> <vf>$donenVeriTuru</vf> = <sf>true</sf>] )</ftype></p>
+    <p>Sorgulara göre daha pratik bir sayfalama yapmak için oluşturulmuştur. Pagination sınıfının kullanımından yararlanılmıştır. İster Pagination sınıfına ayarları gönderin isterseniz doğrudan pagination yani sayfalama barını oluşturun. Yani veritabanı ile sayfalama sınıflarının entegrasyonu ile oluşturulmuş yöntemdir.</p>
+    
+    <p>
+    	<table class="cfont">
+        	<tr><th>Parametre</th><td>Anlamları</td></tr>
+            <tr><th>1. Parametre = string Url</th><td>Sayfalama linklerinin bağlantı kuracağı link bilgisi.</td></tr>
+            <tr><th>2. Parametre = array Ayarlar</th><td>Sayfalama için gönderilecek gerekli ayarlar. Bu ayarların neler olduğu Pagination sınıfında zaten belirtilmiştir. Örnek: links, countLinks.</td></tr>
+            <tr><th>3. Parametre = bool Çıktı true</th><td>Bu parametre false ayarlamadığı sürece sayfalama barını çıktılayacaktır. False olma durumunda sayfalama için gerekli ayarları döndürecektir.</td></tr>
+        </table>
+    </p>
+    
+    <p>
+    <div type="code">
+<pre><vf>$pagination</vf> = DB::limit(URI::segment(<sf>-1</sf>), <sf>5</sf>)->get(<sf>'OrnekTablo'</sf>)->pagination();
+     
+<kf>print</kf>(<vf>$pagination</vf>)
+     
+    </div>
+  	</p>
+    
+    <p class="ctfont" id="vartypes">Veritabanında Kullanılabilir Yöntemsel Veri Türleri</p>
+    <p>Veritabanı sorgularınızda kullanabileceğiniz veri türlerinin yöntemsel hale getirilerek farklı platformlar tarafından desteklenesini sağlanmıştır. Kullanılabilir veri türleri aşağıdakiler gibidir. <strong>Genellikle DBForge::createTable() yöntemi ile kullanılırlar</strong>.</p>
+    <p>
+        <table class="cfont">
+            <tr><th>DB::vartype($type, $uzunluk)</th><td>$type, $uzunluk</td><td>$type($uzunluk)</td></tr>
+            <tr><th>DB::int/integer($uzunluk)</th><td>INT, INTEGER</td><td>INT($uzunluk)</td></tr>
+			<tr><th>DB::smallInt($uzunluk)</th><td>SMALLINT</td><td>SMALLINT($uzunluk)</td></tr>
+            <tr><th>DB::tinyInt($uzunluk)</th><td>TINYINT</td><td>TINYINT($uzunluk)</td></tr>
+            <tr><th>DB::mediumInt($uzunluk)</th><td>MEDIUMINT</td><td>MEDIUMINT($uzunluk)</td></tr>
+            <tr><th>DB::bigInt($uzunluk)</th><td>BIGINT</td><td>BIGINT($uzunluk)</td></tr>
+            <tr><th>DB::decimal($uzunluk)</th><td>DECIMAL</td><td>DECIMAL($uzunluk)</td></tr>
+            <tr><th>DB::double($uzunluk)</th><td>DOUBLE</td><td>DOUBLE($uzunluk)</td></tr>
+            <tr><th>DB::float($uzunluk)</th><td>FLOAT</td><td>FLOAT($uzunluk)</td></tr>
+            <tr><th>DB::char($uzunluk)</th><td>CHAR</td><td>CHAR($uzunluk)</td></tr>
+            <tr><th>DB::varChar($uzunluk)</th><td>VARCHAR</td><td>VARCHAR($uzunluk)</td></tr>
+            <tr><th>DB::tinyText()</th><td>TINYTEXT</td><td>TINYTEXT</td></tr>
+            <tr><th>DB::text()</th><td>TEXT</td><td>TEXT</td></tr>
+            <tr><th>DB::mediumText()</th><td>MEDIUMTEXT</td><td>MEDIUMTEXT</td></tr>
+            <tr><th>DB::longText()</th><td>LONGTEXT</td><td>LONGTEXT</td></tr>
+            <tr><th>DB::date($uzunluk)</th><td>DATE</td><td>DATE($uzunluk)</td></tr>
+            <tr><th>DB::datetime($uzunluk)</th><td>DATETIME</td><td>DATETIME($uzunluk)</td></tr>
+            <tr><th>DB::time($uzunluk)</th><td>TIME</td><td>TIME($uzunluk)</td></tr>
+            <tr><th>DB::timeStamp($uzunluk)</th><td>TIMESTAMP</td><td>TIMESTAMP($uzunluk)</td></tr>    
+        </table>
+    </p>
+    
+     <p>
+    <div type="code">
+  	<pre>DBForge::table(<sf>'ornektablo'</sf>)
+       ->column(<sf>'id'</sf>, <kf>array</kf>(DB::vartype(<sf>'int'</sf>, <if>11</if>), DB::property(<sf>'notNull'</sf>), DB::autoIncrement()))
+       ->column(<sf>'isim'</sf>, <kf>array</kf>(DB::varchar(<if>50</if>), DB::notNull(), DB::collate(<sf>'utf8_unicode_ci'</sf>)))
+       ->createTable();</pre>
+    </div>
+  	</p>
+        
+     <p class="ctfont" id="stataments">Veritabanında Kullanılabilir Nitelik Türleri</p>
+    <p>Özellikle tablo oluştururken sütunlar için kullanılan nitelikleri farklı veritabanı platformanlarında da uyumlu çalışması için oluşturulmuş yöntemdir.</p>
+    <p>
+        <table class="cfont">
+            
+            <tr><th>DB::property($property, $value)</th><td>$property($value)</td><td>$property($value)</td></tr>
+            <tr><th>DB::property(array($property1 => $value1, $property2 => $value2))</th><td>$property($value)</td><td>$property1($value1) $property2($value2)</td></tr>
+            <tr><th>DB::autoIncrement()</th><td>AUTO_INCREMENT</td><td>AUTO_INCREMENT</td></tr>
+            <tr><th>DB::primaryKey([$sutunAdi])</th><td>PRIMARY KEY</td><td>PRIMARY KEY($sutunAdi) / PRIMARY KEY</td></tr>
+            <tr><th>DB::foreignKey([$sutunAdi])</th><td>FOREIGN KEY</td><td>FOREIGN KEY($sutunAdi) / FOREIGN KEY</td></tr>
+            <tr><th>DB::unique([$sutunAdi])</th><td>UNIQUE</td><td>UNIQUE($sutunAdi) / UNIQUE</td></tr>
+            <tr><th>DB::null([$isNull = true])</th><td>NULL</td><td>NULL / NOT NULL</td></tr>
+            <tr><th>DB::notNull()</th><td>NOT NULL</td><td>NOT NULL</td></tr>
+            <tr><th>DB::like($deger, $arama = 'starting')</th><td>starting(a%), ending(%a), inside(%a%) bu <strong>%</strong> işareti <strong>odbc</strong> için <strong>*</strong>'dır.</td><td>$deger%/*</td></tr>
+        </table>
+    </p>
+    
+     <p>
+    <div type="code">
+  	<pre>DBForge::table(<sf>'ornektablo'</sf>)
+       ->column(<sf>'id'</sf>, <kf>array</kf>(DB::int(<if>11</if>), DB::notNull(), DB::autoIncrement()))
+       ->column(<sf>'isim'</sf>, <kf>array</kf>(DB::varchar(<if>50</if>), DB::notNull(), DB::collate(<sf>'utf8_unicode_ci'</sf>)))
+       ->createTable();</pre>
+    </div>
+  	</p>
+    
+    <P><div type="note"><div>NOT</div><div>Burada dikkat edilmesi gereken bu yöntemlerin değerleri farklı veritabanı platformlarına göre farklılık gösterecektir. Yukarıdaki sonuçlar örnek olması açısındandır.</div></div></P>
+    
+    <p class="ctfont" id="functions">Veritabanında Kullanılabilir Fonksiyon Türleri</p>
+    <p>Veritabanı sorgularınızda <strong>genellikle select()</strong> <strong>deyimi ile kullanılan</strong> bir çok sql foksiyonlarını kullanabilirsiniz. <strong>Bu fonksiyonlardan bazıları</strong> aşağıdaki tabloda verilmiştir.</p>
+    <p>
+        <table class="cfont">
+   			<tr><th>DB::func($type, $sutun1, ... , $sutunN)</th><td>$type</td><td>$type($sutun, .... , $sutunN)</td></tr>
+            <tr><th>DB::sum($sutun)</th><td>SUM</td><td>SUM($sutun)</td></tr>
+			<tr><th>DB::avg($sutun)</th><td>AVG</td><td>AVG($sutun)</td></tr>
+            <tr><th>DB::switchCase($anahtar, array($case1 => $value1, ...))</th><td>CASE ELSE END</td><td>CASE $anahtar THEN $case1 WHEN $value1 .... ELSE END</td></tr>
+            <tr><th>DB::ifElse($kosul, $dogru, $yanlis)</th><td>IF ELSE</td><td>IF($kosul) $dogru ELSE $yanlis</td></tr>
+            <tr><th>DB::count($sutun)</th><td>COUNT</td><td>COUNT($sutun)</td></tr>
+            <tr><th colspan="3">.</th></tr>
+            <tr><th colspan="3">.</th></tr>
+            <tr><th colspan="3">.</th></tr>
+        </table>
+    </p>
+    
+    <p>Bu fonksiyonların son parametrelerinin <strong>true</strong> olması durumunda doğrudan yazdırılabilir çıktı üretir.</p>
+   
+    <p>
+    <div type="code">
+<kf>echo</kf> DB::select(DB::sum(<sf>'total'</sf>, <kf>true</kf>))->get(<sf>'OrnekTablo'</sf>)->row(<kf>true</kf>);
+    </div>
+  	</p>
+    
+    <p>Ayrıca <strong>as</strong> anahtarıda kullanıbilir bunun için son prametre true ise sondan bir önceki, değilse son parametre aşağıdaki gibi belirtilebilir.</p>
+    
+    <p>
+    <div type="code">
+<kf>echo</kf> DB::sum(<sf>'total'</sf>, <sf>'as total'</sf>)->get(<sf>'OrnekTablo'</sf>)->row(<kf>true</kf>);
+    </div>
+  	</p>
+    
+    <p class="ctfont" id="other">Diğer Veritabanı Yöntemleri</p>
+    <p>Bu bölümde veritabanı kütüphanesinın diğer yöntemlerinin nasıl kullanıldığı ile ilgili anlatıma yer verdik.</p>
+    <p>
+        <table class="cfont">
+            <tr><th colspan="3">Diğer Yöntemler</th></tr>
+            <tr><th>Yöntem</th><th>İşlev</th><th>Kullanım</th></tr>  
+             <tr>
+            	<th>duplicateCheck('*')</th>
+                <td>Insert işleminde sütunların daha önce aynı değere sahip olup olmadığını kontrol eder. Parametre olarak <strong>sıralı argümen</strong> kabul edilir. Ön tanımlı değeri yıldızdır. Sütun isimleri belirtilecekse 's1', 's2', 's3' ... şeklinde belirtilebilir.</td>
+                <td>
+                	<comment> 
+                    	// @params ...args => sütun isimleri.<br>                   
+                    </comment>
+                	<cf>DB::duplicateCheck(<sf>'s1'</sf>, <sf>'s2'</sf>, <sf>'s3'</sf>);</cf><br>
+                    <comment> // ... Sütunların Kontrolü ...</comment>
+                </td>
+            </tr>
+            
+            <tr>
+            	<th>func()</th>
+                <td>AVG, COUNT gibi matematiksel deyimlerin kullanılmasını sağlar.</td>
+                <td>
+                	<comment> 
+                    	// @params array => fonksiyon ismi ve alacağı değerler.<br>                   
+                    </comment>
+                	<cf>DB::func(<sf>'avg'</sf>, <sf>'sayi'</sf>, <sf>'id'</sf>);</cf><br>
+                    <comment> // ... AVG(sayi, id) ...</comment>
+                </td>
+            </tr>
+            
+            <tr>
+            	<th>column()</th>
+                <td>INSERT, UPDATE, CREATE TABLE yöntemlerinde colon adı ve alacağı değeri belirtmek için kullanılabilir.</td>
+                <td>
+                	<comment> 
+                    	// @params string => Sütun adı.<br>   
+                        // @params mixed  => Sütun değeri.<br>                
+                    </comment>
+                	<cf>DB::table(<sf>'table'</sf>)<br>
+                          ->column(<sf>'name'</sf>, <sf>'zeroneed'</sf>)<br>
+                          ->column(<sf>'phone'</sf>, <sf>'542'</sf>)<br>
+                          ->insert();
+                          </cf><br>
+                    <comment> // ... AVG(sayi, id) ...</comment>
+                </td>
+            </tr>
+            
+            <tr>
+            	<th>having()</th>
+                <td>HAVING deyiminin kullanılmasını sağlar.</td>
+                <td>
+                	<comment> 
+                    	// @params string => sütun bilgisi.<br>
+                        // @params mixed => değer.<br>                   
+                    </comment>
+                	<cf>DB::having(<sf>'avg(yas) > '</sf>, <if>30</if>);</cf><br>
+                    <comment> // ... HAVING AVG(yas) > 30 ...</comment>
+                </td>
+            </tr>
+            <tr>
+            	<th>join()</th>
+                <td>JOIN deyiminin kullanılmasını sağlar.</td>
+                <td>
+                	<comment> 
+                    	// @params string => tablo adı.<br>
+                        // @params string => karşılaştırma.<br> 
+                        // @params string => birleştirme türü.<br>                    
+                    </comment>
+                	<cf>DB::join(<sf>'OrnekTablo'</sf>, <sf>'OrnekTablo.id = Tablo.id'</sf>, <sf>'left'</sf>);</cf><br>
+                    <comment> // ... LEFT JOIN OrnekTablo ON OrnekTablo.id = Tablo.id ...</comment>
+                </td>
+            </tr>
+            <tr>
+            	<th>groupBy()</th>
+                <td>GROUP BY deyiminin kullanılmasını sağlar.</td>
+                <td>
+                	<comment> 
+                    	// @params string => sütun adı.<br>
+                                    
+                    </comment>
+                	<cf>DB::groupBy(<sf>'ID'</sf>);</cf><br>
+                    <comment> // ... GROUP BY ID ...</comment>
+                </td>
+            </tr>
+            <tr>
+            	<th>orderBy()</th>
+                <td>ORDER BY deyiminin kullanılmasını sağlar.</td>
+                <td>
+                	<comment> 
+                    	// @params string => sütun adı.<br>
+                        // @params string => sıralama türü.<br>                    
+                    </comment>
+                	<cf>DB::orderBy(<sf>'ID'</sf>, <sf>'desc'</sf>);</cf><br>
+                    <comment> // ... ORDER BY DESC ...</comment>
+                </td>
+            </tr>
+            <tr>
+            	<th>limit()</th>
+                <td>LIMIT deyiminin kullanılmasını sağlar.</td>
+                <td>
+                	<comment> 
+                    	// @params numeric => başlangıç indeks numarası.<br>
+                        // @params numeric => kaç satır veri alınacağı.<br>               
+                    </comment>
+                	<cf>DB::limit(<if>0</if>, <if>2</if>);</cf><br>
+                    <comment> // ... LIMIT 0, 2 ...</comment>
+                </td>
+            </tr>
+            <tr>
+            	<th>fetchArray()</th>
+                <td>Standart fetch_array çıktısı üretir.</td>
+                <td>   		
+                	<cf>DB::get(<sf>'OrnekTablo'</sf>)->fetchArray();<br></cf>
+                </td>
+            </tr>
+            <tr>
+            	<th>fetchAssoc()</th>
+                <td>Standart fetch_assoc çıktısı üretir.</td>
+                 <td>   		
+                	<cf>DB::get(<sf>'OrnekTablo'</sf>)->fetchAssoc();<br></cf>
+                </td>
+            </tr>
+            <tr>
+            	<th>fetchRow()</th>
+                <td>Standart fetch_row çıktısı üretir.</td>
+                 <td>   		
+                	<cf>DB::get(<sf>'OrnekTablo'</sf>)->fetchRow();<br></cf>
+                </td>
+            </tr>
+            <tr>
+            	<th>affectedRows()</th>
+                <td>Sorgu sonucu etkilenen satır sayısını verir.</td>
+                <td>
+                	<cf>DB::affectedRows();</cf><br>
+                </td>
+            </tr>
+            
+            <tr>
+            	<th>insertId()</th>
+                <td>Tabloya Id sütunu eklemek için kullanılır.</td>
+                <td>
+                	<cf>DB::insertId();</cf><br>
+                </td>
+            </tr>
+            
+            <tr>
+            	<th>all()</th>
+                <td>ALL deyiminin kullanılmasını sağlar.</td>
+                <td>
+                	<cf>DB::all();</cf><br>
+                    <comment> // ... ALL ...</comment>
+                </td>
+            </tr>
+            <tr>
+            	<th>distinct()</th>
+                <td>DISTINCT deyiminin kullanılmasını sağlar.</td>
+                <td>
+                	<cf>DB::distinct();</cf><br>
+                    <comment> // ... DISTINCT ...</comment>
+                </td>
+            </tr>
+            <tr>
+            	<th>distinctRow()</th>
+                <td>DISTINCTROW deyiminin kullanılmasını sağlar.</td>
+                <td>
+                	<cf>DB::distinctRow();</cf><br>
+                    <comment> // ... DISTINCTROW ...</comment>
+                </td>
+            </tr>
+            <tr>
+            	<th>straightJoin()</th>
+                <td>STRAIGHT_JOIN deyiminin kullanılmasını sağlar.</td>
+                <td>
+                	<cf>DB::straightJoin();</cf><br>
+                    <comment> // ... STRAIGHT JOIN ...</comment>
+                </td>
+            </tr>
+            <tr>
+            	<th>highPriority()</th>
+                <td>HIGH_PRIORTY deyiminin kullanılmasını sağlar.</td>
+                <td>
+                	<cf>DB::highPriority();</cf><br>
+                    <comment> // ... HIGH_PRIORTY ...</comment>
+                </td>
+            </tr>
+            <tr>
+            	<th>smallResult()</th>
+                <td>SQL_SMALL_RESULT deyiminin kullanılmasını sağlar.</td>
+                <td>
+                	<cf>DB::smallResult();</cf><br>
+                    <comment> // ... SQL_SMALL_RESULT ...</comment>
+                </td>
+            </tr>
+            <tr>
+            	<th>bigResult()</th>
+                <td>SQL_BIG_RESULT deyiminin kullanılmasını sağlar.</td>
+                <td>
+                	<cf>DB::bigResult();</cf><br>
+                    <comment> // ... SQL_BIG_RESULT ...</comment>
+                </td>
+            </tr>
+            <tr>
+            	<th>bufferResult()</th>
+                <td>SQL_BUFFER_RESULT deyiminin kullanılmasını sağlar.</td>
+                <td>
+                	<cf>DB::bufferResult();</cf><br>
+                    <comment> // ... SQL_BUFFER_RESULT ...</comment>
+                </td>
+            </tr>
+            <tr>
+            	<th>cache()</th>
+                <td>SQL_CACHE deyiminin kullanılmasını sağlar.</td>
+                <td>
+                	<cf>DB::cache();</cf><br>
+                    <comment> // ... SQL_CACHE ...</comment>
+                </td>
+            </tr>
+            <tr>
+            	<th>noCache()</th>
+                <td>SQL_NO_CACHE deyiminin kullanılmasını sağlar.</td>
+                <td>
+                	<cf>DB::noCache();</cf><br>
+                    <comment> // ... SQL_NO_CACHE ...</comment>
+                </td>
+            </tr>
+            <tr>
+            	<th>calcFoundRows()</th>
+                <td>SQL_CACL_FOUND_ROWS deyiminin kullanılmasını sağlar.</td>
+                <td>
+                	<cf>DB::calcFoundRows();</cf><br>
+                    <comment> // ... SQL_CACL_FOUND_ROWS ...</comment>
+                </td>
+            </tr>
+            
+            <tr>
+            	<th>version()</th>
+                <td>Veritabanının versiyon bilgisini öğrenmek için kullanılır.</td>
+                <td>
+                	<cf>DB::version();</cf><br>
+                </td>
+            </tr>
+            
+            <tr>
+            	<th>error()</th>
+                <td>Veritabanı sorgularında oluşacak hatalar hakkında bilgi almak için kullanılır.</td>
+                <td>
+                	<cf>DB::error();</cf><br>
+                </td>
+            </tr>
+        </table>
+    </p>
+    
+    <div type="prev-next">
+    	<div type="prev-btn"><a href="db_config.html">Önceki</a></div><div type="next-btn"><a href="db_join.html">Sonraki</a></div>
+    </div>
+ 
+</body>
+</html>              
